@@ -17,55 +17,88 @@ public class Request implements Serializable {
     public Request() {
     }
 
-    public Integer getId() {
-        return id;
+    public Request(Integer id, Integer account, Integer activityId, Integer actionToDoId, String description, String status) {
+        this.id = id;
+        this.account = account;
+        this.activityId = activityId;
+        this.actionToDoId = actionToDoId;
+        this.description = description;
+        this.status = status;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Integer getId() {
+        return id;
     }
 
     public Integer getAccount() {
         return account;
     }
 
-    public void setAccount(Integer account) {
-        this.account = account;
-    }
-
     public Integer getActivityId() {
         return activityId;
-    }
-
-    public void setActivityId(Integer activityId) {
-        this.activityId = activityId;
     }
 
     public Integer getActionToDoId() {
         return actionToDoId;
     }
 
-    public void setActionToDoId(Integer actionToDoId) {
-        this.actionToDoId = actionToDoId;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public static Builder builder() {
+        return new Builder();
     }
-
-    @Override
+    /**
+     * This inner class uses Builder pattern instead of setters
+     * with methods like "withXXX" (where XXX - some field of Request class)
+     */
+    public static class Builder {
+        private Integer id;
+        private Integer account;
+        private Integer activityId;
+        private Integer actionToDoId;
+        private String description;
+        private String status;
+        public Builder withId(Integer id) {
+            this.id = id;
+            return this;
+        }
+        public Builder withAccount(Integer account) {
+            this.account = account;
+            return this;
+        }
+        public Builder withActivityId(Integer activityId) {
+            this.activityId = activityId;
+            return this;
+        }
+        public Builder withActionToDoId(Integer actionToDoId) {
+            this.actionToDoId = actionToDoId;
+            return this;
+        }
+        public Builder withDescription(String description) {
+            this.description = description;
+            return this;
+        }
+        public Builder withStatus(String status) {
+            this.status = status;
+            return this;
+        }
+        public Request build() {
+            if(id == null) {
+                id = 0;
+            }
+            if (account == null || activityId == null || actionToDoId == null || status == null) {
+                throw new IllegalArgumentException();
+            }
+            return new Request(id, account, activityId, actionToDoId, description, status);
+        }
+    }
+        @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

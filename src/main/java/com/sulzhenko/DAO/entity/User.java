@@ -70,6 +70,12 @@ public class User implements Serializable {
     public String getNotifications() {
         return notifications;
     }
+    public String getFullName(){
+        if (firstName != null && lastName != null) return firstName + " " + lastName;
+        else if (firstName != null) return firstName;
+        else if (lastName != null) return lastName;
+        else return login;
+    }
 
     public static Builder builder() {
         return new Builder();

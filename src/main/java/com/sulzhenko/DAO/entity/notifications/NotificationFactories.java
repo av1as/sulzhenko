@@ -11,8 +11,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * This class describes factories for producing different types of notifications
+ */
 public class NotificationFactories {
+    /**
+     * This method produces notifications about account's update
+     */
     public NotificationFactory accountUpdateFactory (User user, String updateDescription){
 
         return new NotificationFactory() {
@@ -27,6 +32,9 @@ public class NotificationFactories {
             }
         };
     }
+    /**
+     * This method produces notifications about user request update
+     */
     public NotificationFactory requestUpdateFactory (User user, Request request, String updateDescription){
 
         return new NotificationFactory() {
@@ -41,6 +49,9 @@ public class NotificationFactories {
             }
         };
     }
+    /**
+     * This method produces notifications about some update in system connected with user
+     */
     public NotificationFactory systemUpdateFactory (User user, String updateDescription){
 
         return new NotificationFactory() {

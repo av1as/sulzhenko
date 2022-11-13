@@ -1,7 +1,9 @@
 package com.sulzhenko.DAO.entity.notifications;
 
 import com.sulzhenko.DAO.entity.User;
-
+/**
+ * This class describes the main part of notification about some system update connected with user
+ */
 public class SystemUpdateBody implements Body{
     User user;
     String updateDescription;

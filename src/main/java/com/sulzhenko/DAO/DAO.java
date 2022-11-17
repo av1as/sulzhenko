@@ -5,18 +5,18 @@ import java.util.List;
 /**
  * This interface sets the list of CRUD operations
  */
-public interface DAO<E> {
+public interface DAO<Entity> {
 
     //Optional<Entity> getById(int id);
-    E getById(int id);
+    Entity getById(int id);
 
-    List<E> getAll();
+    List<Entity> getAll();
 
-    void save(E t);
+    void save(Entity t);
 
-    void update(E t, String[] params);
+    void update(Entity t, String[] params);
 
-    void delete(E t);
+    void delete(Entity t);
 }
 //public interface DAO<Entity, Key> {
 //    boolean create(Entity model);

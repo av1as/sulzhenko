@@ -4,23 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b53abc5-250e-4348-917a-700a8c9b6890" name="Changes" comment="Notification package was added; appropriate changes to Request class were made">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/SQLQueries.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/UserApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/UserDAO.java" afterDir="false" />
+    <list default="true" id="2b53abc5-250e-4348-917a-700a8c9b6890" name="Changes" comment="UserDAO class added">
+      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/ActivityDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/RequestDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ActivityTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ExceptionTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/UserTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/DAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/entity/notifications/AccountUpdateBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/entity/notifications/AccountUpdateBody.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/entity/notifications/AccountUpdateTheme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/entity/notifications/AccountUpdateTheme.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/entity/notifications/Body.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/entity/notifications/Body.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/entity/notifications/NotificationFactories.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/entity/notifications/NotificationFactories.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/entity/notifications/NotificationFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/entity/notifications/NotificationFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/SQLQueries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/SQLQueries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/UserApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/entity/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/entity/Request.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/entity/notifications/RequestUpdateBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/entity/notifications/RequestUpdateBody.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/entity/notifications/RequestUpdateTheme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/entity/notifications/RequestUpdateTheme.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/entity/notifications/SystemUpdateBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/entity/notifications/SystemUpdateBody.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/entity/notifications/SystemUpdateTheme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/entity/notifications/SystemUpdateTheme.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/entity/notifications/Theme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DAO/entity/notifications/Theme.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +38,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -47,100 +54,129 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/data/temp/tasks/fp/sulzhenko&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "last_opened_file_path": "C:/data/temp/tasks/fp/sulzhenko/src/main/webapp",
+    "project.structure.last.edited": "Global Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\data\temp\tasks\fp\sulzhenko" />
       <recent name="C:\data\temp\tasks\fp\sulzhenko\src" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\data\temp\tasks\fp\sulzhenko" />
+    </key>
     <key name="IntroduceConstantDialog.RECENTS_KEY">
       <recent name="com.sulzhenko.DAO.SQLQueries" />
     </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.sulzhenko.DAO" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.UserDAO">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.sulzhenko.Main" />
+  <component name="RunManager" selected="JUnit.All in TimeKeeping">
+    <configuration name="ActivityTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TimeKeeping" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.sulzhenko.DAO.entity.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ActivityTests" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NotificationFactories" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.sulzhenko.DAO.entity.notifications.NotificationFactories" />
+    <configuration name="All in TimeKeeping" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TimeKeeping" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.sulzhenko.DAO.entity.notifications.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="User" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.sulzhenko.DAO.entity.User" />
+    <configuration name="ExceptionTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TimeKeeping" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.sulzhenko.DAO.entity.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ExceptionTests" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.sulzhenko.DAO.UserApplication" />
+    <configuration name="ExceptionTests.testInsertInvalidUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TimeKeeping" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.sulzhenko.DAO.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ExceptionTests" />
+      <option name="METHOD_NAME" value="testInsertInvalidUser" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.sulzhenko.DAO.UserDAO" />
+    <configuration name="UserTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TimeKeeping" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.sulzhenko.DAO.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="UserTests" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Tomcat" type="com.poratu.idea.plugins.tomcat">
+      <predefined_log_file enabled="true" id="Tomcat Localhost Log" />
+      <predefined_log_file enabled="true" id="Tomcat Access Log" />
+      <predefined_log_file id="Tomcat Catalina Log" />
+      <predefined_log_file id="Tomcat Manager Log" />
+      <predefined_log_file id="Tomcat Host Manager Log" />
+      <option name="contextPath" value="C:\data\temp\tasks\fp\sulzhenko\" />
+      <option name="docBase" value="C:\data\temp\tasks\fp\sulzhenko\src\main\webapp" />
+      <option name="envOptions">
+        <map />
+      </option>
+      <option name="port" value="8888" />
+      <option name="tomcatInfo">
+        <TomcatInfo>
+          <option name="name" value="Apache Tomcat/10.0.27" />
+          <option name="path" value="$PROJECT_DIR$/../../../../../Program Files/Apache Software Foundation/Tomcat 10.0" />
+          <option name="version" value="10.0.27.0" />
+        </TomcatInfo>
+      </option>
+      <option name="vmOptions" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="com.poratu.idea.plugins.tomcat">
+      <predefined_log_file enabled="true" id="Tomcat Localhost Log" />
+      <predefined_log_file enabled="true" id="Tomcat Access Log" />
+      <predefined_log_file id="Tomcat Catalina Log" />
+      <predefined_log_file id="Tomcat Manager Log" />
+      <predefined_log_file id="Tomcat Host Manager Log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.ActivityTests" />
+      <item itemvalue="JUnit.All in TimeKeeping" />
+      <item itemvalue="JUnit.ExceptionTests" />
+      <item itemvalue="JUnit.ExceptionTests.testInsertInvalidUser" />
+      <item itemvalue="JUnit.UserTests" />
+      <item itemvalue="Smart Tomcat.Tomcat" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.UserDAO" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.UserApplication" />
-        <item itemvalue="Application.NotificationFactories" />
-        <item itemvalue="Application.User" />
+        <item itemvalue="JUnit.All in TimeKeeping" />
+        <item itemvalue="JUnit.ExceptionTests" />
+        <item itemvalue="JUnit.ExceptionTests.testInsertInvalidUser" />
+        <item itemvalue="JUnit.ActivityTests" />
+        <item itemvalue="JUnit.UserTests" />
       </list>
     </recent_temporary>
   </component>
@@ -174,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668159369034</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="UserDAO class added">
+      <created>1668344499754</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1668344499754</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -192,6 +235,11 @@
     <MESSAGE value="created entities (user, activity, request)&#10;added Hikari pool connection&#10;created input validator" />
     <MESSAGE value="entities improved: setters replaced with Builder inner class" />
     <MESSAGE value="Notification package was added; appropriate changes to Request class were made" />
-    <option name="LAST_COMMIT_MESSAGE" value="Notification package was added; appropriate changes to Request class were made" />
+    <MESSAGE value="UserDAO class added" />
+    <option name="LAST_COMMIT_MESSAGE" value="UserDAO class added" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/sulzhenko$UserTests.ic" NAME="UserTests Coverage Results" MODIFIED="1668624451233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/sulzhenko$All_in_TimeKeeping.ic" NAME="All in TimeKeeping Coverage Results" MODIFIED="1668688428221" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

@@ -2,14 +2,12 @@ package com.sulzhenko.DAO;
 
 import com.sulzhenko.DAO.entity.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import static com.sulzhenko.DAO.SQLQueries.*;
+import static com.sulzhenko.DAO.SQLQueries.UserQueries.*;
 /**
  * This class describes CRUD operations with User class entities
  */
@@ -204,7 +202,6 @@ public class UserDAO implements DAO <User>{
                 .withNotifications(rs.getString(9));
     }
 
-
     @Override
     public List<User> getAll() {
         List<User> list = new ArrayList<>();
@@ -227,8 +224,8 @@ public class UserDAO implements DAO <User>{
 
     @Override
     public void save(User t) {
-        if(isLoginAvailable(t.getLogin())) {
-            int count = 0;
+        int count;
+        if(isLoginAvailable(t.getLogin()) && isRoleCorrect(t.getRole()) && isStatusCorrect(t.getStatus())) {
             try (Connection con = DataSource.getConnection();
                  PreparedStatement stmt = con.prepareStatement(INSERT_USER);
             ) {
@@ -244,42 +241,58 @@ public class UserDAO implements DAO <User>{
                 count = stmt.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
-                throw new DAOException("wrong login: " + t.getLogin());
+                throw new DAOException("unknown exception: " + t);
             }
-            System.out.println(count > 0 ? "user saved: " + getByLogin(t.getLogin()) : "user wasn't saved");
-        } else {
-            System.out.println("this login is not available: " + t.getLogin());
+        } else if (!isRoleCorrect(t.getRole())){
+            throw new DAOException("wrong role: " + t.getRole());
+        } else if (!isStatusCorrect(t.getStatus())){
+            throw new DAOException("wrong status: " + t.getStatus());
+        } else if (!isLoginAvailable(t.getLogin())){
+            throw new DAOException("wrong login: " + t.getLogin());
+
+            } else {
+            throw new DAOException("unknown exception: " + t);
         }
-    }
+//            System.out.println(count > 0 ? "user saved: " + getByLogin(t.getLogin()) : "user wasn't saved");
+            }
 
     @Override
     public void update(User t, String[] params) {
-        if(!isLoginAvailable(t.getLogin())) {
-            String oldLogin = t.getLogin();
-            int count = 0;
+//        if(!isLoginAvailable(t.getLogin())) {
+        int count = 0;
+        String oldLogin = t.getLogin();
+        if(isLoginAvailable(params[0]) && isRoleCorrect(params[5]) && isStatusCorrect(params[6])) {
             try (Connection con = DataSource.getConnection();
                  PreparedStatement stmt = con.prepareStatement(UPDATE_USER);
             ) {
-
                 int k = 0;
-                stmt.setString(++k, params[k-1]);
-                stmt.setString(++k, params[k-1]);
-                stmt.setString(++k, params[k-1]);
-                stmt.setString(++k, params[k-1]);
-                stmt.setString(++k, params[k-1]);
-                stmt.setString(++k, params[k-1]);
-                stmt.setString(++k, params[k-1]);
-                stmt.setString(++k, params[k-1]);
+                stmt.setString(++k, params[k - 1]);
+                stmt.setString(++k, params[k - 1]);
+                stmt.setString(++k, params[k - 1]);
+                stmt.setString(++k, params[k - 1]);
+                stmt.setString(++k, params[k - 1]);
+                stmt.setString(++k, params[k - 1]);
+                stmt.setString(++k, params[k - 1]);
+                stmt.setString(++k, params[k - 1]);
                 stmt.setString(++k, oldLogin);
                 count = stmt.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
-                throw new DAOException("wrong user: " + t.getLogin());
+                throw new DAOException("unknown exception: " + Arrays.toString(params));
             }
-            System.out.println(count > 0 ? "user updated: " + params[0] : "user wasn't updated");
+        } else if (!isRoleCorrect(params[5])){
+            throw new DAOException("wrong new role: " + params[5]);
+        } else if (!isStatusCorrect(params[6])){
+            throw new DAOException("wrong new status: " + params[6]);
+        } else if (!isLoginAvailable(params[0])){
+            throw new DAOException("wrong new login: " + params[0]);
         } else {
-            System.out.println("this user doesn't exist: " + t.getLogin());
+            throw new DAOException("unknown exception: " + t);
         }
+//        System.out.println(count > 0 ? "user updated: " + params[0] : "user wasn't updated");
+//        } else {
+//            System.out.println("this user doesn't exist: " + t.getLogin());
+//        }
     }
 
     @Override
@@ -287,8 +300,7 @@ public class UserDAO implements DAO <User>{
         if(!isLoginAvailable(t.getLogin())) {
             int count = 0;
             try (Connection con = DataSource.getConnection();
-                 PreparedStatement stmt = con.prepareStatement("DELETE FROM users\n" +
-                         "WHERE login = ?;");
+                 PreparedStatement stmt = con.prepareStatement(DELETE_USER);
             ) {
                 stmt.setString(1, t.getLogin());
                 count = stmt.executeUpdate();
@@ -296,9 +308,10 @@ public class UserDAO implements DAO <User>{
                 e.printStackTrace();
                 throw new DAOException("wrong user: " + t.getLogin());
             }
-            System.out.println(count > 0 ? "user deleted: " + t.getLogin() : "user wasn't deleted");
+//            System.out.println(count > 0 ? "user deleted: " + t.getLogin() : "user wasn't deleted");
         } else {
-            System.out.println("this user doesn't exist: " + t.getLogin());
+                throw new DAOException("wrong user: " + t.getLogin());
+//                System.out.println("this user doesn't exist: " + t.getLogin());
         }
     }
     public void indicateNoResult(String name, Object value){
@@ -308,9 +321,87 @@ public class UserDAO implements DAO <User>{
         System.out.println("No user available");
     }
     public boolean isLoginAvailable(String login){
+//        try (Connection con = DataSource.getConnection();
+//             PreparedStatement stmt = con.prepareStatement("SELECT * from users WHERE login = ?");
+//        ) {
+//            stmt.setString(1, login);
+//            ResultSet rs = stmt.executeQuery();
+//            if (rs.next()) {
+//                return true;
+//            }
+//        } catch (SQLException e) {
+//            throw new DAOException("unknown exception");
+//        }
+//        return false;
         return getByLogin(login) == null;
     }
-
+    public boolean isRoleCorrect(String role) {
+        try (Connection con = DataSource.getConnection();
+             PreparedStatement stmt = con.prepareStatement("SELECT * from roles WHERE role_description = ?");
+        ) {
+            stmt.setString(1, role);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new DAOException("unknown exception");
+        }
+        return false;
+    }
+    public boolean isStatusCorrect(String status) {
+        try (Connection con = DataSource.getConnection();
+             PreparedStatement stmt = con.prepareStatement("SELECT * from user_status WHERE status_name = ?");
+        ) {
+            stmt.setString(1, status);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new DAOException("unknown exception");
+        }
+        return false;
+    }
+//    public void addRole(String roleName){
+//        int count;
+//        try (Connection con = DataSource.getConnection();
+//             PreparedStatement stmt = con.prepareStatement(ADD_ROLE);
+//        ) {
+//            stmt.setString(1, roleName);
+//            count = stmt.executeUpdate();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            throw new DAOException("wrong name: " + roleName);
+//        }
+//        System.out.println(count > 0 ? "role added: " + roleName : "role wasn't added");
+//    }
+    public void addStatus(String statusName){
+        int count;
+        try (Connection con = DataSource.getConnection();
+             PreparedStatement stmt = con.prepareStatement(ADD_STATUS);
+        ) {
+            stmt.setString(1, statusName);
+            count = stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DAOException("wrong name: " + statusName);
+        }
+//        System.out.println(count > 0 ? "status added: " + statusName : "status wasn't added");
+    }
+    public void deleteStatus(String statusName) {
+            int count = 0;
+            try (Connection con = DataSource.getConnection();
+                 PreparedStatement stmt = con.prepareStatement(DELETE_STATUS);
+            ) {
+                stmt.setString(1, statusName);
+                count = stmt.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new DAOException("wrong status: " + statusName);
+            }
+//            System.out.println(count > 0 ? "status deleted: " + statusName : "status wasn't deleted");
+        }
 
 
 
@@ -318,35 +409,42 @@ public class UserDAO implements DAO <User>{
     private static UserDAO userDAO = new UserDAO();;
 
     public static void main(String[] args) {
-        User t = userDAO.getById(8);
-        System.out.println(t);
-
-        System.out.println(new UserDAO().getByEmail("mykola.dyak@gmail.com"));
-        System.out.println(new UserDAO().getByLogin("maria"));
-        System.out.println(new UserDAO().getByFirstName("ivan"));
-        System.out.println(new UserDAO().getByLastName("Сум"));
-        System.out.println(new UserDAO().getByRole("system user"));
-        System.out.println(new UserDAO().getByStatus("active"));
-        System.out.println(new UserDAO().getByNotifications("yes"));
-        System.out.println(new UserDAO().getAll());
+//        User t = userDAO.getById(8);
+//        System.out.println(t);
+//
+//        System.out.println(new UserDAO().getByEmail("mykola.dyak@gmail.com"));
+//        System.out.println(new UserDAO().getByLogin("maria"));
+//        System.out.println(new UserDAO().getByFirstName("ivan"));
+//        System.out.println(new UserDAO().getByLastName("Сум"));
+//        System.out.println(new UserDAO().getByRole("system user"));
+//        System.out.println(new UserDAO().getByStatus("active"));
+//        System.out.println(new UserDAO().getByNotifications("yes"));
+//        System.out.println(new UserDAO().getAll());
         User me = User.builder()
                 .withLogin("avlas2")
                 .withEmail("me@me.me")
                 .withPassword("asdf")
                 .withFirstName("artem")
-                .withLastName("sulzhenko")
-                .withRole("administrator")
-                .withStatus("active")
+                .withLastName("sul'zhenko")
+                .withRole("AAadministrator")
+                .withStatus("unknown status")
                 .withNotifications("yes")
                 .build();
         userDAO.save(me);
-        System.out.println(userDAO.getAll());
-
-
-        String[] avlas27 = {"avlas27", "me27@me.me", "asdf27", "27", "27","administrator", "active", "no"};
-        userDAO.update(userDAO.getByLogin("avlas26"), avlas27);
-        userDAO.delete(userDAO.getByLogin("avlas2"));
-        System.out.println(userDAO.getAll());
+//        System.out.println(userDAO.getAll());
+//
+//
+//        String[] avlas27 = {"avlas27", "me27@me.me", "asdf27", "27", "27","administrator", "active", "no"};
+//        userDAO.update(userDAO.getByLogin("avlas26"), avlas27);
+//        userDAO.delete(userDAO.getByLogin("avlas2"));
+//        System.out.println(userDAO.getAll());
+//        userDAO.addStatus("deactivated");
+//        userDAO.addStatus("some status");
+//        userDAO.deleteStatus("some status");
+//        System.out.println(userDAO.isRoleCorrect("administrator"));
+//        System.out.println(userDAO.isRoleCorrect("incorrect"));
+//        System.out.println(userDAO.isStatusCorrect("active"));
+//        System.out.println(userDAO.isStatusCorrect("incorrect"));
     }
 }
 

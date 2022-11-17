@@ -20,7 +20,7 @@ public class RequestUpdateBody implements Body{
     public String asText() {
         return "Hello, " + user.getFullName() + ",\n"
                 + "the request from your account " + user.getLogin()
-                + " to " + request.getActionName()
+                + " to " + request.getActionToDo()
                 + " activity " + request.getActivityName()
                 + " was " + updateDescription + ".";
     }

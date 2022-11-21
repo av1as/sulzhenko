@@ -22,8 +22,8 @@ public class NotificationFactories {
 
         return new NotificationFactory() {
             @Override
-            public String createTheme() {
-                return new AccountUpdateTheme().asTheme();
+            public String createSubject() {
+                return new AccountUpdateSubject().asSubject();
             }
 
             @Override
@@ -39,8 +39,8 @@ public class NotificationFactories {
 
         return new NotificationFactory() {
             @Override
-            public String createTheme() {
-                return new RequestUpdateTheme().asTheme();
+            public String createSubject() {
+                return new RequestUpdateSubject().asSubject();
             }
 
             @Override
@@ -56,8 +56,8 @@ public class NotificationFactories {
 
         return new NotificationFactory() {
             @Override
-            public String createTheme() {
-                return new SystemUpdateTheme().asTheme();
+            public String createSubject() {
+                return new SystemUpdateSubject().asSubject();
             }
 
             @Override
@@ -73,7 +73,7 @@ public class NotificationFactories {
             NotificationFactory factory = new NotificationFactories().accountUpdateFactory(user, "activated");
 //            System.out.println(new NotificationFactories().accountUpdateFactory(user, "activated").createTheme());
 //            System.out.println(new NotificationFactories().accountUpdateFactory(user, "activated").createBody());
-            System.out.println(factory.createTheme());
+            System.out.println(factory.createSubject());
             System.out.println(factory.createBody());
 
         }

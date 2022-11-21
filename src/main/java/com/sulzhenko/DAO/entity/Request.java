@@ -26,6 +26,10 @@ public class Request implements Serializable {
 //        this.status = status;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -96,7 +100,7 @@ public class Request implements Serializable {
             return new Request(id, login, activityName, actionToDo, description);
         }
     }
-        @Override
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

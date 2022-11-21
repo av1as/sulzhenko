@@ -2,9 +2,9 @@ package com.sulzhenko.DAO.entity.notifications;
 /**
  * This class describes the topic of notification about user request update
  */
-public class RequestUpdateTheme implements Theme{
+public class RequestUpdateSubject implements Subject {
     @Override
-    public String asTheme() {
+    public String asSubject() {
         return "Timekeeping: your request update";
     }
 }

@@ -1,8 +1,8 @@
 import com.sulzhenko.DAO.ActivityDAO;
+import com.sulzhenko.DAO.DAOException;
 import com.sulzhenko.DAO.DataSource;
-import com.sulzhenko.DAO.UserDAO;
 import com.sulzhenko.DAO.entity.Activity;
-import com.sulzhenko.DAO.entity.User;
+
 import org.junit.jupiter.api.*;
 
 import java.sql.Connection;
@@ -15,13 +15,12 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static com.sulzhenko.DAO.SQLQueries.CreatingTablesQueries.*;
-import static com.sulzhenko.DAO.SQLQueries.CreatingTablesQueries.CREATE_USERS_ACTIVITIES_TABLE;
+//import static com.sulzhenko.DAO.SQLQueries.CreatingTablesQueries.CREATE_USERS_ACTIVITIES_TABLE;
 import static com.sulzhenko.DAO.SQLQueries.DropingTablesQueries.*;
-import static com.sulzhenko.DAO.SQLQueries.DropingTablesQueries.DROP_ACTIONS_WITH_REQUESTS_TABLE;
+//import static com.sulzhenko.DAO.SQLQueries.DropingTablesQueries.DROP_ACTIONS_WITH_REQUESTS_TABLE;
 import static com.sulzhenko.DAO.SQLQueries.InitialData.INITIAL_ROLE_ADMIN;
 import static com.sulzhenko.DAO.SQLQueries.InitialData.INITIAL_ROLE_USER;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ActivityTests {
     private static Connection con;
@@ -30,24 +29,26 @@ public class ActivityTests {
     @BeforeAll
     static void globalSetUp() throws SQLException {
         con = DataSource.getConnection();
-        con.createStatement().executeUpdate(DROP_USERS_ACTIVITIES_TABLE);
-        con.createStatement().executeUpdate(DROP_REQUESTS_TABLE);
-        con.createStatement().executeUpdate(DROP_USERS_TABLE);
-        con.createStatement().executeUpdate(DROP_USER_STATUS_TABLE);
-        con.createStatement().executeUpdate(DROP_ROLES_TABLE);
-        con.createStatement().executeUpdate(DROP_ACTIVITIES_TABLE);
-        con.createStatement().executeUpdate(DROP_CATEGORIES_OF_ACTIVITY_TABLE);
-        con.createStatement().executeUpdate(DROP_ACTIONS_WITH_REQUESTS_TABLE);
-        con.createStatement().executeUpdate(CREATE_ACTIONS_WITH_REQUESTS_TABLE);
-        con.createStatement().executeUpdate(CREATE_CATEGORIES_OF_ACTIVITY_TABLE);
-        con.createStatement().executeUpdate(CREATE_ACTIVITIES_TABLE);
-        con.createStatement().executeUpdate(CREATE_ROLES_TABLE);
-        con.createStatement().executeUpdate(CREATE_USER_STATUS_TABLE);
-        con.createStatement().executeUpdate(CREATE_USERS_TABLE);
-        con.createStatement().executeUpdate(CREATE_REQUESTS_TABLE);
-        con.createStatement().executeUpdate(CREATE_USERS_ACTIVITIES_TABLE);
-        con.createStatement().executeUpdate(INITIAL_ROLE_ADMIN);
-        con.createStatement().executeUpdate(INITIAL_ROLE_USER);
+//        con.createStatement().executeUpdate(DROP_USERS_ACTIVITIES_TABLE);
+//        con.createStatement().executeUpdate(DROP_REQUESTS_TABLE);
+//        con.createStatement().executeUpdate(DROP_USERS_TABLE);
+//        con.createStatement().executeUpdate(DROP_USER_STATUS_TABLE);
+//        con.createStatement().executeUpdate(DROP_ROLES_TABLE);
+//        con.createStatement().executeUpdate(DROP_ACTIVITIES_TABLE);
+//        con.createStatement().executeUpdate(DROP_CATEGORIES_OF_ACTIVITY_TABLE);
+//        con.createStatement().executeUpdate(DROP_ACTIONS_WITH_REQUESTS_TABLE);
+//        con.createStatement().executeUpdate(CREATE_ACTIONS_WITH_REQUESTS_TABLE);
+//        con.createStatement().executeUpdate(CREATE_CATEGORIES_OF_ACTIVITY_TABLE);
+//        con.createStatement().executeUpdate(CREATE_ACTIVITIES_TABLE);
+//        con.createStatement().executeUpdate(CREATE_ROLES_TABLE);
+//        con.createStatement().executeUpdate(CREATE_USER_STATUS_TABLE);
+//        con.createStatement().executeUpdate(CREATE_USERS_TABLE);
+//        con.createStatement().executeUpdate(CREATE_REQUESTS_TABLE);
+//        con.createStatement().executeUpdate(CREATE_USERS_ACTIVITIES_TABLE);
+//        con.createStatement().executeUpdate(INITIAL_ROLE_ADMIN);
+//        con.createStatement().executeUpdate(INITIAL_ROLE_USER);
+        con.createStatement().executeUpdate("DELETE FROM activity;");
+        con.createStatement().executeUpdate("DELETE FROM category_of_activity;");
         activityDAO.addCategory("categoryA");
         activityDAO.addCategory("categoryB");
         activityDAO.addCategory("categoryC");
@@ -55,16 +56,19 @@ public class ActivityTests {
 
     @AfterAll
     static void globalTearDown() throws SQLException {
+        con.createStatement().executeUpdate("DELETE FROM activity;");
+        con.createStatement().executeUpdate("DELETE FROM category_of_activity;");
         con.close();
     }
     @BeforeEach
     void setUp() throws SQLException {
         //dbm = DBManager.getInstance();
-        con.createStatement().executeUpdate("DELETE FROM activities;");
+
     }
 
     @AfterEach
     void tearDown() throws SQLException {
+        con.createStatement().executeUpdate("DELETE FROM activity;");
     }
     @Test
     void testEquality() {
@@ -87,18 +91,43 @@ public class ActivityTests {
     @Test
     void testInsert() {
         List<Activity> activities = createAndInsertActivities(1, 5);
-        for (Activity activity: activities){
-            activityDAO.save(activity);
-        }
+//        for (Activity activity: activities){
+//            activityDAO.save(activity);
+//        }
         List<Activity> activitiesFromDB = sort(activityDAO.getAll(), Activity::getName);
         assertEquals(activities, activitiesFromDB);
     }
     @Test
+    void testActivityInsertException(){
+        createAndInsertActivities(1, 2);
+        Activity activity1 = Activity.builder()
+                .withName("activity1")
+                .withCategory("categoryB")
+                .build();
+        Activity activity2 = Activity.builder()
+                .withName("activity2")
+                .withCategory("categoryD")
+                .build();
+        try {
+            activityDAO.save(activity1);
+        } catch (Exception e){
+            assertTrue(e instanceof DAOException);
+            assertEquals("wrong activity name: activity1", e.getMessage());
+        }
+        try {
+            activityDAO.save(activity2);
+        } catch (Exception e){
+            assertTrue(e instanceof DAOException);
+            assertEquals("wrong category: categoryD", e.getMessage());
+        }
+    }
+
+    @Test
     void testUpdate() {
         List<Activity> activities = createAndInsertActivities(1, 5);
-        for (Activity activity: activities){
-            activityDAO.save(activity);
-        }
+//        for (Activity activity: activities){
+//            activityDAO.save(activity);
+//        }
         Activity newActivity = Activity.builder()
                 .withName("updated activity2")
                 .withCategory("categoryC")
@@ -113,9 +142,9 @@ public class ActivityTests {
     @Test
     void testDelete() {
         List<Activity> activities = createAndInsertActivities(1, 5);
-        for (Activity activity: activities){
-            activityDAO.save(activity);
-        }
+//        for (Activity activity: activities){
+//            activityDAO.save(activity);
+//        }
         activityDAO.delete(activityDAO.getByName("activity2"));
         List<Activity> activitiesFromDB = sort(activityDAO.getAll(), Activity::getName);
         activities.remove(1);
@@ -125,13 +154,23 @@ public class ActivityTests {
     @Test
     void testDeletedCategory() {
         List<Activity> activities = createAndInsertActivities(1, 5);
-        for (Activity activity: activities){
-            activityDAO.save(activity);
-        }
+//        for (Activity activity: activities){
+//            activityDAO.save(activity);
+//        }
         activityDAO.deleteCategory("categoryB");
         List<Activity> activitiesFromDB = sort(activityDAO.getAll(), Activity::getName);
         assertEquals(activitiesFromDB, new ArrayList<Activity>());
         activityDAO.addCategory("categoryB");
+    }
+    @Test
+    void testGetActivitiesByCategory(){
+        createAndInsertActivities(1, 5);
+        Activity activity5 = Activity.builder()
+                .withName("activity5")
+                .withCategory("categoryA")
+                .build();
+        activityDAO.save(activity5);
+        assertEquals(4, activityDAO.getByCategory("categoryB").size());
     }
 
     private static <T, U extends Comparable<? super U>> List<T>

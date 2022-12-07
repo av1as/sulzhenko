@@ -52,38 +52,43 @@ public class Request implements Serializable {
 //    public String getActionName(){return actionToDo;}
     public String getActivityName(){return activityName;}
 
-    public static Builder builder() {
-        return new Builder();
-    }
+//    public static Builder builder() {
+//        return new Builder();
+//    }
     /**
      * This inner class uses Builder pattern instead of setters
      * with methods like "withXXX" (where XXX - some field of Request class)
      */
     public static class Builder {
-        private Integer id;
-        private String login;
-        private String activityName;
-        private String actionToDo;
-        private String description;
+//        private Integer id;
+//        private String login;
+//        private String activityName;
+//        private String actionToDo;
+//        private String description;
 //        private String status;
+
+        private final Request request;
+        public Builder(){
+            request = new Request();
+        }
         public Builder withId(Integer id) {
-            this.id = id;
+            request.id = id;
             return this;
         }
         public Builder withLogin(String login) {
-            this.login = login;
+            request.login = login;
             return this;
         }
         public Builder withActivityName(String activityName) {
-            this.activityName = activityName;
+            request.activityName = activityName;
             return this;
         }
         public Builder withActionToDo(String actionToDo) {
-            this.actionToDo = actionToDo;
+            request.actionToDo = actionToDo;
             return this;
         }
         public Builder withDescription(String description) {
-            this.description = description;
+            request.description = description;
             return this;
         }
 //        public Builder withStatus(String status) {
@@ -91,13 +96,13 @@ public class Request implements Serializable {
 //            return this;
 //        }
         public Request build() {
-            if(id == null) {
-                id = 0;
+            if(request.id == null) {
+                request.id = 0;
             }
-            if (login == null || activityName == null || actionToDo == null) {
+            if (request.login == null || request.activityName == null || request.actionToDo == null) {
                 throw new IllegalArgumentException();
             }
-            return new Request(id, login, activityName, actionToDo, description);
+            return request;
         }
     }
     @Override

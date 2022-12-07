@@ -16,7 +16,7 @@ public class User implements Serializable {
     private String lastName;
     private String role;
     private String status;
-    private String notifications;
+    private String notification;
 
     public User() {
     }
@@ -30,7 +30,7 @@ public class User implements Serializable {
         this.lastName = lastName;
         this.role = role;
         this.status = status;
-        this.notifications = notifications;
+        this.notification = notifications;
     }
 
     public Integer getAccount() {
@@ -67,8 +67,8 @@ public class User implements Serializable {
         return status;
     }
 
-    public String getNotifications() {
-        return notifications;
+    public String getNotification() {
+        return notification;
     }
     public String getFullName(){
         if (firstName != null && lastName != null) return firstName + " " + lastName;
@@ -77,69 +77,74 @@ public class User implements Serializable {
         else return login;
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
+//    public static Builder builder() {
+//        return new Builder();
+//    }
     /**
      * This inner class uses Builder pattern instead of setters
      * with methods like "withXXX" (where XXX - some field of User class)
      */
     public static class Builder {
-        private Integer account;
-        private String login;
-        private String password;
-        private String email;
-        private String firstName;
-        private String lastName;
-        private String role;
-        private String status;
-        private String notifications;
+//        private Integer account;
+//        private String login;
+//        private String password;
+//        private String email;
+//        private String firstName;
+//        private String lastName;
+//        private String role;
+//        private String status;
+//        private String notifications;
+        private final User user;
+
+        public Builder() {
+            user = new User();
+        }
 
         public Builder withAccount(Integer account) {
-            this.account = account;
+            user.account = account;
             return this;
         }
         public Builder withLogin(String login) {
-            this.login = login;
+            user.login = login;
             return this;
         }
         public Builder withEmail(String email) {
-            this.email = email;
+            user.email = email;
             return this;
         }
         public Builder withPassword(String password) {
-            this.password = password;
+            user.password = password;
             return this;
         }
         public Builder withFirstName(String firstName) {
-            this.firstName = firstName;
+            user.firstName = firstName;
             return this;
         }
         public Builder withLastName(String lastName) {
-            this.lastName = lastName;
+            user.lastName = lastName;
             return this;
         }
         public Builder withRole(String role) {
-            this.role = role;
+            user.role = role;
             return this;
         }
         public Builder withStatus(String status) {
-            this.status = status;
+            user.status = status;
             return this;
         }
-        public Builder withNotifications(String notifications) {
-            this.notifications = notifications;
+        public Builder withNotification(String notification) {
+            user.notification = notification;
             return this;
         }
 
         public User build() {
-            if(account == null) {
-                account = 0;
+            if(user.account == null) {
+                user.account = 0;
             }
-            if (login == null) {
+            if (user.login == null) {
                 throw new IllegalArgumentException();
             }
-            return new User(account, login, email, password, firstName, lastName, role, status, notifications);
+            return user;
         }
     }
     @Override
@@ -166,7 +171,7 @@ public class User implements Serializable {
                 ", surname='" + lastName + '\'' +
                 ", role='" + role + '\'' +
                 ", status='" + status + '\'' +
-                ", notifications='" + notifications + '\'' +
+                ", notifications='" + notification + '\'' +
                 '}';
     }
 

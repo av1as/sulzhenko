@@ -1,26 +1,19 @@
 package com.sulzhenko.DAO;
 
+import java.sql.Connection;
 import java.util.List;
 
 /**
  * This interface sets the list of CRUD operations
  */
 public interface DAO<Entity> {
+    Entity get(Object parameter, String querySQL, Connection con);
+    List<Entity> getAll(Connection con);
+    List<Entity> getList(Object parameter, String querySQL, Connection con);
 
-    //Optional<Entity> getById(int id);
-    Entity getById(int id);
+    void save(Entity t, Connection con);
 
-    List<Entity> getAll();
+    void update(Entity t, String[] params, Connection con);
 
-    void save(Entity t);
-
-    void update(Entity t, String[] params);
-
-    void delete(Entity t);
+    void delete(Entity t, Connection con);
 }
-//public interface DAO<Entity, Key> {
-//    boolean create(Entity model);
-//    Entity read(Key key);
-//    boolean update(Entity model);
-//    boolean delete(Entity model);
-//}

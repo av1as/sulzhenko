@@ -15,98 +15,75 @@ import java.util.Objects;
  * This class describes CRUD operations with Request class entities
  */
 public class RequestDAO implements DAO<Request>{
-
+    private static RequestDAO requestDAO;
+    private RequestDAO(){
+    }
+    public static synchronized RequestDAO getInstance() {
+        if (requestDAO == null) {
+            requestDAO = new RequestDAO();
+        }
+        return requestDAO;
+    }
     private static Logger logger = LogManager.getLogger(RequestDAO.class);
-    UserDAO userDAO = new UserDAO();
-    ActivityDAO activityDAO = new ActivityDAO();
-    static RequestDAO requestDAO = new RequestDAO();
+    UserDAO userDAO = UserDAO.getInstance();
+    ActivityDAO activityDAO = ActivityDAO.getInstance();
+
     @Override
-    public Request getById(int id) {
+    public Request get(Object parameter, String querySQL, Connection con){
         Request t = null;
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_REQUEST_BY_ID)
+        try (PreparedStatement stmt = con.prepareStatement(querySQL)
         ) {
-            stmt.setInt(1, id);
+            stmt.setObject(1, parameter);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                t = getFields(rs).build();
+                t = getRequestWithFields(rs);
             }
         } catch (SQLException e){
-            logger.fatal("unknown exception with id: {}", id);
-//            e.printStackTrace();
+            logger.fatal(e.getMessage());
         }
-        if (t == null) indicateNoResult("id", id);
         return t;
     }
-    public List<Request> getByLogin(String login) {
+    @Override
+    public List<Request> getList(Object parameter, String querySQL, Connection con){
         List<Request> list = new ArrayList<>();
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_REQUESTS_BY_LOGIN);
+        try (PreparedStatement stmt = con.prepareStatement(querySQL)
         ) {
-            stmt.setString(1, login);
+            stmt.setObject(1, parameter);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                list.add(getFields(rs).build());
+                list.add(getRequestWithFields(rs));
             }
-        } catch (SQLException e){
-            logger.fatal("unknown exception with login: {}", login);
-//            e.printStackTrace();
-            //throw new DAOException("wrong status: " + status);
+        } catch (SQLException e) {
+            logger.info(e.getMessage());
         }
-        if (list.isEmpty()) indicateNoResult("login", login);
         return list;
     }
-    public List<Request> getByActivity(String activityName) {
-        List<Request> list = new ArrayList<>();
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_REQUESTS_BY_ACTIVITY);
-        ) {
-            stmt.setString(1, activityName);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                list.add(getFields(rs).build());
-            }
-        } catch (SQLException e){
-            logger.fatal("unknown exception with activity: {}", activityName);
-//            e.printStackTrace();
-            //throw new DAOException("wrong status: " + status);
-        }
-        if (list.isEmpty()) indicateNoResult("activity", activityName);
-        return list;
+    public Request getById(int id, Connection con) {
+        return get(id, GET_REQUEST_BY_ID, con);
     }
-    public List<Request> getByActionToDo(String actionName) {
-        List<Request> list = new ArrayList<>();
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_REQUESTS_BY_ACTION);
-        ) {
-            stmt.setString(1, actionName);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                list.add(getFields(rs).build());
-            }
-        } catch (SQLException e){
-            logger.fatal("unknown exception with action: {}", actionName);
-//            e.printStackTrace();
-            //throw new DAOException("wrong status: " + status);
-        }
-        if (list.isEmpty()) indicateNoResult("action", actionName);
-        return list;
+    public List<Request> getByLogin(String login, Connection con) {
+        return getList(login, GET_REQUESTS_BY_LOGIN, con);
+    }
+    public List<Request> getByActivity(String activityName, Connection con) {
+        return getList(activityName, GET_REQUESTS_BY_ACTIVITY, con);
+    }
+    public List<Request> getByActionToDo(String actionName, Connection con) {
+        return getList(actionName, GET_REQUESTS_BY_ACTION, con);
     }
 
     @Override
-    public List<Request> getAll() {
+    public List<Request> getAll(Connection con) {
         List<Request> list = new ArrayList<>();
-        try (Connection con = DataSource.getConnection();
+        try (
              PreparedStatement stmt = con.prepareStatement(SELECT_ALL_REQUEST_FIELDS);
         ) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                list.add(getFields(rs).build());
+                list.add(getRequestWithFields(rs));
             }
         } catch (SQLException e){
-            logger.fatal("unknown exception with list of requests");
-//            e.printStackTrace();
-            //throw new DAOException("wrong notifications: " + notifications);
+            logger.fatal(e.getMessage());
+            throw new DAOException(e.getMessage());
         }
         if (list.isEmpty()) {
             indicateNoRequests();
@@ -115,34 +92,18 @@ public class RequestDAO implements DAO<Request>{
     }
 
     @Override
-    public void save(Request t) {
-//        int count = 0;
-        if (isDataCorrect(t)){
-            try (Connection con = DataSource.getConnection();
-                 PreparedStatement stmt = con.prepareStatement(INSERT_REQUEST, Statement.RETURN_GENERATED_KEYS);
-        ) {
-                setRequestFields(t, stmt);
-                //            count =
-                stmt.executeUpdate();
-                ResultSet rs = stmt.getGeneratedKeys();
+    public void save(Request t, Connection con) {
+        try {
+            isDataCorrect(t, con);
+            PreparedStatement stmt = con.prepareStatement(INSERT_REQUEST,
+                    Statement.RETURN_GENERATED_KEYS);
+            setRequestFields(t, stmt);
+            ResultSet rs = stmt.getGeneratedKeys();
             t.setId(rs.next() ? rs.getInt(1) : 0);
+        } catch (DAOException e){
+            logger.info(e.getMessage());
         } catch (SQLException e) {
-            logger.fatal("unknown exception with request: {}", t);
-//                e.printStackTrace();
-//            throw new DAOException("unknown exception: " + t);
-            }
-        } else if(userDAO.isLoginAvailable(t.getLogin())){
-            logger.info("wrong login: {}", t.getLogin());
-//            throw new DAOException("wrong login: " + t.getLogin());
-        } else if(activityDAO.isNameAvailable(t.getActivityName())){
-            logger.info("wrong activity: {}", t.getActivityName());
-//            throw new DAOException("wrong activity name: " + t.getActivityName());
-        } else if(!requestDAO.isActionCorrect(t)) {
-            logger.info("wrong action to do: {}", t.getActionToDo());
-//            throw new DAOException("wrong action to do: " + t.getActionToDo());
-        } else {
-            logger.fatal("unknown exception: {}", t);
-//            throw new DAOException("unknown exception: " + t);
+            logger.fatal(e.getMessage());
         }
     }
 
@@ -152,62 +113,36 @@ public class RequestDAO implements DAO<Request>{
         stmt.setString(++k, t.getActivityName());
         stmt.setString(++k, t.getActionToDo());
         stmt.setString(++k, t.getDescription());
-
+        stmt.executeUpdate();
     }
 
-    private boolean isDataCorrect(Request t) {
-        return !userDAO.isLoginAvailable(t.getLogin()) && !activityDAO.isNameAvailable(t.getActivityName()) && requestDAO.isActionCorrect(t);
-    }
-
-    @Override
-    public void update(Request t, String[] params) {
-        String newLogin = params[0];
-        String newActivity = params[1];
-        String newAction = params[2];
-//        String newDescription = params[3];
-        Request newRequest = createUpdatedRequest(params);
-//        int count = 0;
-        if(isDataCorrect(createUpdatedRequest(params))){
-//        if (isDataToUpdateCorrect(newLogin, newActivity, newRequest)){
-            try (Connection con = DataSource.getConnection();
-                 PreparedStatement stmt = con.prepareStatement(UPDATE_REQUEST);
-            ) {
-//                int k = 0;
-//                stmt.setString(++k, t.getLogin());
-//                stmt.setString(++k, t.getActivityName());
-//                stmt.setString(++k, t.getActionToDo());
-//                stmt.setString(++k, t.getDescription());
-                setRequestFields(t, stmt);
-                stmt.setInt(5, t.getId());
-//                count =
-                stmt.executeUpdate();
-            } catch (SQLException e) {
-                logger.fatal("unknown exception with: {}", t);
-//                e.printStackTrace();
-//                throw new DAOException("unknown exception: " + t);
-            }
-        } else if(userDAO.isLoginAvailable(newLogin)){
-            logger.info("wrong login: {}", newLogin);
-//            throw new DAOException("wrong login: " + t.getLogin());
-        } else if(activityDAO.isNameAvailable(newActivity)){
-            logger.info("wrong activity name: {}", newActivity);
-//            throw new DAOException("wrong activity name: " + t.getActivityName());
-        } else if(!requestDAO.isActionCorrect(newRequest)) {
-            logger.info("wrong action to do: {}", newAction);
-//            throw new DAOException("wrong action to do: " + newRequest.getActionToDo());
-        } else {
-            logger.fatal("unknown exception: {}, {}",t, params);
-//            throw new DAOException("unknown exception: " + t + Arrays.toString(params));
+    public void isDataCorrect(Request t, Connection con) {
+        if(userDAO.isLoginAvailable(t.getLogin(), con)) {
+            throw new DAOException("wrong login: " + t.getLogin());
+        } else if(activityDAO.isNameAvailable(t.getActivityName(), con)){
+            throw new DAOException("wrong activity: " + t.getActivityName());
+        } else if(!requestDAO.isActionCorrect(t, con)){
+            throw new DAOException("wrong action: " + t.getActionToDo());
         }
     }
 
-//    private boolean isDataToUpdateCorrect(String newLogin, String newActivity, Request newRequest) {
-//        return !userDAO.isLoginAvailable(newLogin) && !activityDAO.isNameAvailable(newActivity) && requestDAO.isActionCorrect(newRequest);
-//    }
-
+    @Override
+    public void update(Request t, String[] params, Connection con) {
+        try {
+            isDataCorrect(createUpdatedRequest(params), con);
+            PreparedStatement stmt = con.prepareStatement(UPDATE_REQUEST);
+            setRequestFields(t, stmt);
+            stmt.setInt(5, t.getId());
+            stmt.executeUpdate();
+        } catch (DAOException e){
+            logger.info(e.getMessage());
+        } catch (SQLException e) {
+            logger.fatal(e.getMessage());
+        }
+    }
     private static Request createUpdatedRequest(String[] params) {
         int k = -1;
-        return Request.builder()
+        return new Request.Builder()
                 .withLogin(params[++k])
                 .withActivityName(params[++k])
                 .withActionToDo(params[++k])
@@ -216,31 +151,26 @@ public class RequestDAO implements DAO<Request>{
     }
 
     @Override
-    public void delete(Request t) {
-//        int count = 0;
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(DELETE_REQUEST);
-        ) {
+    public void delete(Request t, Connection con) {
+        try {
+            PreparedStatement stmt = con.prepareStatement(DELETE_REQUEST);
             stmt.setInt(1, t.getId());
-//            count =
             stmt.executeUpdate();
         } catch (SQLException e) {
-            logger.fatal("unknown exception with request {}", t);
-//            e.printStackTrace();
-//            throw new DAOException("wrong request: " + t);
+            logger.fatal(e.getMessage());
         }
-//        System.out.println(count > 0 ? "request deleted: " + t: "request wasn't deleted");
     }
 
     /**
      * This method reads request's fields from result set
      */
-    private static Request.Builder getFields(ResultSet rs) throws SQLException {
-        return Request.builder().withId(rs.getInt(1))
+    private static Request getRequestWithFields(ResultSet rs) throws SQLException {
+        return new Request.Builder().withId(rs.getInt(1))
                 .withLogin(rs.getString(2))
                 .withActivityName(rs.getString(3))
                 .withActionToDo(rs.getString(4))
-                .withDescription(rs.getString(5));
+                .withDescription(rs.getString(5))
+                .build();
     }
     public void indicateNoResult(String name, Object value){
         logger.info("No request with such {}: {}",name, value);
@@ -248,7 +178,7 @@ public class RequestDAO implements DAO<Request>{
     public void indicateNoRequests(){
         logger.info("No requests available");
     }
-    public boolean isActionCorrect(Request request){
+    public boolean isActionCorrect(Request request, Connection con){
 //        switch (request.getActionToDo()){
 //            case "add":
 //                if(!ifUserHasActivity(userDAO.getByLogin(request.getLogin()), activityDAO.getByName(request.getActivityName()))){
@@ -262,20 +192,20 @@ public class RequestDAO implements DAO<Request>{
 //                break;
 //            default: throw new DAOException("unknown exception: " + request + request.getActionToDo());
 //        }
-        return canRequestBeAdded(request) || canRequestBeRemoved(request);
+        return canRequestBeAdded(request, con) || canRequestBeRemoved(request, con);
     }
-    public boolean canRequestBeAdded(Request request){
+    public boolean canRequestBeAdded(Request request, Connection con){
         return (Objects.equals(request.getActionToDo(), "add")) &&
-                !ifUserHasActivity(userDAO.getByLogin(request.getLogin()),
-                        activityDAO.getByName(request.getActivityName()));
+                !ifUserHasActivity(userDAO.getByLogin(request.getLogin(), con),
+                        activityDAO.getByName(request.getActivityName(), con), con);
     }
-    public boolean canRequestBeRemoved(Request request){
+    public boolean canRequestBeRemoved(Request request, Connection con){
         return (Objects.equals(request.getActionToDo(), "remove") &&
-                ifUserHasActivity(userDAO.getByLogin(request.getLogin()),
-                        activityDAO.getByName(request.getActivityName())));
+                ifUserHasActivity(userDAO.getByLogin(request.getLogin(), con),
+                        activityDAO.getByName(request.getActivityName(), con), con));
     }
-    public boolean ifUserHasActivity(User u, Activity a){
-        try (Connection con = DataSource.getConnection();
+    public boolean ifUserHasActivity(User u, Activity a, Connection con){
+        try (
              PreparedStatement stmt = con.prepareStatement(IF_USER_HAS_ACTIVITY);
         ) {
             stmt.setInt(1, u.getAccount());
@@ -285,97 +215,90 @@ public class RequestDAO implements DAO<Request>{
                 return true;
             }
         } catch (SQLException e) {
-            logger.fatal("unknown exception with user {} and activity {}", u, a);
-//            throw new DAOException("unknown exception");
+            logger.fatal(e.getMessage());
+            throw new DAOException(e.getMessage());
         }
         return false;
     }
-    public void addActivityToUser(Request request){
-        User user = userDAO.getByLogin(request.getLogin());
-        Activity activity = activityDAO.getByName(request.getActivityName());
-        Connection con = null;
-        PreparedStatement stmt = null;
+    public void addActivityToUser(Request request, Connection con) throws SQLException {
+        User user = userDAO.getByLogin(request.getLogin(), con);
+        Activity activity = activityDAO.getByName(request.getActivityName(), con);
         if(Objects.equals(request.getActionToDo(), "add")){
             try{
-                con = DataSource.getConnection();
                 con.setAutoCommit(false);
-                stmt = con.prepareStatement(ADD_ACTIVITY_TO_USER);
+                PreparedStatement stmt = con.prepareStatement(ADD_ACTIVITY_TO_USER);
                 stmt.setInt(1, user.getAccount());
                 stmt.setInt(2, activity.getId());
                 stmt.executeUpdate();
-
-                delete(request);
-
+                delete(request, con);
             } catch (SQLException e) {
-                try {
-                    assert con != null;
-                    con.rollback();
-                } catch (SQLException ex) {
-                    logger.fatal(ex);
-                }
+                con.rollback();
                 logger.fatal(e);
-            } finally {
-                close(stmt);
-                close(con);
+                throw new DAOException(e.getMessage());
             }
         }
     }
-    public void removeUserActivity(Request request){
-        User user = userDAO.getByLogin(request.getLogin());
-        Activity activity = activityDAO.getByName(request.getActivityName());
-        Connection con = null;
-        PreparedStatement stmt = null;
+    public void removeUserActivity(Request request, Connection con) throws SQLException {
+        User user = userDAO.getByLogin(request.getLogin(), con);
+        Activity activity = activityDAO.getByName(request.getActivityName(), con);
         if(Objects.equals(request.getActionToDo(), "remove")){
             try{
-                con = DataSource.getConnection();
                 con.setAutoCommit(false);
-                stmt = con.prepareStatement(REMOVE_USER_ACTIVITY);
+                PreparedStatement stmt = con.prepareStatement(REMOVE_USER_ACTIVITY);
                 stmt.setInt(1, user.getAccount());
                 stmt.setInt(2, activity.getId());
                 stmt.executeUpdate();
-
-                delete(request);
-
+                delete(request, con);
             } catch (SQLException e) {
-                try {
-                    assert con != null;
-                    con.rollback();
-                } catch (SQLException ex) {
-                    logger.fatal(ex);
-                }
+                con.rollback();
                 logger.fatal(e);
-            } finally {
-                close(stmt);
-                close(con);
+                throw new DAOException(e.getMessage());
             }
         }
     }
-    public void close(AutoCloseable stmt){
-        if(stmt !=null) {
-            try {
-                stmt.close();
-            } catch (Exception e) {
-                logger.fatal(e);
+    public void setAmount(User user, Activity activity, int amount, Connection con){
+        if(ifUserHasActivity(user, activity, con)){
+            try{
+                PreparedStatement stmt = con.prepareStatement(SET_AMOUNT);
+                stmt.setInt(1, amount);
+                stmt.setInt(2, user.getAccount());
+                stmt.executeUpdate();
+            } catch (SQLException e) {
+                throw new DAOException(e);
             }
+        } else {
+            throw new DAOException(String.format("user %s doesn't have activity %s", user.getLogin(), activity.getName()));
         }
     }
+
+
+
+//    public void close(AutoCloseable stmt){
+//        if(stmt !=null) {
+//            try {
+//                stmt.close();
+//            } catch (Exception e) {
+//                logger.fatal(e);
+//            }
+//        }
+//    }
 
 
 //    private static RequestDAO requestDAO = new RequestDAO();
-    public static void main(String[] args) {
-        Request r = new Request().builder()
-                .withLogin("ivan")
-                .withActivityName("activity1")
-                .withActionToDo("add")
-                .withDescription("very fast")
-                .build();
-        requestDAO.save(r);
-
-        String[] params = {"ivan", "activity2", "add", "as fast as you can"};
-        requestDAO.update(requestDAO.getById(1), params);
-
-//        requestDAO.delete(requestDAO.getById(4));
-    }
+//    public static void main(String[] args) {
+//        Request r = new Request.Builder()
+//                .withLogin("ivan")
+//                .withActivityName("activity1")
+//                .withActionToDo("add")
+//                .withDescription("very fast")
+//                .build();
+//        requestDAO.save(r, con);
+//
+//        String[] params = {"ivan", "activity2", "add", "as fast as you can"};
+//        requestDAO.update(requestDAO.getById(1), params);
+//
+////        requestDAO.delete(requestDAO.getById(4));
+//    }
 }
 
 //add checking if there is equal request

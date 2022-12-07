@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,216 +15,93 @@ import static com.sulzhenko.DAO.SQLQueries.UserQueries.*;
  * This class describes CRUD operations with User class entities
  */
 public class UserDAO implements DAO <User>{
-    private static Logger logger = LogManager.getLogger(UserDAO.class);
+    private static UserDAO userDAO;
+    private UserDAO(){
+    }
+    public static synchronized UserDAO getInstance() {
+        if (userDAO == null) {
+            userDAO = new UserDAO();
+        }
+        return userDAO;
+    }
+    private static final Logger logger = LogManager.getLogger(UserDAO.class);
     @Override
-//    public Optional<User> getById(int id) {
-//        User t = null;
-//        try (Connection con = DataSource.getConnection();
-//             PreparedStatement stmt = con.prepareStatement(GET_USER_BY_ID);
-//             ) {
-//            stmt.setInt(1, id);
-//            ResultSet rs = stmt.executeQuery();
-//            if (rs.next()) {
-//                User.Builder b = getFields(rs);
-//                t = b.build();
-//            }
-//        } catch (SQLException e){
-//            e.printStackTrace();
-//            //throw new DAOException("wrong id: " + id);
-//            System.out.println("wrong id: " + id);
-//        }
-//        return Optional.ofNullable(t);
-//    }
-
-    public User getById(int id) {
+    public User get(Object parameter, String querySQL, Connection con){
         User t = null;
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_USER_BY_ID);
+        try (PreparedStatement stmt = con.prepareStatement(querySQL)
         ) {
-            stmt.setInt(1, id);
+            stmt.setObject(1, parameter);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                t = getUserFields(rs).build();
+                t = getUserWithFields(rs);
             }
         } catch (SQLException e){
-            logger.fatal("no user with id {}", id);
-//            e.printStackTrace();
+            logger.fatal(e.getMessage());
         }
-        if (t == null) indicateNoResult("id", id);
         return t;
     }
-    public User getByLogin(String login) {
-        User t = null;
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_USER_BY_LOGIN);
-        ) {
-            stmt.setString(1, login);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                t = getUserFields(rs).build();
-            }
-        } catch (SQLException e){
-            logger.fatal("no user with login {}", login);
-//            e.printStackTrace();
-            //throw new DAOException("wrong login: " + login);
-        }
-        if (t == null) indicateNoResult("login", login);
-        return t;
-    }
-    public User getByEmail(String email) {
-        User t = null;
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_USERS_BY_EMAIL);
-        ) {
-            stmt.setString(1, email);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                t = getUserFields(rs).build();
-            }
-        } catch (SQLException e){
-            logger.info("unknown exception with email: {}", email);
-//            e.printStackTrace();
-            //throw new DAOException("wrong email: " + email);
-        }
-        if (t == null) indicateNoResult("email", email);
-        return t;
-    }
-//    public List<User> getByPassword(String password) {
-//        //User t = null;
-//        List<User> list= new ArrayList<>();
-//        try (Connection con = DataSource.getConnection();
-//             PreparedStatement stmt = con.prepareStatement(GET_USER_BY_PASSWORD);
-//        ) {
-//            stmt.setString(1, password);
-//            ResultSet rs = stmt.executeQuery();
-//            while (rs.next()) {
-//                User.Builder b = getFields(rs);
-//                //t = b.build();
-//                list.add(b.build());
-//            }
-//        } catch (SQLException e){
-//            e.printStackTrace();
-//            throw new DAOException("wrong password: " + password);
-//        }
-//        return list;
-//    }
-    public List<User> getByFirstName(String firstName) {
+    @Override
+    public List<User> getList(Object parameter, String querySQL, Connection con){
         List<User> list = new ArrayList<>();
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_USERS_BY_FIRST_NAME);
+        try (PreparedStatement stmt = con.prepareStatement(querySQL)
         ) {
-            stmt.setString(1, firstName);
+            stmt.setObject(1, parameter);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                list.add(getUserFields(rs).build());
+                list.add(getUserWithFields(rs));
             }
-        } catch (SQLException e){
-            logger.info("unknown exception with first name: {}", firstName);
-//            e.printStackTrace();
-            //throw new DAOException("wrong first name: " + firstName);
+        } catch (SQLException e) {
+            logger.info(e.getMessage());
         }
-        if (list.isEmpty()) indicateNoResult("first name", firstName);
         return list;
     }
-    public List<User> getByLastName(String lastName) {
-        List<User> list = new ArrayList<>();
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_USERS_BY_LAST_NAME);
-        ) {
-            stmt.setString(1, lastName);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                list.add(getUserFields(rs).build());
-            }
-        } catch (SQLException e){
-            logger.info("unknown exception with last name: {}", lastName);
-//            e.printStackTrace();
-            //throw new DAOException("wrong last name: " + lastNme);
-        }
-        if (list.isEmpty()) indicateNoResult("last name", lastName);
-        return list;
-    }
-    public List<User> getByRole(String role) {
-        List<User> list = new ArrayList<>();
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_USERS_BY_ROLE);
-        ) {
-            stmt.setString(1, role);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                list.add(getUserFields(rs).build());
-            }
-        } catch (SQLException e){
-            logger.info("unknown exception with role: {}", role);
-//            e.printStackTrace();
-            //throw new DAOException("wrong role: " + role);
-        }
-        if (list.isEmpty()) indicateNoResult("role", role);
-        return list;
-    }
-    public List<User> getByStatus(String status) {
-        List<User> list = new ArrayList<>();
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_USERS_BY_STATUS);
-        ) {
-            stmt.setString(1, status);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                list.add(getUserFields(rs).build());
-            }
-        } catch (SQLException e){
-            logger.info("unknown exception with status: {}", status);
-//            e.printStackTrace();
-            //throw new DAOException("wrong status: " + status);
-        }
-        if (list.isEmpty()) indicateNoResult("status", status);
-        return list;
-    }
-    public List<User> getByNotification(String notification) {
-        List<User> list = new ArrayList<>();
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_USERS_BY_NOTIFICATION);
-        ) {
-            stmt.setString(1, notification);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                list.add(getUserFields(rs).build());
-            }
-        } catch (SQLException e){
-            logger.info("unknown exception with notification: {}", notification);
-//            e.printStackTrace();
-            //throw new DAOException("wrong notifications: " + notifications);
-        }
-        if (list.isEmpty()) indicateNoResult("notification", notification);
-        return list;
+    public User getById(int id, Connection con) {
+        return get(id, GET_USER_BY_ID, con);
     }
 
+    public User getByLogin(String login, Connection con) {
+        return get(login, GET_USER_BY_LOGIN, con);
+    }
+
+    public List<User> getByEmail(String email, Connection con) {
+        return getList(email, GET_USERS_BY_EMAIL, con);
+    }
+    public List<User> getByFirstName(String firstName, Connection con) {
+        return getList(firstName, GET_USERS_BY_FIRST_NAME, con);
+    }
+    public List<User> getByLastName(String lastName, Connection con) {
+        return getList(lastName, GET_USERS_BY_LAST_NAME, con);
+    }
+    public List<User> getByRole(String role, Connection con) {
+        return getList(role, GET_USERS_BY_ROLE, con);
+    }
+    public List<User> getByStatus(String status, Connection con) {
+        return getList(status, GET_USERS_BY_STATUS, con);
+    }
+    public List<User> getByNotification(String notification, Connection con) {
+        return getList(notification, GET_USERS_BY_NOTIFICATION, con);
+    }
 
     @Override
-    public List<User> getAll() {
+    public List<User> getAll(Connection con) {
         List<User> list = new ArrayList<>();
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_ALL_USERS);
+        try (PreparedStatement stmt = con.prepareStatement(GET_ALL_USERS)
         ) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                list.add(getUserFields(rs).build());
+                list.add(getUserWithFields(rs));
             }
-        } catch (SQLException e){
-            logger.info("unknown exception with list of all users");
-//            e.printStackTrace();
-            //throw new DAOException("wrong notifications: " + notifications);
-        }
-        if (list.isEmpty()) {
-            indicateNoUsers();
+        } catch (SQLException e) {
+            logger.info(e.getMessage());
         }
         return list;
     }
     /**
      * This method reads user fields from result set
      */
-    static User.Builder getUserFields(ResultSet rs) throws SQLException {
-        return User.builder().withAccount(rs.getInt(1))
+    static User getUserWithFields(ResultSet rs) throws SQLException {
+        return new User.Builder()
+                .withAccount(rs.getInt(1))
                 .withLogin(rs.getString(2))
                 .withEmail(rs.getString(3))
                 .withPassword(rs.getString(4))
@@ -233,92 +109,62 @@ public class UserDAO implements DAO <User>{
                 .withLastName(rs.getString(6))
                 .withRole(rs.getString(7))
                 .withStatus(rs.getString(8))
-                .withNotifications(rs.getString(9));
+                .withNotification(rs.getString(9))
+                .build();
     }
-
-
-    //WORKS
     @Override
-    public void save(User t) {
-        Connection con = null;
-        PreparedStatement stmt = null;
-//        int count;
-//        if(isDataCorrect(t)) {
+    public void save(User t, Connection con) {
             try {
-                isDataCorrect(t);
-                con = DataSource.getConnection();
-                stmt = con.prepareStatement(INSERT_USER);
+                isDataCorrect(t, con);
+                PreparedStatement stmt = con.prepareStatement(INSERT_USER);
                 setUserFields(t, stmt);
             } catch (DAOException e){
                 logger.info(e.getMessage());
             } catch (SQLException e) {
-                logger.fatal("unknown exception: {}", t);
-//                e.printStackTrace();
-//                throw new DAOException("unknown exception: " + t);
-            } finally {
-                close(stmt);
-                close(con);
+                logger.fatal(e.getMessage());
             }
-//        } else if (!isRoleCorrect(t.getRole())){
-//            logger.info("wrong role: {}", t.getRole());
-//            //throw new DAOException("wrong role: " + t.getRole());
-//        } else if (!isStatusCorrect(t.getStatus())){
-//            logger.info("wrong status: {}", t.getStatus());
-////            throw new DAOException("wrong status: " + t.getStatus());
-//        } else if (!isLoginAvailable(t.getLogin())){
-//            logger.info("wrong login: {}", t.getLogin());
-////            throw new DAOException("wrong login: " + t.getLogin());
-//            } else {
-//            logger.fatal("unknown exception: {}", t);
-////            throw new DAOException("unknown exception: " + t);
-//        }
-//            System.out.println(count > 0 ? "user saved: " + getByLogin(t.getLogin()) : "user wasn't saved");
     }
     @Override
-    public void update(User t, String[] params) {
-//        if(!isLoginAvailable(t.getLogin())) {
-//        int count = 0;
+    public void update(User t, String[] params, Connection con) {
         String oldLogin = t.getLogin();
-        Connection con = null;
-        PreparedStatement stmt = null;
         try {
-            isUpdateCorrect(params, oldLogin);
-            con = DataSource.getConnection();
-            stmt = con.prepareStatement(UPDATE_USER);
+            isUpdateCorrect(params, oldLogin, con);
+            PreparedStatement stmt = con.prepareStatement(UPDATE_USER);
             updateUserFields(params, oldLogin, stmt);
             notifyAboutUpdate(t, "updated");
         } catch (DAOException e){
             logger.info(e.getMessage());
         } catch (SQLException e) {
-            logger.fatal("unknown exception: {}", t);
-//                e.printStackTrace();
-//                throw new DAOException("unknown exception: " + t);
-        } finally {
-            close(stmt);
-            close(con);
+            logger.fatal(e.getMessage());
         }
-
-//        System.out.println(count > 0 ? "user updated: " + params[0] : "user wasn't updated");
-//        } else {
-//            System.out.println("this user doesn't exist: " + t.getLogin());
-//        }
+    }
+    @Override
+    public void delete(User t, Connection con) {
+        if(!isLoginAvailable(t.getLogin(), con)) {
+            try (
+                    PreparedStatement stmt = con.prepareStatement(DELETE_USER)
+            ) {
+                stmt.setString(1, t.getLogin());
+                stmt.executeUpdate();
+            } catch (SQLException e) {
+                logger.fatal(e.getMessage());
+            }
+        } else {
+            logger.info("wrong user: {}", t.getLogin());
+        }
     }
 
-
-    //WORKS
-    public void isDataCorrect(User t) {
-        if (!isRoleCorrect(t.getRole())){
+    public void isDataCorrect(User t, Connection con) {
+        if (!isRoleCorrect(t.getRole(), con)){
             throw new DAOException("wrong role: " + t.getRole());
-        } else if (!isStatusCorrect(t.getStatus())){
+        } else if (!isStatusCorrect(t.getStatus(), con)){
             throw new DAOException("wrong status: " + t.getStatus());
-        } else if (!isLoginAvailable(t.getLogin())){
+        } else if (!isLoginAvailable(t.getLogin(), con)){
             throw new DAOException("wrong login: " + t.getLogin());
         }
-//        return isLoginAvailable(t.getLogin()) && isRoleCorrect(t.getRole()) && isStatusCorrect(t.getStatus());
     }
 
     private static void setUserFields(User t, PreparedStatement stmt) throws SQLException {
-//        int count;
         int k = 0;
         stmt.setString(++k, t.getLogin());
         stmt.setString(++k, t.getEmail());
@@ -327,27 +173,24 @@ public class UserDAO implements DAO <User>{
         stmt.setString(++k, t.getLastName());
         stmt.setString(++k, t.getRole());
         stmt.setString(++k, t.getStatus());
-        stmt.setString(++k, t.getNotifications());
-//        count =
+        stmt.setString(++k, t.getNotification());
         stmt.executeUpdate();
     }
 
-
-
-    public void isUpdateCorrect(String[] params, String oldLogin) {
-        if (!isRoleCorrect(params[5])){
+    public void isUpdateCorrect(String[] params, String oldLogin, Connection con) {
+        if (!isRoleCorrect(params[5], con)){
             throw new DAOException("wrong role: " + params[5]);
-        } else if (!isStatusCorrect(params[6])){
+        } else if (!isStatusCorrect(params[6], con)){
             throw new DAOException("wrong status: " + params[6]);
-        } else if (!Objects.equals(params[0], oldLogin) && !isLoginAvailable(params[0])){
+        } else if (!Objects.equals(params[0], oldLogin) && !isLoginAvailable(params[0], con)){
             throw new DAOException("wrong login: " + params[0]);
-        } else if (isLoginAvailable(oldLogin)){
+        } else if (isLoginAvailable(oldLogin, con)){
             throw new DAOException("wrong login: " + oldLogin);
         }
     }
 
-    private static void updateUserFields(String[] params, String oldLogin, PreparedStatement stmt) throws SQLException {
-//        int count;
+    private static void updateUserFields(String[] params, String oldLogin, PreparedStatement stmt)
+            throws SQLException {
         int k = 0;
         stmt.setString(++k, params[k - 1]);
         stmt.setString(++k, params[k - 1]);
@@ -358,56 +201,21 @@ public class UserDAO implements DAO <User>{
         stmt.setString(++k, params[k - 1]);
         stmt.setString(++k, params[k - 1]);
         stmt.setString(++k, oldLogin);
-//        count =
         stmt.executeUpdate();
     }
 
-    @Override
-    public void delete(User t) {
-        if(!isLoginAvailable(t.getLogin())) {
-//            int count = 0;
-            try (Connection con = DataSource.getConnection();
-                 PreparedStatement stmt = con.prepareStatement(DELETE_USER);
-            ) {
-                stmt.setString(1, t.getLogin());
-//                count =
-                stmt.executeUpdate();
-            } catch (SQLException e) {
-                logger.fatal("wrong user: {}", t.getLogin());
-//                e.printStackTrace();
-//                throw new DAOException("wrong user: " + t.getLogin());
-            }
-//            System.out.println(count > 0 ? "user deleted: " + t.getLogin() : "user wasn't deleted");
-        } else {
-            logger.info("wrong user: {}", t.getLogin());
-//            throw new DAOException("wrong user: " + t.getLogin());
-//                System.out.println("this user doesn't exist: " + t.getLogin());
-        }
-    }
+
     public void indicateNoResult(String name, Object value){
         logger.info("No user with such {} : {}",  name, value);
     }
     public void indicateNoUsers(){
         logger.info("No user available");
     }
-    public boolean isLoginAvailable(String login){
-//        try (Connection con = DataSource.getConnection();
-//             PreparedStatement stmt = con.prepareStatement("SELECT * from users WHERE login = ?");
-//        ) {
-//            stmt.setString(1, login);
-//            ResultSet rs = stmt.executeQuery();
-//            if (rs.next()) {
-//                return true;
-//            }
-//        } catch (SQLException e) {
-//            throw new DAOException("unknown exception");
-//        }
-//        return false;
-        return getByLogin(login) == null;
+    public boolean isLoginAvailable(String login, Connection con){
+        return getByLogin(login, con) == null;
     }
-    public boolean isRoleCorrect(String role) {
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(FIND_ROLE_BY_DESCRIPTION);
+    public boolean isRoleCorrect(String role, Connection con) {
+        try (PreparedStatement stmt = con.prepareStatement(FIND_ROLE_BY_DESCRIPTION)
         ) {
             stmt.setString(1, role);
             ResultSet rs = stmt.executeQuery();
@@ -416,13 +224,12 @@ public class UserDAO implements DAO <User>{
             }
         } catch (SQLException e) {
             logger.fatal("unknown exception when checking role");
-//            throw new DAOException("unknown exception");
+            throw new DAOException("unknown exception when checking role");
         }
         return false;
     }
-    public boolean isStatusCorrect(String status) {
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(FIND_STATUS_BY_NAME);
+    public boolean isStatusCorrect(String status, Connection con) {
+        try (PreparedStatement stmt = con.prepareStatement(FIND_STATUS_BY_NAME)
         ) {
             stmt.setString(1, status);
             ResultSet rs = stmt.executeQuery();
@@ -431,62 +238,30 @@ public class UserDAO implements DAO <User>{
             }
         } catch (SQLException e) {
             logger.fatal("unknown exception when checking status");
-//            throw new DAOException("unknown exception");
+            throw new DAOException("unknown exception when checking status");
         }
         return false;
     }
-//    public void addRole(String roleName){
-//        int count;
-//        try (Connection con = DataSource.getConnection();
-//             PreparedStatement stmt = con.prepareStatement(ADD_ROLE);
-//        ) {
-//            stmt.setString(1, roleName);
-//            count = stmt.executeUpdate();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            throw new DAOException("wrong name: " + roleName);
-//        }
-//        System.out.println(count > 0 ? "role added: " + roleName : "role wasn't added");
-//    }
-    public void addStatus(String statusName){
-//        int count;
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(ADD_STATUS);
+    public void addStatus(String statusName, Connection con){
+        try (PreparedStatement stmt = con.prepareStatement(ADD_STATUS)
         ) {
             stmt.setString(1, statusName);
-//            count =
                     stmt.executeUpdate();
         } catch (SQLException e) {
             logger.info("wrong name: {}", statusName);
-//            e.printStackTrace();
-//            throw new DAOException("wrong name: " + statusName);
         }
-//        System.out.println(count > 0 ? "status added: " + statusName : "status wasn't added");
     }
-    public void deleteStatus(String statusName) {
-//            int count = 0;
-            try (Connection con = DataSource.getConnection();
-                 PreparedStatement stmt = con.prepareStatement(DELETE_STATUS);
+    public void deleteStatus(String statusName, Connection con) {
+            try (PreparedStatement stmt = con.prepareStatement(DELETE_STATUS)
             ) {
                 stmt.setString(1, statusName);
-//                count =
                         stmt.executeUpdate();
             } catch (SQLException e) {
                 logger.info("wrong status: {}", statusName);
-//                e.printStackTrace();
-//                throw new DAOException("wrong status: " + statusName);
-            }
-//            System.out.println(count > 0 ? "status deleted: " + statusName : "status wasn't deleted");
-        }
-    public void close(AutoCloseable stmt){
-        if(stmt !=null) {
-            try {
-                stmt.close();
-            } catch (Exception e) {
-                logger.fatal(e);
+                throw new DAOException("wrong status: " + statusName);
             }
         }
-    }
+
     public void notifyAboutUpdate(User u, String description){
 
             // create method to notify connected users
@@ -494,14 +269,22 @@ public class UserDAO implements DAO <User>{
 
 
     }
+    //    public void close(AutoCloseable stmt){
+//        if(stmt !=null) {
+//            try {
+//                stmt.close();
+//            } catch (Exception e) {
+//                logger.fatal(e);
+//            }
+//        }
+//    }
 
 
 
-
-    private static final UserDAO userDAO = new UserDAO();
-
-    public static void main(String[] args) {
-//        User t = userDAO.getById(8);
+    public static void main(String[] args) throws SQLException {
+        Connection con = DataSource.getConnection();
+        UserDAO ud = getInstance();
+//        User t = ud.getById(8);
 //        System.out.println(t);
 //
 //        System.out.println(new UserDAO().getByEmail("mykola.dyak@gmail.com"));
@@ -512,7 +295,7 @@ public class UserDAO implements DAO <User>{
 //        System.out.println(new UserDAO().getByStatus("active"));
 //        System.out.println(new UserDAO().getByNotifications("yes"));
 //        System.out.println(new UserDAO().getAll());
-        User me = User.builder()
+        User me = new User.Builder()
                 .withLogin("avlas2")
                 .withEmail("me@me.me")
                 .withPassword("asdf")
@@ -520,9 +303,9 @@ public class UserDAO implements DAO <User>{
                 .withLastName("sul'zhenko")
                 .withRole("AAadministrator")
                 .withStatus("unknown status")
-                .withNotifications("yes")
+                .withNotification("yes")
                 .build();
-        userDAO.save(me);
+        ud.save(me, con);
 //        System.out.println(userDAO.getAll());
 //
 //

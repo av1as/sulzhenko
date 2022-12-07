@@ -32,38 +32,42 @@ public class Activity implements Serializable {
         return category;
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
+//    public static Builder builder() {
+//        return new Builder();
+//    }
 
     /**
      * This inner class uses Builder pattern instead of setters
      * with methods like "withXXX" (where XXX - some field of Activity class)
      */
     public static class Builder {
-        private Integer id;
-        private String name;
-        private String category;
+//        private Integer id;
+//        private String name;
+//        private String category;
+        private final Activity activity;
+        public Builder() {
+            activity = new Activity();
+        }
         public Builder withId(Integer id) {
-            this.id = id;
+            activity.id = id;
             return this;
         }
         public Builder withName(String name) {
-            this.name = name;
+            activity.name = name;
             return this;
         }
         public Builder withCategory(String category) {
-            this.category = category;
+            activity.category = category;
             return this;
         }
         public Activity build() {
-            if(id == null) {
-                id = 0;
+            if(activity.id == null) {
+                activity.id = 0;
             }
-            if (name == null) {
+            if (activity.name == null) {
                 throw new IllegalArgumentException();
             }
-            return new Activity(id, name, category);
+            return activity;
         }
     }
 

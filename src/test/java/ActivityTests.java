@@ -14,17 +14,11 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static com.sulzhenko.DAO.SQLQueries.CreatingTablesQueries.*;
-//import static com.sulzhenko.DAO.SQLQueries.CreatingTablesQueries.CREATE_USERS_ACTIVITIES_TABLE;
-import static com.sulzhenko.DAO.SQLQueries.DropingTablesQueries.*;
-//import static com.sulzhenko.DAO.SQLQueries.DropingTablesQueries.DROP_ACTIONS_WITH_REQUESTS_TABLE;
-import static com.sulzhenko.DAO.SQLQueries.InitialData.INITIAL_ROLE_ADMIN;
-import static com.sulzhenko.DAO.SQLQueries.InitialData.INITIAL_ROLE_USER;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ActivityTests {
     private static Connection con;
-    private static ActivityDAO activityDAO = new ActivityDAO();
+    private static ActivityDAO activityDAO = ActivityDAO.getInstance();
 
     @BeforeAll
     static void globalSetUp() throws SQLException {
@@ -49,9 +43,9 @@ public class ActivityTests {
 //        con.createStatement().executeUpdate(INITIAL_ROLE_USER);
         con.createStatement().executeUpdate("DELETE FROM activity;");
         con.createStatement().executeUpdate("DELETE FROM category_of_activity;");
-        activityDAO.addCategory("categoryA");
-        activityDAO.addCategory("categoryB");
-        activityDAO.addCategory("categoryC");
+        activityDAO.addCategory("categoryA", con);
+        activityDAO.addCategory("categoryB", con);
+        activityDAO.addCategory("categoryC", con);
     }
 
     @AfterAll
@@ -60,11 +54,11 @@ public class ActivityTests {
         con.createStatement().executeUpdate("DELETE FROM category_of_activity;");
         con.close();
     }
-    @BeforeEach
-    void setUp() throws SQLException {
-        //dbm = DBManager.getInstance();
-
-    }
+//    @BeforeEach
+//    void setUp() throws SQLException {
+//        //dbm = DBManager.getInstance();
+//
+//    }
 
     @AfterEach
     void tearDown() throws SQLException {
@@ -72,13 +66,15 @@ public class ActivityTests {
     }
     @Test
     void testEquality() {
-        Activity activity1 = Activity.builder().withName("testActivity").build();
-        Activity activity2 = Activity.builder().withName("testActivity").build();
-        Activity activity3 = Activity.builder().withName("tesActivity").build();
-        Activity activity4 = Activity.builder().withName("testActivity")
+        Activity activity1 = new Activity.Builder().withName("testActivity").build();
+        Activity activity2 = new Activity.Builder().withName("testActivity").build();
+        Activity activity3 = new Activity.Builder().withName("tesActivity").build();
+        Activity activity4 = new Activity.Builder()
+                .withName("testActivity")
                 .withCategory("categoryC")
                 .build();
-        Activity activity5 = Activity.builder().withName("tesActivity")
+        Activity activity5 = new Activity.Builder()
+                .withName("tesActivity")
                 .withCategory("categoryC")
                 .build();
         assertEquals("testActivity",  activity1.getName());
@@ -94,47 +90,42 @@ public class ActivityTests {
 //        for (Activity activity: activities){
 //            activityDAO.save(activity);
 //        }
-        List<Activity> activitiesFromDB = sort(activityDAO.getAll(), Activity::getName);
+        List<Activity> activitiesFromDB = sort(activityDAO.getAll(con), Activity::getName);
         assertEquals(activities, activitiesFromDB);
     }
     @Test
     void testActivityInsertException(){
-        createAndInsertActivities(1, 2);
-        Activity activity1 = Activity.builder()
+        createAndInsertActivities(1, 3);
+        Activity activity1 = new Activity.Builder()
                 .withName("activity1")
                 .withCategory("categoryB")
                 .build();
-        Activity activity2 = Activity.builder()
-                .withName("activity2")
+        Activity activity2 = new Activity.Builder()
+                .withName("activity3")
                 .withCategory("categoryD")
                 .build();
-        try {
-            activityDAO.save(activity1);
-        } catch (Exception e){
-            assertTrue(e instanceof DAOException);
-            assertEquals("wrong activity name: activity1", e.getMessage());
-        }
-        try {
-            activityDAO.save(activity2);
-        } catch (Exception e){
-            assertTrue(e instanceof DAOException);
-            assertEquals("wrong category: categoryD", e.getMessage());
-        }
+        DAOException thrown = assertThrows(DAOException.class,
+                () -> activityDAO.isDataCorrect(activity1, con));
+        assertEquals("wrong name: activity1", thrown.getMessage());
+        thrown = assertThrows(DAOException.class,
+                () -> activityDAO.isDataCorrect(activity2, con));
+        assertEquals("wrong category: categoryD", thrown.getMessage());
+
+        activityDAO.save(activity1, con);
+        activityDAO.save(activity2, con);
+        assertEquals(2, activityDAO.getAll(con).size());
     }
 
     @Test
     void testUpdate() {
         List<Activity> activities = createAndInsertActivities(1, 5);
-//        for (Activity activity: activities){
-//            activityDAO.save(activity);
-//        }
-        Activity newActivity = Activity.builder()
+        Activity newActivity = new Activity.Builder()
                 .withName("updated activity2")
                 .withCategory("categoryC")
                 .build();
         String[] param = {"updated activity2", "categoryC"};
-        activityDAO.update(activityDAO.getByName("activity2"), param );
-        List<Activity> activitiesFromDB = sort(activityDAO.getAll(), Activity::getName);
+        activityDAO.update(activityDAO.getByName("activity2", con), param, con );
+        List<Activity> activitiesFromDB = sort(activityDAO.getAll(con), Activity::getName);
         activities.set(1, newActivity);
         sort(activities, Activity::getName);
         assertEquals(activities, activitiesFromDB);
@@ -142,35 +133,29 @@ public class ActivityTests {
     @Test
     void testDelete() {
         List<Activity> activities = createAndInsertActivities(1, 5);
-//        for (Activity activity: activities){
-//            activityDAO.save(activity);
-//        }
-        activityDAO.delete(activityDAO.getByName("activity2"));
-        List<Activity> activitiesFromDB = sort(activityDAO.getAll(), Activity::getName);
+        activityDAO.delete(activityDAO.getByName("activity2", con), con);
+        List<Activity> activitiesFromDB = sort(activityDAO.getAll(con), Activity::getName);
         activities.remove(1);
         sort(activities, Activity::getName);
         assertEquals(activities, activitiesFromDB);
     }
     @Test
     void testDeletedCategory() {
-        List<Activity> activities = createAndInsertActivities(1, 5);
-//        for (Activity activity: activities){
-//            activityDAO.save(activity);
-//        }
-        activityDAO.deleteCategory("categoryB");
-        List<Activity> activitiesFromDB = sort(activityDAO.getAll(), Activity::getName);
+        createAndInsertActivities(1, 5);
+        activityDAO.deleteCategory("categoryB", con);
+        List<Activity> activitiesFromDB = sort(activityDAO.getAll(con), Activity::getName);
         assertEquals(activitiesFromDB, new ArrayList<Activity>());
-        activityDAO.addCategory("categoryB");
+        activityDAO.addCategory("categoryB", con);
     }
     @Test
     void testGetActivitiesByCategory(){
         createAndInsertActivities(1, 5);
-        Activity activity5 = Activity.builder()
+        Activity activity5 = new Activity.Builder()
                 .withName("activity5")
                 .withCategory("categoryA")
                 .build();
-        activityDAO.save(activity5);
-        assertEquals(4, activityDAO.getByCategory("categoryB").size());
+        activityDAO.save(activity5, con);
+        assertEquals(4, activityDAO.getByCategory("categoryB", con).size());
     }
 
     private static <T, U extends Comparable<? super U>> List<T>
@@ -183,14 +168,14 @@ public class ActivityTests {
                 .mapToObj(ActivityTests::createActivity)
                 .collect(Collectors.toList());
         for (Activity activity : activities) {
-            activityDAO.save(activity);
+            activityDAO.save(activity, con);
         }
         return activities;
     }
     private static Activity createActivity(int number){
-        Activity a = Activity.builder().withName("activity" + number)
+        return new Activity.Builder()
+                .withName("activity" + number)
                 .withCategory("categoryB")
                 .build();
-        return a;
     }
 }

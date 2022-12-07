@@ -1,7 +1,4 @@
-import com.sulzhenko.DAO.ActivityDAO;
-import com.sulzhenko.DAO.DataSource;
-import com.sulzhenko.DAO.RequestDAO;
-import com.sulzhenko.DAO.UserDAO;
+import com.sulzhenko.DAO.*;
 import com.sulzhenko.DAO.entity.Activity;
 import com.sulzhenko.DAO.entity.Request;
 import com.sulzhenko.DAO.entity.User;
@@ -21,9 +18,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RequestTests {
     private static Connection con;
-    private static RequestDAO requestDAO = new RequestDAO();
-    private static ActivityDAO activityDAO = new ActivityDAO();
-    private static UserDAO userDAO = new UserDAO();
+    private static RequestDAO requestDAO = RequestDAO.getInstance();
+    private static ActivityDAO activityDAO = ActivityDAO.getInstance();
+    private static UserDAO userDAO = UserDAO.getInstance();
 
     @BeforeAll
     static void globalSetUp() throws SQLException {
@@ -32,42 +29,21 @@ public class RequestTests {
         con.createStatement().executeUpdate("DELETE FROM request;");
         con.createStatement().executeUpdate("DELETE FROM activity;");
         con.createStatement().executeUpdate("DELETE FROM category_of_activity;");
-        activityDAO.addCategory("categoryA");
-        activityDAO.addCategory("categoryB");
-        activityDAO.addCategory("categoryC");
+        activityDAO.addCategory("categoryA", con);
+        activityDAO.addCategory("categoryB", con);
+        activityDAO.addCategory("categoryC", con);
         createAndInsertActivities(1, 5);
         con.createStatement().executeUpdate("DELETE FROM role;");
         con.createStatement().executeUpdate("DELETE FROM user_status;");
         con.createStatement().executeUpdate(INITIAL_ROLE_ADMIN);
         con.createStatement().executeUpdate(INITIAL_ROLE_USER);
-        userDAO.addStatus("active");
-        userDAO.addStatus("inactive");
-        userDAO.addStatus("deactivated");
+        userDAO.addStatus("active", con);
+        userDAO.addStatus("inactive", con);
+        userDAO.addStatus("deactivated", con);
         con.createStatement().executeUpdate("DELETE FROM action_with_request;");
         con.createStatement().executeUpdate(INITIAL_ACTION_ADD);
         con.createStatement().executeUpdate(INITIAL_ACTION_REMOVE);
         createAndInsertUsers(1, 5);
-//        con.createStatement().executeUpdate("INSERT INTO users_activities\n" +
-//                "(account,\n" +
-//                "activity_id\n" +
-//                ")\n" +
-//                "VALUES\n" +
-//                "(1,\n" +
-//                "1);");
-//        con.createStatement().executeUpdate("INSERT INTO users_activities\n" +
-//                "(account,\n" +
-//                "activity_id\n" +
-//                ")\n" +
-//                "VALUES\n" +
-//                "(2,\n" +
-//                "2);");
-//        con.createStatement().executeUpdate("INSERT INTO users_activities\n" +
-//                "(account,\n" +
-//                "activity_id\n" +
-//                ")\n" +
-//                "VALUES\n" +
-//                "(3,\n" +
-//                "3);");
     }
 
     @AfterAll
@@ -87,36 +63,36 @@ public class RequestTests {
     }
     @Test
     void testEquality() {
-        Request request1 = Request.builder()
+        Request request1 = new Request.Builder()
                 .withLogin("user1")
                 .withActivityName("activity1")
                 .withActionToDo("add")
                 .withDescription("asap")
                 .build();
-        Request request2 = Request.builder()
+        Request request2 = new Request.Builder()
                 .withLogin("user1")
                 .withActivityName("activity1")
                 .withActionToDo("add")
                 .build();
-        Request request3 = Request.builder()
+        Request request3 = new Request.Builder()
                 .withLogin("user1")
                 .withActivityName("activity1")
                 .withActionToDo("add")
                 .withDescription("urgent")
                 .build();
-        Request request4 = Request.builder()
+        Request request4 = new Request.Builder()
                 .withLogin("user2")
                 .withActivityName("activity1")
                 .withActionToDo("add")
                 .withDescription("asap")
                 .build();
-        Request request5 = Request.builder()
+        Request request5 = new Request.Builder()
                 .withLogin("user1")
                 .withActivityName("activity2")
                 .withActionToDo("add")
                 .withDescription("asap")
                 .build();
-        Request request6 = Request.builder()
+        Request request6 = new Request.Builder()
                 .withLogin("user1")
                 .withActivityName("activity1")
                 .withActionToDo("remove")
@@ -130,25 +106,25 @@ public class RequestTests {
     }
     @Test
     void testInsert() {
-        Request request1 = Request.builder()
+        Request request1 = new Request.Builder()
                 .withLogin("user1")
                 .withActivityName("activity1")
                 .withActionToDo("add")
                 .withDescription("asap")
                 .build();
-        Request request4 = Request.builder()
+        Request request4 = new Request.Builder()
                 .withLogin("user2")
                 .withActivityName("activity1")
                 .withActionToDo("add")
                 .withDescription("asap")
                 .build();
-        Request request5 = Request.builder()
+        Request request5 = new Request.Builder()
                 .withLogin("user1")
                 .withActivityName("activity2")
                 .withActionToDo("add")
                 .withDescription("asap")
                 .build();
-        Request request6 = Request.builder()
+        Request request6 = new Request.Builder()
                 .withLogin("user1")
                 .withActivityName("activity1")
                 .withActionToDo("remove")
@@ -159,62 +135,44 @@ public class RequestTests {
         requests.add(request4);
         requests.add(request5);
         sort(requests, Request::getLogin);
-//        requests.add(request6);
-        requestDAO.save(request1);
-        requestDAO.save(request4);
-        requestDAO.save(request5);
-//        requestDAO.save(request6);
-        List<Request> requestsFromDB = sort(requestDAO.getAll(), Request::getLogin);
+
+        requestDAO.save(request1, con);
+        requestDAO.save(request4, con);
+        requestDAO.save(request5, con);
+
+        List<Request> requestsFromDB = sort(requestDAO.getAll(con), Request::getLogin);
         assertEquals(requests, requestsFromDB);
     }
+
     @Test
-    void exceptionToAdd(){
-        Request request1 = Request.builder()
+    void exceptionToInsert(){
+        Request request1 = new Request.Builder()
                 .withLogin("user6")
                 .withActivityName("activity1")
                 .withActionToDo("add")
                 .withDescription("asap")
                 .build();
-        Request request2 = Request.builder()
+        Request request2 = new Request.Builder()
                 .withLogin("user1")
                 .withActivityName("activity6")
                 .withActionToDo("add")
                 .withDescription("asap")
                 .build();
-        Request request3 = Request.builder()
+        Request request3 = new Request.Builder()
                 .withLogin("user1")
                 .withActivityName("activity4")
                 .withActionToDo("remove")
                 .withDescription("asap")
                 .build();
-        try {
-            requestDAO.save(request1);
-        } catch (Exception e){
-//            assertTrue(e instanceof DAOException);
 
-
-
-
-
-
-        assertEquals("wrong login: user6", e.getMessage());
-        }
-        try {
-            requestDAO.save(request2);
-        } catch (Exception e){
-//            assertTrue(e instanceof DAOException);
-            assertEquals("wrong activity: activity6", e.getMessage());
-        }
-        try {
-            requestDAO.save(request3);
-        } catch (Exception e){
-//            assertTrue(e instanceof DAOException);
-            assertEquals("wrong action to do: remove", e.getMessage());
-        }
-
+        DAOException thrown = assertThrows(DAOException.class, () -> requestDAO.isDataCorrect(request1, con));
+        assertEquals("wrong login: user6", thrown.getMessage());
+        thrown = assertThrows(DAOException.class, () -> requestDAO.isDataCorrect(request2, con));
+        assertEquals("wrong activity: activity6", thrown.getMessage());
+        thrown = assertThrows(DAOException.class, () -> requestDAO.isDataCorrect(request3, con));
+        assertEquals("wrong action: remove", thrown.getMessage());
+        assertEquals(new ArrayList<>(), requestDAO.getAll(con));
     }
-
-
 
     private static <T, U extends Comparable<? super U>> List<T>
     sort(List<T> items, Function<T, U> extractor) {
@@ -226,11 +184,11 @@ public class RequestTests {
                 .mapToObj(RequestTests::createActivity)
                 .collect(Collectors.toList());
         for (Activity activity : activities) {
-            activityDAO.save(activity);
+            activityDAO.save(activity, con);
         }
     }
     private static Activity createActivity(int number){
-        return Activity.builder().withName("activity" + number)
+        return new Activity.Builder().withName("activity" + number)
                 .withCategory("categoryB")
                 .build();
     }
@@ -239,16 +197,16 @@ public class RequestTests {
                 .mapToObj(RequestTests::createUser)
                 .collect(Collectors.toList());
         for (User user : users) {
-            userDAO.save(user);
+            userDAO.save(user, con);
         }
     }
     private static User createUser(int number){
-        return User.builder().withLogin("user" + number)
+        return new User.Builder().withLogin("user" + number)
                 .withEmail("user" + number + "@domen.com")
                 .withPassword("password" + number)
                 .withRole("system user")
                 .withStatus("active")
-                .withNotifications("off")
+                .withNotification("off")
                 .build();
     }
 }

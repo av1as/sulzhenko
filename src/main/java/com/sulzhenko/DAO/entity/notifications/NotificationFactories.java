@@ -89,18 +89,17 @@ public class NotificationFactories {
 
 
                 //User t = new User();
-                User.Builder b = User.builder();
-                b.withLogin(rs.getString(2))
+                User b = new User.Builder()
+                        .withLogin(rs.getString(2))
                         .withEmail(rs.getString(3))
                         .withFirstName(rs.getString(5))
-                        .withLastName(rs.getString(6));
-
-                User t = b.build();
+                        .withLastName(rs.getString(6))
+                        .build();
 
 
 
                 //System.out.println(t);
-                allUsersList.add(t);
+                allUsersList.add(b);
             }
         } catch (SQLException e){
             e.printStackTrace();

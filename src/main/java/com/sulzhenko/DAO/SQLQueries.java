@@ -337,5 +337,9 @@ public abstract class SQLQueries {
                 "?);";
         public static final String REMOVE_USER_ACTIVITY = "DELETE FROM user_activity\n" +
                 "WHERE account = ? AND activity_id = ?;";
+        public static final String SET_AMOUNT = "UPDATE user_activity\n" +
+                "SET\n" +
+                "time_amount = ?\n" +
+                "WHERE account = ?;";
     }
 }

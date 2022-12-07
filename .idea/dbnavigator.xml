@@ -40,9 +40,12 @@
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="aa6282ed-1625-4ae3-889d-4b18df096f7a" dataset="timekeeping.users" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="aa6282ed-1625-4ae3-889d-4b18df096f7a" dataset="timekeeping.activity" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="aa6282ed-1625-4ae3-889d-4b18df096f7a" dataset="timekeeping.actions_with_requests" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="aa6282ed-1625-4ae3-889d-4b18df096f7a" dataset="timekeeping.activities" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="aa6282ed-1625-4ae3-889d-4b18df096f7a" dataset="timekeeping.requests" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="aa6282ed-1625-4ae3-889d-4b18df096f7a" dataset="timekeeping.user" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="aa6282ed-1625-4ae3-889d-4b18df096f7a" dataset="timekeeping.category_of_activity" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers>

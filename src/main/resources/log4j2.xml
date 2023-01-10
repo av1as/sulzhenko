@@ -6,7 +6,7 @@
         </property>
     </Properties>
     <Appenders>
-        <File name="File" fileName="logs/log.log" bufferedIO="true">
+        <File name="File" fileName="src/main/resources/log.log" bufferedIO="true">
             <PatternLayout pattern="${pattern_file}"/>
         </File>
     </Appenders>

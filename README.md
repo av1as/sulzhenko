@@ -5,18 +5,25 @@ The task of the final project is to develop a web application that supports the 
 Variants
 
 Timekeeping
+
 There are roles: administrator and system user.
+
 The administrator manages:
 - users;
 - categories of activities;
 - activities;
 - confirms (fixes) a certain activity on users.
-  The administrator can also view a list of all available activities, perform sorting:
+
+The administrator can also view a list of all available activities, perform sorting:
 - by name;
 - by category;
 - by number of users.
-  Perform filtering by activity category. View report for all users, number of activities and time marked by user.
-  The user must have an account. The user can have one or more activities. The user notes the amount of time spent on each activity. The user can send a request to add / remove activity.
+
+Perform filtering by activity category. 
+
+View report for all users, number of activities and time marked by user.
+
+The user must have an account. The user can have one or more activities. The user notes the amount of time spent on each activity. The user can send a request to add / remove activity.
 
 ОПИС ПРОЕКТУ
 Завдання фінального проекту - розробити веб-застосунок, що підтримує функціональність відповідно до варіанту завдання.

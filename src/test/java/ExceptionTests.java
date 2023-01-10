@@ -1,17 +1,4 @@
-import com.sulzhenko.DAO.DAOException;
-import com.sulzhenko.DAO.DataSource;
-import com.sulzhenko.DAO.UserDAO;
-import com.sulzhenko.DAO.entity.User;
-import org.junit.*;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.Collection;
-
-import static com.sulzhenko.DAO.SQLQueries.InitialData.*;
+import static com.sulzhenko.model.DAO.SQLQueries.InitialData.*;
 
 //@RunWith(Parameterized.class)
 //public class ExceptionTests {

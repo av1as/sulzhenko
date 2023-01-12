@@ -1,6 +1,5 @@
 package com.sulzhenko.controller;
 
-import com.sulzhenko.ApplicationContext;
 import com.sulzhenko.controller.command.*;
 
 import java.util.HashMap;
@@ -35,7 +34,7 @@ public class ActionFactory {
     //system user commands
     actions.put("user_activities", new ShowUserActivitiesCommand());
     actions.put("set_amount", new SetAmountCommand());
-    actions.put("remove_activity", new RemoveUserActivityCommand());
+    actions.put("remove_activity", new RequestToRemoveActivityCommand());
     actions.put("add_activity", new RequestToAddActivityCommand());
 
     //admin commands
@@ -52,8 +51,8 @@ public class ActionFactory {
     actions.put("show_requests", new ShowRequestsCommand());
     actions.put("approve_request", new ApproveRequestCommand());
     actions.put("decline_request", new DeclineRequestCommand());
-    actions.put("show_report", new ShowReportCommand());
-    actions.put("show_brief_report", new ShowBriefReportCommand());
+//    actions.put("show_report", new ShowReportCommand());
+//    actions.put("show_brief_report", new ShowBriefReportCommand());
     actions.put("show_full_report", new ShowFullReportCommand());
   }
 

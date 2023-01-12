@@ -50,45 +50,43 @@
       <div class="tab-pane active in" id="home">
 ---------->
         <form action="/TimeKeeping/controller?action=update_user" method="post" id="fileForm" role="form">
-            <input type="hidden" name="action" value="update_user" />
+                <input type="hidden" name="action" value="update_user" />
 
             <div class="form-group">
                <label><span class="req">* </span><fmt:message key="login"/></label><br>
                <div title="<fmt:message key="login.requirements"/>"><fmt:message key="hover.requirements"/></div>
-            <input required name="newlogin" type="text" value="${user.getLogin()}" class="input-xlarge">
+                <input name="newlogin" type="text" value="${user.getLogin()}" class="input-xlarge">
             </div>
             <div class="form-group">
                <label><fmt:message key="first.name"/></label><br>
-            <input name="newfirstname" type="text" value="${user.getFirstName()}" class="input-xlarge">
+                <input name="newfirstname" type="text" value="${user.getFirstName()}" class="input-xlarge">
             </div>
            <div class="form-group">
                <label><fmt:message key="last.name"/></label><br>
-            <input name="newlastname" type="text" value="${user.getLastName()}" class="input-xlarge">
-            </div>
+                <input name="newlastname" type="text" value="${user.getLastName()}" class="input-xlarge">
+           </div>
            <div class="form-group">
                <label><span class="req">* </span><fmt:message key="email"/></label><br>
                <div title="<fmt:message key="email.requirements"/>"><fmt:message key="hover.requirements"/></div>
-            <input name="newemail" type="text" value="${user.getEmail()}" class="input-xlarge">
+                <input name="newemail" type="text" value="${user.getEmail()}" class="input-xlarge">
             </div>
 
             <div class="form-group">
 
-            <label><span class="req">* </span><fmt:message key="current.password"/>: </label><br>
-            <input required name="currentpassword" type="password" class="input-xlarge" minlength="4" maxlength="16"  id="password" />
+                <label><span class="req">* </span><fmt:message key="current.password"/>: </label><br>
+                <input name="currentpassword" type="password" class="input-xlarge"   id="password" />
             </div>
 
             <div class="form-group">
             <label for="password"><fmt:message key="new.password"/>: </label><br>
             <div title="<fmt:message key="password.requirements"/>"><fmt:message key="hover.requirements"/></div>
-<!------
-           <div title="<fmt:message key="password.requirements"/>"><i class="glyphicon glyphicon-exclamation-sign"></i></div>
----------->
-                <input name="newpassword" type="password" class="input-xlarge" minlength="4" maxlength="16"  id="pass1" />
+
+                <input name="newpassword" type="password" class="input-xlarge" id="pass1" />
             </div>
 
            <div class="form-group">
                 <label for="password"><fmt:message key="new.password.confirm"/>: </label><br>
-                <input name="newpassword" type="password" class="input-xlarge" minlength="4" maxlength="16" placeholder="<fmt:message key="repeat.validate"/>"  id="pass2" onkeyup="checkPass(); return false;" />
+                <input name="newpasswordconfirm" type="password" class="input-xlarge" placeholder="<fmt:message key="repeat.validate"/>"  id="pass2" onkeyup="checkPass(); return false;" />
                 <span id="confirmMessage" class="confirmMessage"></span>
             </div>
             <br>

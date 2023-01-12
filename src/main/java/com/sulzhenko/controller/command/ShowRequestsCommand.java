@@ -1,8 +1,8 @@
 package com.sulzhenko.controller.command;
 
 import com.sulzhenko.controller.Path;
-import com.sulzhenko.model.DAO.RequestDAO;
 import com.sulzhenko.model.entity.*;
+import com.sulzhenko.model.services.RequestService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -11,19 +11,23 @@ import java.util.List;
 import java.util.Objects;
 
 import static com.sulzhenko.ApplicationContext.getApplicationContext;
-
+/**
+ * Show list of requests controller action
+ *
+ */
 public class ShowRequestsCommand implements Command {
+    RequestService requestService = getApplicationContext().getRequestService();
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        int page = 1;
+        int page = (request.getParameter("page") != null)?
+                Integer.parseInt(request.getParameter("page")): 1;
         int recordsPerPage = 5;
-        if(request.getParameter("page") != null) page = Integer.parseInt(request.getParameter("page"));
-        RequestDAO requestDAO = getApplicationContext().getRequestDAO();
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         String actionToDo=request.getParameter("action_to_do");
-        int noOfRecords = getNumberOfRecords(actionToDo, requestDAO);
-        request.setAttribute("requests", getRequestList(page, actionToDo, requestDAO, recordsPerPage));
+        int noOfRecords = getNumberOfRecords(actionToDo, requestService);
+        request.setAttribute("requests",
+                getRequestList(page, actionToDo, requestService, recordsPerPage));
         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
         request.setAttribute("noOfPages", noOfPages);
         request.setAttribute("currentPage", page);
@@ -39,26 +43,22 @@ public class ShowRequestsCommand implements Command {
         }
         return menu;
     }
-    private List<Request> getRequestList(int page, String actionToDo, RequestDAO requestDAO, int recordsPerPage){
-        List<Request> allRequests = requestDAO.viewAllRequests((page-1)*recordsPerPage, recordsPerPage);
-        List<Request> requestsToAdd = requestDAO.viewRequestsToAdd((page-1)*recordsPerPage, recordsPerPage);
-        List<Request> requestsToRemove = requestDAO.viewRequestsToRemove((page-1)*recordsPerPage, recordsPerPage);
-
+    private List<Request> getRequestList(int page, String actionToDo, RequestService requestService, int recordsPerPage){
         if(Objects.equals(actionToDo, "add")) {
-            return requestsToAdd;
+            return requestService.viewRequestsToAdd((page-1)*recordsPerPage, recordsPerPage);
         } else if(Objects.equals(actionToDo, "remove")) {
-            return requestsToRemove;
+            return requestService.viewRequestsToRemove((page-1)*recordsPerPage, recordsPerPage);
         } else {
-            return allRequests;
+            return requestService.viewAllRequests((page-1)*recordsPerPage, recordsPerPage);
         }
     }
-    private int getNumberOfRecords(String actionToDo, RequestDAO requestDAO){
+    private int getNumberOfRecords(String actionToDo, RequestService requestService){
         if(Objects.equals(actionToDo, "add")) {
-            return requestDAO.getByActionToDo("add").size();
+            return requestService.getRequestsToAdd().size();
         } else if(Objects.equals(actionToDo, "remove")) {
-            return requestDAO.getByActionToDo("remove").size();
+            return requestService.getRequestsToRemove().size();
         } else {
-            return requestDAO.getAll().size();
+            return requestService.getAllRequest().size();
         }
     }
 }

@@ -1,9 +1,9 @@
 package com.sulzhenko.controller.command;
 
 import com.sulzhenko.controller.Path;
-import com.sulzhenko.model.DAO.UserActivityDAO;
 import com.sulzhenko.model.DTO.UserActivityDTO;
 import com.sulzhenko.model.entity.*;
+import com.sulzhenko.model.services.UserActivityService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -20,14 +20,14 @@ import static com.sulzhenko.ApplicationContext.getApplicationContext;
  * ProfileInfo controller action
  */
 public class ShowUserActivitiesCommand implements Command {
+    UserActivityService userActivityService = getApplicationContext().getUserActivityService();
     private static final Logger logger = LogManager.getLogger(ShowUserActivitiesCommand.class);
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        UserActivityDAO uaDAO = getApplicationContext().getUserActivityDAO();
-        List <UserActivityDTO> activities = getApplicationContext().getUserActivityService().listUserActivitiesSorted(request, user);
-        List<Activity> available = uaDAO.allAvailableActivities(user);
+        List <UserActivityDTO> activities = userActivityService.listUserActivitiesSorted(request, user);
+        List<Activity> available = userActivityService.allAvailableActivities(user);
         request.setAttribute("user", user);
         request.setAttribute("activities", activities);
         request.setAttribute("menu", getMenu(user));

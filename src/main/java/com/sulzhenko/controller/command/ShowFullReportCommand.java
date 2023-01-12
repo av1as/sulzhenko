@@ -1,9 +1,7 @@
 package com.sulzhenko.controller.command;
 
 import com.sulzhenko.controller.Path;
-import com.sulzhenko.model.DAO.DAOException;
-import com.sulzhenko.model.DTO.ReportDTO;
-import com.sulzhenko.model.DTO.UserActivityDTO;
+import com.sulzhenko.model.DTO.*;
 import com.sulzhenko.model.entity.User;
 import com.sulzhenko.model.services.*;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,19 +16,20 @@ import static com.sulzhenko.ApplicationContext.getApplicationContext;
 import static com.sulzhenko.model.Util.PaginationUtil.paginate;
 
 public class ShowFullReportCommand implements Command {
+    UserActivityService userActivityService = getApplicationContext().getUserActivityService();
+    ReportService reportService = getApplicationContext().getReportService();
     private static final Logger logger = LogManager.getLogger(ShowFullReportCommand.class);
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         setPage(request);
         setMenu(request);
-        UserActivityService userActivityService = getApplicationContext().getUserActivityService();
         List<UserActivityDTO> userActivities = userActivityService.listAllUserActivitiesSorted(request);
-        List<ReportDTO> report = getApplicationContext().getReportService().viewReportPage(userActivities);
+        List<ReportDTO> report = reportService.viewReportPage(userActivities);
         request.setAttribute("report", report);
         int noOfRecords;
         try {
             noOfRecords = userActivityService.getNumberOfRecords();
-        } catch (DAOException e) {
+        } catch (ServiceException e) {
             String errorMessage = e.getMessage();
             logger.warn(e);
             request.setAttribute(errorMessage, "message");

@@ -56,6 +56,7 @@ public class CategoryDAOImpl implements CategoryDAO {
         }
         return list;
     }
+    @Override
     public Optional<Category> getById(long id) {
         return get(id, SQLQueries.CategoryQueries.GET_CATEGORY_BY_ID);
     }
@@ -120,13 +121,5 @@ public class CategoryDAOImpl implements CategoryDAO {
             logger.info(e.getMessage());
             throw new DAOException("unknown.error", e);
         }
-    }
-    @Override
-    public List<Category> viewAllCategories(int startPosition, int size){
-        List<Category> list = new ArrayList<>();
-        for(int i = startPosition; (i < (startPosition + size)) && (i < new CategoryDAOImpl(dataSource).getAll().size()); i++){
-            list.add(new CategoryDAOImpl(dataSource).getAll().get(i));
-        }
-        return list;
     }
 }

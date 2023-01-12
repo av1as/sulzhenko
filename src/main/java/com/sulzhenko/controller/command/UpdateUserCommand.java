@@ -5,6 +5,7 @@ import com.sulzhenko.model.DAO.DAOException;
 import com.sulzhenko.model.DAO.UserDAO;
 import com.sulzhenko.model.entity.User;
 import com.sulzhenko.model.hashingPasswords.Sha;
+import com.sulzhenko.model.services.ServiceException;
 import com.sulzhenko.model.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -25,7 +26,7 @@ import static com.sulzhenko.ApplicationContext.getApplicationContext;
  *
  */
 public class UpdateUserCommand implements Command {
-    UserDAO userDAO = getApplicationContext().getUserDAO();
+//    UserDAO userDAO = getApplicationContext().getUserDAO();
     UserService userService = getApplicationContext().getUserService();
     Sha sha = getApplicationContext().getSha();
     private static final Logger logger = LogManager.getLogger(UpdateUserCommand.class);
@@ -36,46 +37,45 @@ public class UpdateUserCommand implements Command {
         User user = (User) session.getAttribute("user");
         String role = user.getRole().value;
         String currentPassword = request.getParameter("currentpassword");
-        User newUser;
-        try{
-            newUser = getUser(request);
-        } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
-            throw new DAOException(e);
-        }
         String errorMessage;
         String forward = Path.PAGE_ERROR;
+        User newUser;
+        if(Objects.equals(request.getParameter("newpassword"), request.getParameter("newpasswordconfirm"))){
+            newUser = getUser(request);
+        } else {
+            errorMessage = "different.passwords";
+            session.setAttribute("error", errorMessage);
+            return forward;
+        }
         if (user.getLogin() == null ) {
             errorMessage = "wrong.login";
-            request.setAttribute("errorMessage", errorMessage);
+            session.setAttribute("error", errorMessage);
             return forward;
         } else {
             try {
                 if (!sha.hashToHex(currentPassword, Optional.ofNullable(user.getLogin())).equals(user.getPassword())) {
                     errorMessage = "wrong.password";
-                    request.setAttribute("errorMessage", errorMessage);
+                    session.setAttribute("error", errorMessage);
                     return forward;
                 }
-            } catch (NoSuchAlgorithmException e) {
-                throw new RuntimeException(e);
-            } catch (UnsupportedEncodingException e) {
-                throw new RuntimeException(e);
+            } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+                throw new ServiceException("unknown.error");
             }
         }
         String[] param = {newUser.getLogin(), newUser.getEmail(), newUser.getPassword(), newUser.getFirstName(),
                 newUser.getLastName(), role, "active", newUser.getNotification()};
-        Long account = user.getAccount();
         try{
             userService.updateUser(user, param);
-            user = userDAO.getById(account).orElse(null);
+            user = userService.getUser(newUser.getLogin());
             session.setAttribute("user", user);
-        } catch (DAOException e) {
+        } catch (ServiceException e) {
             logger.fatal(e.getMessage());
             session.setAttribute("error", e.getMessage());
             return forward;
         }
         return Path.PAGE_PROFILE;
     }
-    private User getUser(HttpServletRequest request) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+    private User getUser(HttpServletRequest request) {
         String login = request.getParameter("newlogin");
         String currentPassword = request.getParameter("currentpassword");
         String newPassword = request.getParameter("newpassword");

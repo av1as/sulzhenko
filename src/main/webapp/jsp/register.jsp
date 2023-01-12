@@ -60,7 +60,7 @@
             <div class="form-group">
             <label for="email"><span class="req">* </span> <fmt:message key="email"/>: </label>
             <div title="<fmt:message key="email.requirements"/>"><fmt:message key="hover.requirements"/></div>
-                    <input required type="text" name="email" id="email" class="form-control login" maxlength="28" onkeyup="validateemail(this);" placeholder=""/>
+                    <input type="text" name="email" id="email" class="form-control login"  placeholder=""/>
             </div>
 
             <div class="form-group">
@@ -79,17 +79,17 @@
             <div class="form-group">
                 <label for="login"><span class="req">* </span> <fmt:message key="login"/>:   </label>
                 <div title="<fmt:message key="login.requirements"/>"><fmt:message key="hover.requirements"/></div>
-                    <input class="form-control" type="text" name="login" id = "txt" onkeyup = "Validate(this)"  required />
+                    <input class="form-control" type="text" name="login" id = "txt" onkeyup = "Validate(this)"  />
                         <div id="errLast"></div>
             </div>
 
             <div class="form-group">
                 <label for="password"><span class="req">* </span> <fmt:message key="password"/>: </label>
                 <div title="<fmt:message key="password.requirements"/>"><fmt:message key="hover.requirements"/></div>
-                    <input required name="password1" type="password" class="form-control inputpass" minlength="4" maxlength="16"  id="pass1" /> </p>
+                    <input name="password1" type="password" class="form-control inputpass"   id="pass1" /> </p>
 
                 <label for="password"><span class="req">* </span> <fmt:message key="password.confirm"/>: </label>
-                    <input required name="password2" type="password" class="form-control inputpass" minlength="4" maxlength="16" placeholder="<fmt:message key="repeat.validate"/>"  id="pass2" onkeyup="checkPass(); return false;" />
+                    <input name="password2" type="password" class="form-control inputpass"  placeholder="<fmt:message key="repeat.validate"/>"  id="pass2" onkeyup="checkPass(); return false;" />
                         <span id="confirmMessage" class="confirmMessage"></span>
             </div>
 

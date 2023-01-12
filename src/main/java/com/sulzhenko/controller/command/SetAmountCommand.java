@@ -1,8 +1,8 @@
 package com.sulzhenko.controller.command;
 
 import com.sulzhenko.controller.Path;
-import com.sulzhenko.model.DAO.*;
 import com.sulzhenko.model.entity.*;
+import com.sulzhenko.model.services.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -13,11 +13,10 @@ import static com.sulzhenko.ApplicationContext.getApplicationContext;
 /**
  * Register controller action
  *
- *
  */
 public class SetAmountCommand implements Command {
-    ActivityDAO activityDAO = getApplicationContext().getActivityDAO();
-    UserActivityDAO uaDAO = getApplicationContext().getUserActivityDAO();
+    ActivityService activityService = getApplicationContext().getActivityService();
+    UserActivityService userActivityService = getApplicationContext().getUserActivityService();
     private static final Logger logger = LogManager.getLogger(SetAmountCommand.class);
 
     @Override
@@ -26,10 +25,10 @@ public class SetAmountCommand implements Command {
         User user = (User) session.getAttribute("user");
         String activityName = request.getParameter("activity_name");
         int amount = Integer.parseInt(request.getParameter("amount"));
-        Activity activity = activityDAO.getByName(activityName);
+        Activity activity = activityService.getActivity(activityName);
         try{
-            uaDAO.setAmount(user, activity, amount);
-        } catch (DAOException e){
+            userActivityService.setAmount(user, activity, amount);
+        } catch (ServiceException e){
             session.setAttribute("error", e.getMessage());
             logger.warn(e.getMessage());
             return Path.PAGE_ERROR;

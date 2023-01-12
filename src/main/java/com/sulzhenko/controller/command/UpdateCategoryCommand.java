@@ -1,32 +1,36 @@
 package com.sulzhenko.controller.command;
 
-import com.sulzhenko.model.DAO.CategoryDAO;
-import com.sulzhenko.model.entity.Category;
-import com.sulzhenko.model.entity.User;
+import com.sulzhenko.controller.Path;
+import com.sulzhenko.model.services.CategoryService;
+import com.sulzhenko.model.services.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.sql.SQLException;
 
 import static com.sulzhenko.ApplicationContext.getApplicationContext;
 
 /**
- * Register controller action
+ * Update category controller action
  *
  */
 public class UpdateCategoryCommand implements Command {
-    CategoryDAO categoryDAO = getApplicationContext().getCategoryDAO();
+    CategoryService categoryService = getApplicationContext().getCategoryService();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        long categoryId = Long.parseLong(request.getParameter("category_id"));
-        String newCategoryName = request.getParameter("newname");
-        Category category = categoryDAO.getById(categoryId).orElse(null);
-        String[] param = {newCategoryName};
-        categoryDAO.update(category, param);
-        return "controller?action=show_categories";
+        String oldName = request.getParameter("category_name");
+        String newName = request.getParameter("newname");
+        HttpSession session = request.getSession();
+        String forward;
+        try{
+            categoryService.updateCategory(oldName, newName);
+            forward = "controller?action=show_categories";
+        } catch(ServiceException e){
+            session.setAttribute("error", e.getMessage());
+            forward = Path.PAGE_ERROR;
+        }
+        return forward;
     }
 }

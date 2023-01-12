@@ -23,17 +23,6 @@ public class UserActivityDAOImpl implements UserActivityDAO {
         this.activityDAO = new ActivityDAOImpl(dataSource);
     }
     private static final Logger logger = LogManager.getLogger(UserActivityDAOImpl.class);
-    @Override
-    public List<Activity> allAvailableActivities(User u) {
-        List<Activity> list = new ArrayList<>();
-        for(Activity element: new ActivityDAOImpl(dataSource).getAll()){
-            if(!ifUserHasActivity(u, element) && !isRequestToAddExists(u, element)){
-                list.add(element);
-            }
-        }
-        return list;
-    }
-
 
     @Override
     public boolean ifUserHasActivity(User u, Activity a){
@@ -52,23 +41,6 @@ public class UserActivityDAOImpl implements UserActivityDAO {
         }
         return false;
     }
-
-    public void approveRequest(Request request){
-        if(Objects.equals(request.getActionToDo(), "add")){
-            try {
-                addActivityToUser(request);
-            } catch (SQLException e) {
-                throw new DAOException("unknown.error");
-            }
-        } else if(Objects.equals(request.getActionToDo(), "remove")){
-            try {
-                removeUserActivity(request);
-            } catch (SQLException e) {
-                throw new DAOException("unknown.error");
-            }
-        }
-    }
-
     @Override
     public void addActivityToUser(Request request) throws SQLException {
         try (Connection con = dataSource.getConnection()) {
@@ -118,26 +90,6 @@ public class UserActivityDAOImpl implements UserActivityDAO {
                 stmt.close();
                 con.close();
             }
-        }
-    }
-
-    @Override
-    public void setAmount(User user, Activity activity, int amount) throws DAOException {
-        if(amount < 0){
-            throw new DAOException("amount.nonnegative");
-        } else if(ifUserHasActivity(user, activity)){
-            try(Connection con = dataSource.getConnection();
-                PreparedStatement stmt = con.prepareStatement(SQLQueries.RequestQueries.SET_AMOUNT)){
-
-                stmt.setInt(1, amount);
-                stmt.setLong(2, user.getAccount());
-                stmt.setLong(3, activity.getId());
-                stmt.executeUpdate();
-            } catch (SQLException e) {
-                throw new DAOException("unknown.error", e);
-            }
-        } else {
-            throw new DAOException("user.has.no.activity");
         }
     }
 

@@ -15,52 +15,39 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class ApplicationContext {
-    private final UserDAO userDAO;
-    private final CategoryDAO categoryDAO;
-    private final ActivityDAO activityDAO;
-    private final RequestDAO requestDAO;
-    private final UserActivityDAO userActivityDAO;
+//    private final UserDAO userDAO;
+//    private final ActivityDAO activityDAO;
+//    private final RequestDAO requestDAO;
+//    private final UserActivityDAO userActivityDAO;
     private final UserService userService;
+    CategoryService categoryService;
     private final ActivityService activityService;
     private final ReportService reportService;
     private final UserActivityService userActivityService;
+    private final RequestService requestService;
     private final Sha sha;
     private ApplicationContext(ServletContext servletContext, String propertiesFile) {
         Properties properties = getProperties(propertiesFile);
         DataSource dataSource = MyDataSource.getDataSource(properties);
-        userDAO = new UserDAOImpl(dataSource);
-        categoryDAO = new CategoryDAOImpl(dataSource);
-        activityDAO = new ActivityDAOImpl(dataSource);
-        requestDAO = new RequestDAOImpl(dataSource);
-        userActivityDAO = new UserActivityDAOImpl(dataSource);
+//        userDAO = new UserDAOImpl(dataSource);
+//        activityDAO = new ActivityDAOImpl(dataSource);
+//        requestDAO = new RequestDAOImpl(dataSource);
+//        userActivityDAO = new UserActivityDAOImpl(dataSource);
         userService = new UserServiceImpl(dataSource);
+        categoryService = new CategoryServiceImpl(dataSource);
         activityService = new ActivityServiceImpl(dataSource);
         reportService = new ReportServiceImpl(dataSource);
         userActivityService = new UserActivityServiceImpl(dataSource);
+        requestService = new RequestServiceImpl(dataSource);
         sha = new Sha();
     }
     private static final Logger logger = LogManager.getLogger(ApplicationContext.class);
     private static ApplicationContext applicationContext;
 
-    public UserDAO getUserDAO() {
-        return userDAO;
-    }
+//    public UserDAO getUserDAO() {
+//        return userDAO;
+//    }
 
-    public ActivityDAO getActivityDAO() {
-        return activityDAO;
-    }
-
-    public RequestDAO getRequestDAO() {
-        return requestDAO;
-    }
-
-    public UserActivityDAO getUserActivityDAO() {
-        return userActivityDAO;
-    }
-
-    public CategoryDAO getCategoryDAO() {
-        return categoryDAO;
-    }
 
     public ActivityService getActivityService() {
         return activityService;
@@ -96,5 +83,13 @@ public class ApplicationContext {
     }
     public Sha getSha() {
         return sha;
+    }
+
+    public CategoryService getCategoryService() {
+        return categoryService;
+    }
+
+    public RequestService getRequestService() {
+        return requestService;
     }
 }

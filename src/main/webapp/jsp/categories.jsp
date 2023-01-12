@@ -72,7 +72,7 @@
 					      <tr>
                           <form action="/TimeKeeping/controller" method="post" action="/TimeKeeping/controller" id="tab">
                             	<input type="hidden" name="action" value="update_category" />
-                            	<input type="hidden" name="category_id" value="${element.getId()}" />
+                            	<input type="hidden" name="category_name" value="${element.getName()}" />
                             <td class="form-group">
                                 <input name="newname" type="text" value="${element.getName()}" class="form-control">
 

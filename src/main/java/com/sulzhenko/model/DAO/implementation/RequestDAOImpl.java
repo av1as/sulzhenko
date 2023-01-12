@@ -13,8 +13,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static com.sulzhenko.model.DAO.SQLQueries.RequestQueries.GET_EQUAL_REQUEST;
-
 /**
  * This class describes CRUD operations with Request class entities
  */
@@ -102,13 +100,9 @@ public class RequestDAOImpl implements RequestDAO {
 
     @Override
     public void save(Request t) throws DAOException{
-        if(!ifRequestUnique(t)){
-            throw new DAOException("request.not.unique");
-        }
         try(Connection con = dataSource.getConnection();
             PreparedStatement stmt = con.prepareStatement(SQLQueries.RequestQueries.INSERT_REQUEST,
                 Statement.RETURN_GENERATED_KEYS)) {
-            isDataCorrect(t);
             setRequestFields(t, stmt);
             ResultSet rs = stmt.getGeneratedKeys();
             t.setId(rs.next() ? rs.getLong(1) : 0);
@@ -127,22 +121,10 @@ public class RequestDAOImpl implements RequestDAO {
         stmt.executeUpdate();
     }
 
-    public void isDataCorrect(Request t) throws DAOException{
-        if(userService.isLoginAvailable(t.getLogin())) {
-            throw new DAOException("wrong.login");
-        } else if(activityDAO.isNameAvailable(t.getActivityName())){
-            throw new DAOException("wrong.activity");
-        } else if(!new RequestDAOImpl(dataSource).isActionCorrect(t)){
-            throw new DAOException("wrong.action");
-        }
-    }
-
     @Override
     public void update(Request t, String[] params) {
         try(Connection con = dataSource.getConnection();
             PreparedStatement stmt = con.prepareStatement(SQLQueries.RequestQueries.UPDATE_REQUEST)) {
-            isDataCorrect(createUpdatedRequest(params));
-
             setRequestFields(t, stmt);
             stmt.setLong(5, t.getId());
             stmt.executeUpdate();
@@ -154,16 +136,6 @@ public class RequestDAOImpl implements RequestDAO {
             throw new DAOException("unknown.error", e);
         }
     }
-    private static Request createUpdatedRequest(String[] params) {
-        int k = -1;
-        return new Request.Builder()
-                .withLogin(params[++k])
-                .withActivityName(params[++k])
-                .withActionToDo(params[++k])
-                .withDescription(params[++k])
-                .build();
-    }
-
     @Override
     public void delete(Request t) throws DAOException{
         try (Connection con = dataSource.getConnection();
@@ -189,76 +161,14 @@ public class RequestDAOImpl implements RequestDAO {
                 .withDescription(rs.getString(5))
                 .build();
     }
-    private boolean ifRequestUnique(Request request) {
-        try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_EQUAL_REQUEST)
-        ) {
-            stmt.setString(1, request.getLogin());
-            stmt.setString(2, request.getActivityName());
-            stmt.setString(3, request.getActionToDo());
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                return false;
-            }
-        } catch (SQLException e){
-            throw new DAOException("unknown.error");
-        }
-        return true;
-    }
+
     public void indicateNoResult(String name, Object value){
         logger.info("No request with such {}: {}",name, value);
     }
     public void indicateNoRequests(){
         logger.info("No requests available");
     }
-    public boolean isActionCorrect(Request request){
-        return canRequestBeAdded(request) || canRequestBeRemoved(request);
-    }
-    public boolean canRequestBeAdded(Request request){
-        return (Objects.equals(request.getActionToDo(), "add")) &&
-                !ifUserHasActivity(Objects.requireNonNull(userDAO.getByLogin(request.getLogin()).orElse(null)),
-                        activityDAO.getByName(request.getActivityName()));
-    }
-    public boolean canRequestBeRemoved(Request request){
-        return (Objects.equals(request.getActionToDo(), "remove") &&
-                ifUserHasActivity(Objects.requireNonNull(userDAO.getByLogin(request.getLogin()).orElse(null)),
-                        activityDAO.getByName(request.getActivityName())));
-    }
-    public boolean ifUserHasActivity(User u, Activity a){
-        try (Connection con = dataSource.getConnection();
-                PreparedStatement stmt = con.prepareStatement(SQLQueries.RequestQueries.IF_USER_HAS_ACTIVITY)) {
-            stmt.setLong(1, u.getAccount());
-            stmt.setLong(2, a.getId());
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                return true;
-            }
-        } catch (SQLException e) {
-            logger.fatal(e.getMessage());
-            throw new DAOException("unknown.error", e);
-        }
-        return false;
-    }
-        public List<Request> viewAllRequests(int startPosition, int size){
-        List<Request> list = new ArrayList<>();
-        for(int i = startPosition; (i < (startPosition + size)) && (i < new RequestDAOImpl(dataSource).getAll().size()); i++){
-            list.add(new RequestDAOImpl(dataSource).getAll().get(i));
-        }
-        return list;
-        }
-    public List<Request> viewRequestsToAdd(int startPosition, int size){
-        List<Request> list = new ArrayList<>();
-        for(int i = startPosition; (i < (startPosition + size)) && (i < new RequestDAOImpl(dataSource).getByActionToDo("add").size()); i++){
-            list.add(new RequestDAOImpl(dataSource).getByActionToDo("add").get(i));
-        }
-        return list;
-    }
-    public List<Request> viewRequestsToRemove(int startPosition, int size){
-        List<Request> list = new ArrayList<>();
-        for(int i = startPosition; (i < (startPosition + size)) && (i < new RequestDAOImpl(dataSource).getByActionToDo("remove").size()); i++){
-            list.add(new RequestDAOImpl(dataSource).getByActionToDo("remove").get(i));
-        }
-        return list;
-    }
+
+
 }
 

@@ -10,13 +10,4 @@ public interface RequestDAO extends DAO<Request>{
     List<Request> getByLogin(String login);
     List<Request> getByActivity(String activityName);
     List<Request> getByActionToDo(String actionName);
-    void isDataCorrect(Request t);
-    boolean isActionCorrect(Request request);
-    boolean canRequestBeAdded(Request request);
-    boolean canRequestBeRemoved(Request request);
-    boolean ifUserHasActivity(User u, Activity a);
-    List<Request> viewAllRequests(int startPosition, int size);
-    List<Request> viewRequestsToAdd(int startPosition, int size);
-    List<Request> viewRequestsToRemove(int startPosition, int size);
-
 }

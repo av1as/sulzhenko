@@ -1,20 +1,15 @@
 package com.sulzhenko.controller.command;
 
 import com.sulzhenko.controller.Path;
-import com.sulzhenko.model.DAO.UserDAO;
 import com.sulzhenko.model.entity.User;
-import com.sulzhenko.model.hashingPasswords.Sha;
+import com.sulzhenko.model.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.Objects;
-import java.util.Optional;
 
 import static com.sulzhenko.ApplicationContext.getApplicationContext;
 
@@ -23,7 +18,9 @@ import static com.sulzhenko.ApplicationContext.getApplicationContext;
  *
  */
 public class LoginCommand implements Command {
-  UserDAO userDAO = getApplicationContext().getUserDAO();
+  public static final String ERROR = "error";
+  public static final String PASSWORD = "password";
+  UserService userService = getApplicationContext().getUserService();
 
   private static final Logger logger = LogManager.getLogger(LoginCommand.class);
 
@@ -31,22 +28,18 @@ public class LoginCommand implements Command {
   public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
     HttpSession session = request.getSession();
     String forward;
-    String login = request.getParameter("login");
-    String password = request.getParameter("password");
-    User user = userDAO.getByLogin(login).orElse(null);
+    User user = userService.getUser(request.getParameter("login"));
     assert user != null;
     if (areFieldsBlank(request) != null) {
-      session.setAttribute("error", areFieldsBlank(request));
+      session.setAttribute(ERROR, areFieldsBlank(request));
       return Path.PAGE_ERROR;
-    } else if (areFieldsIncorrect(user, password) != null){
-      session.setAttribute("error", areFieldsIncorrect(user, password));
+    } else if (userService.areFieldsIncorrect(request.getParameter("login"), request.getParameter(PASSWORD)) != null){
+      session.setAttribute(ERROR, userService.areFieldsIncorrect(request.getParameter("login"), request.getParameter(PASSWORD)));
       forward = Path.PAGE_ERROR;
     } else {
-      User.Role role = user.getRole();
-      String status = user.getStatus();
       session.setAttribute("user", user);
       session.setAttribute("menu", getMenu(user));
-      forward = getPageOnRole(role, status);
+      forward = getPageOnRole(user.getRole(), user.getStatus());
     }
     return forward;
   }
@@ -63,37 +56,20 @@ public class LoginCommand implements Command {
 
   private static String areFieldsBlank(HttpServletRequest request) {
     String login = request.getParameter("login");
-    String password = request.getParameter("password");
+    String password = request.getParameter(PASSWORD);
     String errorMessage = null;
     if (login == null || login.isEmpty()) {
       errorMessage = "empty.login";
-      request.getSession().setAttribute("error", errorMessage);
+      request.getSession().setAttribute(ERROR, errorMessage);
     } else if (password == null || password.isEmpty()) {
       errorMessage = "empty.password";
-      request.getSession().setAttribute("error", errorMessage);
+      request.getSession().setAttribute(ERROR, errorMessage);
     }
     logger.warn(errorMessage);
     return errorMessage;
   }
 
-  private static String areFieldsIncorrect(User user, String password) {
-    String errorMessage = null;
-    if (user.getLogin() == null) {
-      errorMessage = "wrong.login";
-    } else {
-      try {
-        if (!new Sha().hashToHex(password, Optional.ofNullable(user.getLogin())).equals(user.getPassword())) {
-          errorMessage = "wrong.password";
-        }
-      } catch (NoSuchAlgorithmException e) {
-        throw new RuntimeException(e);
-      } catch (UnsupportedEncodingException e) {
-        throw new RuntimeException(e);
-      }
-    }
-    logger.warn(errorMessage);
-    return errorMessage;
-  }
+
   private static String getPageOnRole(User.Role role, String status){
     String forward = Path.PAGE_LOGIN;
     if (Objects.equals(status, "inactive")) {

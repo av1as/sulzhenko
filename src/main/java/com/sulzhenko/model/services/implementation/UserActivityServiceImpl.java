@@ -6,6 +6,7 @@ import com.sulzhenko.model.DTO.UserActivityDTO;
 import javax.sql.DataSource;
 import com.sulzhenko.model.entity.Activity;
 import com.sulzhenko.model.entity.User;
+import com.sulzhenko.model.services.ServiceException;
 import com.sulzhenko.model.services.UserActivityService;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -68,6 +69,34 @@ public class UserActivityServiceImpl implements UserActivityService {
             "ON user_activity.activity_id = activity.activity_id\n" +
             "WHERE login = ?\n" +
             "ORDER BY activity_name ASC LIMIT %d, %d";
+    public void setAmount(User user, Activity activity, int amount) throws DAOException {
+        if(amount < 0){
+            throw new DAOException("amount.nonnegative");
+        } else if(uaDAO.ifUserHasActivity(user, activity)){
+            try(Connection con = dataSource.getConnection();
+                PreparedStatement stmt = con.prepareStatement(SQLQueries.RequestQueries.SET_AMOUNT)){
+
+                stmt.setInt(1, amount);
+                stmt.setLong(2, user.getAccount());
+                stmt.setLong(3, activity.getId());
+                stmt.executeUpdate();
+            } catch (SQLException e) {
+                throw new ServiceException("unknown.error", e);
+            }
+        } else {
+            throw new ServiceException("user.has.no.activity");
+        }
+    }
+    @Override
+    public List<Activity> allAvailableActivities(User u) {
+        List<Activity> list = new ArrayList<>();
+        for(Activity element: activityDAO.getAll()){
+            if(!uaDAO.ifUserHasActivity(u, element) && !uaDAO.isRequestToAddExists(u, element)){
+                list.add(element);
+            }
+        }
+        return list;
+    }
 
     public int getNumberOfRecords() throws DAOException {
         int number = 0;
@@ -155,7 +184,7 @@ public class UserActivityServiceImpl implements UserActivityService {
         User user = userDAO.getByLogin(rs.getString(2)).orElse(null);
         Activity activity = activityDAO.getByName(rs.getString(3));
         String status = this.defineStatus(user, activity);
-        String category = this.getCategory(rs.getString(3));
+        String category = this.defineCategory(rs.getString(3));
         return new UserActivityDTO(rs.getString(2),
                 rs.getString(3), rs.getInt(4),
                 rs.getInt(5), rs.getInt(6), status, category);
@@ -164,21 +193,21 @@ public class UserActivityServiceImpl implements UserActivityService {
         return new UserActivityDTO(rs.getString(2),
                 rs.getInt(3), rs.getInt(4));
     }
-    public String getCategory(String activityName){
+    private String defineCategory(String activityName){
         Activity activity = activityDAO.getByName(activityName);
         return activity.getCategory().getName();
     }
-    public String defineStatus(User user, Activity activity){
-        String s;
+    private String defineStatus(User user, Activity activity){
+        String status;
         if (uaDAO.ifUserHasActivity(user, activity) && !uaDAO.isRequestToRemoveExists(user, activity)){
-            s = "active.status";
+            status = "active.status";
         } else if(uaDAO.ifUserHasActivity(user, activity) && uaDAO.isRequestToRemoveExists(user, activity)){
-            s = "pending.removing";
+            status = "pending.removing";
         } else if(!uaDAO.ifUserHasActivity(user, activity) && uaDAO.isRequestToAddExists(user, activity)){
-            s = "pending.adding";
+            status = "pending.adding";
         } else {
-            s = "error";
+            status = "error";
         }
-        return s;
+        return status;
     }
 }

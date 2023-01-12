@@ -1,10 +1,10 @@
 package com.sulzhenko.model.services.implementation;
 
-import com.sulzhenko.model.DAO.ActivityDAO;
-import com.sulzhenko.model.DAO.DAOException;
-import com.sulzhenko.model.DAO.implementation.ActivityDAOImpl;
+import com.sulzhenko.model.DAO.*;
+import com.sulzhenko.model.DAO.implementation.*;
 import com.sulzhenko.model.DTO.ActivityDTO;
-import com.sulzhenko.model.services.ActivityService;
+import com.sulzhenko.model.entity.*;
+import com.sulzhenko.model.services.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,10 +17,15 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class ActivityServiceImpl implements ActivityService {
+    public static final String UNKNOWN_ERROR = "unknown.error";
     private final DataSource dataSource;
+    ActivityDAO activityDAO;
+    CategoryService categoryService;
 
     public ActivityServiceImpl(DataSource dataSource) {
         this.dataSource = dataSource;
+        this.activityDAO = new ActivityDAOImpl(dataSource);
+        this.categoryService = new CategoryServiceImpl(dataSource);
     }
 
     private static final String COMMON_PART = "SELECT activity.activity_name, \n" +
@@ -31,12 +36,60 @@ public class ActivityServiceImpl implements ActivityService {
             "ON activity.activity_id = user_activity.activity_id\n" +
             "INNER JOIN category_of_activity\n" +
             "ON category_of_activity.category_id = activity.category_id\n";
-    private final String numberOfRecordsQuery = "SELECT COUNT(activity.activity_name)\n" +
-            "FROM activity\n" +
-            "INNER JOIN category_of_activity\n" +
-            "ON activity.category_id = category_of_activity.category_id\n";
     private static final Logger logger = LogManager.getLogger(ActivityServiceImpl.class);
-    public String buildQuery(HttpServletRequest request){
+    public Activity getActivity(String activityName){
+            return activityDAO.getByName(activityName);
+    }
+    public void addActivity(String name, String categoryName){
+        if(!categoryService.isCategoryNameUnique(categoryName) && isNameAvailable(name)) {
+            Category category = categoryService.getCategory(categoryName);
+            Activity activity = new Activity.Builder()
+                    .withName(name)
+                    .withCategory(category)
+                    .build();
+            try {
+                activityDAO.save(activity);
+            } catch (DAOException e) {
+                logger.warn(e.getMessage());
+                throw new ServiceException(e);
+            }
+        } else throw new ServiceException("wrong.activity");
+    }
+    public void updateActivity(String oldName, String newName, String newCategoryName){
+        if(isNameAvailable(oldName) || !isNameAvailable(newName)){
+            throw new ServiceException("wrong.activity");
+        } else if(categoryService.isCategoryNameUnique(newCategoryName)){
+            throw new ServiceException("wrong.category");
+        } else{
+            Activity activity = activityDAO.getByName(oldName);
+            String[] param = {newName, newCategoryName};
+//            List<User> connectedUsers = getConnectedUsersWithNotification(activity);
+//            String description = "activity " + "\"" + oldName + "\" "
+//                    + "now has name " + "\"" + param[0] + "\" "
+//                    + "and category " + "\"" + param[1] + "\"";
+            try{
+                activityDAO.update(activity, param);
+//                notifyAboutUpdate(connectedUsers, description);
+            } catch (DAOException e){
+                logger.warn(e.getMessage());
+                throw new ServiceException(UNKNOWN_ERROR);
+            }
+        }
+    }
+    public void deleteActivity(String name){
+        if(!isNameAvailable(name)) {
+            try{
+                activityDAO.delete(activityDAO.getByName(name));
+            } catch(DAOException e){
+                logger.warn(e.getMessage());
+                throw new ServiceException(e);
+            }
+        } else {
+            logger.info("this activity doesn't exist: {}", name);
+            throw new ServiceException("unknown.activity");
+        }
+    }
+    private String buildQuery(HttpServletRequest request){
         String order = getOrder(request);
         String parameter = getParam(request);
         String filter = request.getParameter("filter");
@@ -68,7 +121,10 @@ public class ActivityServiceImpl implements ActivityService {
 
     private String getTotalRecords(HttpServletRequest request){
         String filter = request.getParameter("filter");
-        String query = numberOfRecordsQuery;
+        String query = "SELECT COUNT(activity.activity_name)\n" +
+                    "FROM activity\n" +
+                    "INNER JOIN category_of_activity\n" +
+                    "ON activity.category_id = category_of_activity.category_id\n";
         if(!Objects.equals(filter, "all categories")) query += "WHERE category_name = '" + filter + "'";
         return query;
     }
@@ -82,7 +138,7 @@ public class ActivityServiceImpl implements ActivityService {
                 number = rs.getInt(1);
             }
         } catch (SQLException e){
-            throw new DAOException(getTotalRecords(request));
+            throw new ServiceException(UNKNOWN_ERROR, e);
         }
         return number;
     }
@@ -96,9 +152,21 @@ public class ActivityServiceImpl implements ActivityService {
                 list.add(activity);
             }
         } catch (SQLException e) {
-            throw new DAOException("unknown.error", e);
+            throw new ServiceException(UNKNOWN_ERROR, e);
         }
         return list;
+    }
+    private List<User> getConnectedUsersWithNotification(Activity activity){
+        UserDAO userDAOImpl = new UserDAOImpl(dataSource);
+        return userDAOImpl.getList(activity.getName(), SQLQueries.UserQueries.FIND_CONNECTED_USERS_WITH_NOTIFICATION);
+    }
+    @Override
+    public void notifyAboutUpdate(List<User> connectedUsers, String description){
+        for(User user: connectedUsers){
+            // create method to notify connected users
+
+
+        }
     }
     private String applyFilter(String filter){
         return Objects.equals(filter, "all categories") ? "": "WHERE category_name = '" + filter + "'\n";
@@ -112,5 +180,9 @@ public class ActivityServiceImpl implements ActivityService {
     private static ActivityDTO getActivityDTOWithFields(ResultSet rs) throws SQLException {
         return new ActivityDTO(rs.getString(1),
                 rs.getString(3), rs.getInt(2));
+    }
+    @Override
+    public boolean isNameAvailable(String name){
+        return activityDAO.getByName(name) == null;
     }
 }

@@ -1,9 +1,8 @@
 package com.sulzhenko.controller.command;
 
 import com.sulzhenko.controller.Path;
-import com.sulzhenko.model.DAO.*;
 import com.sulzhenko.model.entity.User;
-import com.sulzhenko.model.services.UserService;
+import com.sulzhenko.model.services.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -19,7 +18,6 @@ import static com.sulzhenko.ApplicationContext.getApplicationContext;
  *
  */
 public class AdminUpdateUserCommand implements Command {
-    UserDAO userDAO = getApplicationContext().getUserDAO();
     UserService userService = getApplicationContext().getUserService();
     private static final Logger logger = LogManager.getLogger(AdminUpdateUserCommand.class);
 
@@ -27,12 +25,12 @@ public class AdminUpdateUserCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         HttpSession session = request.getSession();
         String forward = Path.PAGE_ERROR;
-        User user = userDAO.getByLogin(request.getParameter("oldlogin")).orElse(null);
-        String[] param = getUpdateParameters(request, user);
         try{
+            User user = userService.getUser(request.getParameter("oldlogin"));
+            String[] param = getUpdateParameters(request, user);
             userService.adminUpdateUser(user, param);
             forward = "/TimeKeeping/controller?action=users";
-        } catch (DAOException e) {
+        } catch (ServiceException e) {
             logger.warn(e.getMessage());
             session.setAttribute("error", e.getMessage());
         }

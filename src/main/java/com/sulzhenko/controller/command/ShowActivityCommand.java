@@ -1,7 +1,6 @@
 package com.sulzhenko.controller.command;
 
 import com.sulzhenko.controller.Path;
-import com.sulzhenko.model.DAO.*;
 import com.sulzhenko.model.DTO.ActivityDTO;
 import com.sulzhenko.model.entity.*;
 import com.sulzhenko.model.services.*;
@@ -29,13 +28,13 @@ public class ShowActivityCommand implements Command {
         ActivityService activityService = getApplicationContext().getActivityService();
         List<ActivityDTO> activities = activityService.listActivitiesSorted(request);
         request.setAttribute("activities", activities);
-        CategoryDAO categoryDAO = getApplicationContext().getCategoryDAO();
-        List<Category> categories = categoryDAO.getAll();
+        CategoryService categoryService = getApplicationContext().getCategoryService();
+        List<Category> categories = categoryService.getAllCategories();
         request.setAttribute("categories", categories);
         int noOfRecords;
         try {
             noOfRecords = activityService.getNumberOfRecords(request);
-        } catch (DAOException |SQLException e) {
+        } catch (ServiceException | SQLException e) {
             String errorMessage = e.getMessage();
             logger.warn(e);
             request.setAttribute(errorMessage, "error");

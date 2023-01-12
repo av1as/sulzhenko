@@ -1,8 +1,6 @@
 package com.sulzhenko.controller.command;
 
-import com.sulzhenko.model.DAO.CategoryDAO;
-import com.sulzhenko.model.DAO.DAOException;
-import com.sulzhenko.model.entity.*;
+import com.sulzhenko.model.services.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
@@ -14,20 +12,20 @@ import static com.sulzhenko.ApplicationContext.getApplicationContext;
 import static com.sulzhenko.controller.Path.PAGE_ERROR;
 
 /**
- * Register controller action
+ * Add category controller action
  *
  */
 public class AddCategoryCommand implements Command {
-    CategoryDAO categoryDAO = getApplicationContext().getCategoryDAO();
+    CategoryService categoryService = getApplicationContext().getCategoryService();
     private static final Logger logger = LogManager.getLogger(AddCategoryCommand.class);
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         String forward;
         try{
-            categoryDAO.save(new Category(request.getParameter("addedname")));
+            categoryService.addCategory(request.getParameter("addedname"));
             forward = "controller?action=show_categories";
-        } catch (DAOException e){
+        } catch (ServiceException e){
             logger.warn(e.getMessage());
             forward = PAGE_ERROR;
         }

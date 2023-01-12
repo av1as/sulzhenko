@@ -8,7 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class LogoutCommand implements Command {
-    private static final Logger log = LogManager.getLogger(LogoutCommand.class);
+    private static final Logger logger = LogManager.getLogger(LogoutCommand.class);
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -16,7 +16,7 @@ public class LogoutCommand implements Command {
         if (session != null) {
             session.invalidate();
         }
-        log.debug("Logout finished");
+        logger.debug("Logout finished");
         return Path.PAGE_LOGIN;
     }
 }

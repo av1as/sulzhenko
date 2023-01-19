@@ -26,9 +26,10 @@ public final class DAOTestUtils {
         return new Activity(1L, "test activity", getTestCategory());
     }
     public static Request getTestRequestToAdd(){
-        return new Request(1L, "testUser", "test activity", "add", "");
+
+        return new Request(1L, "testuser", "test activity", "add", "asap");
     }
     public static Request getTestRequestToRemove() {
-        return new Request(2L, "testUser", "test activity", "remove", "");
+        return new Request(2L, "testuser", "test activity", "remove", "asap");
     }
 }

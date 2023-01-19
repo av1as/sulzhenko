@@ -1,4 +1,4 @@
-package com.sulzhenko.controller.command;
+package com.sulzhenko.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

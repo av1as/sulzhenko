@@ -4,7 +4,7 @@
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
 <%@taglib prefix="c" uri="jakarta.tags.core" %>
-
+<%@taglib prefix="myTags" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <fmt:setLocale value="${sessionScope.locale}" scope="session"/>
@@ -32,8 +32,7 @@
 
         <li>
         <br>
-            <jsp:include page="/blocks/lang.jsp"/>
-
+            <myTags:lang/>
         </li>
 
         <li>

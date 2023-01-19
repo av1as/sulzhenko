@@ -25,6 +25,8 @@ public final class DomainPagesSets {
         SYSTEM_USER_PAGES.add("jsp/user_activities.jsp");
         SYSTEM_USER_PAGES.add("jsp/hellouser.jsp");
         SYSTEM_USER_PAGES.add("jsp/menu_user.jsp");
+        SYSTEM_USER_PAGES.add("TimeKeeping/jsp/test.jsp");
+        SYSTEM_USER_PAGES.add("jsp/test.jsp");
     }
 
     static {

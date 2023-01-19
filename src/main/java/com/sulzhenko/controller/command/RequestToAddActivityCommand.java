@@ -1,7 +1,10 @@
 package com.sulzhenko.controller.command;
 
+import com.sulzhenko.controller.Command;
+import com.sulzhenko.controller.Constants;
 import com.sulzhenko.controller.Path;
-import com.sulzhenko.model.entity.*;
+import com.sulzhenko.model.DTO.RequestDTO;
+import com.sulzhenko.model.DTO.UserDTO;
 import com.sulzhenko.model.services.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,30 +20,29 @@ import static com.sulzhenko.ApplicationContext.getApplicationContext;
  * Request to add User activity controller action
  *
  */
-public class RequestToAddActivityCommand implements Command {
+public class RequestToAddActivityCommand implements Command, Constants, Path {
     RequestService requestService = getApplicationContext().getRequestService();
     private static final Logger logger = LogManager.getLogger(RequestToAddActivityCommand.class);
-    private static final String NEW_ACTIVITY = "new_activity";
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
+        UserDTO userDTO = (UserDTO) session.getAttribute(USER);
         if(request.getParameter(NEW_ACTIVITY) == null || request.getParameter(NEW_ACTIVITY).isEmpty()){
-            logger.warn("wrong activity");
-            session.setAttribute("error", "wrong.activity");
-            return Path.PAGE_ERROR;
+            logger.warn(WRONG_ACTIVITY);
+            session.setAttribute(ERROR, WRONG_ACTIVITY);
+            return PAGE_ERROR_FULL;
         }
-        Request t = new Request.Builder()
-                    .withLogin(user.getLogin())
+        RequestDTO requestDTO = new RequestDTO.Builder()
+                    .withLogin(userDTO.getLogin())
                     .withActivityName(request.getParameter(NEW_ACTIVITY))
-                    .withActionToDo("add")
+                    .withActionToDo(ADD)
                     .build();
         try{
-            requestService.addRequest(t);
+            requestService.addRequest(requestDTO);
         } catch (ServiceException e){
             logger.warn(e.getMessage());
-            session.setAttribute("error", e.getMessage());
+            session.setAttribute(ERROR, e.getMessage());
         }
-        return "controller?action=user_activities";
+        return PAGE_CONTROLLER_USER_ACTIVITIES;
     }
 }

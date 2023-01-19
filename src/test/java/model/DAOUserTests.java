@@ -410,6 +410,36 @@ class DAOUserTests {
         when(dataSource.getConnection()).thenThrow(new SQLException());
         assertThrows(DAOException.class, () -> userDAO.delete(user));
     }
+    @Test
+    void testAddStatus() throws SQLException {
+        DataSource dataSource = mock(DataSource.class);
+        UserDAO userDAO = new UserDAOImpl(dataSource);
+        try (PreparedStatement ignored = prepareMocks(dataSource)) {
+            assertDoesNotThrow(() -> userDAO.addStatus("new status"));
+        }
+    }
+    @Test
+    void testSqlExceptionAddStatus() throws SQLException {
+        DataSource dataSource = mock(DataSource.class);
+        UserDAO userDAO = new UserDAOImpl(dataSource);
+        when(dataSource.getConnection()).thenThrow(new SQLException());
+        assertThrows(DAOException.class, () -> userDAO.addStatus("new status"));
+    }
+    @Test
+    void testDeleteStatus() throws SQLException {
+        DataSource dataSource = mock(DataSource.class);
+        UserDAO userDAO = new UserDAOImpl(dataSource);
+        try (PreparedStatement ignored = prepareMocks(dataSource)) {
+            assertDoesNotThrow(() -> userDAO.deleteStatus("new status"));
+        }
+    }
+    @Test
+    void testSqlExceptionDeleteStatus() throws SQLException {
+        DataSource dataSource = mock(DataSource.class);
+        UserDAO userDAO = new UserDAOImpl(dataSource);
+        when(dataSource.getConnection()).thenThrow(new SQLException());
+        assertThrows(DAOException.class, () -> userDAO.deleteStatus("new status"));
+    }
     private PreparedStatement prepareMocks(DataSource dataSource) throws SQLException {
         Connection con = mock(Connection.class);
         PreparedStatement preparedStatement = mock(PreparedStatement.class);

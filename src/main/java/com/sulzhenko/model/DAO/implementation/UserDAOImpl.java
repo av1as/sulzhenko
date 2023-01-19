@@ -1,5 +1,6 @@
 package com.sulzhenko.model.DAO.implementation;
 
+import com.sulzhenko.model.Constants;
 import com.sulzhenko.model.DAO.*;
 import com.sulzhenko.model.entity.User;
 import com.sulzhenko.model.hashingPasswords.Sha;
@@ -17,8 +18,8 @@ import java.util.Optional;
 /**
  * This class describes CRUD operations with User class entities
  */
-public class UserDAOImpl implements UserDAO {
-    public static final String SOMETHING_WENT_WRONG = "unknown.error";
+public class UserDAOImpl implements UserDAO, Constants {
+
     private final DataSource dataSource;
     public UserDAOImpl(DataSource dataSource){
         this.dataSource = dataSource;
@@ -36,7 +37,7 @@ public class UserDAOImpl implements UserDAO {
             }
         } catch (SQLException e){
             logger.fatal(e.getMessage());
-            throw new DAOException(SOMETHING_WENT_WRONG, e);
+            throw new DAOException(UNKNOWN_ERROR, e);
         }
         return Optional.ofNullable(t);
     }
@@ -52,7 +53,7 @@ public class UserDAOImpl implements UserDAO {
             }
         } catch (SQLException e) {
             logger.info(e.getMessage());
-            throw new DAOException(SOMETHING_WENT_WRONG, e);
+            throw new DAOException(UNKNOWN_ERROR, e);
         }
         return list;
     }
@@ -94,7 +95,7 @@ public class UserDAOImpl implements UserDAO {
             }
         } catch (SQLException e) {
             logger.info(e.getMessage());
-            throw new DAOException(SOMETHING_WENT_WRONG, e);
+            throw new DAOException(UNKNOWN_ERROR, e);
         }
         return list;
     }
@@ -124,7 +125,7 @@ public class UserDAOImpl implements UserDAO {
             throw e;
         } catch (SQLException e) {
             logger.fatal(e.getMessage());
-            throw new DAOException(SOMETHING_WENT_WRONG, e);
+            throw new DAOException(UNKNOWN_ERROR, e);
         }
     }
     @Override
@@ -138,7 +139,7 @@ public class UserDAOImpl implements UserDAO {
             throw e;
         } catch (SQLException e) {
             logger.fatal(e.getMessage());
-            throw new DAOException(SOMETHING_WENT_WRONG, e);
+            throw new DAOException(UNKNOWN_ERROR, e);
         }
     }
     @Override
@@ -150,7 +151,7 @@ public class UserDAOImpl implements UserDAO {
                 stmt.executeUpdate();
             } catch (SQLException e) {
                 logger.fatal(e.getMessage());
-                throw new DAOException(SOMETHING_WENT_WRONG, e);
+                throw new DAOException(UNKNOWN_ERROR, e);
             }
     }
     private static void setUserFields(User t, PreparedStatement stmt) throws SQLException {
@@ -159,10 +160,8 @@ public class UserDAOImpl implements UserDAO {
         stmt.setString(++k, t.getEmail());
         try {
             stmt.setString(++k, new Sha().hashToHex(t.getPassword(), Optional.ofNullable(t.getLogin())));
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            throw new DAOException(UNKNOWN_ERROR);
         }
         stmt.setString(++k, t.getFirstName());
         stmt.setString(++k, t.getLastName());
@@ -193,7 +192,7 @@ public class UserDAOImpl implements UserDAO {
                     stmt.executeUpdate();
         } catch (SQLException e) {
             logger.info("wrong name: {}", statusName);
-            throw new DAOException("wrong.status", e);
+            throw new DAOException(WRONG_STATUS, e);
         }
     }
     public void deleteStatus(String statusName) throws DAOException {
@@ -203,7 +202,7 @@ public class UserDAOImpl implements UserDAO {
             stmt.executeUpdate();
         } catch (SQLException e) {
             logger.info("wrong status: {}", statusName);
-            throw new DAOException("wrong.status");
+            throw new DAOException(WRONG_STATUS);
         }
     }
 }

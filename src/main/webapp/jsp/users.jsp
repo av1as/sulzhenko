@@ -1,6 +1,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="jakarta.tags.core" %>
+<%@taglib prefix="myTags" tagdir="/WEB-INF/tags" %>
 <%@ page import="java.util.List"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
@@ -33,8 +34,7 @@
 
         <li>
         <br>
-            <jsp:include page="/blocks/lang.jsp"/>
-
+            <myTags:lang/>
         </li>
 
         <li>
@@ -96,8 +96,8 @@
                           <form action="/TimeKeeping/controller" method="post" action="/TimeKeeping/controller" id="tab">
                             	<input type="hidden" name="action" value="admin_update" />
                             	<input type="hidden" name="oldlogin" value="${element.getLogin()}" />
-                            <td class="form-group">
-                                <input name="newlogin" type="text" value="${element.getLogin()}" class="input-xlarge">
+                            <td >
+                                ${element.getLogin()}
 
 					        </td>
                             <td class="form-group">
@@ -118,7 +118,7 @@
                             </select>
                			    </td>
          		            <td class="form-group">
-         		                <input name="newnotification" type="checkbox" ${element.isNotificationChecked()}  class="input-xlarge">
+         		                <input name="newnotifications" type="checkbox" ${element.isNotificationChecked()}  class="input-xlarge">
 
                  		    </td>
 

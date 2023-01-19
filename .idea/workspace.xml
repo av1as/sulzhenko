@@ -4,31 +4,49 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b53abc5-250e-4348-917a-700a8c9b6890" name="Changes" comment="Added controller, view layer">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/CategoryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/RequestService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/ServiceException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/CategoryServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/RequestServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+    <list default="true" id="2b53abc5-250e-4348-917a-700a8c9b6890" name="Changes" comment="Refactored update command">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/Constants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/tag/HelloTag.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/tag/TodayTag.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/Constants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DTO/CategoryDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DTO/RequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/lang.tag" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tld/custom.tld" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Service/ServiceActivityTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Service/ServiceCategoryTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Service/ServiceReportTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Service/ServiceRequestTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Service/ServiceUserActivityTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Service/ServiceUserTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/DAOActivityTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/DAOCategoryTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/DAORequestTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/DAOUserActivityTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/ApplicationContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/ApplicationContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/ActionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/ActionFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/Path.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/AddCategoryCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/AddCategoryCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/AdminUpdateUserCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/AdminUpdateUserCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ApproveRequestCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ApproveRequestCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/Command.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/DeclineRequestCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/DeclineRequestCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/DefaultCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/DefaultCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/DeleteActivityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/DeleteActivityCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/DeleteCategoryCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/DeleteCategoryCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/LoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/LoginCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/LogoutCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/LogoutCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/NewActivityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/NewActivityCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ProfileInfoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ProfileInfoCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/RegisterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/RegisterCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/RemoveUserActivityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/RequestToRemoveActivityCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/RequestToAddActivityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/RequestToAddActivityCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/RequestToRemoveActivityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/RequestToRemoveActivityCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/SetAmountCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/SetAmountCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowActivityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowActivityCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowBriefReportCommand.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowCategoryCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowCategoryCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowFullReportCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowFullReportCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowReportCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowReportCommand.java" afterDir="false" />
@@ -38,6 +56,8 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/UpdateActivityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/UpdateActivityCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/UpdateCategoryCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/UpdateCategoryCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/UpdateUserCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/UpdateUserCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/filters/AuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/filters/AuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/filters/domain/DomainPagesSets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/filters/domain/DomainPagesSets.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DAO/ActivityDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DAO/ActivityDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DAO/CategoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DAO/CategoryDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DAO/RequestDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DAO/RequestDAO.java" afterDir="false" />
@@ -46,15 +66,55 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DAO/implementation/CategoryDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DAO/implementation/CategoryDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DAO/implementation/RequestDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DAO/implementation/RequestDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DAO/implementation/UserActivityDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DAO/implementation/UserActivityDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DAO/implementation/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DAO/implementation/UserDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DTO/ActivityDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DTO/ActivityDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DTO/ReportDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DTO/ReportDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DTO/UserActivityDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DTO/UserActivityDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DTO/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DTO/UserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/Util/PaginationUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/Util/PaginationUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/hashingPasswords/Sha.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/hashingPasswords/Sha.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/ActivityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/ActivityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/CategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/ReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/ReportService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/RequestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/RequestService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/UserActivityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/UserActivityService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/ActivityServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/ActivityServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/CategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/CategoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/ReportServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/ReportServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/RequestServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/RequestServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/UserActivityServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/UserActivityServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/validator/InputValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/validator/InputValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log.log" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/resources.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/resources.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/resources_uk_UA.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/resources_uk_UA.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/activities.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/activities.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/brief_report.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/brief_report.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/categories.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/categories.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/full_report.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/full_report.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/hellouser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/hellouser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/menu_admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/menu_admin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/menu_user.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/menu_user.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/profile.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/report.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/report.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/requests.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/requests.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/test.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/test.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/user_activities.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/user_activities.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/users.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/users.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ActivityTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CategoryTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ExceptionTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/RequestTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ShaTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ShaTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/UserActivityTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/UserTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/DAOTestUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/DAOTestUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/DAOUserTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/DAOUserTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +154,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "last_opened_file_path": "C:/data/temp/tasks/fp/sulzhenko/src/main/java/com/sulzhenko",
+    "last_opened_file_path": "C:/data/temp/tasks/fp/sulzhenko/src/main/webapp/WEB-INF",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -103,11 +163,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\data\temp\tasks\fp\sulzhenko\src\main\webapp\WEB-INF" />
+      <recent name="C:\data\temp\tasks\fp\sulzhenko\src\main\java\com\sulzhenko\controller\tag" />
+      <recent name="C:\data\temp\tasks\fp\sulzhenko\src\main\webapp\WEB-INF\tags" />
       <recent name="C:\data\temp\tasks\fp\sulzhenko\src\main\java\com\sulzhenko" />
       <recent name="C:\data\temp\tasks\fp\sulzhenko\src\main\java\com\sulzhenko\filter" />
-      <recent name="C:\data\temp\tasks\fp\sulzhenko\src\main\resources" />
-      <recent name="C:\data\temp\tasks\fp\sulzhenko" />
-      <recent name="C:\data\temp\tasks\fp\sulzhenko\src\main\java\com\sulzhenko\controller\action" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\data\temp\tasks\fp\sulzhenko\src\main\webapp\WEB-INF" />
@@ -129,13 +189,14 @@
       <recent name="com.sulzhenko.model.services.implementation" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.sulzhenko.model.services" />
+      <recent name="com.sulzhenko.model.DAO" />
       <recent name="com.sulzhenko.controller.command" />
       <recent name="model" />
       <recent name="com.sulzhenko.filter" />
-      <recent name="com.sulzhenko.model.connectionPool" />
     </key>
   </component>
-  <component name="RunManager" selected="Smart Tomcat.TimeKeeping">
+  <component name="RunManager" selected="JUnit.All in TimeKeeping">
     <configuration name="All in TimeKeeping" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TimeKeeping" />
       <option name="PACKAGE_NAME" value="" />
@@ -144,62 +205,77 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DAOUserTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServiceUserTests.testGetNumberOfRecords" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TimeKeeping" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.*" />
+          <option name="PATTERN" value="Service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model" />
-      <option name="MAIN_CLASS_NAME" value="model.DAOUserTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DAOUserTests.testEquality" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TimeKeeping" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model" />
-      <option name="MAIN_CLASS_NAME" value="model.DAOUserTests" />
-      <option name="METHOD_NAME" value="testEquality" />
+      <option name="PACKAGE_NAME" value="Service" />
+      <option name="MAIN_CLASS_NAME" value="Service.ServiceUserTests" />
+      <option name="METHOD_NAME" value="testGetNumberOfRecords(java.lang.String)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserActivityTests.testRemoveUserActivity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServiceUserTests.testValidateAdminUserUpdate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TimeKeeping" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="UserActivityTests" />
-      <option name="METHOD_NAME" value="testRemoveUserActivity" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Service" />
+      <option name="MAIN_CLASS_NAME" value="Service.ServiceUserTests" />
+      <option name="METHOD_NAME" value="testValidateAdminUserUpdate" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServiceUserTests.testValidateNewUserDifferentPasswords" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TimeKeeping" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="UserTests" />
-      <option name="TEST_OBJECT" value="class" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Service" />
+      <option name="MAIN_CLASS_NAME" value="Service.ServiceUserTests" />
+      <option name="METHOD_NAME" value="testValidateNewUserDifferentPasswords" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceUserTests.testValidateUserUpdateWrongPassword" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TimeKeeping" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Service" />
+      <option name="MAIN_CLASS_NAME" value="Service.ServiceUserTests" />
+      <option name="METHOD_NAME" value="testValidateUserUpdateWrongPassword" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="TimeKeeping" type="com.poratu.idea.plugins.tomcat">
+      <output_file path="$PROJECT_DIR$/src/main/resources/log.log" />
+      <log_file alias="Tomcat Catalina Log" path="$USER_HOME$/.SmartTomcat/sulzhenko/TimeKeeping/logs/catalina.*" />
+      <log_file alias="Tomcat Manager Log" path="$USER_HOME$/.SmartTomcat/sulzhenko/TimeKeeping/logs/manager.*" />
+      <log_file alias="Tomcat Host Manager Log" path="$USER_HOME$/.SmartTomcat/sulzhenko/TimeKeeping/logs/host-manager.*" />
       <predefined_log_file enabled="true" id="Tomcat Localhost Log" />
       <predefined_log_file enabled="true" id="Tomcat Access Log" />
-      <predefined_log_file id="Tomcat Catalina Log" />
-      <predefined_log_file id="Tomcat Manager Log" />
-      <predefined_log_file id="Tomcat Host Manager Log" />
       <option name="contextPath" value="/TimeKeeping" />
       <option name="docBase" value="$PROJECT_DIR$/src/main/webapp" />
       <option name="envOptions">
@@ -218,20 +294,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.DAOUserTests" />
-      <item itemvalue="JUnit.DAOUserTests.testEquality" />
-      <item itemvalue="JUnit.UserActivityTests.testRemoveUserActivity" />
-      <item itemvalue="JUnit.UserTests" />
+      <item itemvalue="JUnit.ServiceUserTests.testGetNumberOfRecords" />
+      <item itemvalue="JUnit.ServiceUserTests.testValidateAdminUserUpdate" />
+      <item itemvalue="JUnit.ServiceUserTests.testValidateNewUserDifferentPasswords" />
+      <item itemvalue="JUnit.ServiceUserTests.testValidateUserUpdateWrongPassword" />
       <item itemvalue="JUnit.All in TimeKeeping" />
       <item itemvalue="Smart Tomcat.TimeKeeping" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DAOUserTests" />
-        <item itemvalue="JUnit.DAOUserTests.testEquality" />
         <item itemvalue="JUnit.All in TimeKeeping" />
-        <item itemvalue="JUnit.UserTests" />
-        <item itemvalue="JUnit.UserActivityTests.testRemoveUserActivity" />
+        <item itemvalue="JUnit.ServiceUserTests.testGetNumberOfRecords" />
+        <item itemvalue="JUnit.ServiceUserTests.testValidateAdminUserUpdate" />
+        <item itemvalue="JUnit.ServiceUserTests.testValidateUserUpdateWrongPassword" />
+        <item itemvalue="JUnit.ServiceUserTests.testValidateNewUserDifferentPasswords" />
       </list>
     </recent_temporary>
   </component>
@@ -300,7 +376,21 @@
       <option name="project" value="LOCAL" />
       <updated>1673370334756</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Refactored update command">
+      <created>1673523780685</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1673523780685</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Refactored update command">
+      <created>1673523811553</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1673523811553</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -323,7 +413,8 @@
     <MESSAGE value="Logger added, some refactoring made" />
     <MESSAGE value="Hashing passwords added (with tests)" />
     <MESSAGE value="Added controller, view layer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added controller, view layer" />
+    <MESSAGE value="Refactored update command" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored update command" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
@@ -331,10 +422,22 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/sulzhenko$UserTests.ic" NAME="UserTests Coverage Results" MODIFIED="1668624451233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/sulzhenko$DAOUserTests.ic" NAME="DAOUserTests Coverage Results" MODIFIED="1673286991901" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/sulzhenko$DAOUserTests.ic" NAME="DAOUserTests Coverage Results" MODIFIED="1673794148492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/sulzhenko$All_in_TimeKeeping.ic" NAME="All in TimeKeeping Coverage Results" MODIFIED="1673187306950" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/sulzhenko$DAOUserActivityTests_test.ic" NAME="DAOUserActivityTests.test Coverage Results" MODIFIED="1673884330704" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/sulzhenko$DAOUserActivityTests_testIfRequestToRemoveExists.ic" NAME="DAOUserActivityTests.testIfRequestToRemoveExists Coverage Results" MODIFIED="1673887140877" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/sulzhenko$All_in_TimeKeeping.ic" NAME="All in TimeKeeping Coverage Results" MODIFIED="1674140575840" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/sulzhenko$DAOUserActivityTests_testIfRequestToAddExists.ic" NAME="DAOUserActivityTests.testIfRequestToAddExists Coverage Results" MODIFIED="1673886835547" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/sulzhenko$UserActivityTests.ic" NAME="UserActivityTests Coverage Results" MODIFIED="1671045741439" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/sulzhenko$DAOUserActivityTests_testSqlExceptionAddActivityToUser.ic" NAME="DAOUserActivityTests.testSqlExceptionAddActivityToUser Coverage Results" MODIFIED="1673884630731" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.*</FILTER>
+    </SUITE>
   </component>
 </project>

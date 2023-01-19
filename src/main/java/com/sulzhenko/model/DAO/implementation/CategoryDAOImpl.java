@@ -1,6 +1,10 @@
 package com.sulzhenko.model.DAO.implementation;
 
-import com.sulzhenko.model.DAO.*;
+import com.sulzhenko.model.Constants;
+
+import com.sulzhenko.model.DAO.CategoryDAO;
+import com.sulzhenko.model.DAO.DAOException;
+import com.sulzhenko.model.DAO.SQLQueries;
 import com.sulzhenko.model.entity.Category;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class CategoryDAOImpl implements CategoryDAO {
+public class CategoryDAOImpl implements CategoryDAO, Constants {
     private final DataSource dataSource;
 
     public CategoryDAOImpl(DataSource dataSource) {
@@ -23,7 +27,7 @@ public class CategoryDAOImpl implements CategoryDAO {
     private static final Logger logger = LogManager.getLogger(CategoryDAOImpl.class);
 
     @Override
-    public Optional<Category> get(Object parameter, String querySQL) throws DAOException{
+    public Optional<Category> get(Object parameter, String querySQL) throws DAOException {
         Category c = null;
         try (Connection con = dataSource.getConnection();
              PreparedStatement stmt = con.prepareStatement(querySQL)
@@ -35,7 +39,7 @@ public class CategoryDAOImpl implements CategoryDAO {
             }
         } catch (SQLException e){
             logger.fatal(e.getMessage());
-            throw new DAOException("unknown.error", e);
+            throw new DAOException(UNKNOWN_ERROR, e);
         }
         return Optional.ofNullable(c);
     }
@@ -52,7 +56,7 @@ public class CategoryDAOImpl implements CategoryDAO {
             }
         } catch (SQLException e){
             logger.fatal(e);
-            throw new DAOException("unknown.error", e);
+            throw new DAOException(UNKNOWN_ERROR, e);
         }
         return list;
     }
@@ -77,7 +81,7 @@ public class CategoryDAOImpl implements CategoryDAO {
             }
         } catch (SQLException e) {
             logger.info(e.getMessage());
-            throw new DAOException("unknown.error", e);
+            throw new DAOException(UNKNOWN_ERROR, e);
         }
         return list;
     }
@@ -91,7 +95,7 @@ public class CategoryDAOImpl implements CategoryDAO {
             stmt.executeUpdate();
         } catch (SQLException e) {
             logger.info(e.getMessage());
-            throw new DAOException("unknown.error", e);
+            throw new DAOException(UNKNOWN_ERROR, e);
         }
     }
 
@@ -106,7 +110,7 @@ public class CategoryDAOImpl implements CategoryDAO {
             stmt.executeUpdate();
         } catch (DAOException | SQLException e){
             logger.info(e.getMessage());
-            throw new DAOException("unknown.error", e);
+            throw new DAOException(UNKNOWN_ERROR, e);
         }
     }
 
@@ -119,7 +123,7 @@ public class CategoryDAOImpl implements CategoryDAO {
             stmt.executeUpdate();
         } catch (SQLException e) {
             logger.info(e.getMessage());
-            throw new DAOException("unknown.error", e);
+            throw new DAOException(UNKNOWN_ERROR, e);
         }
     }
 }

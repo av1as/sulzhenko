@@ -1,6 +1,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="jakarta.tags.core" %>
+<%@taglib prefix="myTags" tagdir="/WEB-INF/tags" %>
 <%@ page import="java.util.List"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
@@ -43,8 +44,7 @@
 
         <li>
         <br>
-            <jsp:include page="/blocks/lang.jsp"/>
-
+            <myTags:lang/>
         </li>
 
 

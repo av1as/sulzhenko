@@ -2,23 +2,20 @@ package com.sulzhenko.model.services.implementation;
 
 import com.sulzhenko.model.DAO.*;
 import com.sulzhenko.model.DAO.implementation.*;
+import com.sulzhenko.model.DTO.RequestDTO;
 import com.sulzhenko.model.entity.*;
 import com.sulzhenko.model.services.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
 import static com.sulzhenko.model.DAO.SQLQueries.RequestQueries.GET_EQUAL_REQUEST;
+import static com.sulzhenko.model.DAO.SQLQueries.RequestQueries.IF_USER_HAS_ACTIVITY;
 
 public class RequestServiceImpl implements RequestService {
-    public static final String REMOVE = "remove";
-    public static final String ADD = "add";
-    public static final String UNKNOWN_ERROR = "unknown.error";
     private final DataSource dataSource;
     UserService userService;
     UserDAO userDAO;
@@ -79,7 +76,13 @@ public class RequestServiceImpl implements RequestService {
         }
     }
     @Override
-    public void addRequest(Request request){
+    public void addRequest(RequestDTO requestDTO){
+        Request request = new Request.Builder()
+                .withLogin(requestDTO.getLogin())
+                .withActivityName(requestDTO.getActivityName())
+                .withActionToDo(requestDTO.getActionToDo())
+                .withDescription(requestDTO.getDescription())
+                .build();
         if(ifRequestUnique(request)) {
             try {
                 isDataCorrect(request);
@@ -95,34 +98,55 @@ public class RequestServiceImpl implements RequestService {
         try{
             isDataCorrect(createUpdatedRequest(params));
             requestDAO.update(request, params);
-        } catch (ServiceException e){
+        } catch (DAOException e){
             logger.warn(e.getMessage());
-            throw e;
+            throw new ServiceException(e.getMessage());
         }
     }
     @Override
-    public List<Request> viewAllRequests(int startPosition, int size){
-        List<Request> list = new ArrayList<>();
+    public List<RequestDTO> viewAllRequests(int startPosition, int size){
+        List<RequestDTO> list = new ArrayList<>();
         for(int i = startPosition; (i < (startPosition + size)) && (i < requestDAO.getAll().size()); i++){
-            list.add(requestDAO.getAll().get(i));
+            Request request = requestDAO.getAll().get(i);
+            RequestDTO requestDTO = new RequestDTO.Builder()
+                    .withLogin(request.getLogin())
+                    .withActivityName(request.getActivityName())
+                    .withActionToDo(request.getActionToDo())
+                    .withDescription(request.getDescription())
+                    .build();
+            list.add(requestDTO);
         }
         return list;
     }
     @Override
-    public List<Request> viewRequestsToAdd(int startPosition, int size){
-        List<Request> list = new ArrayList<>();
+    public List<RequestDTO> viewRequestsToAdd(int startPosition, int size){
+        List<RequestDTO> list = new ArrayList<>();
         for(int i = startPosition; (i < (startPosition + size))
                 && (i < requestDAO.getByActionToDo(ADD).size()); i++){
-            list.add(requestDAO.getByActionToDo(ADD).get(i));
+            Request request = requestDAO.getByActionToDo(ADD).get(i);
+            RequestDTO requestDTO = new RequestDTO.Builder()
+                    .withLogin(request.getLogin())
+                    .withActivityName(request.getActivityName())
+                    .withActionToDo(request.getActionToDo())
+                    .withDescription(request.getDescription())
+                    .build();
+            list.add(requestDTO);
         }
         return list;
     }
     @Override
-    public List<Request> viewRequestsToRemove(int startPosition, int size){
-        List<Request> list = new ArrayList<>();
+    public List<RequestDTO> viewRequestsToRemove(int startPosition, int size){
+        List<RequestDTO> list = new ArrayList<>();
         for(int i = startPosition; (i < (startPosition + size))
                 && (i < requestDAO.getByActionToDo(REMOVE).size()); i++){
-            list.add(requestDAO.getByActionToDo(REMOVE).get(i));
+            Request request = requestDAO.getByActionToDo(REMOVE).get(i);
+            RequestDTO requestDTO = new RequestDTO.Builder()
+                    .withLogin(request.getLogin())
+                    .withActivityName(request.getActivityName())
+                    .withActionToDo(request.getActionToDo())
+                    .withDescription(request.getDescription())
+                    .build();
+            list.add(requestDTO);
         }
         return list;
     }
@@ -144,29 +168,31 @@ public class RequestServiceImpl implements RequestService {
     }
     private void isDataCorrect(Request request) throws ServiceException{
         if(userService.isLoginAvailable(request.getLogin())) {
-            throw new ServiceException("wrong.login");
+            throw new ServiceException(WRONG_LOGIN);
         } else if(activityService.isNameAvailable(request.getActivityName())){
-            throw new ServiceException("wrong.activity");
+            throw new ServiceException(WRONG_ACTIVITY);
         } else if(!isActionCorrect(request)){
-            throw new ServiceException("wrong.action");
+            throw new ServiceException(WRONG_ACTION);
         }
     }
-    public boolean isActionCorrect(Request request){
+    private boolean isActionCorrect(Request request){
         return canRequestBeAdded(request) || canRequestBeRemoved(request);
     }
-    public boolean canRequestBeAdded(Request request){
+    private boolean canRequestBeAdded(Request request){
         return (Objects.equals(request.getActionToDo(), ADD)) &&
-                !ifUserHasActivity(Objects.requireNonNull(userDAO.getByLogin(request.getLogin()).orElse(null)),
+                !ifUserHasActivity(Objects.requireNonNull(userDAO.getByLogin(request.getLogin())
+                                .orElse(null)),
                         activityDAO.getByName(request.getActivityName()));
     }
-    public boolean canRequestBeRemoved(Request request){
+    private boolean canRequestBeRemoved(Request request){
         return (Objects.equals(request.getActionToDo(), REMOVE) &&
-                ifUserHasActivity(Objects.requireNonNull(userDAO.getByLogin(request.getLogin()).orElse(null)),
+                ifUserHasActivity(Objects.requireNonNull(userDAO.getByLogin(request.getLogin())
+                                .orElse(null)),
                         activityDAO.getByName(request.getActivityName())));
     }
-    public boolean ifUserHasActivity(User u, Activity a){
+    private boolean ifUserHasActivity(User u, Activity a){
         try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(SQLQueries.RequestQueries.IF_USER_HAS_ACTIVITY)) {
+             PreparedStatement stmt = con.prepareStatement(IF_USER_HAS_ACTIVITY)) {
             stmt.setLong(1, u.getAccount());
             stmt.setLong(2, a.getId());
             ResultSet rs = stmt.executeQuery();

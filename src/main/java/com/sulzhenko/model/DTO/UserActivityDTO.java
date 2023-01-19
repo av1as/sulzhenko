@@ -33,6 +33,10 @@ public class UserActivityDTO implements Serializable {
         this.activityTime = activityTime;
         this.status = status;
     }
+    public UserActivityDTO(String activityName, int activityTime) {
+        this.activityName = activityName;
+        this.activityTime = activityTime;
+    }
 
     public String getLogin() {
         return login;

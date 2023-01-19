@@ -1,5 +1,7 @@
 package com.sulzhenko.controller.command;
 
+import com.sulzhenko.controller.Command;
+import com.sulzhenko.controller.Constants;
 import com.sulzhenko.controller.Path;
 import com.sulzhenko.model.services.*;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,15 +13,15 @@ import java.sql.SQLException;
 
 import static com.sulzhenko.ApplicationContext.getApplicationContext;
 
-public class DeleteActivityCommand implements Command {
+public class DeleteActivityCommand implements Command, Constants, Path {
     ActivityService activityService = getApplicationContext().getActivityService();
     private static final Logger logger = LogManager.getLogger(DeleteActivityCommand.class);
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        String forward = Path.PAGE_ERROR;
+        String forward = PAGE_ERROR_FULL;
         try{
-            activityService.deleteActivity(request.getParameter("activity_name"));
-            forward = "controller?action=show_activities";
+            activityService.deleteActivity(request.getParameter(ACTIVITY_NAME));
+            forward = PAGE_SHOW_ACTIVITIES;
         } catch (ServiceException e){
             logger.warn(e.getMessage());
         }

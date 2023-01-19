@@ -1,7 +1,11 @@
 package com.sulzhenko.model.DAO.implementation;
 
-import com.sulzhenko.model.DAO.*;
-import com.sulzhenko.model.entity.*;
+import com.sulzhenko.model.Constants;
+import com.sulzhenko.model.DAO.ActivityDAO;
+import com.sulzhenko.model.DAO.CategoryDAO;
+import com.sulzhenko.model.DAO.DAOException;
+import com.sulzhenko.model.DAO.SQLQueries;
+import com.sulzhenko.model.entity.Activity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import javax.sql.DataSource;
@@ -10,13 +14,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * This class describes CRUD operations with Activity class entities
  */
-public class ActivityDAOImpl implements ActivityDAO {
-    public static final String UNKNOWN_ERROR = "unknown.error";
+public class ActivityDAOImpl implements ActivityDAO, Constants {
     private final DataSource dataSource;
     CategoryDAO categoryDAO;
 
@@ -27,7 +29,7 @@ public class ActivityDAOImpl implements ActivityDAO {
 
     private static final Logger logger = LogManager.getLogger(ActivityDAOImpl.class);
     @Override
-    public Optional<Activity> get(Object parameter, String querySQL) throws DAOException{
+    public Optional<Activity> get(Object parameter, String querySQL) throws DAOException {
         Activity a = null;
         try (Connection con = dataSource.getConnection();
              PreparedStatement stmt = con.prepareStatement(querySQL)
@@ -140,65 +142,4 @@ public class ActivityDAOImpl implements ActivityDAO {
                 .withCategory(categoryDAO.getByName(rs.getString(3)).orElse(null))
                 .build();
     }
-
-    @Override
-    public List<User> getConnectedUsers(Activity activity){
-        UserDAO userDAOImpl = new UserDAOImpl(dataSource);
-        return userDAOImpl.getList(activity.getName(), SQLQueries.UserQueries.FIND_CONNECTED_USERS);
-    }
-//    @Override
-//    public Map<Activity, Integer> listActivitiesSorted(int startPosition, int size, String filter, String parameter, String order) throws DAOException{
-//        Map<Activity, Integer> map = new LinkedHashMap<>();
-//        List<Activity> list = new ArrayList<>();
-//        String category = (Objects.equals(filter, "all") ? "": "WHERE category_name = '" + filter + "'");
-//
-//        String query = SQLQueries.ActivityQueries.SELECT_ALL_ACTIVITY_FIELDS +
-//                category +
-//                "ORDER BY " + parameter + " " + order;
-//        try (Connection con = dataSource.getConnection();
-//             PreparedStatement stmt = con.prepareStatement(query)) {
-//            ResultSet rs = stmt.executeQuery();
-//            while (rs.next()) {
-//                Activity activity = getActivityWithFields(rs);
-//                list.add(activity);
-//            }
-//        } catch (SQLException e) {
-//            logger.info(e.getMessage());
-//            throw new DAOException("unknown.error", e);
-//        }
-//        for(int i = startPosition; (i < (startPosition + size)) && (i < list.size()); i++){
-//            Activity activity = list.get(i);
-//            map.put(activity, getConnectedUsers(activity).size());
-//        }
-//        return map;
-//    }
-//    @Override
-//    public Map<Activity, Integer> listActivitiesSortedByUsers(int startPosition, int size, String filter, String order){
-//        Map<Activity, Integer> map = new LinkedHashMap<>();
-//        List<Activity> list = (Objects.equals(filter, "all") ? new ActivityDAOImpl(dataSource).getAll(): new ActivityDAOImpl(dataSource).getByCategory(filter));
-//        for(int i = startPosition; (i < (startPosition + size)) && (i < list.size()); i++){
-//            Activity activity = list.get(i);
-//            map.put(activity, getConnectedUsers(activity).size());
-//        }
-//        Map<Activity, Integer> sortedMap = new LinkedHashMap<>();
-//        if(Objects.equals(order, "ASC")) {
-//            sortedMap = rangeByUsersNumber(map, Map.Entry.comparingByValue());
-//        } else if (Objects.equals(order, "DESC")){
-//            sortedMap = rangeByUsersNumber(map, Collections.reverseOrder(Map.Entry.comparingByValue()));
-//        }
-//        return sortedMap;
-//    }
-
-//    private static Map<Activity, Integer> rangeByUsersNumber(Map<Activity, Integer> map, Comparator<Map.Entry<Activity, Integer>> comparator) {
-//        return map.entrySet()
-//                .stream()
-//            .sorted(comparator)
-//                .collect(Collectors
-//                        .toMap(Map.Entry::getKey,
-//                                Map.Entry::getValue,
-//                                (e1, e2) -> e1,
-//                                LinkedHashMap::new));
-//    }
-
-
 }

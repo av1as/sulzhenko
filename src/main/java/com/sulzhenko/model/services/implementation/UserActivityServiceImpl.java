@@ -2,12 +2,16 @@ package com.sulzhenko.model.services.implementation;
 
 import com.sulzhenko.model.DAO.*;
 import com.sulzhenko.model.DAO.implementation.*;
+import com.sulzhenko.model.DTO.UserDTO;
+import com.sulzhenko.model.DTO.ActivityDTO;
 import com.sulzhenko.model.DTO.UserActivityDTO;
 import javax.sql.DataSource;
+
 import com.sulzhenko.model.entity.Activity;
 import com.sulzhenko.model.entity.User;
 import com.sulzhenko.model.services.ServiceException;
 import com.sulzhenko.model.services.UserActivityService;
+import com.sulzhenko.model.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.sql.Connection;
@@ -21,13 +25,15 @@ public class UserActivityServiceImpl implements UserActivityService {
     private final DataSource dataSource;
     UserDAO userDAO;
     ActivityDAO activityDAO;
-    UserActivityDAO uaDAO;
+    UserActivityDAO userActivityDAO;
+    UserService userService;
 
     public UserActivityServiceImpl(DataSource dataSource) {
         this.dataSource = dataSource;
         this.userDAO = new UserDAOImpl(dataSource);
         this.activityDAO = new ActivityDAOImpl(dataSource);
-        this.uaDAO = new UserActivityDAOImpl(dataSource);
+        this.userActivityDAO = new UserActivityDAOImpl(dataSource);
+        this.userService = new UserServiceImpl(dataSource);
     }
 
     private static final String ALL_USER_QUERY = "SELECT \n" +
@@ -42,7 +48,7 @@ public class UserActivityServiceImpl implements UserActivityService {
             "ON user_activity.account=user.account\n" +
             "INNER JOIN activity\n" +
             "ON user_activity.activity_id = activity.activity_id\n" +
-            "ORDER BY login ASC LIMIT %d, %d";
+            "ORDER BY current_account ASC LIMIT %d, %d";
     private static final String QUERY_BRIEF = "SELECT \n" +
             "user_activity.account as current_account,\n" +
             "user.login,\n" +
@@ -69,30 +75,36 @@ public class UserActivityServiceImpl implements UserActivityService {
             "ON user_activity.activity_id = activity.activity_id\n" +
             "WHERE login = ?\n" +
             "ORDER BY activity_name ASC LIMIT %d, %d";
-    public void setAmount(User user, Activity activity, int amount) throws DAOException {
-        if(amount < 0){
-            throw new DAOException("amount.nonnegative");
-        } else if(uaDAO.ifUserHasActivity(user, activity)){
-            try(Connection con = dataSource.getConnection();
-                PreparedStatement stmt = con.prepareStatement(SQLQueries.RequestQueries.SET_AMOUNT)){
-
-                stmt.setInt(1, amount);
-                stmt.setLong(2, user.getAccount());
-                stmt.setLong(3, activity.getId());
-                stmt.executeUpdate();
-            } catch (SQLException e) {
-                throw new ServiceException("unknown.error", e);
+    public void setAmount(UserDTO userDTO, ActivityDTO activityDTO, int amount) throws DAOException {
+        if(amount >= 0) {
+            User user = userDAO.getByLogin(userDTO.getLogin()).orElse(null);
+            Activity activity = activityDAO.getByName(activityDTO.getName());
+            if (userActivityDAO.ifUserHasActivity(user, activity)) {
+                try (Connection con = dataSource.getConnection();
+                     PreparedStatement stmt = con.prepareStatement(SQLQueries.RequestQueries.SET_AMOUNT)) {
+                    stmt.setInt(1, amount);
+                    assert user != null;
+                    stmt.setLong(2, user.getAccount());
+                    stmt.setLong(3, activity.getId());
+                    stmt.executeUpdate();
+                } catch (SQLException e) {
+                    throw new ServiceException(UNKNOWN_ERROR, e);
+                }
+            } else {
+                throw new ServiceException(USER_HAS_NO_ACTIVITY);
             }
         } else {
-            throw new ServiceException("user.has.no.activity");
+            throw new ServiceException(AMOUNT_NONNEGATIVE);
         }
     }
     @Override
-    public List<Activity> allAvailableActivities(User u) {
-        List<Activity> list = new ArrayList<>();
+    public List<ActivityDTO> allAvailableActivities(UserDTO userDTO) {
+        List<ActivityDTO> list = new ArrayList<>();
+        User user = userService.getUser(userDTO.getLogin());
         for(Activity element: activityDAO.getAll()){
-            if(!uaDAO.ifUserHasActivity(u, element) && !uaDAO.isRequestToAddExists(u, element)){
-                list.add(element);
+            if(!userActivityDAO.ifUserHasActivity(user, element)
+                    && !userActivityDAO.isRequestToAddExists(user, element)){
+                list.add(new ActivityDTO(element.getName()));
             }
         }
         return list;
@@ -108,7 +120,7 @@ public class UserActivityServiceImpl implements UserActivityService {
                 number = rs.getInt(1);
             }
         } catch (SQLException e){
-            throw new DAOException("unknown.error");
+            throw new ServiceException(UNKNOWN_ERROR);
         }
         return number;
     }
@@ -123,22 +135,22 @@ public class UserActivityServiceImpl implements UserActivityService {
                 list.add(userActivity);
             }
         } catch (SQLException e) {
-            throw new DAOException("unknown.error", e);
+            throw new ServiceException(UNKNOWN_ERROR, e);
         }
         return list;
     }
-    public List<UserActivityDTO> listUserActivitiesSorted(HttpServletRequest request, User user){
+    public List<UserActivityDTO> listUserActivitiesSorted(HttpServletRequest request, UserDTO userDTO){
         List<UserActivityDTO> list = new ArrayList<>();
         try (Connection con = dataSource.getConnection();
              PreparedStatement stmt = con.prepareStatement(buildUserQuery(request))) {
-            stmt.setString(1, user.getLogin());
+            stmt.setString(1, userDTO.getLogin());
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                UserActivityDTO userActivity = getUserActivityDTOWithFields(rs);
-                list.add(userActivity);
+                UserActivityDTO userActivityDTO = getUserActivityDTOWithFields(rs);
+                list.add(userActivityDTO);
             }
         } catch (SQLException e) {
-            throw new DAOException("unknown.error", e);
+            throw new ServiceException(UNKNOWN_ERROR, e);
         }
         return list;
     }
@@ -152,30 +164,30 @@ public class UserActivityServiceImpl implements UserActivityService {
                 list.add(userActivity);
             }
         } catch (SQLException e) {
-            throw new DAOException("unknown.error", e);
+            throw new ServiceException(UNKNOWN_ERROR, e);
         }
         return list;
     }
     private String buildAllUsersQuery(HttpServletRequest request){
         int page = 1;
-        if(request.getParameter("page") != null)
-            page = Integer.parseInt(request.getParameter("page"));
+        if(request.getParameter(PAGE) != null)
+            page = Integer.parseInt(request.getParameter(PAGE));
         int records = 5;
         int offset = (page - 1) * records;
         return String.format(ALL_USER_QUERY, offset, records);
     }
     private String buildQueryBrief(HttpServletRequest request){
         int page = 1;
-        if(request.getParameter("page") != null)
-            page = Integer.parseInt(request.getParameter("page"));
+        if(request.getParameter(PAGE) != null)
+            page = Integer.parseInt(request.getParameter(PAGE));
         int records = 5;
         int offset = (page - 1) * records;
         return String.format(QUERY_BRIEF, offset, records);
     }
     private String buildUserQuery(HttpServletRequest request){
         int page = 1;
-        if(request.getParameter("page") != null)
-            page = Integer.parseInt(request.getParameter("page"));
+        if(request.getParameter(PAGE) != null)
+            page = Integer.parseInt(request.getParameter(PAGE));
         int records = 5;
         int offset = (page - 1) * records;
         return String.format(USER_QUERY, offset, records);
@@ -199,14 +211,17 @@ public class UserActivityServiceImpl implements UserActivityService {
     }
     private String defineStatus(User user, Activity activity){
         String status;
-        if (uaDAO.ifUserHasActivity(user, activity) && !uaDAO.isRequestToRemoveExists(user, activity)){
-            status = "active.status";
-        } else if(uaDAO.ifUserHasActivity(user, activity) && uaDAO.isRequestToRemoveExists(user, activity)){
-            status = "pending.removing";
-        } else if(!uaDAO.ifUserHasActivity(user, activity) && uaDAO.isRequestToAddExists(user, activity)){
-            status = "pending.adding";
+        if (userActivityDAO.ifUserHasActivity(user, activity)
+                && !userActivityDAO.isRequestToRemoveExists(user, activity)){
+            status = ACTIVE_STATUS;
+        } else if(userActivityDAO.ifUserHasActivity(user, activity)
+                && userActivityDAO.isRequestToRemoveExists(user, activity)){
+            status = PENDING_REMOVING;
+        } else if(!userActivityDAO.ifUserHasActivity(user, activity)
+                && userActivityDAO.isRequestToAddExists(user, activity)){
+            status = PENDING_ADDING;
         } else {
-            status = "error";
+            status = ERROR;
         }
         return status;
     }

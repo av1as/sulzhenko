@@ -47,12 +47,11 @@
 <div class="page-container-responsive">
     <div class="row space-top-8 space-8">
         <div class="col-md-5 col-middle">
-            <h1 class="text-center">path= ${path}</h1>
-            <h2 class="text-center">error= ${error}</h2>
-            <h2 class="text-center">filter= ${filter}</h2>
-            <h2 class="text-center">categories= ${categories}</h2>
-            <h2 class="text-center">activities= ${activities}</h2>
 
+            <h2 class="text-center">error= ${error}</h2>
+            <h2 class="text-center">current password= ${currentpassword}</h2>
+            <h2 class="text-center">new password= ${newpassword}</h2>
+            <h2 class="text-center">new password confirm= ${newpasswordconfirm}</h2>
 
         </div>
         <div class="col-md-5 col-middle text-center">

@@ -2,6 +2,7 @@ package com.sulzhenko.model.services.implementation;
 
 import com.sulzhenko.model.DAO.*;
 import com.sulzhenko.model.DAO.implementation.CategoryDAOImpl;
+import com.sulzhenko.model.DTO.CategoryDTO;
 import com.sulzhenko.model.entity.Category;
 import com.sulzhenko.model.services.CategoryService;
 import com.sulzhenko.model.services.ServiceException;
@@ -11,7 +12,6 @@ import org.apache.logging.log4j.Logger;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class CategoryServiceImpl implements CategoryService {
     private final DataSource dataSource;
@@ -37,6 +37,8 @@ public class CategoryServiceImpl implements CategoryService {
                 logger.fatal(e.getMessage());
                 throw new ServiceException(e);
             }
+        } else{
+            throw new ServiceException("duplicate.category");
         }
     }
     @Override
@@ -60,17 +62,21 @@ public class CategoryServiceImpl implements CategoryService {
                 logger.fatal(e.getMessage());
                 throw new ServiceException(e.getMessage());
             }
-        } else throw new ServiceException("wrong.category");
+        } else throw new ServiceException(WRONG_CATEGORY);
     }
     @Override
-    public List<Category> getAllCategories(){
-        return categoryDAO.getAll();
+    public List<CategoryDTO> getAllCategories(){
+        List<CategoryDTO> result = new ArrayList<>();
+        for(Category element: categoryDAO.getAll()){
+            result.add(new CategoryDTO(element.getName()));
+        }
+        return result;
     }
     @Override
-    public List<Category> viewAllCategories(int startPosition, int size){
-        List<Category> list = new ArrayList<>();
-        for(int i = startPosition; (i < (startPosition + size)) && (i < new CategoryDAOImpl(dataSource).getAll().size()); i++){
-            list.add(new CategoryDAOImpl(dataSource).getAll().get(i));
+    public List<CategoryDTO> viewAllCategories(int startPosition, int size){
+        List<CategoryDTO> list = new ArrayList<>();
+        for(int i = startPosition; (i < (startPosition + size)) && (i < categoryDAO.getAll().size()); i++){
+            list.add(new CategoryDTO(categoryDAO.getAll().get(i).getName()));
         }
         return list;
     }

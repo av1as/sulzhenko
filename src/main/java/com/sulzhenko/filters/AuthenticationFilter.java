@@ -1,6 +1,6 @@
 package com.sulzhenko.filters;
 
-import com.sulzhenko.model.entity.User;
+import com.sulzhenko.model.DTO.UserDTO;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,10 +24,10 @@ public class AuthenticationFilter implements Filter {
         }
     }
     private boolean isAccessDenied(HttpServletRequest request) {
-        User user = (User) request.getSession().getAttribute("user");
+        UserDTO userDTO = (UserDTO) request.getSession().getAttribute("user");
         String role = "UNKNOWN";
-        if(user != null) {
-            role = String.valueOf(user.getRole());
+        if(userDTO != null) {
+            role = String.valueOf(userDTO.getRole());
         }
         return getDomain(request.getServletPath(), request.getParameter("action"), role).checkAccess();
     }

@@ -1,8 +1,10 @@
 package com.sulzhenko.model.DTO;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ReportDTO {
+public class ReportDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String login;
     private List<UserActivityDTO> activitiesWithTime;
     private int numberOfActivities;
@@ -15,6 +17,12 @@ public class ReportDTO {
         this.numberOfActivities = numberOfActivities;
         this.totalTime = totalTime;
         this.status = status;
+    }
+    public ReportDTO(String login, List<UserActivityDTO> activitiesWithTime, int numberOfActivities, int totalTime) {
+        this.login = login;
+        this.activitiesWithTime = activitiesWithTime;
+        this.numberOfActivities = numberOfActivities;
+        this.totalTime = totalTime;
     }
 
     public String getLogin() {

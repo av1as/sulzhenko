@@ -1,6 +1,5 @@
 package com.sulzhenko.controller;
 
-import com.sulzhenko.controller.command.Command;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
-import static com.sulzhenko.controller.Path.PAGE_ERROR;
+import static com.sulzhenko.controller.Path.PAGE_ERROR_FULL;
 
 
 /**
@@ -38,7 +37,7 @@ public class Controller extends HttpServlet {
   private String executeRequest(HttpServletRequest req, HttpServletResponse resp){
 
     Command action = ACTION_FACTORY.createCommand(req.getParameter("action"));
-    String path = PAGE_ERROR;
+    String path = PAGE_ERROR_FULL;
     try {
       path = action.execute(req, resp);
     } catch (Exception e) {

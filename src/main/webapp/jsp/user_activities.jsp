@@ -1,6 +1,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="jakarta.tags.core" %>
+<%@taglib prefix="myTags" tagdir="/WEB-INF/tags" %>
 <%@page import="java.util.Hashtable"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -30,8 +31,7 @@
 
         <li>
         <br>
-            <jsp:include page="/blocks/lang.jsp"/>
-
+            <myTags:lang/>
         </li>
         <li>
             <jsp:include page="/blocks/profile.jsp"/>

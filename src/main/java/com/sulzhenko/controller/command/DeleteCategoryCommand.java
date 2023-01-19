@@ -1,5 +1,8 @@
 package com.sulzhenko.controller.command;
 
+import com.sulzhenko.controller.Command;
+import com.sulzhenko.controller.Constants;
+import com.sulzhenko.controller.Path;
 import com.sulzhenko.model.services.CategoryService;
 import com.sulzhenko.model.services.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,18 +19,18 @@ import static com.sulzhenko.ApplicationContext.getApplicationContext;
  *
  *
  */
-public class DeleteCategoryCommand implements Command {
+public class DeleteCategoryCommand implements Command, Constants, Path {
     CategoryService categoryService = getApplicationContext().getCategoryService();
     private static final Logger logger = LogManager.getLogger(DeleteCategoryCommand.class);
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        String categoryName = request.getParameter("category_name");
+        String categoryName = request.getParameter(CATEGORY_NAME);
         try{
             categoryService.deleteCategory(categoryName);
         } catch (ServiceException e){
             logger.warn(e.getMessage());
         }
-        return "controller?action=show_categories";
+        return PAGE_SHOW_CATEGORIES;
     }
 }

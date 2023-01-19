@@ -1,5 +1,7 @@
 package com.sulzhenko.controller.command;
 
+import com.sulzhenko.controller.Command;
+import com.sulzhenko.controller.Constants;
 import com.sulzhenko.controller.Path;
 import com.sulzhenko.model.services.RequestService;
 import com.sulzhenko.model.services.ServiceException;
@@ -12,16 +14,16 @@ import java.sql.SQLException;
 
 import static com.sulzhenko.ApplicationContext.getApplicationContext;
 
-public class DeclineRequestCommand implements Command {
+public class DeclineRequestCommand implements Command, Constants, Path {
     RequestService requestService = getApplicationContext().getRequestService();
     private static final Logger logger = LogManager.getLogger(DeclineRequestCommand.class);
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        String forward = Path.PAGE_ERROR;
-        int id = Integer.parseInt(request.getParameter("id"));
+        String forward = PAGE_ERROR_FULL;
+        int id = Integer.parseInt(request.getParameter(ID));
         try{
             requestService.deleteRequest(requestService.getRequest(id));
-            forward = "controller?action=show_requests";
+            forward = PAGE_SHOW_REQUESTS;
         } catch(ServiceException e){
             logger.warn(e.getMessage());
         }

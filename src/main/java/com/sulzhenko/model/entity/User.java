@@ -18,20 +18,20 @@ public class User implements Serializable {
     private String status;
     private String notification;
 
-    public User() {
+    private User() {
     }
 
-    public User(Long account, String login, String email, String password, String firstName, String lastName, Role role, String status, String notifications) {
-        this.account = account;
-        this.login = login;
-        this.email = email;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.role = role;
-        this.status = status;
-        this.notification = notifications;
-    }
+//    private User(Long account, String login, String email, String password, String firstName, String lastName, Role role, String status, String notifications) {
+//        this.account = account;
+//        this.login = login;
+//        this.email = email;
+//        this.password = password;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.role = role;
+//        this.status = status;
+//        this.notification = notifications;
+//    }
 
     public Long getAccount() {
         return account;
@@ -172,9 +172,7 @@ public class User implements Serializable {
                 ", notifications='" + notification + '\'' +
                 '}';
     }
-    public String isNotificationChecked(){
-        return (Objects.equals(this.getNotification(), "on") ? "checked": "unchecked");
-    }
+
 
     public enum Role {
         ADMIN("administrator"), SYSTEM_USER("system user"), UNKNOWN("unknown role");
@@ -182,6 +180,10 @@ public class User implements Serializable {
 
         Role(String value) {
             this.value = value;
+        }
+
+        public String getValue() {
+            return value;
         }
 
         static Role extractRole(String value) {

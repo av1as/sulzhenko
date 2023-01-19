@@ -14,6 +14,10 @@ public class ActivityDTO implements Serializable {
         this.numberOfUsers = numberOfUsers;
     }
 
+    public ActivityDTO(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

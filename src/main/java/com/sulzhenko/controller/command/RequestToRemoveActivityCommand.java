@@ -1,6 +1,10 @@
 package com.sulzhenko.controller.command;
 
-import com.sulzhenko.model.entity.*;
+import com.sulzhenko.controller.Command;
+import com.sulzhenko.controller.Constants;
+import com.sulzhenko.controller.Path;
+import com.sulzhenko.model.DTO.RequestDTO;
+import com.sulzhenko.model.DTO.UserDTO;
 import com.sulzhenko.model.services.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,23 +20,23 @@ import static com.sulzhenko.ApplicationContext.getApplicationContext;
  *
  *
  */
-public class RequestToRemoveActivityCommand implements Command {
+public class RequestToRemoveActivityCommand implements Command, Constants, Path {
     RequestService requestService = getApplicationContext().getRequestService();
     private static final Logger logger = LogManager.getLogger(RequestToRemoveActivityCommand.class);
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        Request req = new Request.Builder()
-                .withLogin(((User) request.getSession().getAttribute("user")).getLogin())
-                .withActivityName(request.getParameter("activity_name"))
-                .withActionToDo("remove")
-                .withDescription("")
+        RequestDTO req = new RequestDTO.Builder()
+                .withLogin(((UserDTO) request.getSession().getAttribute(USER)).getLogin())
+                .withActivityName(request.getParameter(ACTIVITY_NAME))
+                .withActionToDo(REMOVE)
+                .withDescription(EMPTY)
                 .build();
         try{
             requestService.addRequest(req);
         } catch (ServiceException e){
             logger.warn(e.getMessage());
         }
-        return "controller?action=user_activities";
+        return PAGE_CONTROLLER_USER_ACTIVITIES;
     }
 }

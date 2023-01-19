@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="ERROR">
+<Configuration status="INFO">
     <Properties>
         <property name="pattern_file">
             %d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{5}- %msg%n
         </property>
     </Properties>
     <Appenders>
-        <File name="File" fileName="src/main/resources/log.log" bufferedIO="true">
+        <File name="File" fileName="C:\data\temp\tasks\fp\sulzhenko\src\main\resources\log.log" bufferedIO="true">
             <PatternLayout pattern="${pattern_file}"/>
         </File>
     </Appenders>
     <Loggers>
-        <Root level="debug">
+        <Root level="INFO">
             <AppenderRef ref="File"/>
         </Root>
     </Loggers>

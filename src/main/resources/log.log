@@ -1,658 +1,597 @@
-
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- Driver class com.mysql.cj.jdbc.Driver found in Thread context class loader jdk.internal.loader.ClassLoaders$AppClassLoader@39a054a5
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- HikariPool-1 - configuration:
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- allowPoolSuspension.............false
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- autoCommit......................true
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- catalog.........................none
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionInitSql...............none
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionTestQuery.............none
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionTimeout...............30000
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSource......................none
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceClassName.............none
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceJNDI..................none
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- driverClassName................."com.mysql.cj.jdbc.Driver"
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- exceptionOverrideClassName......none
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- healthCheckProperties...........{}
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- healthCheckRegistry.............none
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- idleTimeout.....................600000
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- initializationFailTimeout.......1
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- isolateInternalQueries..........false
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- jdbcUrl.........................jdbc:mysql://localhost:3306/timekeeping
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- keepaliveTime...................0
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- leakDetectionThreshold..........0
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- maxLifetime.....................1800000
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- maximumPoolSize.................10
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- metricRegistry..................none
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- metricsTrackerFactory...........none
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- minimumIdle.....................10
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- password........................<masked>
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- poolName........................"HikariPool-1"
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- readOnly........................false
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- registerMbeans..................false
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- scheduledExecutor...............none
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- schema..........................none
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- threadFactory...................internal
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- transactionIsolation............default
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- username........................"root"
-2023-01-08 16:10:05 [main] DEBUG com.zaxxer.hikari.HikariConfig- validationTimeout...............5000
-2023-01-08 16:10:05 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
-2023-01-08 16:10:07 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@27f74733
-2023-01-08 16:10:07 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
-2023-01-08 16:10:07 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Pool stats (total=1, active=1, idle=0, waiting=0)
-2023-01-08 16:10:07 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@55c7cae6
-2023-01-08 16:10:07 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2524d1ec
-2023-01-08 16:10:07 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@440017e1
-2023-01-08 16:10:07 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@709b27e6
-2023-01-08 16:10:07 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@33e548ec
-2023-01-08 16:10:07 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4a74a97c
-2023-01-08 16:10:07 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1753df0f
-2023-01-08 16:10:07 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@52b117c3
-2023-01-08 16:10:07 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3ec4538d
-2023-01-08 16:10:07 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - After adding stats (total=10, active=3, idle=7, waiting=0)
-2023-01-08 16:10:09 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@2524d1ec
-2023-01-08 16:10:09 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@2524d1ec
-2023-01-08 16:10:09 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@2524d1ec
-2023-01-08 16:10:09 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:10:09 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:10:09 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@2524d1ec
-2023-01-08 16:10:09 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@2524d1ec
-2023-01-08 16:10:09 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@2524d1ec
-2023-01-08 16:10:09 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@2524d1ec
-2023-01-08 16:10:09 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@2524d1ec
-2023-01-08 16:10:09 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@2524d1ec
-2023-01-08 16:10:10 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@440017e1
-2023-01-08 16:10:10 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@440017e1
-2023-01-08 16:10:10 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@440017e1
-2023-01-08 16:10:10 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:10:10 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@440017e1
-2023-01-08 16:10:10 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@440017e1
-2023-01-08 16:10:10 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@440017e1
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- Driver class com.mysql.cj.jdbc.Driver found in Thread context class loader jdk.internal.loader.ClassLoaders$AppClassLoader@39a054a5
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- HikariPool-1 - configuration:
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- allowPoolSuspension.............false
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- autoCommit......................true
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- catalog.........................none
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionInitSql...............none
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionTestQuery.............none
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionTimeout...............30000
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSource......................none
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceClassName.............none
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceJNDI..................none
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- driverClassName................."com.mysql.cj.jdbc.Driver"
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- exceptionOverrideClassName......none
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- healthCheckProperties...........{}
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- healthCheckRegistry.............none
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- idleTimeout.....................600000
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- initializationFailTimeout.......1
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- isolateInternalQueries..........false
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- jdbcUrl.........................jdbc:mysql://localhost:3306/timekeeping
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- keepaliveTime...................0
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- leakDetectionThreshold..........0
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- maxLifetime.....................1800000
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- maximumPoolSize.................10
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- metricRegistry..................none
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- metricsTrackerFactory...........none
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- minimumIdle.....................10
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- password........................<masked>
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- poolName........................"HikariPool-1"
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- readOnly........................false
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- registerMbeans..................false
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- scheduledExecutor...............none
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- schema..........................none
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- threadFactory...................internal
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- transactionIsolation............default
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- username........................"root"
-2023-01-08 16:11:07 [main] DEBUG com.zaxxer.hikari.HikariConfig- validationTimeout...............5000
-2023-01-08 16:11:07 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
-2023-01-08 16:11:08 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@57fae983
-2023-01-08 16:11:08 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
-2023-01-08 16:11:09 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6167b53d
-2023-01-08 16:11:09 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Pool stats (total=2, active=2, idle=0, waiting=0)
-2023-01-08 16:11:09 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1130bafe
-2023-01-08 16:11:09 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@879b528
-2023-01-08 16:11:09 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@443bfc8d
-2023-01-08 16:11:09 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4d30f1ad
-2023-01-08 16:11:09 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4c78693b
-2023-01-08 16:11:09 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1955de5d
-2023-01-08 16:11:09 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6a1a26b6
-2023-01-08 16:11:09 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@11cdb953
-2023-01-08 16:11:10 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@1130bafe
-2023-01-08 16:11:10 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@1130bafe
-2023-01-08 16:11:10 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@1130bafe
-2023-01-08 16:11:10 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:11:10 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:11:10 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@1130bafe
-2023-01-08 16:11:10 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@1130bafe
-2023-01-08 16:11:10 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@1130bafe
-2023-01-08 16:11:10 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@1130bafe
-2023-01-08 16:11:10 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@1130bafe
-2023-01-08 16:11:10 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@1130bafe
-2023-01-08 16:11:11 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@879b528
-2023-01-08 16:11:11 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@879b528
-2023-01-08 16:11:11 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@879b528
-2023-01-08 16:11:11 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:11:11 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@879b528
-2023-01-08 16:11:11 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@879b528
-2023-01-08 16:11:11 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@879b528
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- Driver class com.mysql.cj.jdbc.Driver found in Thread context class loader jdk.internal.loader.ClassLoaders$AppClassLoader@39a054a5
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- HikariPool-1 - configuration:
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- allowPoolSuspension.............false
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- autoCommit......................true
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- catalog.........................none
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionInitSql...............none
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionTestQuery.............none
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionTimeout...............30000
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSource......................none
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceClassName.............none
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceJNDI..................none
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- driverClassName................."com.mysql.cj.jdbc.Driver"
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- exceptionOverrideClassName......none
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- healthCheckProperties...........{}
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- healthCheckRegistry.............none
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- idleTimeout.....................600000
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- initializationFailTimeout.......1
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- isolateInternalQueries..........false
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- jdbcUrl.........................jdbc:mysql://localhost:3306/timekeeping
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- keepaliveTime...................0
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- leakDetectionThreshold..........0
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- maxLifetime.....................1800000
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- maximumPoolSize.................10
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- metricRegistry..................none
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- metricsTrackerFactory...........none
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- minimumIdle.....................10
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- password........................<masked>
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- poolName........................"HikariPool-1"
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- readOnly........................false
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- registerMbeans..................false
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- scheduledExecutor...............none
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- schema..........................none
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- threadFactory...................internal
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- transactionIsolation............default
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- username........................"root"
-2023-01-08 16:11:38 [main] DEBUG com.zaxxer.hikari.HikariConfig- validationTimeout...............5000
-2023-01-08 16:11:38 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
-2023-01-08 16:11:39 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4bee18dc
-2023-01-08 16:11:39 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
-2023-01-08 16:11:39 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@733377ef
-2023-01-08 16:11:39 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Pool stats (total=2, active=2, idle=0, waiting=0)
-2023-01-08 16:11:39 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3f6aeb8
-2023-01-08 16:11:39 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1efd93da
-2023-01-08 16:11:39 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@566fbc0b
-2023-01-08 16:11:39 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4f85d22b
-2023-01-08 16:11:39 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4a1d2c4b
-2023-01-08 16:11:39 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@395c405d
-2023-01-08 16:11:39 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7441a5b5
-2023-01-08 16:11:39 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@379d4931
-2023-01-08 16:11:41 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@3f6aeb8
-2023-01-08 16:11:41 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@3f6aeb8
-2023-01-08 16:11:41 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@3f6aeb8
-2023-01-08 16:11:41 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:11:41 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:11:41 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@3f6aeb8
-2023-01-08 16:11:41 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@3f6aeb8
-2023-01-08 16:11:41 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@3f6aeb8
-2023-01-08 16:11:41 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@3f6aeb8
-2023-01-08 16:11:41 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@3f6aeb8
-2023-01-08 16:11:41 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@3f6aeb8
-2023-01-08 16:11:41 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@1efd93da
-2023-01-08 16:11:41 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@1efd93da
-2023-01-08 16:11:41 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@1efd93da
-2023-01-08 16:11:41 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:11:41 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@1efd93da
-2023-01-08 16:11:41 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@1efd93da
-2023-01-08 16:11:41 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@1efd93da
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- Driver class com.mysql.cj.jdbc.Driver found in Thread context class loader jdk.internal.loader.ClassLoaders$AppClassLoader@39a054a5
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- HikariPool-1 - configuration:
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- allowPoolSuspension.............false
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- autoCommit......................true
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- catalog.........................none
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionInitSql...............none
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionTestQuery.............none
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionTimeout...............30000
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSource......................none
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceClassName.............none
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceJNDI..................none
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- driverClassName................."com.mysql.cj.jdbc.Driver"
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- exceptionOverrideClassName......none
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- healthCheckProperties...........{}
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- healthCheckRegistry.............none
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- idleTimeout.....................600000
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- initializationFailTimeout.......1
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- isolateInternalQueries..........false
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- jdbcUrl.........................jdbc:mysql://localhost:3306/timekeeping
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- keepaliveTime...................0
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- leakDetectionThreshold..........0
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- maxLifetime.....................1800000
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- maximumPoolSize.................10
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- metricRegistry..................none
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- metricsTrackerFactory...........none
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- minimumIdle.....................10
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- password........................<masked>
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- poolName........................"HikariPool-1"
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- readOnly........................false
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- registerMbeans..................false
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- scheduledExecutor...............none
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- schema..........................none
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- threadFactory...................internal
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- transactionIsolation............default
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- username........................"root"
-2023-01-08 16:12:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- validationTimeout...............5000
-2023-01-08 16:12:49 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
-2023-01-08 16:12:50 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4bb8855f
-2023-01-08 16:12:50 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
-2023-01-08 16:12:50 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Pool stats (total=1, active=1, idle=0, waiting=1)
-2023-01-08 16:12:50 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@44e3318f
-2023-01-08 16:12:50 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@34919f48
-2023-01-08 16:12:50 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@29d09c2c
-2023-01-08 16:12:50 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@61bf5dbb
-2023-01-08 16:12:50 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@44fc3489
-2023-01-08 16:12:51 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@41992408
-2023-01-08 16:12:51 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5f365fb0
-2023-01-08 16:12:51 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@138f825e
-2023-01-08 16:12:51 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1504b500
-2023-01-08 16:12:52 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@34919f48
-2023-01-08 16:12:52 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@34919f48
-2023-01-08 16:12:52 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@34919f48
-2023-01-08 16:12:52 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:12:52 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:12:52 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@34919f48
-2023-01-08 16:12:52 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@34919f48
-2023-01-08 16:12:52 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@34919f48
-2023-01-08 16:12:52 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@34919f48
-2023-01-08 16:12:52 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@34919f48
-2023-01-08 16:12:52 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@34919f48
-2023-01-08 16:12:52 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@29d09c2c
-2023-01-08 16:12:52 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@29d09c2c
-2023-01-08 16:12:52 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@29d09c2c
-2023-01-08 16:12:52 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:12:52 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@29d09c2c
-2023-01-08 16:12:52 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@29d09c2c
-2023-01-08 16:12:52 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@29d09c2c
-2023-01-08 16:12:52 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong.login
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- Driver class com.mysql.cj.jdbc.Driver found in Thread context class loader jdk.internal.loader.ClassLoaders$AppClassLoader@39a054a5
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- HikariPool-1 - configuration:
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- allowPoolSuspension.............false
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- autoCommit......................true
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- catalog.........................none
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionInitSql...............none
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionTestQuery.............none
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionTimeout...............30000
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSource......................none
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceClassName.............none
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceJNDI..................none
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- driverClassName................."com.mysql.cj.jdbc.Driver"
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- exceptionOverrideClassName......none
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- healthCheckProperties...........{}
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- healthCheckRegistry.............none
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- idleTimeout.....................600000
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- initializationFailTimeout.......1
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- isolateInternalQueries..........false
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- jdbcUrl.........................jdbc:mysql://localhost:3306/timekeeping
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- keepaliveTime...................0
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- leakDetectionThreshold..........0
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- maxLifetime.....................1800000
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- maximumPoolSize.................10
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- metricRegistry..................none
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- metricsTrackerFactory...........none
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- minimumIdle.....................10
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- password........................<masked>
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- poolName........................"HikariPool-1"
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- readOnly........................false
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- registerMbeans..................false
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- scheduledExecutor...............none
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- schema..........................none
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- threadFactory...................internal
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- transactionIsolation............default
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- username........................"root"
-2023-01-08 16:14:00 [main] DEBUG com.zaxxer.hikari.HikariConfig- validationTimeout...............5000
-2023-01-08 16:14:00 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
-2023-01-08 16:14:01 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4bee18dc
-2023-01-08 16:14:01 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
-2023-01-08 16:14:01 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Pool stats (total=1, active=1, idle=0, waiting=1)
-2023-01-08 16:14:01 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1e5b7cb0
-2023-01-08 16:14:01 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6e732891
-2023-01-08 16:14:01 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2014e9c5
-2023-01-08 16:14:01 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3b07523c
-2023-01-08 16:14:01 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@485a2732
-2023-01-08 16:14:01 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1e434d9f
-2023-01-08 16:14:01 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4d7607e6
-2023-01-08 16:14:01 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@20b49fd
-2023-01-08 16:14:02 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5ae075cc
-2023-01-08 16:14:03 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:14:03 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@6e732891
-2023-01-08 16:14:03 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@6e732891
-2023-01-08 16:14:03 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@6e732891
-2023-01-08 16:14:04 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:14:04 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:14:04 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@6e732891
-2023-01-08 16:14:04 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@6e732891
-2023-01-08 16:14:04 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@6e732891
-2023-01-08 16:14:04 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@6e732891
-2023-01-08 16:14:04 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@6e732891
-2023-01-08 16:14:04 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@6e732891
-2023-01-08 16:14:04 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@2014e9c5
-2023-01-08 16:14:04 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@2014e9c5
-2023-01-08 16:14:04 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@2014e9c5
-2023-01-08 16:14:04 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:14:04 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@2014e9c5
-2023-01-08 16:14:04 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@2014e9c5
-2023-01-08 16:14:04 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@2014e9c5
-2023-01-08 16:14:04 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong.login
-2023-01-08 16:14:52 [main] DEBUG com.zaxxer.hikari.HikariConfig- Driver class com.mysql.cj.jdbc.Driver found in Thread context class loader jdk.internal.loader.ClassLoaders$AppClassLoader@39a054a5
-2023-01-08 16:14:52 [main] DEBUG com.zaxxer.hikari.HikariConfig- HikariPool-1 - configuration:
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- allowPoolSuspension.............false
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- autoCommit......................true
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- catalog.........................none
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionInitSql...............none
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionTestQuery.............none
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionTimeout...............30000
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSource......................none
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceClassName.............none
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceJNDI..................none
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- driverClassName................."com.mysql.cj.jdbc.Driver"
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- exceptionOverrideClassName......none
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- healthCheckProperties...........{}
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- healthCheckRegistry.............none
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- idleTimeout.....................600000
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- initializationFailTimeout.......1
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- isolateInternalQueries..........false
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- jdbcUrl.........................jdbc:mysql://localhost:3306/timekeeping
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- keepaliveTime...................0
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- leakDetectionThreshold..........0
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- maxLifetime.....................1800000
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- maximumPoolSize.................10
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- metricRegistry..................none
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- metricsTrackerFactory...........none
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- minimumIdle.....................10
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- password........................<masked>
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- poolName........................"HikariPool-1"
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- readOnly........................false
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- registerMbeans..................false
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- scheduledExecutor...............none
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- schema..........................none
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- threadFactory...................internal
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- transactionIsolation............default
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- username........................"root"
-2023-01-08 16:14:53 [main] DEBUG com.zaxxer.hikari.HikariConfig- validationTimeout...............5000
-2023-01-08 16:14:53 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
-2023-01-08 16:14:54 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4bb8855f
-2023-01-08 16:14:54 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
-2023-01-08 16:14:54 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@362641c6
-2023-01-08 16:14:54 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Pool stats (total=2, active=2, idle=0, waiting=0)
-2023-01-08 16:14:54 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@46a6d8aa
-2023-01-08 16:14:54 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7171f47f
-2023-01-08 16:14:54 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@137acf27
-2023-01-08 16:14:54 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7c5e9d93
-2023-01-08 16:14:54 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@535f773f
-2023-01-08 16:14:54 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@391e8d9f
-2023-01-08 16:14:54 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@64866f1f
-2023-01-08 16:14:54 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3fcf5470
-2023-01-08 16:14:55 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:14:55 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@46a6d8aa
-2023-01-08 16:14:55 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@46a6d8aa
-2023-01-08 16:14:55 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@46a6d8aa
-2023-01-08 16:14:55 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:14:55 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:14:55 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@46a6d8aa
-2023-01-08 16:14:55 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@46a6d8aa
-2023-01-08 16:14:55 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@46a6d8aa
-2023-01-08 16:14:55 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@46a6d8aa
-2023-01-08 16:14:55 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@46a6d8aa
-2023-01-08 16:14:55 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@46a6d8aa
-2023-01-08 16:14:55 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@7171f47f
-2023-01-08 16:14:55 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@7171f47f
-2023-01-08 16:14:55 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@7171f47f
-2023-01-08 16:14:55 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:14:56 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@7171f47f
-2023-01-08 16:14:56 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@7171f47f
-2023-01-08 16:14:56 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@7171f47f
-2023-01-08 16:14:56 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong.login
-2023-01-08 16:14:56 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong.status
-2023-01-08 16:14:56 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong.login
-2023-01-08 16:14:56 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong.role
-2023-01-08 16:14:56 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong.status
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- Driver class com.mysql.cj.jdbc.Driver found in Thread context class loader jdk.internal.loader.ClassLoaders$AppClassLoader@39a054a5
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- HikariPool-1 - configuration:
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- allowPoolSuspension.............false
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- autoCommit......................true
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- catalog.........................none
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionInitSql...............none
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionTestQuery.............none
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionTimeout...............30000
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSource......................none
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceClassName.............none
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceJNDI..................none
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- driverClassName................."com.mysql.cj.jdbc.Driver"
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- exceptionOverrideClassName......none
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- healthCheckProperties...........{}
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- healthCheckRegistry.............none
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- idleTimeout.....................600000
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- initializationFailTimeout.......1
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- isolateInternalQueries..........false
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- jdbcUrl.........................jdbc:mysql://localhost:3306/timekeeping
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- keepaliveTime...................0
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- leakDetectionThreshold..........0
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- maxLifetime.....................1800000
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- maximumPoolSize.................10
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- metricRegistry..................none
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- metricsTrackerFactory...........none
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- minimumIdle.....................10
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- password........................<masked>
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- poolName........................"HikariPool-1"
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- readOnly........................false
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- registerMbeans..................false
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- scheduledExecutor...............none
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- schema..........................none
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- threadFactory...................internal
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- transactionIsolation............default
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- username........................"root"
-2023-01-08 16:15:10 [main] DEBUG com.zaxxer.hikari.HikariConfig- validationTimeout...............5000
-2023-01-08 16:15:10 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
-2023-01-08 16:15:11 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6e1d4137
-2023-01-08 16:15:11 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
-2023-01-08 16:15:12 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Pool stats (total=1, active=1, idle=0, waiting=1)
-2023-01-08 16:15:12 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@48a2985b
-2023-01-08 16:15:12 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@38dc7b75
-2023-01-08 16:15:12 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@54d5ad6b
-2023-01-08 16:15:12 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6dfef026
-2023-01-08 16:15:12 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@50b5639d
-2023-01-08 16:15:12 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2494efc2
-2023-01-08 16:15:12 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5076ce67
-2023-01-08 16:15:12 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3ac2a5f1
-2023-01-08 16:15:12 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@711a4cf7
-2023-01-08 16:15:13 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:15:13 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@38dc7b75
-2023-01-08 16:15:13 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@38dc7b75
-2023-01-08 16:15:13 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@38dc7b75
-2023-01-08 16:15:13 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:15:13 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:15:13 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@38dc7b75
-2023-01-08 16:15:13 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@38dc7b75
-2023-01-08 16:15:13 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@38dc7b75
-2023-01-08 16:15:13 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@38dc7b75
-2023-01-08 16:15:13 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@38dc7b75
-2023-01-08 16:15:14 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@38dc7b75
-2023-01-08 16:15:14 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@54d5ad6b
-2023-01-08 16:15:14 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@54d5ad6b
-2023-01-08 16:15:14 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@54d5ad6b
-2023-01-08 16:15:14 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- No requests available
-2023-01-08 16:15:14 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@54d5ad6b
-2023-01-08 16:15:14 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@54d5ad6b
-2023-01-08 16:15:14 [main] DEBUG com.zaxxer.hikari.pool.PoolBase- HikariPool-1 - Reset (autoCommit) on connection com.mysql.cj.jdbc.ConnectionImpl@54d5ad6b
-2023-01-08 16:15:14 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong.login
-2023-01-08 16:15:14 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong.status
-2023-01-08 16:15:14 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong.login
-2023-01-08 16:15:14 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong.role
-2023-01-08 16:15:14 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong.status
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- Driver class com.mysql.cj.jdbc.Driver found in Thread context class loader jdk.internal.loader.ClassLoaders$AppClassLoader@39a054a5
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- HikariPool-1 - configuration:
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- allowPoolSuspension.............false
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- autoCommit......................true
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- catalog.........................none
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionInitSql...............none
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionTestQuery.............none
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionTimeout...............30000
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSource......................none
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceClassName.............none
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceJNDI..................none
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- driverClassName................."com.mysql.cj.jdbc.Driver"
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- exceptionOverrideClassName......none
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- healthCheckProperties...........{}
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- healthCheckRegistry.............none
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- idleTimeout.....................600000
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- initializationFailTimeout.......1
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- isolateInternalQueries..........false
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- jdbcUrl.........................jdbc:mysql://localhost:3306/timekeeping
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- keepaliveTime...................0
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- leakDetectionThreshold..........0
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- maxLifetime.....................1800000
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- maximumPoolSize.................10
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- metricRegistry..................none
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- metricsTrackerFactory...........none
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- minimumIdle.....................10
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- password........................<masked>
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- poolName........................"HikariPool-1"
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- readOnly........................false
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- registerMbeans..................false
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- scheduledExecutor...............none
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- schema..........................none
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- threadFactory...................internal
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- transactionIsolation............default
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- username........................"root"
-2023-01-08 19:15:23 [main] DEBUG com.zaxxer.hikari.HikariConfig- validationTimeout...............5000
-2023-01-08 19:15:23 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
-2023-01-08 19:15:24 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@642a16aa
-2023-01-08 19:15:24 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
-2023-01-08 19:15:24 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1eb40e3f
-2023-01-08 19:15:24 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6e9cbd8b
-2023-01-08 19:15:24 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Pool stats (total=3, active=2, idle=1, waiting=0)
-2023-01-08 19:15:24 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5874d29a
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- Driver class com.mysql.cj.jdbc.Driver found in Thread context class loader jdk.internal.loader.ClassLoaders$AppClassLoader@39a054a5
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- HikariPool-1 - configuration:
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- allowPoolSuspension.............false
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- autoCommit......................true
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- catalog.........................none
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionInitSql...............none
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionTestQuery.............none
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- connectionTimeout...............30000
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSource......................none
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceClassName.............none
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceJNDI..................none
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- driverClassName................."com.mysql.cj.jdbc.Driver"
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- exceptionOverrideClassName......none
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- healthCheckProperties...........{}
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- healthCheckRegistry.............none
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- idleTimeout.....................600000
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- initializationFailTimeout.......1
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- isolateInternalQueries..........false
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- jdbcUrl.........................jdbc:mysql://localhost:3306/timekeeping
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- keepaliveTime...................0
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- leakDetectionThreshold..........0
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- maxLifetime.....................1800000
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- maximumPoolSize.................10
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- metricRegistry..................none
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- metricsTrackerFactory...........none
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- minimumIdle.....................10
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- password........................<masked>
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- poolName........................"HikariPool-1"
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- readOnly........................false
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- registerMbeans..................false
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- scheduledExecutor...............none
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- schema..........................none
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- threadFactory...................internal
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- transactionIsolation............default
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- username........................"root"
-2023-01-08 19:55:49 [main] DEBUG com.zaxxer.hikari.HikariConfig- validationTimeout...............5000
-2023-01-08 19:55:49 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
-2023-01-08 19:55:51 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@ed91d8d
-2023-01-08 19:55:51 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
-2023-01-08 19:55:51 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@52f2d16
-2023-01-08 19:55:51 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Pool stats (total=2, active=2, idle=0, waiting=0)
-2023-01-08 19:55:51 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@751c0601
-2023-01-08 19:55:51 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6f91b81
-2023-01-08 19:55:51 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong.login
-2023-01-08 19:55:51 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@207300e6
-2023-01-08 19:55:51 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7c95a048
-2023-01-08 19:55:51 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@17156a78
-2023-01-08 19:55:51 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5a70b762
-2023-01-08 19:55:51 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@38b80b76
-2023-01-08 19:55:51 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@53a98f1d
-2023-01-08 19:55:51 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong.login
-2023-01-09 14:34:16 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 17:23:05 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 17:28:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 17:32:57 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 17:51:44 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 17:55:14 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 17:57:22 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 18:02:06 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 18:12:43 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 18:19:43 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 18:21:45 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 18:23:20 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 18:28:47 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 18:29:47 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 18:30:57 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 18:33:33 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 18:35:44 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 18:35:44 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 18:56:31 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 18:56:31 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 18:56:31 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:10:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:10:28 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:10:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:10:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:14:05 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:14:05 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:14:05 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:14:05 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:14:05 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:55:01 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:55:01 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:55:01 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:55:01 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:55:01 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:55:01 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:55:01 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:55:01 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:55:01 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:55:01 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:55:01 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:55:01 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:55:01 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:56:35 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:56:35 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:56:35 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:56:35 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:56:35 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:56:35 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:56:35 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:56:35 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:56:35 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:56:35 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:56:35 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:56:35 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-09 19:56:35 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-10 18:51:48 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-10 18:51:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-10 18:51:48 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-10 18:51:48 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-10 18:51:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-10 18:51:48 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-10 18:51:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-10 18:51:48 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-10 18:51:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-10 18:51:48 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-10 18:51:48 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-10 18:51:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
-2023-01-10 18:51:48 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:12:05 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
+2023-01-18 17:12:06 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5ef2cbe6
+2023-01-18 17:12:06 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
+2023-01-18 17:12:06 [main] INFO  com.sulzhenko.listeners.ContextListener- ApplicationContext is set
+2023-01-18 17:12:18 [http-nio-8080-exec-1] WARN  sulzhenko.model.services.implementation.UserServiceImpl- null
+2023-01-18 17:12:37 [http-nio-8080-exec-5] WARN  com.sulzhenko.controller.command.AddCategoryCommand- duplicate.category
+2023-01-18 17:17:26 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
+2023-01-18 17:17:27 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7dd45c93
+2023-01-18 17:17:27 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
+2023-01-18 17:17:27 [main] INFO  com.sulzhenko.listeners.ContextListener- ApplicationContext is set
+2023-01-18 17:17:40 [http-nio-8080-exec-4] WARN  sulzhenko.model.services.implementation.UserServiceImpl- null
+2023-01-18 17:18:46 [http-nio-8080-exec-8] WARN  com.sulzhenko.controller.command.AddCategoryCommand- duplicate.category
+2023-01-18 17:19:44 [http-nio-8080-exec-5] WARN  sulzhenko.model.services.implementation.UserServiceImpl- null
+2023-01-18 17:25:12 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
+2023-01-18 17:25:13 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@726a8729
+2023-01-18 17:25:13 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
+2023-01-18 17:25:13 [main] INFO  com.sulzhenko.listeners.ContextListener- ApplicationContext is set
+2023-01-18 17:25:38 [http-nio-8080-exec-8] WARN  com.sulzhenko.controller.command.AddCategoryCommand- duplicate.category
+2023-01-18 17:41:40 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 17:44:26 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 17:51:53 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 17:51:53 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- java.sql.SQLException
+2023-01-18 17:51:53 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 17:51:53 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 17:51:53 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 17:51:53 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 17:51:53 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 17:51:53 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- null
+2023-01-18 17:51:53 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 17:51:53 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 17:51:53 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 17:51:53 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 17:51:53 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 17:51:53 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 17:51:54 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 17:51:54 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 17:51:54 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 17:51:54 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 17:51:54 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 17:51:54 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 17:51:54 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- java.sql.SQLException
+2023-01-18 17:51:54 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 17:51:54 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 17:51:54 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 17:51:54 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 17:51:54 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 17:51:54 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 17:51:54 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 17:51:54 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 17:51:54 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 17:51:54 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:51:54 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:51:54 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:51:54 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:51:54 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:51:54 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:51:54 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:51:54 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:51:54 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong name: new status
+2023-01-18 17:51:54 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:51:54 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:51:54 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong status: new status
+2023-01-18 17:51:54 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:51:54 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:51:54 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:52:03 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 17:52:03 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- java.sql.SQLException
+2023-01-18 17:52:03 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 17:52:03 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 17:52:03 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 17:52:03 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 17:52:03 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 17:52:03 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- null
+2023-01-18 17:52:03 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 17:52:03 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 17:52:03 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 17:52:03 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 17:52:03 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 17:52:03 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 17:52:03 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 17:52:03 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 17:52:03 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 17:52:03 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 17:52:03 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 17:52:03 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 17:52:03 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- java.sql.SQLException
+2023-01-18 17:52:03 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 17:52:03 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 17:52:03 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 17:52:03 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 17:52:03 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 17:52:03 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 17:52:03 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 17:52:03 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 17:52:03 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 17:52:03 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:52:04 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:52:04 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:52:04 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:52:04 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:52:04 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:52:04 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:52:04 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:52:04 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong name: new status
+2023-01-18 17:52:04 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:52:04 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:52:04 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong status: new status
+2023-01-18 17:52:04 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:52:04 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 17:52:04 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 19:20:15 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 19:20:15 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- java.sql.SQLException
+2023-01-18 19:20:15 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 19:20:15 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 19:20:15 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 19:20:15 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 19:20:15 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 19:20:15 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- null
+2023-01-18 19:20:15 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 19:20:15 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 19:20:15 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 19:20:15 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 19:20:15 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 19:20:15 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 19:20:15 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 19:20:15 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 19:20:15 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 19:20:15 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 19:20:15 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 19:20:15 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 19:20:15 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- java.sql.SQLException
+2023-01-18 19:20:15 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 19:20:15 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 19:20:15 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 19:20:15 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 19:20:15 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 19:20:15 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 19:20:15 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 19:20:15 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 19:20:15 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 19:20:15 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 19:20:15 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 19:20:15 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 19:20:15 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 19:20:15 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 19:20:15 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 19:20:15 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 19:20:15 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 19:20:15 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong name: new status
+2023-01-18 19:20:15 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 19:20:15 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 19:20:15 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong status: new status
+2023-01-18 19:20:15 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 19:20:15 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 19:20:15 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:22:12 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:23:17 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:23:17 [main] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
+2023-01-18 20:27:25 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:27:25 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- java.sql.SQLException
+2023-01-18 20:27:25 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:27:25 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:27:25 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:27:25 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:27:25 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:27:25 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- null
+2023-01-18 20:27:25 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:27:25 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:27:25 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:27:25 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:27:25 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:27:25 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:27:25 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:27:25 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:27:25 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:27:25 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:27:25 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:27:25 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:27:25 [main] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
+2023-01-18 20:27:25 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:27:25 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- java.sql.SQLException
+2023-01-18 20:27:25 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:27:25 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:27:25 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:27:25 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:27:25 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:27:26 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:27:26 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:27:26 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:27:26 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:27:26 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:27:26 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:27:26 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:27:26 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:27:26 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:27:26 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:27:26 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:27:26 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:27:26 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong name: new status
+2023-01-18 20:27:26 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:27:26 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:27:26 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong status: new status
+2023-01-18 20:27:26 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:27:26 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:27:26 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:29:43 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:29:43 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- java.sql.SQLException
+2023-01-18 20:29:43 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:29:43 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:29:43 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:29:43 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:29:43 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:29:43 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- null
+2023-01-18 20:29:43 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:29:43 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:29:43 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:29:43 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:29:43 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:29:43 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:29:43 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:29:43 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:29:43 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:29:43 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:29:43 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:29:43 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:29:43 [main] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
+2023-01-18 20:29:43 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:29:43 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- java.sql.SQLException
+2023-01-18 20:29:43 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:29:43 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:29:43 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:29:43 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:29:43 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:29:43 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:29:43 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:29:43 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:29:43 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:29:43 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:29:43 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:29:43 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:29:43 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:29:43 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:29:43 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:29:43 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:29:43 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:29:44 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong name: new status
+2023-01-18 20:29:44 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:29:44 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:29:44 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong status: new status
+2023-01-18 20:29:44 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:29:44 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:29:44 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:12 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:30:12 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- java.sql.SQLException
+2023-01-18 20:30:12 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:30:12 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:30:12 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:30:12 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:30:12 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:30:12 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- null
+2023-01-18 20:30:12 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:30:12 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:30:12 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:30:12 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:30:12 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:30:12 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:30:12 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:30:12 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:30:12 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:30:12 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:30:12 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:30:12 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:12 [main] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
+2023-01-18 20:30:12 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:30:12 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- java.sql.SQLException
+2023-01-18 20:30:12 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:30:12 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:30:12 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:30:12 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:30:12 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:30:12 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:30:12 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:30:12 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:30:12 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:30:13 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:13 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:13 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:13 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:13 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:13 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:13 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:13 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:13 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong name: new status
+2023-01-18 20:30:13 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:13 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:13 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong status: new status
+2023-01-18 20:30:13 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:13 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:13 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:42 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:30:42 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- java.sql.SQLException
+2023-01-18 20:30:42 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:30:42 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:30:42 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:30:42 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:30:42 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:30:42 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- null
+2023-01-18 20:30:42 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:30:42 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:30:42 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:30:42 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:30:42 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:30:42 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:30:42 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:30:42 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:30:42 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-18 20:30:42 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:30:42 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:30:42 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:42 [main] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
+2023-01-18 20:30:42 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:30:42 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- java.sql.SQLException
+2023-01-18 20:30:42 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:30:42 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:30:42 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:30:42 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:30:42 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:30:42 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:30:42 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:30:42 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-18 20:30:42 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-18 20:30:42 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:42 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:42 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:42 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:42 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:42 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:42 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:42 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:42 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong name: new status
+2023-01-18 20:30:42 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:43 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:43 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong status: new status
+2023-01-18 20:30:43 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:43 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:30:43 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-18 20:38:05 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
+2023-01-18 20:38:06 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6003220a
+2023-01-18 20:38:06 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
+2023-01-18 20:38:06 [main] INFO  com.sulzhenko.listeners.ContextListener- ApplicationContext is set
+2023-01-18 20:38:44 [http-nio-8080-exec-3] WARN  com.sulzhenko.controller.command.SetAmountCommand- amount.nonnegative
+2023-01-19 11:29:10 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 11:29:10 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- java.sql.SQLException
+2023-01-19 11:29:10 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 11:29:10 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 11:29:10 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 11:29:10 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 11:29:10 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 11:29:10 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- null
+2023-01-19 11:29:10 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 11:29:10 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 11:29:10 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 11:29:10 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 11:29:11 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 11:29:11 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 11:29:11 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 11:29:11 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 11:29:11 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 11:29:11 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 11:29:11 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 11:29:11 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:29:11 [main] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
+2023-01-19 11:29:11 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 11:29:11 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- java.sql.SQLException
+2023-01-19 11:29:11 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 11:29:11 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 11:29:11 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 11:29:11 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 11:29:11 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 11:29:11 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 11:29:11 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 11:29:11 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 11:29:11 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 11:29:11 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:29:11 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:29:11 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:29:11 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:29:11 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:29:11 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:29:11 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:29:11 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:29:11 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong name: new status
+2023-01-19 11:29:11 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:29:11 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:29:11 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong status: new status
+2023-01-19 11:29:11 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:29:11 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:29:11 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:32:35 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 11:32:35 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- java.sql.SQLException
+2023-01-19 11:32:35 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 11:32:35 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 11:32:35 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 11:32:35 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 11:32:35 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 11:32:35 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- null
+2023-01-19 11:32:35 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 11:32:35 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 11:32:35 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 11:32:35 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 11:32:35 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 11:32:35 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 11:32:35 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 11:32:35 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 11:32:35 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 11:32:36 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 11:32:36 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 11:32:36 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:32:36 [main] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
+2023-01-19 11:32:36 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 11:32:36 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- java.sql.SQLException
+2023-01-19 11:32:36 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 11:32:36 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 11:32:36 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 11:32:36 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 11:32:36 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 11:32:36 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 11:32:36 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 11:32:36 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 11:32:36 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 11:32:36 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:32:36 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:32:36 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:32:36 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:32:36 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:32:36 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:32:36 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:32:36 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:32:36 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong name: new status
+2023-01-19 11:32:36 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:32:36 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:32:36 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong status: new status
+2023-01-19 11:32:36 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:32:36 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 11:32:36 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 12:01:05 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 12:18:32 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 12:18:32 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 12:58:31 [main] FATAL sulzhenko.model.services.implementation.UserServiceImpl- unknown exception when checking role
+2023-01-19 12:59:56 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 13:00:30 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 13:01:24 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 13:01:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 13:02:50 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 13:03:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 13:18:26 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 13:19:27 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 13:20:12 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 13:21:07 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 13:22:06 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 13:23:05 [main] FATAL sulzhenko.model.services.implementation.UserServiceImpl- unknown exception when checking role
+2023-01-19 13:23:30 [main] FATAL sulzhenko.model.services.implementation.UserServiceImpl- unknown exception when checking role
+2023-01-19 13:24:17 [main] FATAL sulzhenko.model.services.implementation.UserServiceImpl- unknown exception when checking status
+2023-01-19 16:28:19 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- wrong.login
+2023-01-19 16:29:15 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- wrong.login
+2023-01-19 16:30:25 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- wrong.login
+2023-01-19 16:33:23 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.login
+2023-01-19 16:34:19 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.login
+2023-01-19 16:34:49 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.password
+2023-01-19 16:34:58 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.login
+2023-01-19 16:39:41 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.password
+2023-01-19 17:03:00 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- java.sql.SQLException
+2023-01-19 17:03:00 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 17:03:00 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 17:03:00 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- null
+2023-01-19 17:03:00 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 17:03:00 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 17:03:00 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 17:03:00 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 17:03:00 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:03:00 [main] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
+2023-01-19 17:03:00 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.services.implementation.UserServiceImpl- unknown exception when checking role
+2023-01-19 17:03:00 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- wrong.login
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.services.implementation.UserServiceImpl- unknown exception when checking status
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:03:00 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.services.implementation.UserServiceImpl- unknown exception when checking role
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:03:00 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:03:00 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:03:00 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.login
+2023-01-19 17:03:00 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.password
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:03:00 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- java.sql.SQLException
+2023-01-19 17:03:00 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 17:03:00 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 17:03:00 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 17:03:00 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 17:03:00 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:03:01 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:03:01 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:03:01 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:03:01 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:03:01 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:03:01 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:03:01 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:03:01 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong name: new status
+2023-01-19 17:03:01 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:03:01 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:03:01 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong status: new status
+2023-01-19 17:03:01 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:03:01 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:03:01 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:04 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 17:34:04 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- java.sql.SQLException
+2023-01-19 17:34:04 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 17:34:04 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 17:34:04 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 17:34:04 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 17:34:04 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 17:34:04 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- null
+2023-01-19 17:34:05 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 17:34:05 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 17:34:05 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 17:34:05 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 17:34:05 [main] INFO  sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:05 [main] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
+2023-01-19 17:34:05 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.services.implementation.UserServiceImpl- unknown exception when checking role
+2023-01-19 17:34:05 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- wrong.login
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.services.implementation.UserServiceImpl- unknown exception when checking status
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:05 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.services.implementation.UserServiceImpl- unknown exception when checking role
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:05 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:05 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:05 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.login
+2023-01-19 17:34:05 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.password
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:05 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- java.sql.SQLException
+2023-01-19 17:34:05 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 17:34:05 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 17:34:05 [main] INFO  sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-19 17:34:05 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:05 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:05 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:05 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:05 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:05 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong name: new status
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:05 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:05 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- wrong status: new status
+2023-01-19 17:34:05 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:05 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-19 17:34:05 [main] INFO  sulzhenko.model.DAO.implementation.UserDAOImpl- null

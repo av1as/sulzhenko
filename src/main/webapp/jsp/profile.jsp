@@ -1,6 +1,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="jakarta.tags.core" %>
+<%@taglib prefix="myTags" tagdir="/WEB-INF/tags" %>
 <%@page import="java.util.Hashtable"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -27,8 +28,7 @@
 
         <li>
         <br>
-            <jsp:include page="/blocks/lang.jsp"/>
-
+            <myTags:lang/>
         </li>
 
         <li>            <jsp:include page="/blocks/logout.jsp"/></li>
@@ -51,12 +51,19 @@
 ---------->
         <form action="/TimeKeeping/controller?action=update_user" method="post" id="fileForm" role="form">
                 <input type="hidden" name="action" value="update_user" />
+<!------
+                 <div class="form-group">
+                    <label><span class="req">* </span><fmt:message key="login"/></label><br>
+                    <div title="<fmt:message key="login.requirements"/>"><fmt:message key="hover.requirements"/></div>
+                     <input name="newlogin" type="text" value="${user.getLogin()}" class="input-xlarge">
+                 </div>
+---------->
+             <div>
+                <label><fmt:message key="login"/></label><br>
+                <h4>${user.getLogin()}</h4>
 
-            <div class="form-group">
-               <label><span class="req">* </span><fmt:message key="login"/></label><br>
-               <div title="<fmt:message key="login.requirements"/>"><fmt:message key="hover.requirements"/></div>
-                <input name="newlogin" type="text" value="${user.getLogin()}" class="input-xlarge">
-            </div>
+             </div>
+
             <div class="form-group">
                <label><fmt:message key="first.name"/></label><br>
                 <input name="newfirstname" type="text" value="${user.getFirstName()}" class="input-xlarge">

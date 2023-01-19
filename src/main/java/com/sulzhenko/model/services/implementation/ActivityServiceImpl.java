@@ -17,7 +17,6 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class ActivityServiceImpl implements ActivityService {
-    public static final String UNKNOWN_ERROR = "unknown.error";
     private final DataSource dataSource;
     ActivityDAO activityDAO;
     CategoryService categoryService;
@@ -53,13 +52,14 @@ public class ActivityServiceImpl implements ActivityService {
                 logger.warn(e.getMessage());
                 throw new ServiceException(e);
             }
-        } else throw new ServiceException("wrong.activity");
+        } else if(!isNameAvailable(name)) throw new ServiceException(WRONG_ACTIVITY);
+        else if(categoryService.isCategoryNameUnique(categoryName)) throw new ServiceException(WRONG_CATEGORY);
     }
     public void updateActivity(String oldName, String newName, String newCategoryName){
-        if(isNameAvailable(oldName) || !isNameAvailable(newName)){
-            throw new ServiceException("wrong.activity");
+        if(isNameAvailable(oldName) || ((!Objects.equals(newName, oldName)) && !isNameAvailable(newName))){
+            throw new ServiceException(WRONG_ACTIVITY);
         } else if(categoryService.isCategoryNameUnique(newCategoryName)){
-            throw new ServiceException("wrong.category");
+            throw new ServiceException(WRONG_CATEGORY);
         } else{
             Activity activity = activityDAO.getByName(oldName);
             String[] param = {newName, newCategoryName};
@@ -86,51 +86,50 @@ public class ActivityServiceImpl implements ActivityService {
             }
         } else {
             logger.info("this activity doesn't exist: {}", name);
-            throw new ServiceException("unknown.activity");
+            throw new ServiceException(WRONG_ACTIVITY);
         }
     }
     private String buildQuery(HttpServletRequest request){
         String order = getOrder(request);
         String parameter = getParam(request);
-        String filter = request.getParameter("filter");
+        String filter = request.getParameter(FILTER);
         int page = 1;
-        if(request.getParameter("page") != null)
-            page = Integer.parseInt(request.getParameter("page"));
+        if(request.getParameter(PAGE) != null)
+            page = Integer.parseInt(request.getParameter(PAGE));
         int records = 5;
         int offset = (page - 1) * records;
         return COMMON_PART +
                 applyFilter(filter) +
-                applySorting("activity_name") +
+                applySorting(ACTIVITY_NAME) +
                 applyOrder(parameter, order, offset, records);
     }
 
     private static String getParam(HttpServletRequest request) {
-        String parameter = request.getParameter("parameter");
-        if(Objects.equals(parameter, "number of users")) parameter = "quantity";
-        else if(Objects.equals(parameter, "name of activity")) parameter = "activity_name";
-        else if(Objects.equals(parameter, "category of activity")) parameter = "category_name";
+        String parameter = request.getParameter(PARAMETER);
+        if(Objects.equals(parameter, NUMBER_OF_USERS)) parameter = QUANTITY;
+        else if(Objects.equals(parameter, NAME_OF_ACTIVITY)) parameter = ACTIVITY_NAME;
+        else if(Objects.equals(parameter, CATEGORY_OF_ACTIVITY)) parameter = CATEGORY_NAME;
         return parameter;
     }
 
     private static String getOrder(HttpServletRequest request) {
         String order;
-        if(Objects.equals(request.getParameter("order"), "descending")) order = "DESC";
-        else order = "ASC";
+        if(Objects.equals(request.getParameter(ORDER), DESCENDING)) order = DESC;
+        else order = ASC;
         return order;
     }
 
     private String getTotalRecords(HttpServletRequest request){
-        String filter = request.getParameter("filter");
+        String filter = request.getParameter(FILTER);
         String query = "SELECT COUNT(activity.activity_name)\n" +
                     "FROM activity\n" +
                     "INNER JOIN category_of_activity\n" +
                     "ON activity.category_id = category_of_activity.category_id\n";
-        if(!Objects.equals(filter, "all categories")) query += "WHERE category_name = '" + filter + "'";
+        if(!Objects.equals(filter, ALL_CATEGORIES)) query += "WHERE category_name = '" + filter + "'";
         return query;
     }
     public int getNumberOfRecords(HttpServletRequest request) throws DAOException{
         int number = 0;
-
         try(Connection con = dataSource.getConnection();
             PreparedStatement stmt = con.prepareStatement(getTotalRecords(request))){
             ResultSet rs = stmt.executeQuery();
@@ -169,7 +168,7 @@ public class ActivityServiceImpl implements ActivityService {
         }
     }
     private String applyFilter(String filter){
-        return Objects.equals(filter, "all categories") ? "": "WHERE category_name = '" + filter + "'\n";
+        return Objects.equals(filter, ALL_CATEGORIES) ? "": "WHERE category_name = '" + filter + "'\n";
     }
     private String applySorting(String sortParameter){
         return "GROUP BY " + sortParameter + " \n";

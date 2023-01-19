@@ -1,6 +1,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="jakarta.tags.core" %>
+<%@taglib prefix="myTags" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="ctg" uri="/WEB-INF/tld/custom.tld" %>
 <%@page import="java.util.Hashtable"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -30,8 +32,7 @@
 
         <li>
         <br>
-            <jsp:include page="/blocks/lang.jsp"/>
-
+            <myTags:lang/>
         </li>
         <li>
             <jsp:include page="/blocks/profile.jsp"/>
@@ -43,6 +44,19 @@
   </div><!-- /container -->
 </div>
 <!-- /Header -->
+
+<!--
+<div class="text-center">
+<h3><ctg:hello role="${user.getRole().getValue()}"/></h3>
+</div>
+-->
+
+
+<div class="text-right">
+<h3><fmt:message key="today"/><ctg:now/></h3>
+</div>
+
+
 
 <!-- Main -->
 <div class="container">

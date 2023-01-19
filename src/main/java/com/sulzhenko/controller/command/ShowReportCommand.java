@@ -1,20 +1,5 @@
 package com.sulzhenko.controller.command;
 
-import com.sulzhenko.controller.Path;
-import com.sulzhenko.model.DAO.DAOException;
-import com.sulzhenko.model.DTO.UserActivityDTO;
-import com.sulzhenko.model.entity.User;
-import com.sulzhenko.model.services.*;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import java.util.List;
-import static com.sulzhenko.ApplicationContext.getApplicationContext;
-import static com.sulzhenko.controller.Path.PAGE_ERROR;
-import static com.sulzhenko.model.Util.PaginationUtil.paginate;
-
 //public class ShowReportCommand implements Command {
 //    private static final Logger logger = LogManager.getLogger(ShowReportCommand.class);
 //    @Override

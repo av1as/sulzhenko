@@ -1,7 +1,9 @@
 package com.sulzhenko.controller.command;
 
+import com.sulzhenko.controller.Command;
+import com.sulzhenko.controller.Constants;
 import com.sulzhenko.controller.Path;
-import com.sulzhenko.model.entity.User;
+import com.sulzhenko.model.DTO.UserDTO;
 import com.sulzhenko.model.services.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,36 +19,33 @@ import static com.sulzhenko.ApplicationContext.getApplicationContext;
  * Update user controller action
  *
  */
-public class AdminUpdateUserCommand implements Command {
+public class AdminUpdateUserCommand implements Command, Constants, Path {
     UserService userService = getApplicationContext().getUserService();
     private static final Logger logger = LogManager.getLogger(AdminUpdateUserCommand.class);
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         HttpSession session = request.getSession();
-        String forward = Path.PAGE_ERROR;
+        String forward = Path.PAGE_ERROR_FULL;
         try{
-            User user = userService.getUser(request.getParameter("oldlogin"));
-            String[] param = getUpdateParameters(request, user);
-            userService.adminUpdateUser(user, param);
-            forward = "/TimeKeeping/controller?action=users";
+            UserDTO userDTO = userService.getUserDTO(request.getParameter(OLD_LOGIN));
+            String[] param = getUpdateParameters(request, userDTO);
+            userService.adminUpdateUser(userDTO, param);
+            forward = Path.PAGE_SHOW_USERS;
         } catch (ServiceException e) {
             logger.warn(e.getMessage());
-            session.setAttribute("error", e.getMessage());
+            session.setAttribute(ERROR, e.getMessage());
         }
         return forward;
     }
 
-    private static String[] getUpdateParameters(HttpServletRequest request, User user) {
-        String login = request.getParameter("newlogin");
-        String email = request.getParameter("newemail");
-        String firstName = request.getParameter("newfirstname");
-        String lastName = request.getParameter("newlastname");
-        String status = request.getParameter("newstatus");
-        String notifications = request.getParameter("newnotification");
-        if (notifications == null) notifications = "off";
-        assert user != null;
-        return new String[]{login, email, user.getPassword(), firstName, lastName, "system user",
-                status, notifications};
+    private static String[] getUpdateParameters(HttpServletRequest request, UserDTO userDTO) {
+        String notifications = request.getParameter(NEW_NOTIFICATIONS);
+        if (notifications == null) notifications = OFF;
+        assert userDTO != null;
+        return new String[]{request.getParameter(OLD_LOGIN), request.getParameter(NEW_EMAIL),
+                null, request.getParameter(NEW_FIRST_NAME),
+                request.getParameter(NEW_LAST_NAME), SYSTEM_USER,
+                request.getParameter(NEW_STATUS), notifications};
     }
 }

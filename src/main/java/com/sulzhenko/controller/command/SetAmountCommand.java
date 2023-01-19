@@ -1,8 +1,12 @@
 package com.sulzhenko.controller.command;
 
+import com.sulzhenko.controller.Command;
+import com.sulzhenko.controller.Constants;
 import com.sulzhenko.controller.Path;
-import com.sulzhenko.model.entity.*;
-import com.sulzhenko.model.services.*;
+import com.sulzhenko.model.DTO.ActivityDTO;
+import com.sulzhenko.model.DTO.UserDTO;
+import com.sulzhenko.model.services.ServiceException;
+import com.sulzhenko.model.services.UserActivityService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -14,26 +18,25 @@ import static com.sulzhenko.ApplicationContext.getApplicationContext;
  * Register controller action
  *
  */
-public class SetAmountCommand implements Command {
-    ActivityService activityService = getApplicationContext().getActivityService();
+public class SetAmountCommand implements Command, Constants, Path {
     UserActivityService userActivityService = getApplicationContext().getUserActivityService();
     private static final Logger logger = LogManager.getLogger(SetAmountCommand.class);
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)  {
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        String activityName = request.getParameter("activity_name");
-        int amount = Integer.parseInt(request.getParameter("amount"));
-        Activity activity = activityService.getActivity(activityName);
+        UserDTO userDTO = (UserDTO) session.getAttribute(USER);
+        String activityName = request.getParameter(ACTIVITY_NAME);
+        int amount = Integer.parseInt(request.getParameter(AMOUNT));
+        ActivityDTO activityDTO = new ActivityDTO(activityName);
         try{
-            userActivityService.setAmount(user, activity, amount);
+            userActivityService.setAmount(userDTO, activityDTO, amount);
         } catch (ServiceException e){
-            session.setAttribute("error", e.getMessage());
+            session.setAttribute(ERROR, e.getMessage());
             logger.warn(e.getMessage());
-            return Path.PAGE_ERROR;
+            return Path.PAGE_ERROR_FULL;
         }
-        request.setAttribute("user", user);
-        return "controller?action=user_activities";
+        request.setAttribute(USER, userDTO);
+        return PAGE_CONTROLLER_USER_ACTIVITIES;
     }
 }

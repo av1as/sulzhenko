@@ -10,8 +10,8 @@ import java.util.Map;
  *
  *
  */
-public class ActionFactory {
-  private static final ActionFactory ACTION_FACTORY = new ActionFactory();
+public class CommandFactory {
+  private static final CommandFactory ACTION_FACTORY = new CommandFactory();
   private static final Map<String, Command> actions = new HashMap<>();
 
   /**
@@ -51,18 +51,16 @@ public class ActionFactory {
     actions.put("show_requests", new ShowRequestsCommand());
     actions.put("approve_request", new ApproveRequestCommand());
     actions.put("decline_request", new DeclineRequestCommand());
-//    actions.put("show_report", new ShowReportCommand());
-//    actions.put("show_brief_report", new ShowBriefReportCommand());
     actions.put("show_full_report", new ShowFullReportCommand());
   }
 
-  private ActionFactory() {}
+  private CommandFactory() {}
 
-  public static ActionFactory getActionFactory() {
+  public static CommandFactory getCommandFactory() {
     return ACTION_FACTORY;
   }
 
-  public Command createCommand(String actionName) {
-    return actions.getOrDefault(actionName, new DefaultCommand());
+  public Command createCommand(String commandName) {
+    return actions.getOrDefault(commandName, new DefaultCommand());
   }
 }

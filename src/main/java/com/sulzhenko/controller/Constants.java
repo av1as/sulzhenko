@@ -14,7 +14,6 @@ public interface Constants {
     String CURRENT_PAGE = "currentPage";
     String CURRENT_PASSWORD = "currentpassword";
     String DEACTIVATED = "deactivated";
-    String DIFFERENT_PASSWORDS = "different.passwords";
     String EMAIL = "email";
     String EMPTY = "";
     String ERROR = "error";
@@ -23,7 +22,6 @@ public interface Constants {
     String INACTIVE = "inactive";
     String LAST_NAME = "lastname";
     String LOGIN = "login";
-    String LOGOUT_FINISHED = "Logout finished";
     String MENU = "menu";
     String NAME = "name";
     String NEW_ACTIVITY = "new_activity";
@@ -54,6 +52,4 @@ public interface Constants {
     String USERS = "users";
     String UNKNOWN_ERROR = "unknown.error";
     String WRONG_ACTIVITY = "wrong.activity";
-    String WRONG_LOGIN = "wrong.login";
-    String WRONG_PASSWORD = "wrong.password";
 }

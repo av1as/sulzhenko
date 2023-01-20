@@ -61,9 +61,9 @@ public class ShowActivityCommand implements Command, Constants, Path {
         UserDTO user = (UserDTO) session.getAttribute(USER);
         String menu = PAGE_LOGIN;
         if(user.getRole() == UserDTO.Role.ADMIN){
-            menu = PAGE_MENU_ADMIN_FULL;
+            menu = PAGE_MENU_ADMIN;
         } else if (user.getRole() == UserDTO.Role.SYSTEM_USER) {
-            menu = PAGE_MENU_SYSTEM_USER_FULL;
+            menu = PAGE_MENU_SYSTEM_USER;
         }
         request.setAttribute(MENU, menu);
     }

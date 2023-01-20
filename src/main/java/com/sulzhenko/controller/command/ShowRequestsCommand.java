@@ -42,9 +42,9 @@ public class ShowRequestsCommand implements Command, Constants, Path {
     private String getMenu(UserDTO user){
         String menu = PAGE_LOGIN;
         if(user.getRole() == UserDTO.Role.ADMIN){
-            menu = PAGE_MENU_ADMIN_FULL;
+            menu = PAGE_MENU_ADMIN;
         } else if (user.getRole() == UserDTO.Role.SYSTEM_USER) {
-            menu = PAGE_MENU_SYSTEM_USER_FULL;
+            menu = PAGE_MENU_SYSTEM_USER;
         }
         return menu;
     }

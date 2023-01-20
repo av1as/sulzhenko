@@ -20,7 +20,7 @@ import static com.sulzhenko.controller.Path.PAGE_ERROR_FULL;
 @WebServlet("/controller")
 public class Controller extends HttpServlet {
   private static final Logger logger = LogManager.getLogger(Controller.class);
-  private static final ActionFactory ACTION_FACTORY = ActionFactory.getActionFactory();
+  private static final CommandFactory ACTION_FACTORY = CommandFactory.getCommandFactory();
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -35,11 +35,10 @@ public class Controller extends HttpServlet {
   }
 
   private String executeRequest(HttpServletRequest req, HttpServletResponse resp){
-
-    Command action = ACTION_FACTORY.createCommand(req.getParameter("action"));
+    Command command = ACTION_FACTORY.createCommand(req.getParameter("action"));
     String path = PAGE_ERROR_FULL;
     try {
-      path = action.execute(req, resp);
+      path = command.execute(req, resp);
     } catch (Exception e) {
       logger.error(e.getMessage());
     }

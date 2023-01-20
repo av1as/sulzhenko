@@ -39,7 +39,7 @@ class ServiceUserActivityTests {
         DataSource dataSource = mock(DataSource.class);
         UserActivityService userActivityService = new UserActivityServiceImpl(dataSource);
         when(dataSource.getConnection()).thenThrow(new SQLException());
-        assertThrows(ServiceException.class, userActivityService::getNumberOfRecords);
+        assertThrows(ServiceException.class, ()-> userActivityService.getNumberOfRecords("test user"));
     }
     @Test
     void testListAllUserActivitiesSorted() throws SQLException {

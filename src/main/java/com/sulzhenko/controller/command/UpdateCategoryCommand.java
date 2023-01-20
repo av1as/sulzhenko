@@ -8,6 +8,8 @@ import com.sulzhenko.model.services.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.SQLException;
 
@@ -19,6 +21,7 @@ import static com.sulzhenko.ApplicationContext.getApplicationContext;
  */
 public class UpdateCategoryCommand implements Command, Constants, Path {
     CategoryService categoryService = getApplicationContext().getCategoryService();
+    private static final Logger logger = LogManager.getLogger(UpdateCategoryCommand.class);
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
@@ -30,6 +33,7 @@ public class UpdateCategoryCommand implements Command, Constants, Path {
             categoryService.updateCategory(oldName, newName);
             forward = PAGE_SHOW_CATEGORIES;
         } catch(ServiceException e){
+            logger.warn(e.getMessage());
             session.setAttribute(ERROR, e.getMessage());
             forward = PAGE_ERROR_FULL;
         }

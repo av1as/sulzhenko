@@ -30,7 +30,7 @@ public class ShowFullReportCommand implements Command, Constants, Path {
         request.setAttribute(REPORT, report);
         int noOfRecords;
         try {
-            noOfRecords = userActivityService.getNumberOfRecords();
+            noOfRecords = reportService.getNumberOfRecords();
         } catch (ServiceException e) {
             logger.warn(e);
             session.setAttribute(ERROR, e.getMessage());
@@ -54,9 +54,9 @@ public class ShowFullReportCommand implements Command, Constants, Path {
     private String getMenu(UserDTO user){
         String menu = PAGE_LOGIN;
         if(user.getRole() == UserDTO.Role.ADMIN){
-            menu = PAGE_MENU_ADMIN_FULL;
+            menu = PAGE_MENU_ADMIN;
         } else if (user.getRole() == UserDTO.Role.SYSTEM_USER) {
-            menu = PAGE_MENU_SYSTEM_USER_FULL;
+            menu = PAGE_MENU_SYSTEM_USER;
         }
         return menu;
     }

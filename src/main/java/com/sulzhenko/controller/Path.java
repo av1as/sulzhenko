@@ -1,7 +1,7 @@
 package com.sulzhenko.controller;
 
 /**
- * Class represents all jsp-pages and commands ina application
+ * Class represents all jsp-pages and commands in application
  *
  */
 public interface Path {
@@ -27,7 +27,4 @@ public interface Path {
   String PAGE_SHOW_USERS = "/TimeKeeping/controller?action=users";
   String PAGE_USER_ACTIVITIES = "/jsp/user_activities.jsp";
   String PAGE_USERS = "/jsp/users.jsp";
-//  String PAGE_REPORT = "/jsp/report.jsp";
-//  String PAGE_BRIEF_REPORT = "/jsp/brief_report.jsp";
-
 }

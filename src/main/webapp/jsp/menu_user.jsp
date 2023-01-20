@@ -45,11 +45,7 @@
 </div>
 <!-- /Header -->
 
-<!--
-<div class="text-center">
-<h3><ctg:hello role="${user.getRole().getValue()}"/></h3>
-</div>
--->
+
 
 
 <div class="text-right">

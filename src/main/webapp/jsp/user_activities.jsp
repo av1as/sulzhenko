@@ -118,31 +118,47 @@
                             </form>
 					</c:forEach>
 
-<!------
 
-                            <tr>
-							<td>Tiger Nixon</td>
-							<td>System Architect</td>
-				            <td>61</td>
- ---------->
 
 
 
  					</tbody>
-<!------
-					<tbody>
-                            <tr>
-							<td>Tiger Nixon</td>
-							<td>System Architect</td>
-				            <td>61</td>
 
-                            <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-
- 					</tbody>
- ---------->
 
 				</table>
+
+ <%--For displaying Previous link except for the 1st page --%>
+    <c:if test="${currentPage != 1}">
+        <td><a href="/TimeKeeping/controller?action=user_activities&page=${currentPage - 1}"><fmt:message key="previous"/></a></td>
+    </c:if>
+
+    <%--For displaying Page numbers.
+    The when condition does not display a link for the current page--%>
+    <table border="1" cellpadding="5" cellspacing="5">
+        <tr>
+            <c:forEach begin="1" end="${noOfPages}" var="i">
+                <c:choose>
+                    <c:when test="${currentPage eq i}">
+                        <td>${i}</td>
+
+                    </c:when>
+                    <c:otherwise>
+                        <td><a href="/TimeKeeping/controller?action=user_activities&page=${i}">${i}</a></td>
+
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+        </tr>
+    </table>
+
+    <%--For displaying Next link --%>
+    <c:if test="${currentPage lt noOfPages}">
+        <td><a href="/TimeKeeping/controller?action=user_activities&page=${currentPage + 1}"><fmt:message key="next"/></a></td>
+    </c:if>
+
+
+
+
 		<form action="/TimeKeeping/controller" method="post" action="/TimeKeeping/controller" id="fileForm" role="form">
                     <input type="hidden" name="action" value="add_activity" />
                     <label><fmt:message key="add.activity"/></label>

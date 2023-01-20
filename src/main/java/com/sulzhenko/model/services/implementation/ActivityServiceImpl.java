@@ -143,6 +143,7 @@ public class ActivityServiceImpl implements ActivityService {
     }
         public List<ActivityDTO> listActivitiesSorted(HttpServletRequest request){
         List<ActivityDTO> list = new ArrayList<>();
+//            logger.info(buildQuery(request));
         try (Connection con = dataSource.getConnection();
             PreparedStatement stmt = con.prepareStatement(buildQuery(request))) {
             ResultSet rs = stmt.executeQuery();

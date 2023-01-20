@@ -30,13 +30,6 @@ public class UpdateUserCommand implements Command, Constants, Path {
         HttpSession session = request.getSession();
         UserDTO userDTO = (UserDTO) session.getAttribute(USER);
         String forward = PAGE_ERROR_FULL;
-//        String forward = "/TimeKeeping/jsp/test.jsp";
-//        session.setAttribute("currentpassword", request.getParameter(CURRENT_PASSWORD));
-//        session.setAttribute("newpassword", request.getParameter(NEW_PASSWORD));
-//        session.setAttribute("newpasswordconfirm", request.getParameter(NEW_PASSWORD_CONFIRM));
-
-
-
         String errorMessage = userService.getErrorMessageUpdate(userDTO.getLogin(),
                 request.getParameter(CURRENT_PASSWORD), request.getParameter(NEW_PASSWORD),
                 request.getParameter(NEW_PASSWORD_CONFIRM));
@@ -47,10 +40,11 @@ public class UpdateUserCommand implements Command, Constants, Path {
                 session.setAttribute(USER, userService.getUserDTO(userDTO.getLogin()));
                 forward = PAGE_PROFILE;
             } catch (ServiceException e) {
-                logger.fatal(e.getMessage());
+                logger.warn(e.getMessage());
                 session.setAttribute(ERROR, e.getMessage());
             }
         } else{
+            logger.warn(errorMessage);
             session.setAttribute(ERROR, errorMessage);
         }
         return forward;

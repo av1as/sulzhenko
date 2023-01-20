@@ -13,7 +13,7 @@ import java.util.Properties;
 
 public class ApplicationContext {
     private final UserService userService;
-    CategoryService categoryService;
+    private final CategoryService categoryService;
     private final ActivityService activityService;
     private final ReportService reportService;
     private final UserActivityService userActivityService;
@@ -24,7 +24,7 @@ public class ApplicationContext {
         userService = new UserServiceImpl(dataSource);
         categoryService = new CategoryServiceImpl(dataSource);
         activityService = new ActivityServiceImpl(dataSource);
-        reportService = new ReportServiceImpl();
+        reportService = new ReportServiceImpl(dataSource);
         userActivityService = new UserActivityServiceImpl(dataSource);
         requestService = new RequestServiceImpl(dataSource);
     }

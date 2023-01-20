@@ -14,7 +14,7 @@ import java.util.List;
 public interface UserActivityService extends Constants {
     void setAmount(UserDTO userDTO, ActivityDTO activityDTO, int amount) throws DAOException;
     List<ActivityDTO> allAvailableActivities(UserDTO u);
-    int getNumberOfRecords();
+    int getNumberOfRecords(String login);
     List<UserActivityDTO> listAllUserActivitiesSorted(HttpServletRequest request);
     List<UserActivityDTO> listUserActivitiesBriefSorted(HttpServletRequest request);
     List<UserActivityDTO> listUserActivitiesSorted(HttpServletRequest request, UserDTO userDTO);

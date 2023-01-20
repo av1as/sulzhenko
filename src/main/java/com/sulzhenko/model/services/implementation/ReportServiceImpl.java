@@ -1,12 +1,25 @@
 package com.sulzhenko.model.services.implementation;
 
+import com.sulzhenko.model.DAO.DAOException;
 import com.sulzhenko.model.DTO.*;
 import com.sulzhenko.model.services.ReportService;
+import com.sulzhenko.model.services.ServiceException;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class ReportServiceImpl implements ReportService {
+    private final DataSource dataSource;
+
+    public ReportServiceImpl(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     public List<ReportDTO> viewReportPage(List<UserActivityDTO> activities) {
         List<ReportDTO> list = new ArrayList<>();
@@ -24,6 +37,20 @@ public class ReportServiceImpl implements ReportService {
             }
         }
         return list;
+    }
+    public int getNumberOfRecords() throws DAOException {
+        int number = 0;
+        String numberOfRecordsQuery = "SELECT COUNT(*) FROM user_activity";
+        try(Connection con = dataSource.getConnection();
+            PreparedStatement stmt = con.prepareStatement(numberOfRecordsQuery)){
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                number = rs.getInt(1);
+            }
+        } catch (SQLException e){
+            throw new ServiceException(UNKNOWN_ERROR);
+        }
+        return number;
     }
 
     private static void createAndAddElement(List<UserActivityDTO> activities, List<ReportDTO> list, List<UserActivityDTO> activitiesWithTime, int i, String login) {

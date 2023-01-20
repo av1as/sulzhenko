@@ -3,6 +3,7 @@ package com.sulzhenko.controller.command;
 import com.sulzhenko.controller.Command;
 import com.sulzhenko.controller.Constants;
 import com.sulzhenko.controller.Path;
+import com.sulzhenko.model.DTO.UserDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -15,10 +16,12 @@ public class LogoutCommand implements Command, Path, Constants {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
-        if (session != null) {
-            session.invalidate();
+        UserDTO userDTO = (UserDTO) session.getAttribute(USER);
+        session.invalidate();
+        if (userDTO != null) {
+            String login = userDTO.getLogin();
+            logger.info("user log out: {}", login);
         }
-        logger.debug(LOGOUT_FINISHED);
         return PAGE_LOGIN;
     }
 }

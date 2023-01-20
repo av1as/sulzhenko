@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 /**
- * NowTag  class.
+ * TodayTag  class.
  *
  */
 public class TodayTag extends SimpleTagSupport {

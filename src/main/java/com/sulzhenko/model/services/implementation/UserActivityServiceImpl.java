@@ -13,6 +13,8 @@ import com.sulzhenko.model.services.ServiceException;
 import com.sulzhenko.model.services.UserActivityService;
 import com.sulzhenko.model.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,6 +29,7 @@ public class UserActivityServiceImpl implements UserActivityService {
     ActivityDAO activityDAO;
     UserActivityDAO userActivityDAO;
     UserService userService;
+    private static final Logger logger = LogManager.getLogger(UserActivityServiceImpl.class);
 
     public UserActivityServiceImpl(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -110,9 +113,13 @@ public class UserActivityServiceImpl implements UserActivityService {
         return list;
     }
 
-    public int getNumberOfRecords() throws DAOException {
+
+    public int getNumberOfRecords(String login) throws DAOException {
         int number = 0;
-        String numberOfRecordsQuery = "SELECT COUNT(*) FROM user_activity";
+        String numberOfRecordsQuery = "SELECT COUNT(*) FROM user_activity\n" +
+                "INNER JOIN user\n" +
+                "ON user.account = user_activity.account\n" +
+                "WHERE user.login = '" + login + "'";
         try(Connection con = dataSource.getConnection();
             PreparedStatement stmt = con.prepareStatement(numberOfRecordsQuery)){
             ResultSet rs = stmt.executeQuery();
@@ -141,6 +148,7 @@ public class UserActivityServiceImpl implements UserActivityService {
     }
     public List<UserActivityDTO> listUserActivitiesSorted(HttpServletRequest request, UserDTO userDTO){
         List<UserActivityDTO> list = new ArrayList<>();
+//        logger.info(buildUserQuery(request));
         try (Connection con = dataSource.getConnection();
              PreparedStatement stmt = con.prepareStatement(buildUserQuery(request))) {
             stmt.setString(1, userDTO.getLogin());

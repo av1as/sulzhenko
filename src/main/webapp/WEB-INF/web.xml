@@ -60,7 +60,7 @@
 
 
     <listener>
-        <listener-class>com.sulzhenko.listeners.ContextListener</listener-class>
+        <listener-class>com.sulzhenko.controller.listeners.ContextListener</listener-class>
     </listener>
 
 

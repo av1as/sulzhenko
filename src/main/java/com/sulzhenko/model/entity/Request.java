@@ -13,7 +13,7 @@ public class Request implements Serializable {
     private String actionToDo;
     private String description;
 
-    public Request() {
+    private Request() {
     }
 
     public Request(Long id, String login, String activityName, String actionToDo, String description) {

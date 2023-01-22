@@ -8,4 +8,5 @@ public interface RequestDAO extends DAO<Request>{
     List<Request> getByLogin(String login);
     List<Request> getByActivity(String activityName);
     List<Request> getByActionToDo(String actionName);
+    List<Request> getByLoginAndAction(String login, String action) throws DAOException;
 }

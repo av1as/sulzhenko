@@ -2,9 +2,9 @@ package com.sulzhenko.model.services.implementation;
 
 import com.sulzhenko.model.DAO.*;
 import com.sulzhenko.model.DAO.implementation.*;
-import com.sulzhenko.model.DTO.UserDTO;
-import com.sulzhenko.model.DTO.ActivityDTO;
-import com.sulzhenko.model.DTO.UserActivityDTO;
+import com.sulzhenko.DTO.UserDTO;
+import com.sulzhenko.DTO.ActivityDTO;
+import com.sulzhenko.DTO.UserActivityDTO;
 import javax.sql.DataSource;
 
 import com.sulzhenko.model.entity.Activity;
@@ -91,7 +91,8 @@ public class UserActivityServiceImpl implements UserActivityService {
                     stmt.setLong(3, activity.getId());
                     stmt.executeUpdate();
                 } catch (SQLException e) {
-                    throw new ServiceException(UNKNOWN_ERROR, e);
+                    logger.fatal(e);
+                    throw new ServiceException(UNKNOWN_ERROR);
                 }
             } else {
                 throw new ServiceException(USER_HAS_NO_ACTIVITY);
@@ -127,6 +128,7 @@ public class UserActivityServiceImpl implements UserActivityService {
                 number = rs.getInt(1);
             }
         } catch (SQLException e){
+            logger.fatal(e);
             throw new ServiceException(UNKNOWN_ERROR);
         }
         return number;
@@ -142,13 +144,13 @@ public class UserActivityServiceImpl implements UserActivityService {
                 list.add(userActivity);
             }
         } catch (SQLException e) {
-            throw new ServiceException(UNKNOWN_ERROR, e);
+            logger.fatal(e);
+            throw new ServiceException(UNKNOWN_ERROR);
         }
         return list;
     }
     public List<UserActivityDTO> listUserActivitiesSorted(HttpServletRequest request, UserDTO userDTO){
         List<UserActivityDTO> list = new ArrayList<>();
-//        logger.info(buildUserQuery(request));
         try (Connection con = dataSource.getConnection();
              PreparedStatement stmt = con.prepareStatement(buildUserQuery(request))) {
             stmt.setString(1, userDTO.getLogin());
@@ -158,6 +160,7 @@ public class UserActivityServiceImpl implements UserActivityService {
                 list.add(userActivityDTO);
             }
         } catch (SQLException e) {
+            logger.fatal(e);
             throw new ServiceException(UNKNOWN_ERROR, e);
         }
         return list;
@@ -172,7 +175,8 @@ public class UserActivityServiceImpl implements UserActivityService {
                 list.add(userActivity);
             }
         } catch (SQLException e) {
-            throw new ServiceException(UNKNOWN_ERROR, e);
+            logger.fatal(e);
+            throw new ServiceException(UNKNOWN_ERROR);
         }
         return list;
     }

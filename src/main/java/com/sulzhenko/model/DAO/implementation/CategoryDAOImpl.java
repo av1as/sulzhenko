@@ -39,7 +39,7 @@ public class CategoryDAOImpl implements CategoryDAO, Constants {
             }
         } catch (SQLException e){
             logger.fatal(e.getMessage());
-            throw new DAOException(UNKNOWN_ERROR, e);
+            throw new DAOException(UNKNOWN_ERROR);
         }
         return Optional.ofNullable(c);
     }
@@ -56,7 +56,7 @@ public class CategoryDAOImpl implements CategoryDAO, Constants {
             }
         } catch (SQLException e){
             logger.fatal(e);
-            throw new DAOException(UNKNOWN_ERROR, e);
+            throw new DAOException(UNKNOWN_ERROR);
         }
         return list;
     }
@@ -80,8 +80,8 @@ public class CategoryDAOImpl implements CategoryDAO, Constants {
                 list.add(new Category(rs.getString(2), rs.getInt(1)));
             }
         } catch (SQLException e) {
-            logger.info(e.getMessage());
-            throw new DAOException(UNKNOWN_ERROR, e);
+            logger.fatal(e.getMessage());
+            throw new DAOException(UNKNOWN_ERROR);
         }
         return list;
     }
@@ -94,8 +94,8 @@ public class CategoryDAOImpl implements CategoryDAO, Constants {
             stmt.setString(1, t.getName());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            logger.info(e.getMessage());
-            throw new DAOException(UNKNOWN_ERROR, e);
+            logger.fatal(e.getMessage());
+            throw new DAOException(UNKNOWN_ERROR);
         }
     }
 
@@ -108,9 +108,9 @@ public class CategoryDAOImpl implements CategoryDAO, Constants {
             stmt.setString(++k, params[k-1]);
             stmt.setString(++k, oldName);
             stmt.executeUpdate();
-        } catch (DAOException | SQLException e){
-            logger.info(e.getMessage());
-            throw new DAOException(UNKNOWN_ERROR, e);
+        } catch (SQLException e){
+            logger.fatal(e.getMessage());
+            throw new DAOException(UNKNOWN_ERROR);
         }
     }
 
@@ -122,8 +122,8 @@ public class CategoryDAOImpl implements CategoryDAO, Constants {
             stmt.setString(1, t.getName());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            logger.info(e.getMessage());
-            throw new DAOException(UNKNOWN_ERROR, e);
+            logger.fatal(e.getMessage());
+            throw new DAOException(UNKNOWN_ERROR);
         }
     }
 }

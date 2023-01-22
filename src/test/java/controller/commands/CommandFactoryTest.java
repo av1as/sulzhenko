@@ -1,6 +1,6 @@
 package controller.commands;
 
-import com.sulzhenko.ApplicationContext;
+import com.sulzhenko.controller.ApplicationContext;
 import com.sulzhenko.controller.Command;
 import com.sulzhenko.controller.CommandFactory;
 import com.sulzhenko.controller.command.DefaultCommand;

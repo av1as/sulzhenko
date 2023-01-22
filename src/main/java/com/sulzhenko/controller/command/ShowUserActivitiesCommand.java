@@ -3,10 +3,10 @@ package com.sulzhenko.controller.command;
 import com.sulzhenko.controller.Command;
 import com.sulzhenko.controller.Constants;
 import com.sulzhenko.controller.Path;
-import com.sulzhenko.model.DTO.ActivityDTO;
-import com.sulzhenko.model.DTO.UserActivityDTO;
+import com.sulzhenko.DTO.ActivityDTO;
+import com.sulzhenko.DTO.UserActivityDTO;
 
-import com.sulzhenko.model.DTO.UserDTO;
+import com.sulzhenko.DTO.UserDTO;
 import com.sulzhenko.model.services.ServiceException;
 import com.sulzhenko.model.services.UserActivityService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,8 +18,8 @@ import org.apache.logging.log4j.Logger;
 import java.sql.SQLException;
 import java.util.List;
 
-import static com.sulzhenko.ApplicationContext.getApplicationContext;
-import static com.sulzhenko.model.Util.PaginationUtil.paginate;
+import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
+import static com.sulzhenko.Util.PaginationUtil.paginate;
 
 
 /**
@@ -39,9 +39,8 @@ public class ShowUserActivitiesCommand implements Command, Constants, Path {
         try {
             noOfRecords = userActivityService.getNumberOfRecords(userDTO.getLogin());
         } catch (ServiceException e) {
-            String errorMessage = e.getMessage();
             logger.warn(e);
-            request.setAttribute(errorMessage, ERROR);
+            session.setAttribute(ERROR, e.getMessage());
             return PAGE_ERROR;
         }
         int recordsPerPage = 5;
@@ -50,7 +49,6 @@ public class ShowUserActivitiesCommand implements Command, Constants, Path {
         paginate(noOfRecords, request);
         request.setAttribute(USER, userDTO);
         request.setAttribute(ACTIVITIES, activities);
-        request.setAttribute(MENU, getMenu(userDTO));
         request.setAttribute(TO_ADD, available);
         return PAGE_USER_ACTIVITIES;
     }
@@ -59,15 +57,5 @@ public class ShowUserActivitiesCommand implements Command, Constants, Path {
         if(request.getParameter(PAGE) != null)
             page = Integer.parseInt(request.getParameter(PAGE));
         request.setAttribute(CURRENT_PAGE, page);
-    }
-
-    private String getMenu(UserDTO user){
-        String menu = PAGE_LOGIN;
-        if(user.getRole() == UserDTO.Role.ADMIN){
-            menu = PAGE_MENU_ADMIN;
-        } else if (user.getRole() == UserDTO.Role.SYSTEM_USER) {
-            menu = PAGE_MENU_SYSTEM_USER;
-        }
-        return menu;
     }
 }

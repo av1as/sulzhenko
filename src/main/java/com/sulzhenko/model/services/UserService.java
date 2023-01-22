@@ -2,7 +2,7 @@ package com.sulzhenko.model.services;
 
 import com.sulzhenko.model.Constants;
 import com.sulzhenko.model.DAO.DAOException;
-import com.sulzhenko.model.DTO.UserDTO;
+import com.sulzhenko.DTO.UserDTO;
 import com.sulzhenko.model.entity.User;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -21,7 +21,7 @@ public interface UserService extends Constants {
     void isAdminUpdateCorrect(String[] params);
     String getErrorMessageUpdate(String login, String password, String newPassword, String newPasswordConfirm);
     int getNumberOfRecords(String status);
-    void notifyAboutUpdate(User u, String description);
+    void notifyAboutUpdate(User u);
     List<UserDTO> viewAllSystemUsers(int startPosition, int size);
     List<UserDTO> viewAllActiveUsers(int startPosition, int size);
     List<UserDTO> viewAllInactiveUsers(int startPosition, int size);
@@ -32,4 +32,5 @@ public interface UserService extends Constants {
     String validateNewUser(User user, String passwordConfirm);
     String validateUserUpdate(User user);
     String validateAdminUserUpdate(User user);
+    List<UserDTO> getUserList(String status, int page, int recordsPerPage);
 }

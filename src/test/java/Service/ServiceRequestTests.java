@@ -1,10 +1,12 @@
 package Service;
 
-import com.sulzhenko.model.DTO.RequestDTO;
+import com.sulzhenko.DTO.RequestDTO;
 import com.sulzhenko.model.entity.Request;
 import com.sulzhenko.model.services.RequestService;
 import com.sulzhenko.model.services.ServiceException;
+import com.sulzhenko.model.services.UserService;
 import com.sulzhenko.model.services.implementation.RequestServiceImpl;
+import com.sulzhenko.model.services.implementation.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 
 import javax.sql.DataSource;
@@ -14,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import static model.DAOTestUtils.getTestRequestToAdd;
+import static model.DAOTestUtils.getTestUser;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.*;
@@ -82,9 +85,9 @@ class ServiceRequestTests {
     void testDeleteRequest() throws SQLException {
         DataSource dataSource = mock(DataSource.class);
         RequestService requestService = new RequestServiceImpl(dataSource);
-        try (PreparedStatement ignored = prepareMocks(dataSource)) {
-            assertDoesNotThrow(() -> requestService.deleteRequest(getTestRequestToAdd()));
-        }
+        when(dataSource.getConnection()).thenThrow(new SQLException());
+        assertThrows(ServiceException.class, () -> requestService.deleteRequest(getTestRequestToAdd()));
+
     }
     @Test
     void testSqlExceptionAddRequest() throws SQLException {

@@ -3,7 +3,7 @@ package com.sulzhenko.controller.command;
 import com.sulzhenko.controller.Command;
 import com.sulzhenko.controller.Constants;
 import com.sulzhenko.controller.Path;
-import com.sulzhenko.model.DTO.UserDTO;
+import com.sulzhenko.DTO.UserDTO;
 import com.sulzhenko.model.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -14,14 +14,13 @@ import org.apache.logging.log4j.Logger;
 import java.sql.SQLException;
 import java.util.Objects;
 
-import static com.sulzhenko.ApplicationContext.getApplicationContext;
+import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
 
 /**
  * Login controller action
  *
  */
 public class LoginCommand implements Command, Constants, Path {
-
   UserService userService = getApplicationContext().getUserService();
   private static final Logger logger = LogManager.getLogger(LoginCommand.class);
 
@@ -40,7 +39,7 @@ public class LoginCommand implements Command, Constants, Path {
       } else {
         UserDTO userDTO = userService.getUserDTO(login);
         session.setAttribute(USER, userDTO);
-        session.setAttribute(MENU, getMenu(userDTO));
+        setMenu(userDTO, session);
         forward = getPageOnRole(userDTO.getRole(), userDTO.getStatus());
         logger.info("user log in: {}", login);
       }
@@ -48,23 +47,14 @@ public class LoginCommand implements Command, Constants, Path {
     return forward;
   }
 
-//  private String getMenu(UserDTO userDTO) {
-//    String menu = PAGE_LOGIN;
-//    if (userDTO.getRole() == UserDTO.Role.ADMIN) {
-//      menu = PAGE_MENU_ADMIN_FULL;
-//    } else if (userDTO.getRole() == UserDTO.Role.SYSTEM_USER) {
-//      menu = PAGE_MENU_SYSTEM_USER_FULL;
-//    }
-//    return menu;
-//  }
-  private String getMenu(UserDTO userDTO) {
+  private void setMenu(UserDTO userDTO, HttpSession session) {
     String menu = PAGE_LOGIN;
     if (userDTO.getRole() == UserDTO.Role.ADMIN) {
       menu = PAGE_MENU_ADMIN;
     } else if (userDTO.getRole() == UserDTO.Role.SYSTEM_USER) {
       menu = PAGE_MENU_SYSTEM_USER;
     }
-    return menu;
+    session.setAttribute(MENU, menu);
   }
   private static String getPageOnRole(UserDTO.Role role, String status){
     String forward = PAGE_LOGIN;

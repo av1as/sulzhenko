@@ -14,6 +14,7 @@ public interface Constants {
     String DESC = "DESC";
     String DESCENDING = "descending";
     String DIFFERENT_PASSWORDS = "different.passwords";
+    String DUPLICATE_CATEGORY = "duplicate.category";
     String EMPTY_LOGIN = "empty.login";
     String EMPTY_PASSWORD = "empty.password";
     String ERROR = "error";
@@ -38,7 +39,6 @@ public interface Constants {
     String USER = "user";
     String USER_HAS_NO_ACTIVITY ="user.has.no.activity";
     String UNKNOWN_ERROR = "unknown.error";
-    String UPDATED = "updated";
     String UTF8 = "UTF-8";
     String WRONG_ACTION = "wrong.action";
     String WRONG_ACTIVITY = "wrong.activity";

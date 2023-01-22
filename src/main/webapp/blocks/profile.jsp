@@ -13,7 +13,7 @@
 
 
 
-<form action="/TimeKeeping/controller?action=show_profile" method="post" class="d-flex" >
+<form action="/TimeKeeping/controller?action=show_profile" method="get" class="d-flex" >
     <input type="hidden" name="action" value="show_profile" />
 
 

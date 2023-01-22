@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.SQLException;
 
-import static com.sulzhenko.ApplicationContext.getApplicationContext;
+import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
 
 public class UpdateActivityCommand implements Command, Constants, Path {
     ActivityService activityService = getApplicationContext().getActivityService();
@@ -21,16 +21,14 @@ public class UpdateActivityCommand implements Command, Constants, Path {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         HttpSession session = request.getSession();
         String forward;
-        String name = request.getParameter(NAME);
-        String newCategoryName = request.getParameter(NEW_CATEGORY);
-        String newName = request.getParameter(NEW_NAME);
         try{
-            activityService.updateActivity(name, newName, newCategoryName);
+            activityService.updateActivity(request.getParameter(NAME), request.getParameter(NEW_NAME),
+                    request.getParameter(NEW_CATEGORY));
             forward = PAGE_SHOW_ACTIVITIES;
         } catch (ServiceException e){
             logger.warn(e.getMessage());
             session.setAttribute(ERROR, e.getMessage());
-            forward = Path.PAGE_ERROR_FULL;
+            forward = PAGE_ERROR_FULL;
         }
         return forward;
     }

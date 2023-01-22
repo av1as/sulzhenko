@@ -1,7 +1,7 @@
 package Service;
 
-import com.sulzhenko.model.DTO.ActivityDTO;
-import com.sulzhenko.model.DTO.UserDTO;
+import com.sulzhenko.DTO.ActivityDTO;
+import com.sulzhenko.DTO.UserDTO;
 import com.sulzhenko.model.services.ServiceException;
 import com.sulzhenko.model.services.UserActivityService;
 import com.sulzhenko.model.services.implementation.UserActivityServiceImpl;

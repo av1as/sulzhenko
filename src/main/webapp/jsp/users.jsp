@@ -26,7 +26,7 @@
   <div class="container">
     <div class="navbar-header">
 
-      <a class="navbar-brand" href="${menu}"><p style="font-size:35px"><fmt:message key="timekeeping"/></p></a>
+      <a class="navbar-brand" href="${pageContext.request.contextPath}${menu}"><p style="font-size:35px"><fmt:message key="timekeeping"/></p></a>
 
     </div>
     <div class="navbar-collapse collapse">

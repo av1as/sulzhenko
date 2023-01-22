@@ -37,7 +37,7 @@ public class UserDAOImpl implements UserDAO, Constants {
             }
         } catch (SQLException e){
             logger.fatal(e.getMessage());
-            throw new DAOException(UNKNOWN_ERROR, e);
+            throw new DAOException(UNKNOWN_ERROR);
         }
         return Optional.ofNullable(t);
     }
@@ -52,8 +52,8 @@ public class UserDAOImpl implements UserDAO, Constants {
                 list.add(getUserWithFields(rs));
             }
         } catch (SQLException e) {
-            logger.info(e.getMessage());
-            throw new DAOException(UNKNOWN_ERROR, e);
+            logger.fatal(e.getMessage());
+            throw new DAOException(UNKNOWN_ERROR);
         }
         return list;
     }
@@ -94,8 +94,8 @@ public class UserDAOImpl implements UserDAO, Constants {
                 list.add(getUserWithFields(rs));
             }
         } catch (SQLException e) {
-            logger.info(e.getMessage());
-            throw new DAOException(UNKNOWN_ERROR, e);
+            logger.fatal(e.getMessage());
+            throw new DAOException(UNKNOWN_ERROR);
         }
         return list;
     }
@@ -121,11 +121,11 @@ public class UserDAOImpl implements UserDAO, Constants {
             PreparedStatement stmt = con.prepareStatement(SQLQueries.UserQueries.INSERT_USER)) {
             setUserFields(t, stmt);
         } catch (DAOException e){
-            logger.info(e.getMessage());
+            logger.warn(e.getMessage());
             throw e;
         } catch (SQLException e) {
             logger.fatal(e.getMessage());
-            throw new DAOException(UNKNOWN_ERROR, e);
+            throw new DAOException(UNKNOWN_ERROR);
         }
     }
     @Override
@@ -135,11 +135,11 @@ public class UserDAOImpl implements UserDAO, Constants {
             PreparedStatement stmt = con.prepareStatement(SQLQueries.UserQueries.UPDATE_USER)) {
             updateUserFields(params, oldLogin, stmt);
         } catch (DAOException e){
-            logger.info(e.getMessage());
+            logger.warn(e.getMessage());
             throw e;
         } catch (SQLException e) {
             logger.fatal(e.getMessage());
-            throw new DAOException(UNKNOWN_ERROR, e);
+            throw new DAOException(UNKNOWN_ERROR);
         }
     }
     @Override
@@ -151,7 +151,7 @@ public class UserDAOImpl implements UserDAO, Constants {
                 stmt.executeUpdate();
             } catch (SQLException e) {
                 logger.fatal(e.getMessage());
-                throw new DAOException(UNKNOWN_ERROR, e);
+                throw new DAOException(UNKNOWN_ERROR);
             }
     }
     private static void setUserFields(User t, PreparedStatement stmt) throws SQLException {
@@ -189,10 +189,10 @@ public class UserDAOImpl implements UserDAO, Constants {
              PreparedStatement stmt = con.prepareStatement(SQLQueries.UserQueries.ADD_STATUS)
         ) {
             stmt.setString(1, statusName);
-                    stmt.executeUpdate();
+            stmt.executeUpdate();
         } catch (SQLException e) {
-            logger.info("wrong name: {}", statusName);
-            throw new DAOException(WRONG_STATUS, e);
+            logger.fatal(e.getMessage());
+            throw new DAOException(UNKNOWN_ERROR);
         }
     }
     public void deleteStatus(String statusName) throws DAOException {
@@ -201,8 +201,8 @@ public class UserDAOImpl implements UserDAO, Constants {
             stmt.setString(1, statusName);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            logger.info("wrong status: {}", statusName);
-            throw new DAOException(WRONG_STATUS);
+            logger.fatal(e.getMessage());
+            throw new DAOException(UNKNOWN_ERROR);
         }
     }
 }

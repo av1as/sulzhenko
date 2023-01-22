@@ -62,9 +62,10 @@
 
 
 <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
-  <col style="width: 20%">
-  <col style="width: 50%">
+  <col style="width: 10%">
+  <col style="width: 40%">
   <col style="width: 14%">
+  <col style="width: 20%">
   <col style="width: 8%">
   <col style="width: 8%">
     				<thead>
@@ -73,6 +74,7 @@
 							<th><fmt:message key="login"/></th>
 							<th><fmt:message key="activity.name"/> </th>
 							<th><fmt:message key="action.to.do"/></th>
+							<th><fmt:message key="description"/></th>
                             <th><fmt:message key="approve"/></th>
                             <th><fmt:message key="decline"/></th>
 						</tr>
@@ -84,6 +86,7 @@
 							<th><fmt:message key="login"/></th>
 							<th><fmt:message key="activity.name"/> </th>
 							<th><fmt:message key="action.to.do"/></th>
+							<th><fmt:message key="description"/></th>
                             <th><fmt:message key="approve"/></th>
                             <th><fmt:message key="decline"/></th>
 						</tr>
@@ -103,6 +106,9 @@
     					    </td>
   	                        <td>
                                   <fmt:message key="${element.getActionToDo()}"/>
+      					    </td>
+  	                        <td>
+                                   ${element.getDescription()}
       					    </td>
                             <td class="form-group">
                                      <input class="btn btn-success" type="submit" value="<fmt:message key="approve"/>">

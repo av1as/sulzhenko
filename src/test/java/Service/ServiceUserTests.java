@@ -3,7 +3,7 @@ package Service;
 import com.sulzhenko.model.DAO.DAOException;
 import com.sulzhenko.model.DAO.UserDAO;
 import com.sulzhenko.model.DAO.implementation.UserDAOImpl;
-import com.sulzhenko.model.DTO.UserDTO;
+import com.sulzhenko.DTO.UserDTO;
 import com.sulzhenko.model.entity.User;
 import com.sulzhenko.model.services.ServiceException;
 import com.sulzhenko.model.services.UserService;

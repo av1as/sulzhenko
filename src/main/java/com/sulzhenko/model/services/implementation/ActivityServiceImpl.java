@@ -1,9 +1,12 @@
 package com.sulzhenko.model.services.implementation;
 
+import com.sulzhenko.Util.notifications.Mailer;
 import com.sulzhenko.model.DAO.*;
 import com.sulzhenko.model.DAO.implementation.*;
-import com.sulzhenko.model.DTO.ActivityDTO;
+import com.sulzhenko.DTO.ActivityDTO;
 import com.sulzhenko.model.entity.*;
+import com.sulzhenko.Util.notifications.NotificationFactories;
+import com.sulzhenko.Util.notifications.NotificationFactory;
 import com.sulzhenko.model.services.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
@@ -63,26 +66,29 @@ public class ActivityServiceImpl implements ActivityService {
         } else{
             Activity activity = activityDAO.getByName(oldName);
             String[] param = {newName, newCategoryName};
-//            List<User> connectedUsers = getConnectedUsersWithNotification(activity);
-//            String description = "activity " + "\"" + oldName + "\" "
-//                    + "now has name " + "\"" + param[0] + "\" "
-//                    + "and category " + "\"" + param[1] + "\"";
+            List<User> connectedUsers = getConnectedUsersWithNotification(activity);
+            String description = "activity " + "\"" + oldName + "\" "
+                    + "now has name " + "\"" + param[0] + "\" "
+                    + "and category " + "\"" + param[1] + "\"";
             try{
                 activityDAO.update(activity, param);
-//                notifyAboutUpdate(connectedUsers, description);
+                notifyAboutUpdate(connectedUsers, description);
             } catch (DAOException e){
                 logger.warn(e.getMessage());
-                throw new ServiceException(UNKNOWN_ERROR);
+                throw new ServiceException(e.getMessage());
             }
         }
     }
     public void deleteActivity(String name){
         if(!isNameAvailable(name)) {
+            List<User> connectedUsers = getConnectedUsersWithNotification(getActivity(name));
+            String description = "activity " + "\"" + name + "\" has been deleted";
             try{
                 activityDAO.delete(activityDAO.getByName(name));
+                notifyAboutUpdate(connectedUsers, description);
             } catch(DAOException e){
                 logger.warn(e.getMessage());
-                throw new ServiceException(e);
+                throw new ServiceException(e.getMessage());
             }
         } else {
             logger.info("this activity doesn't exist: {}", name);
@@ -137,13 +143,12 @@ public class ActivityServiceImpl implements ActivityService {
                 number = rs.getInt(1);
             }
         } catch (SQLException e){
-            throw new ServiceException(UNKNOWN_ERROR, e);
+            throw new ServiceException(UNKNOWN_ERROR);
         }
         return number;
     }
-        public List<ActivityDTO> listActivitiesSorted(HttpServletRequest request){
+    public List<ActivityDTO> listActivitiesSorted(HttpServletRequest request){
         List<ActivityDTO> list = new ArrayList<>();
-//            logger.info(buildQuery(request));
         try (Connection con = dataSource.getConnection();
             PreparedStatement stmt = con.prepareStatement(buildQuery(request))) {
             ResultSet rs = stmt.executeQuery();
@@ -152,7 +157,7 @@ public class ActivityServiceImpl implements ActivityService {
                 list.add(activity);
             }
         } catch (SQLException e) {
-            throw new ServiceException(UNKNOWN_ERROR, e);
+            throw new ServiceException(UNKNOWN_ERROR);
         }
         return list;
     }
@@ -160,12 +165,12 @@ public class ActivityServiceImpl implements ActivityService {
         UserDAO userDAOImpl = new UserDAOImpl(dataSource);
         return userDAOImpl.getList(activity.getName(), SQLQueries.UserQueries.FIND_CONNECTED_USERS_WITH_NOTIFICATION);
     }
-    @Override
-    public void notifyAboutUpdate(List<User> connectedUsers, String description){
+    private void notifyAboutUpdate(List<User> connectedUsers, String description){
         for(User user: connectedUsers){
-            // create method to notify connected users
-
-
+            NotificationFactory factory = new NotificationFactories().systemUpdateFactory(user, description);
+            String subject = factory.createSubject();
+            String body = factory.createBody();
+            Mailer.send(user.getEmail(),subject,body);
         }
     }
     private String applyFilter(String filter){

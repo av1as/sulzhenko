@@ -3,8 +3,6 @@ package com.sulzhenko.model.DAO.implementation;
 import com.sulzhenko.model.Constants;
 import com.sulzhenko.model.DAO.*;
 import com.sulzhenko.model.entity.*;
-import com.sulzhenko.model.services.UserService;
-import com.sulzhenko.model.services.implementation.UserServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import javax.sql.DataSource;
@@ -13,23 +11,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static com.sulzhenko.model.DAO.SQLQueries.RequestQueries.GET_REQUESTS_BY_LOGIN_AND_ACTION;
+
 /**
  * This class describes CRUD operations with Request class entities
  */
 public class RequestDAOImpl implements RequestDAO, Constants {
     private final DataSource dataSource;
     UserDAO userDAO;
-    UserService userService;
     ActivityDAO activityDAO;
     public RequestDAOImpl(DataSource dataSource) {
         this.dataSource = dataSource;
         this.userDAO = new UserDAOImpl(dataSource);
         this.activityDAO = new ActivityDAOImpl(dataSource);
-        this.userService = new UserServiceImpl(dataSource);
     }
-
     private static final Logger logger = LogManager.getLogger(RequestDAOImpl.class);
-
 
     @Override
     public Optional<Request> get(Object parameter, String querySQL) throws DAOException{
@@ -44,7 +40,7 @@ public class RequestDAOImpl implements RequestDAO, Constants {
             }
         } catch (SQLException e){
             logger.fatal(e.getMessage());
-            throw new DAOException(UNKNOWN_ERROR, e);
+            throw new DAOException(UNKNOWN_ERROR);
         }
         return Optional.ofNullable(t);
     }
@@ -60,8 +56,8 @@ public class RequestDAOImpl implements RequestDAO, Constants {
                 list.add(getRequestWithFields(rs));
             }
         } catch (SQLException e) {
-            logger.info(e.getMessage());
-            throw new DAOException(UNKNOWN_ERROR, e);
+            logger.fatal(e.getMessage());
+            throw new DAOException(UNKNOWN_ERROR);
         }
         return list;
     }
@@ -77,6 +73,24 @@ public class RequestDAOImpl implements RequestDAO, Constants {
     public List<Request> getByActionToDo(String actionName) {
         return getList(actionName, SQLQueries.RequestQueries.GET_REQUESTS_BY_ACTION);
     }
+    @Override
+    public List<Request> getByLoginAndAction(String login, String action) throws DAOException{
+        List<Request> list = new ArrayList<>();
+        try (Connection con = dataSource.getConnection();
+             PreparedStatement stmt = con.prepareStatement(GET_REQUESTS_BY_LOGIN_AND_ACTION)
+        ) {
+            stmt.setString(1, login);
+            stmt.setString(2, action);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                list.add(getRequestWithFields(rs));
+            }
+        } catch (SQLException e) {
+            logger.fatal(e.getMessage());
+            throw new DAOException(UNKNOWN_ERROR);
+        }
+        return list;
+    }
 
     @Override
     public List<Request> getAll() throws DAOException {
@@ -90,7 +104,7 @@ public class RequestDAOImpl implements RequestDAO, Constants {
             }
         } catch (SQLException e){
             logger.fatal(e.getMessage());
-            throw new DAOException(UNKNOWN_ERROR, e);
+            throw new DAOException(UNKNOWN_ERROR);
         }
         return list;
     }
@@ -103,9 +117,9 @@ public class RequestDAOImpl implements RequestDAO, Constants {
             setRequestFields(t, stmt);
             ResultSet rs = stmt.getGeneratedKeys();
             t.setId(rs.next() ? rs.getLong(1) : 0);
-        } catch (DAOException | SQLException e){
-            logger.info(e.getMessage());
-            throw new DAOException(UNKNOWN_ERROR, e);
+        } catch (SQLException e){
+            logger.fatal(e.getMessage());
+            throw new DAOException(UNKNOWN_ERROR);
         }
     }
 
@@ -122,15 +136,19 @@ public class RequestDAOImpl implements RequestDAO, Constants {
     public void update(Request t, String[] params) {
         try(Connection con = dataSource.getConnection();
             PreparedStatement stmt = con.prepareStatement(SQLQueries.RequestQueries.UPDATE_REQUEST)) {
-            setRequestFields(t, stmt);
-            stmt.setLong(5, t.getId());
+            int k = 0;
+            stmt.setString(++k, params[0]);
+            stmt.setString(++k, params[1]);
+            stmt.setString(++k, params[2]);
+            stmt.setString(++k, params[3]);
+            stmt.setLong(++k, t.getId());
             stmt.executeUpdate();
         } catch (DAOException e){
-            logger.info(e.getMessage());
-            throw new DAOException(e);
+            logger.warn(e.getMessage());
+            throw e;
         } catch (SQLException e) {
             logger.fatal(e.getMessage());
-            throw new DAOException(UNKNOWN_ERROR, e);
+            throw new DAOException(UNKNOWN_ERROR);
         }
     }
     @Override
@@ -142,7 +160,7 @@ public class RequestDAOImpl implements RequestDAO, Constants {
             stmt.executeUpdate();
         } catch (SQLException e) {
             logger.fatal(e.getMessage());
-            throw new DAOException(UNKNOWN_ERROR, e);
+            throw new DAOException(UNKNOWN_ERROR);
         }
     }
 

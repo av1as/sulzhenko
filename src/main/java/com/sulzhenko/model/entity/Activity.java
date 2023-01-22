@@ -71,7 +71,6 @@ public class Activity implements Serializable {
         Activity activity = (Activity) o;
         return name.equals(activity.name);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(name);

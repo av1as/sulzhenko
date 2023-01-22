@@ -1,7 +1,6 @@
 package com.sulzhenko.model.hashingPasswords;
 
 import com.sulzhenko.model.Constants;
-
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -46,9 +45,4 @@ public class Sha implements Constants {
         });
         return md.digest();
     }
-
-//    public static void main(String[] args) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-//        System.out.println(new Sha().hashToHex("Password@1", Optional.of("Aeneas")));
-//    }
 }
-//https://coderlessons.com/articles/java/vybor-kriptograficheskikh-algoritmov-java-chast-1-kheshirovanie

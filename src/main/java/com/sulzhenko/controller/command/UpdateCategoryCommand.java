@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.SQLException;
 
-import static com.sulzhenko.ApplicationContext.getApplicationContext;
+import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
 
 /**
  * Update category controller action
@@ -25,12 +25,10 @@ public class UpdateCategoryCommand implements Command, Constants, Path {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        String oldName = request.getParameter(CATEGORY_NAME);
-        String newName = request.getParameter(NEW_NAME);
         HttpSession session = request.getSession();
         String forward;
         try{
-            categoryService.updateCategory(oldName, newName);
+            categoryService.updateCategory(request.getParameter(CATEGORY_NAME), request.getParameter(NEW_NAME));
             forward = PAGE_SHOW_CATEGORIES;
         } catch(ServiceException e){
             logger.warn(e.getMessage());

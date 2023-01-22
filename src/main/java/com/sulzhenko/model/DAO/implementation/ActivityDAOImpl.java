@@ -41,7 +41,7 @@ public class ActivityDAOImpl implements ActivityDAO, Constants {
             }
         } catch (SQLException e){
             logger.fatal(e.getMessage());
-            throw new DAOException(UNKNOWN_ERROR, e);
+            throw new DAOException(UNKNOWN_ERROR);
         }
         return Optional.ofNullable(a);
     }
@@ -57,8 +57,8 @@ public class ActivityDAOImpl implements ActivityDAO, Constants {
                 list.add(getActivityWithFields(rs));
             }
         } catch (SQLException e) {
-            logger.info(e.getMessage());
-            throw new DAOException(UNKNOWN_ERROR, e);
+            logger.fatal(e.getMessage());
+            throw new DAOException(UNKNOWN_ERROR);
         }
         return list;
     }
@@ -74,7 +74,7 @@ public class ActivityDAOImpl implements ActivityDAO, Constants {
             }
         } catch (SQLException e){
             logger.fatal(e);
-            throw new DAOException(UNKNOWN_ERROR, e);
+            throw new DAOException(UNKNOWN_ERROR);
         }
         return list;
     }
@@ -88,8 +88,8 @@ public class ActivityDAOImpl implements ActivityDAO, Constants {
             stmt.setString(++k, t.getCategory().getName());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            logger.info(e.getMessage());
-            throw new DAOException(UNKNOWN_ERROR, e);
+            logger.fatal(e.getMessage());
+            throw new DAOException(UNKNOWN_ERROR);
         }
     }
     @Override
@@ -103,8 +103,8 @@ public class ActivityDAOImpl implements ActivityDAO, Constants {
             stmt.setString(++k, oldName);
             stmt.executeUpdate();
         } catch (SQLException e){
-            logger.info(e.getMessage());
-            throw new DAOException(UNKNOWN_ERROR, e);
+            logger.fatal(e.getMessage());
+            throw new DAOException(UNKNOWN_ERROR);
         }
     }
     @Override
@@ -115,8 +115,8 @@ public class ActivityDAOImpl implements ActivityDAO, Constants {
                 stmt.setString(1, t.getName());
                 stmt.executeUpdate();
             } catch (SQLException e) {
-                logger.info(e.getMessage());
-                throw new DAOException(UNKNOWN_ERROR, e);
+                logger.fatal(e.getMessage());
+                throw new DAOException(UNKNOWN_ERROR);
             }
     }
     @Override

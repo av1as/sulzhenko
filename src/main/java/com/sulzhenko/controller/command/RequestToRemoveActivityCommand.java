@@ -3,9 +3,10 @@ package com.sulzhenko.controller.command;
 import com.sulzhenko.controller.Command;
 import com.sulzhenko.controller.Constants;
 import com.sulzhenko.controller.Path;
-import com.sulzhenko.model.DTO.RequestDTO;
-import com.sulzhenko.model.DTO.UserDTO;
-import com.sulzhenko.model.services.*;
+import com.sulzhenko.DTO.RequestDTO;
+import com.sulzhenko.DTO.UserDTO;
+import com.sulzhenko.model.services.RequestService;
+import com.sulzhenko.model.services.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
@@ -13,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.SQLException;
 
-import static com.sulzhenko.ApplicationContext.getApplicationContext;
+import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
 
 /**
  * Register controller action

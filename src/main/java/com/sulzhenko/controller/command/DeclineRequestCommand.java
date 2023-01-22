@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.SQLException;
 
-import static com.sulzhenko.ApplicationContext.getApplicationContext;
+import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
 
 public class DeclineRequestCommand implements Command, Constants, Path {
     RequestService requestService = getApplicationContext().getRequestService();

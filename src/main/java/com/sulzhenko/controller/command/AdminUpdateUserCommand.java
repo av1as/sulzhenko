@@ -3,7 +3,7 @@ package com.sulzhenko.controller.command;
 import com.sulzhenko.controller.Command;
 import com.sulzhenko.controller.Constants;
 import com.sulzhenko.controller.Path;
-import com.sulzhenko.model.DTO.UserDTO;
+import com.sulzhenko.DTO.UserDTO;
 import com.sulzhenko.model.services.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.SQLException;
 
-import static com.sulzhenko.ApplicationContext.getApplicationContext;
+import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
 
 /**
  * Update user controller action
@@ -26,12 +26,12 @@ public class AdminUpdateUserCommand implements Command, Constants, Path {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         HttpSession session = request.getSession();
-        String forward = Path.PAGE_ERROR_FULL;
+        String forward = PAGE_ERROR_FULL;
         try{
             UserDTO userDTO = userService.getUserDTO(request.getParameter(OLD_LOGIN));
             String[] param = getUpdateParameters(request, userDTO);
             userService.adminUpdateUser(userDTO, param);
-            forward = Path.PAGE_SHOW_USERS;
+            forward = PAGE_SHOW_USERS;
         } catch (ServiceException e) {
             logger.warn(e.getMessage());
             session.setAttribute(ERROR, e.getMessage());

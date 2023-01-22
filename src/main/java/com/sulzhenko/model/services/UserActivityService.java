@@ -2,11 +2,9 @@ package com.sulzhenko.model.services;
 
 import com.sulzhenko.model.Constants;
 import com.sulzhenko.model.DAO.DAOException;
-import com.sulzhenko.model.DTO.ActivityDTO;
-import com.sulzhenko.model.DTO.UserActivityDTO;
-import com.sulzhenko.model.DTO.UserDTO;
-import com.sulzhenko.model.entity.Activity;
-import com.sulzhenko.model.entity.User;
+import com.sulzhenko.DTO.ActivityDTO;
+import com.sulzhenko.DTO.UserActivityDTO;
+import com.sulzhenko.DTO.UserDTO;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.List;

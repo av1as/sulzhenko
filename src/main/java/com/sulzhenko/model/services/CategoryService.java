@@ -1,7 +1,7 @@
 package com.sulzhenko.model.services;
 
 import com.sulzhenko.model.Constants;
-import com.sulzhenko.model.DTO.CategoryDTO;
+import com.sulzhenko.DTO.CategoryDTO;
 import com.sulzhenko.model.entity.Category;
 
 import java.util.List;

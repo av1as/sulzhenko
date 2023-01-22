@@ -8,5 +8,4 @@ public interface ActivityDAO extends DAO<Activity>{
     Activity getById(long id);
     Activity getByName(String name);
     List<Activity> getByCategory(String categoryName);
-//    List<User> getConnectedUsers(Activity activity);
 }

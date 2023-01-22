@@ -3,9 +3,8 @@ package com.sulzhenko.controller.command;
 import com.sulzhenko.controller.Command;
 import com.sulzhenko.controller.Constants;
 import com.sulzhenko.controller.Path;
-import com.sulzhenko.model.DTO.ActivityDTO;
-import com.sulzhenko.model.DTO.CategoryDTO;
-import com.sulzhenko.model.DTO.UserDTO;
+import com.sulzhenko.DTO.ActivityDTO;
+import com.sulzhenko.DTO.CategoryDTO;
 import com.sulzhenko.model.services.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,8 +15,8 @@ import org.apache.logging.log4j.Logger;
 import java.sql.SQLException;
 import java.util.List;
 
-import static com.sulzhenko.ApplicationContext.getApplicationContext;
-import static com.sulzhenko.model.Util.PaginationUtil.paginate;
+import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
+import static com.sulzhenko.Util.PaginationUtil.paginate;
 
 /**
  * ProfileInfo controller action
@@ -28,8 +27,8 @@ public class ShowActivityCommand implements Command, Constants, Path {
     private static final Logger logger = LogManager.getLogger(ShowActivityCommand.class);
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
         setPage(request);
-        setMenu(request);
         List<ActivityDTO> activities = activityService.listActivitiesSorted(request);
         request.setAttribute(ACTIVITIES, activities);
         List<CategoryDTO> categories = categoryService.getAllCategories();
@@ -37,10 +36,13 @@ public class ShowActivityCommand implements Command, Constants, Path {
         int noOfRecords;
         try {
             noOfRecords = activityService.getNumberOfRecords(request);
-        } catch (ServiceException | SQLException e) {
-            String errorMessage = e.getMessage();
+        } catch (ServiceException e) {
             logger.warn(e);
-            request.setAttribute(errorMessage, ERROR);
+            session.setAttribute(ERROR, e.getMessage());
+            return PAGE_ERROR;
+        } catch (SQLException e) {
+            logger.warn(e);
+            session.setAttribute(ERROR, UNKNOWN_ERROR);
             return PAGE_ERROR;
         }
         int recordsPerPage = 5;
@@ -49,23 +51,11 @@ public class ShowActivityCommand implements Command, Constants, Path {
         paginate(noOfRecords, request);
         return PAGE_ACTIVITIES;
     }
-
     private static void setPage(HttpServletRequest request) {
         int page = 1;
         if(request.getParameter(PAGE) != null)
             page = Integer.parseInt(request.getParameter(PAGE));
         request.setAttribute(CURRENT_PAGE, page);
-    }
-    private void setMenu(HttpServletRequest request){
-        HttpSession session = request.getSession();
-        UserDTO user = (UserDTO) session.getAttribute(USER);
-        String menu = PAGE_LOGIN;
-        if(user.getRole() == UserDTO.Role.ADMIN){
-            menu = PAGE_MENU_ADMIN;
-        } else if (user.getRole() == UserDTO.Role.SYSTEM_USER) {
-            menu = PAGE_MENU_SYSTEM_USER;
-        }
-        request.setAttribute(MENU, menu);
     }
 }
 

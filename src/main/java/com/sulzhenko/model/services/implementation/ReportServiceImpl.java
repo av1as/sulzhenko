@@ -1,9 +1,12 @@
 package com.sulzhenko.model.services.implementation;
 
+import com.sulzhenko.DTO.ReportDTO;
+import com.sulzhenko.DTO.UserActivityDTO;
 import com.sulzhenko.model.DAO.DAOException;
-import com.sulzhenko.model.DTO.*;
 import com.sulzhenko.model.services.ReportService;
 import com.sulzhenko.model.services.ServiceException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -16,6 +19,7 @@ import java.util.Objects;
 
 public class ReportServiceImpl implements ReportService {
     private final DataSource dataSource;
+    private static final Logger logger = LogManager.getLogger(ReportServiceImpl.class);
 
     public ReportServiceImpl(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -48,16 +52,18 @@ public class ReportServiceImpl implements ReportService {
                 number = rs.getInt(1);
             }
         } catch (SQLException e){
+            logger.fatal(e);
             throw new ServiceException(UNKNOWN_ERROR);
         }
         return number;
     }
 
-    private static void createAndAddElement(List<UserActivityDTO> activities, List<ReportDTO> list, List<UserActivityDTO> activitiesWithTime, int i, String login) {
+    private static void createAndAddElement(List<UserActivityDTO> activities, List<ReportDTO> list,
+                                            List<UserActivityDTO> activitiesWithTime, int i,
+                                            String login) {
         int numberOfActivities = activities.get(i).getNumberOfActivities();
         int totalAmount = activities.get(i).getTotalAmount();
-        ReportDTO element = new ReportDTO(login, activitiesWithTime, numberOfActivities,
-                totalAmount);
+        ReportDTO element = new ReportDTO(login, activitiesWithTime, numberOfActivities, totalAmount);
         list.add(element);
     }
 

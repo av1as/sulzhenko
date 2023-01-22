@@ -2,7 +2,7 @@ package com.sulzhenko.model.services.implementation;
 
 import com.sulzhenko.model.DAO.*;
 import com.sulzhenko.model.DAO.implementation.CategoryDAOImpl;
-import com.sulzhenko.model.DTO.CategoryDTO;
+import com.sulzhenko.DTO.CategoryDTO;
 import com.sulzhenko.model.entity.Category;
 import com.sulzhenko.model.services.CategoryService;
 import com.sulzhenko.model.services.ServiceException;
@@ -14,11 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryServiceImpl implements CategoryService {
-    private final DataSource dataSource;
     private final CategoryDAO categoryDAO;
 
     public CategoryServiceImpl(DataSource dataSource) {
-        this.dataSource = dataSource;
         this.categoryDAO = new CategoryDAOImpl(dataSource);
     }
 
@@ -34,11 +32,11 @@ public class CategoryServiceImpl implements CategoryService {
             try{
                 categoryDAO.save(new Category(name));
             } catch (DAOException e){
-                logger.fatal(e.getMessage());
+                logger.warn(e.getMessage());
                 throw new ServiceException(e);
             }
         } else{
-            throw new ServiceException("duplicate.category");
+            throw new ServiceException(DUPLICATE_CATEGORY);
         }
     }
     @Override
@@ -47,10 +45,10 @@ public class CategoryServiceImpl implements CategoryService {
             try{
                 categoryDAO.delete(categoryDAO.getByName(name).orElse(null));
             } catch(DAOException e){
-                logger.fatal(e.getMessage());
+                logger.warn(e.getMessage());
                 throw new ServiceException(e);
             }
-        }
+        } else throw new ServiceException(WRONG_CATEGORY);
     }
     @Override
     public void updateCategory(String name, String newCategoryName){
@@ -59,7 +57,7 @@ public class CategoryServiceImpl implements CategoryService {
             try{
                 categoryDAO.update(categoryDAO.getByName(name).orElse(null), param);
             } catch(DAOException e){
-                logger.fatal(e.getMessage());
+                logger.warn(e.getMessage());
                 throw new ServiceException(e.getMessage());
             }
         } else throw new ServiceException(WRONG_CATEGORY);
@@ -84,12 +82,8 @@ public class CategoryServiceImpl implements CategoryService {
     public int getNumberOfCategories(){
         return categoryDAO.getAll().size();
     }
+    @Override
     public boolean isCategoryNameUnique(String name){
         return getCategory(name) == null;
-//        List<Category> list = categoryDAO.getAll();
-//        for(Category element: list){
-//            if (Objects.equals(element.getName(), name)) return false;
-//        }
-//        return true;
     }
 }

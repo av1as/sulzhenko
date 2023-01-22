@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
+import static com.sulzhenko.controller.Constants.ACTION;
 import static com.sulzhenko.controller.Path.PAGE_ERROR_FULL;
 
 
@@ -35,7 +36,7 @@ public class Controller extends HttpServlet {
   }
 
   private String executeRequest(HttpServletRequest req, HttpServletResponse resp){
-    Command command = ACTION_FACTORY.createCommand(req.getParameter("action"));
+    Command command = ACTION_FACTORY.createCommand(req.getParameter(ACTION));
     String path = PAGE_ERROR_FULL;
     try {
       path = command.execute(req, resp);

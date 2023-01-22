@@ -47,7 +47,7 @@ public class UserActivityDAOImpl implements UserActivityDAO, Constants {
                 } catch (SQLException e) {
                     con.rollback();
                     logger.fatal(e);
-                    throw new DAOException(UNKNOWN_ERROR, e);
+                    throw new DAOException(UNKNOWN_ERROR);
                 }
             }
         }
@@ -56,7 +56,6 @@ public class UserActivityDAOImpl implements UserActivityDAO, Constants {
     public void removeUserActivity(Request request) throws SQLException {
         Connection con = dataSource.getConnection();
         PreparedStatement stmt = null;
-
         if(Objects.equals(request.getActionToDo(), REMOVE)){
             try{
                 User user = userDAO.getByLogin(request.getLogin()).orElse(null);
@@ -67,12 +66,12 @@ public class UserActivityDAOImpl implements UserActivityDAO, Constants {
                 stmt.setLong(1, user.getAccount());
                 stmt.setLong(2, activity.getId());
                 stmt.executeUpdate();
-                new RequestDAOImpl(dataSource).delete(request);
+                requestDAO.delete(request);
                 con.commit();
             } catch (SQLException e) {
                 con.rollback();
                 logger.fatal(e);
-                throw new DAOException(UNKNOWN_ERROR, e);
+                throw new DAOException(UNKNOWN_ERROR);
             } finally {
                 assert stmt != null;
                 stmt.close();
@@ -80,14 +79,11 @@ public class UserActivityDAOImpl implements UserActivityDAO, Constants {
             }
         }
     }
-
     @Override
     public int getAmount(User user, Activity activity) {
-
         int amount = 0;
         try(Connection con = dataSource.getConnection()){
-            PreparedStatement stmt = null;
-            stmt = con.prepareStatement(SQLQueries.RequestQueries.GET_AMOUNT);
+            PreparedStatement stmt = con.prepareStatement(SQLQueries.RequestQueries.GET_AMOUNT);
             stmt.setLong(1, user.getAccount());
             stmt.setLong(2, activity.getId());
             ResultSet rs = stmt.executeQuery();
@@ -95,7 +91,8 @@ public class UserActivityDAOImpl implements UserActivityDAO, Constants {
                 amount = rs.getInt(1);
             }            
         } catch (SQLException e) {
-            throw new DAOException(UNKNOWN_ERROR, e);
+            logger.fatal(e.getMessage());
+            throw new DAOException(UNKNOWN_ERROR);
         }
         return amount;
     }
@@ -112,7 +109,7 @@ public class UserActivityDAOImpl implements UserActivityDAO, Constants {
             }
         } catch (SQLException e) {
             logger.fatal(e.getMessage());
-            throw new DAOException(UNKNOWN_ERROR, e);
+            throw new DAOException(UNKNOWN_ERROR);
         }
         return false;
     }
@@ -133,7 +130,7 @@ public class UserActivityDAOImpl implements UserActivityDAO, Constants {
                 .withActivityName(activity.getName())
                 .withActionToDo(REMOVE)
                 .build();
-        for(Request element: new RequestDAOImpl(dataSource).getAll()){
+        for(Request element: requestDAO.getAll()){
             if (element.equals(requestToCompare)) return true;
         }
         return false;

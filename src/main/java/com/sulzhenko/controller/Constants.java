@@ -1,6 +1,8 @@
 package com.sulzhenko.controller;
 
 public interface Constants {
+    String ACCESS_DENIED = "access.denied";
+    String ACTION = "action";
     String ACTION_TO_DO = "action_to_do";
     String ACTIVE = "active";
     String ACTIVITIES = "activities";
@@ -13,7 +15,7 @@ public interface Constants {
     String CATEGORY_NAME = "category_name";
     String CURRENT_PAGE = "currentPage";
     String CURRENT_PASSWORD = "currentpassword";
-    String DEACTIVATED = "deactivated";
+    String DESCRIPTION = "description";
     String EMAIL = "email";
     String EMPTY = "";
     String ERROR = "error";
@@ -42,14 +44,17 @@ public interface Constants {
     String PASSWORD = "password";
     String PASSWORD1 = "password1";
     String PASSWORD2 = "password2";
+    String PATH = "path";
     String REMOVE = "remove";
     String REPORT = "report";
     String REQUESTS = "requests";
+    String REQUEST_ID = "request_id";
     String STATUS = "status";
     String SYSTEM_USER = "system user";
     String TO_ADD = "to_add";
     String USER = "user";
     String USERS = "users";
+    String UNKNOWN = "UNKNOWN";
     String UNKNOWN_ERROR = "unknown.error";
     String WRONG_ACTIVITY = "wrong.activity";
 }

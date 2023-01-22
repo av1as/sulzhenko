@@ -20,19 +20,6 @@ public class User implements Serializable {
 
     private User() {
     }
-
-//    private User(Long account, String login, String email, String password, String firstName, String lastName, Role role, String status, String notifications) {
-//        this.account = account;
-//        this.login = login;
-//        this.email = email;
-//        this.password = password;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.role = role;
-//        this.status = status;
-//        this.notification = notifications;
-//    }
-
     public Long getAccount() {
         return account;
     }
@@ -72,9 +59,9 @@ public class User implements Serializable {
     }
 
     public String getFullName() {
-        if (firstName != null && lastName != null) return firstName + " " + lastName;
-        else if (firstName != null) return firstName;
-        else if (lastName != null) return lastName;
+        if (!firstName.isEmpty() && !lastName.isEmpty()) return firstName + " " + lastName;
+        else if (!firstName.isEmpty()) return firstName;
+        else if (!lastName.isEmpty()) return lastName;
         else return login;
     }
 
@@ -186,7 +173,7 @@ public class User implements Serializable {
             return value;
         }
 
-        static Role extractRole(String value) {
+        public static Role extractRole(String value) {
             if (Objects.equals(value, "administrator")) return ADMIN;
             else if (Objects.equals(value, "system user")) return SYSTEM_USER;
             else return UNKNOWN;

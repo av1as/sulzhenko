@@ -1,7 +1,7 @@
 package Service;
 
 import com.sulzhenko.model.DAO.DAOException;
-import com.sulzhenko.model.DTO.UserActivityDTO;
+import com.sulzhenko.DTO.UserActivityDTO;
 import com.sulzhenko.model.services.ReportService;
 import com.sulzhenko.model.services.implementation.ReportServiceImpl;
 import org.junit.jupiter.api.Test;

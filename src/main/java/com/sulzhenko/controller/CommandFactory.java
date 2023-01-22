@@ -36,6 +36,9 @@ public class CommandFactory {
     actions.put("set_amount", new SetAmountCommand());
     actions.put("remove_activity", new RequestToRemoveActivityCommand());
     actions.put("add_activity", new RequestToAddActivityCommand());
+    actions.put("user_requests", new ShowUserRequestsCommand());
+    actions.put("set_request_description", new SetRequestDescriptionCommand());
+    actions.put("remove_request", new RemoveUserRequestCommand());
 
     //admin commands
     actions.put("admin_update", new AdminUpdateUserCommand());

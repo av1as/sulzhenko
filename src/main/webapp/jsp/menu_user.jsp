@@ -24,7 +24,7 @@
   <div class="container">
     <div class="navbar-header">
 
-      <a class="navbar-brand" href="${menu}"><p style="font-size:35px"><fmt:message key="timekeeping"/></p></a>
+      <a class="navbar-brand" href="${pageContext.request.contextPath}${menu}"><p style="font-size:35px"><fmt:message key="timekeeping"/></p></a>
 
     </div>
     <div class="navbar-collapse collapse">
@@ -73,6 +73,7 @@
 
 
                 <li><a href="/TimeKeeping/controller?action=user_activities"><p style="font-size:25px"><i class="glyphicon glyphicon-flag"></i><fmt:message key="my.activities"/></p></a></li>
+                <li><a href="/TimeKeeping/controller?action=user_requests"><p style="font-size:25px"><i class="glyphicon glyphicon-flag"></i><fmt:message key="my.requests"/></p></a></li>
 
 
             </ul>

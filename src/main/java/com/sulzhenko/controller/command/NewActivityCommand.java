@@ -3,7 +3,7 @@ package com.sulzhenko.controller.command;
 import com.sulzhenko.controller.Command;
 import com.sulzhenko.controller.Constants;
 import com.sulzhenko.controller.Path;
-import com.sulzhenko.model.DTO.ActivityDTO;
+import com.sulzhenko.DTO.ActivityDTO;
 import com.sulzhenko.model.services.ActivityService;
 import com.sulzhenko.model.services.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,7 +15,7 @@ import org.apache.logging.log4j.Logger;
 import java.sql.SQLException;
 import java.util.List;
 
-import static com.sulzhenko.ApplicationContext.getApplicationContext;
+import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
 
 public class NewActivityCommand implements Command, Constants, Path {
     ActivityService activityService = getApplicationContext().getActivityService();
@@ -33,7 +33,7 @@ public class NewActivityCommand implements Command, Constants, Path {
         } catch(ServiceException e){
             logger.warn(e.getMessage());
             session.setAttribute(ERROR, WRONG_ACTIVITY);
-            forward = Path.PAGE_ERROR_FULL;
+            forward = PAGE_ERROR_FULL;
         }
         return forward;
     }

@@ -314,6 +314,8 @@ public abstract class SQLQueries {
                 "WHERE request_id = ?;";
         public static final String GET_REQUESTS_BY_LOGIN = SELECT_ALL_REQUEST_FIELDS +
                 "WHERE login = ?;";
+        public static final String GET_REQUESTS_BY_LOGIN_AND_ACTION = SELECT_ALL_REQUEST_FIELDS +
+                "WHERE login = ? AND action_description = ?;";
         public static final String GET_REQUESTS_BY_ACTIVITY = SELECT_ALL_REQUEST_FIELDS +
                 "WHERE activity_name = ?;";
         public static final String GET_REQUESTS_BY_ACTION = SELECT_ALL_REQUEST_FIELDS +

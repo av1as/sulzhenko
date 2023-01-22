@@ -1,9 +1,12 @@
 package com.sulzhenko.model.services.implementation;
 
+import com.sulzhenko.Util.notifications.Mailer;
 import com.sulzhenko.model.DAO.*;
 import com.sulzhenko.model.DAO.implementation.UserDAOImpl;
-import com.sulzhenko.model.DTO.UserDTO;
+import com.sulzhenko.DTO.UserDTO;
 import com.sulzhenko.model.entity.User;
+import com.sulzhenko.Util.notifications.NotificationFactories;
+import com.sulzhenko.Util.notifications.NotificationFactory;
 import com.sulzhenko.model.hashingPasswords.Sha;
 import com.sulzhenko.model.services.ServiceException;
 import com.sulzhenko.model.services.UserService;
@@ -81,7 +84,7 @@ public class UserServiceImpl implements UserService {
             if(Objects.equals(params[2], ""))  params[2] = t.getPassword();
             else params[2] = sha.hashToHex(params[2], Optional.ofNullable(params[0]));
             userDAO.update(user, params);
-            notifyAboutUpdate(user, UPDATED);
+            notifyAboutUpdate(user);
         } catch (DAOException | UnsupportedEncodingException | NoSuchAlgorithmException e){
             logger.warn(e.getMessage());
             throw new ServiceException(UNKNOWN_ERROR);
@@ -94,9 +97,10 @@ public class UserServiceImpl implements UserService {
             params[2] = userDTO.getPassword();
             User user = getUser(userDTO.getLogin());
             userDAO.update(user, params);
-            notifyAboutUpdate(user, UPDATED);
+            notifyAboutUpdate(user);
         } catch(DAOException | ServiceException e){
-            throw new ServiceException(e.getMessage());
+            logger.warn(e);
+            throw new ServiceException(e);
         }
     }
     @Override
@@ -104,7 +108,7 @@ public class UserServiceImpl implements UserService {
         if(!isLoginAvailable(user.getLogin())) {
             userDAO.delete(user);
         } else {
-            logger.info("wrong.user: {}", user.getLogin());
+            logger.warn("wrong.user: {}", user.getLogin());
             throw new ServiceException(WRONG_LOGIN);
         }
     }
@@ -152,6 +156,17 @@ public class UserServiceImpl implements UserService {
         }
         return list;
     }
+    public List<UserDTO> getUserList(String status, int page, int recordsPerPage){
+        if(Objects.equals(status, ACTIVE)) {
+            return viewAllActiveUsers((page-1)*recordsPerPage, recordsPerPage);
+        } else if(Objects.equals(status, INACTIVE)) {
+            return viewAllInactiveUsers((page-1)*recordsPerPage, recordsPerPage);
+        } else if(Objects.equals(status, DEACTIVATED)) {
+            return viewAllDeactivatedUsers((page-1)*recordsPerPage, recordsPerPage);
+        } else {
+            return viewAllSystemUsers((page-1)*recordsPerPage, recordsPerPage);
+        }
+    }
     private void isDataCorrect(User t, String passwordConfirm) {
         String errorMessage = validateNewUser(t, passwordConfirm);
         if (!isRoleCorrect(t.getRole().value)){
@@ -171,15 +186,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean isRoleCorrect(String role) throws DAOException{
         try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(SQLQueries.UserQueries.FIND_ROLE_BY_DESCRIPTION)
-        ) {
+             PreparedStatement stmt = con.prepareStatement(SQLQueries.UserQueries.FIND_ROLE_BY_DESCRIPTION)) {
             stmt.setString(1, role);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 return true;
             }
         } catch (SQLException e) {
-            logger.fatal("unknown exception when checking role");
+            logger.fatal(e);
             throw new ServiceException(UNKNOWN_ERROR, e);
         }
         return false;
@@ -187,16 +201,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean isStatusCorrect(String status) throws DAOException{
         try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(SQLQueries.UserQueries.FIND_STATUS_BY_NAME)
-        ) {
+             PreparedStatement stmt = con.prepareStatement(SQLQueries.UserQueries.FIND_STATUS_BY_NAME)) {
             stmt.setString(1, status);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 return true;
             }
         } catch (SQLException e) {
-            logger.fatal("unknown exception when checking status");
-            throw new ServiceException(UNKNOWN_ERROR, e);
+            logger.fatal(e);
+            throw new ServiceException(UNKNOWN_ERROR);
         }
         return false;
     }
@@ -229,7 +242,7 @@ public class UserServiceImpl implements UserService {
                 }
             } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
                 errorMessage = UNKNOWN_ERROR;
-                logger.warn(errorMessage);
+                logger.fatal(e);
                 throw new ServiceException(errorMessage);
             }
         }
@@ -272,6 +285,7 @@ public class UserServiceImpl implements UserService {
                     errorMessage = WRONG_PASSWORD;
                 }
             } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+                logger.fatal(e);
                 errorMessage = UNKNOWN_ERROR;
             }
         }
@@ -287,22 +301,22 @@ public class UserServiceImpl implements UserService {
             result = PASSWORD_ERROR;
         } else if(!isValid(user.getEmail(), EMAIL_REGEX)) {
             result = EMAIL_ERROR;
-        } else if(!Objects.equals(user.getFirstName(), "") && !isValid(user.getFirstName(), NAME_REGEX)){
+        } else if(!user.getFirstName().isEmpty() && !isValid(user.getFirstName(), NAME_REGEX)){
             result = NAME_ERROR;
-        } else if(!Objects.equals(user.getLastName(), "") && !isValid(user.getLastName(), NAME_REGEX)){
+        } else if(!user.getLastName().isEmpty() && !isValid(user.getLastName(), NAME_REGEX)){
             result = NAME_ERROR;
         } else result = null;
         return result;
     }
     public String validateUserUpdate(User user){
         String result;
-        if(!Objects.equals(user.getPassword(), "") && !isValid(user.getPassword(), PASSWORD_REGEX)){
+        if(!user.getPassword().isEmpty() && !isValid(user.getPassword(), PASSWORD_REGEX)){
             result = PASSWORD_ERROR;
         } else  if(!isValid(user.getEmail(), EMAIL_REGEX)){
             result = EMAIL_ERROR;
-        } else if(!Objects.equals(user.getFirstName(), "") && !isValid(user.getFirstName(), NAME_REGEX)){
+        } else if(!user.getFirstName().isEmpty() && !isValid(user.getFirstName(), NAME_REGEX)){
             result = NAME_ERROR;
-        } else if(!Objects.equals(user.getLastName(), "") && !isValid(user.getLastName(), NAME_REGEX)){
+        } else if(!user.getLastName().isEmpty() && !isValid(user.getLastName(), NAME_REGEX)){
             result = NAME_ERROR;
         } else result = null;
         return result;
@@ -311,18 +325,18 @@ public class UserServiceImpl implements UserService {
         String result;
         if(!isValid(user.getEmail(), EMAIL_REGEX)){
             result = EMAIL_ERROR;
-        } else if(!Objects.equals(user.getFirstName(), "") && !isValid(user.getFirstName(), NAME_REGEX)){
+        } else if(!user.getFirstName().isEmpty() && !isValid(user.getFirstName(), NAME_REGEX)){
             result = NAME_ERROR;
-        } else if(!Objects.equals(user.getLastName(), "") && !isValid(user.getLastName(), NAME_REGEX)){
+        } else if(!user.getLastName().isEmpty() && !isValid(user.getLastName(), NAME_REGEX)){
             result = NAME_ERROR;
         } else result = null;
         return result;
     }
-    public void notifyAboutUpdate(User u, String description){
-
-        // create method to notify connected users
-
-
-
+    @Override
+    public void notifyAboutUpdate(User user){
+            NotificationFactory factory = new NotificationFactories().accountUpdateFactory(user);
+            String subject = factory.createSubject();
+            String body = factory.createBody();
+            Mailer.send(user.getEmail(), subject, body);
     }
 }

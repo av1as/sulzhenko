@@ -8,7 +8,6 @@ import java.sql.SQLException;
 /**
  * Main interface for the Action pattern implementation.
  *
- *
  */
 public interface Command {
   /**

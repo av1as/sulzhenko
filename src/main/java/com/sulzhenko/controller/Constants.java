@@ -23,6 +23,7 @@ public interface Constants {
     String ID = "id";
     String INACTIVE = "inactive";
     String LAST_NAME = "lastname";
+    String LOCALE = "locale";
     String LOGIN = "login";
     String MENU = "menu";
     String NAME = "name";

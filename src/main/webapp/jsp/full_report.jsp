@@ -2,6 +2,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="jakarta.tags.core" %>
 <%@taglib prefix="myTags" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="ctg" uri="/WEB-INF/tld/custom.tld" %>
 <%@ page import="java.util.List"%>
 <%@page import="java.util.Hashtable"%>
 
@@ -46,6 +47,14 @@
   </div><!-- /container -->
 </div>
 
+
+
+<button class="glyphicon glyphicon-download-alt" type="submit" onclick="window.open('report.pdf')">full report PDF</button>
+<button class="glyphicon glyphicon-download-alt" type="submit" onclick="window.open('page.pdf')">this page PDF</button>
+
+<div class="text-left">
+<h3><fmt:message key="today"/><ctg:now/></h3>
+</div>
 
 
 <h3 class="text-center"><fmt:message key="report"/></h3>

@@ -19,7 +19,6 @@ import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
 /**
  * Register controller action
  *
- *
  */
 public class RequestToRemoveActivityCommand implements Command, Constants, Path {
     RequestService requestService = getApplicationContext().getRequestService();

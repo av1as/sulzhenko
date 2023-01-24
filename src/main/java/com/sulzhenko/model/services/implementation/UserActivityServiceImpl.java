@@ -134,10 +134,25 @@ public class UserActivityServiceImpl implements UserActivityService {
         return number;
     }
 
-    public List<UserActivityDTO> listAllUserActivitiesSorted(HttpServletRequest request){
+    public List<UserActivityDTO> listAllUserActivitiesSorted(String page){
         List<UserActivityDTO> list = new ArrayList<>();
         try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(buildAllUsersQuery(request))) {
+             PreparedStatement stmt = con.prepareStatement(buildAllUsersQuery(page))) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                UserActivityDTO userActivity = getUserActivityDTOWithFields(rs);
+                list.add(userActivity);
+            }
+        } catch (SQLException e) {
+            logger.fatal(e);
+            throw new ServiceException(UNKNOWN_ERROR);
+        }
+        return list;
+    }
+    public List<UserActivityDTO> listFullPdf(){
+        List<UserActivityDTO> list = new ArrayList<>();
+        try (Connection con = dataSource.getConnection();
+             PreparedStatement stmt = con.prepareStatement(buildFullPDFQuery())) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 UserActivityDTO userActivity = getUserActivityDTOWithFields(rs);
@@ -180,11 +195,17 @@ public class UserActivityServiceImpl implements UserActivityService {
         }
         return list;
     }
-    private String buildAllUsersQuery(HttpServletRequest request){
+    private String buildAllUsersQuery(String currentPage){
         int page = 1;
-        if(request.getParameter(PAGE) != null)
-            page = Integer.parseInt(request.getParameter(PAGE));
+        if(currentPage != null)
+            page = Integer.parseInt(currentPage);
         int records = 5;
+        int offset = (page - 1) * records;
+        return String.format(ALL_USER_QUERY, offset, records);
+    }
+    private String buildFullPDFQuery(){
+        int page = 1;
+        int records = 1000;
         int offset = (page - 1) * records;
         return String.format(ALL_USER_QUERY, offset, records);
     }

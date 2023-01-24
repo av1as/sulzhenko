@@ -45,23 +45,23 @@ class ServiceUserActivityTests {
     void testListAllUserActivitiesSorted() throws SQLException {
         DataSource dataSource = mock(DataSource.class);
         UserActivityService userActivityService = new UserActivityServiceImpl(dataSource);
-        HttpServletRequest request = mock(HttpServletRequest.class);
+//        HttpServletRequest request = mock(HttpServletRequest.class);
         try (PreparedStatement ignored = prepareMocks(dataSource)) {
             ResultSet rs = mock(ResultSet.class);
             when(ignored.executeQuery()).thenReturn(rs);
             when(rs.next()).thenReturn(false);
-            assertDoesNotThrow(() -> userActivityService.listAllUserActivitiesSorted(request));
-            assertEquals(0, userActivityService.listAllUserActivitiesSorted(request).size());
+            assertDoesNotThrow(() -> userActivityService.listAllUserActivitiesSorted("1"));
+            assertEquals(0, userActivityService.listAllUserActivitiesSorted("1").size());
         }
     }
     @Test
     void testSQLExceptionListAllUserActivitiesSorted() throws SQLException {
         DataSource dataSource = mock(DataSource.class);
         UserActivityService userActivityService = new UserActivityServiceImpl(dataSource);
-        HttpServletRequest request = mock(HttpServletRequest.class);
+//        HttpServletRequest request = mock(HttpServletRequest.class);
         try (PreparedStatement ignored = prepareMocks(dataSource)) {
             when(dataSource.getConnection()).thenThrow(new SQLException());
-            assertThrows(ServiceException.class, () -> userActivityService.listAllUserActivitiesSorted(request));
+            assertThrows(ServiceException.class, () -> userActivityService.listAllUserActivitiesSorted("1"));
         }
     }
     @Test

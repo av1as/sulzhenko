@@ -185,6 +185,38 @@ class DAOActivityTests {
         assertThrows(DAOException.class, () -> activityDAO.getList(1L, GET_ACTIVITIES_BY_CATEGORY));
     }
     @Test
+    void testByCategory() throws DAOException, SQLException {
+        DataSource dataSource = mock(DataSource.class);
+        ActivityDAO activityDAO = new ActivityDAOImpl(dataSource);
+        try (PreparedStatement preparedStatement = prepareMocks(dataSource)) {
+            ResultSet resultSet = mock(ResultSet.class);
+            when(preparedStatement.executeQuery()).thenReturn(resultSet);
+            prepareResultSet(resultSet);
+            List<Activity> activities = activityDAO.getByCategory("test");
+            assertEquals(1, activities.size());
+            assertEquals(getTestActivity(), activities.get(0));
+        }
+    }
+    @Test
+    void testGetByCategoryEmpty() throws DAOException, SQLException {
+        DataSource dataSource = mock(DataSource.class);
+        ActivityDAO activityDAO = new ActivityDAOImpl(dataSource);
+        try (PreparedStatement preparedStatement = prepareMocks(dataSource)) {
+            ResultSet resultSet = mock(ResultSet.class);
+            when(preparedStatement.executeQuery()).thenReturn(resultSet);
+            when(resultSet.next()).thenReturn(false);
+            List<Activity> activities = activityDAO.getByCategory("test");
+            assertEquals(0, activities.size());
+        }
+    }
+    @Test
+    void testSqlExceptionGetByCategory() throws SQLException {
+        DataSource dataSource = mock(DataSource.class);
+        ActivityDAO activityDAO = new ActivityDAOImpl(dataSource);
+        when(dataSource.getConnection()).thenThrow(new SQLException());
+        assertThrows(DAOException.class, () -> activityDAO.getByCategory("test"));
+    }
+    @Test
     void testUpdate() throws SQLException {
         DataSource dataSource = mock(DataSource.class);
         ActivityDAO activityDAO = new ActivityDAOImpl(dataSource);

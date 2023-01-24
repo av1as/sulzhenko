@@ -17,7 +17,6 @@ import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
 /**
  * Delete category controller action
  *
- *
  */
 public class DeleteCategoryCommand implements Command, Constants, Path {
     CategoryService categoryService = getApplicationContext().getCategoryService();

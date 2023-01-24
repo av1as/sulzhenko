@@ -51,6 +51,7 @@
 <h3 class="text-center"><fmt:message key="report"/></h3>
 
 
+
 <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
   <col style="width: 20%">
   <col style="width: 50%">

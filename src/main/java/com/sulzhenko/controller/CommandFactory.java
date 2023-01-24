@@ -8,16 +8,10 @@ import java.util.Map;
 /**
  * Main Command factory for Controller
  *
- *
  */
 public class CommandFactory {
   private static final CommandFactory ACTION_FACTORY = new CommandFactory();
   private static final Map<String, Command> actions = new HashMap<>();
-
-  /**
-     * Singleton
-     */
-
 
   static {
     // guest commands

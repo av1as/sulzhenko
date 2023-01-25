@@ -17,7 +17,6 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
     <!------ Include the above in your HEAD tag ---------->
     <!------
     ---------->
@@ -47,49 +46,19 @@
 </div>
 <div class="container">
 	<div class="row">
-<form name="loginForm" method="POST" action="controller?action=login">
-<input type="hidden" name="action" value="login" />
-<h3><fmt:message key="login"/>:</h3>
-
-<input type="text" name="login" value=""/>
-<br/>
-
-<h3><fmt:message key="password"/>:</h3>
-<input type="password" name="password" value="" id="typepass"/>
-
-<br/>
-<br/>
-    <input type="checkbox"
-           onclick="Toggle()">
-    <strong><fmt:message key="show.password"/></strong>
-
-    <script>
-        function Toggle() {
-            var temp = document.getElementById("typepass");
-            if (temp.type === "password") {
-                temp.type = "text";
-            }
-            else {
-                temp.type = "password";
-            }
-        }
-    </script>
-
-  <!--
-<span class="error">${error}</span>
-<div style="color: red "><fmt:message key="${error}"/></div>
--->
+        <form name="recoverPasswordForm" method="POST" action="${pageContext.request.contextPath}/controller?action=recover_password">
+            <input type="hidden" name="action" value="recover_password" />
+            <h3><fmt:message key="login"/>:</h3>
+            <h5><fmt:message key="password.recover"/>:</h5>
+            <input type="text" name="login" value=""/>
+            <br/>
 
 
-<br/>
-${wrongAction}
-<br/>
-${nullPage}
-<br/>
-<h3><input type="submit" value="<fmt:message key="log.in"/>"/></h3>
-</form><hr/>
 
-<a href="jsp/recover_password_form.jsp"><h3><fmt:message key="forgot.password"/></h3></a>
-<a href="jsp/register.jsp"><h3><fmt:message key="register"/></h3></a>
-</div>
+
+            <h3><input type="submit" value="<fmt:message key="submit"/>"/></h3>
+        </form><hr/>
+
+
+    </div>
 </body></html>

@@ -80,65 +80,65 @@ class ServiceActivityTests {
     void testGetNumberOfRecords() throws SQLException {
         DataSource dataSource = mock(DataSource.class);
         ActivityService activityService = new ActivityServiceImpl(dataSource);
-        HttpServletRequest request = mock(HttpServletRequest.class);
+//        HttpServletRequest request = mock(HttpServletRequest.class);
         try (PreparedStatement preparedStatement = prepareMocks(dataSource)) {
             ResultSet resultSet = mock(ResultSet.class);
             when(preparedStatement.executeQuery()).thenReturn(resultSet);
             prepareResultSet(resultSet);
-            assertEquals(5, activityService.getNumberOfRecords(request));
+            assertEquals(5, activityService.getNumberOfRecords("asdf"));
         }
     }
     @Test
     void testGetNumberOfRecordsEmpty() throws SQLException {
         DataSource dataSource = mock(DataSource.class);
         ActivityService activityService = new ActivityServiceImpl(dataSource);
-        HttpServletRequest request = mock(HttpServletRequest.class);
+//        HttpServletRequest request = mock(HttpServletRequest.class);
         try (PreparedStatement preparedStatement = prepareMocks(dataSource)) {
             ResultSet resultSet = mock(ResultSet.class);
             when(preparedStatement.executeQuery()).thenReturn(resultSet);
             when(resultSet.next()).thenReturn(false);
-            assertEquals(0, activityService.getNumberOfRecords(request));
+            assertEquals(0, activityService.getNumberOfRecords("asdf"));
         }
     }
     @Test
     void testSqlGetNumberOfRecords() throws SQLException {
         DataSource dataSource = mock(DataSource.class);
         ActivityService activityService = new ActivityServiceImpl(dataSource);
-        HttpServletRequest request = mock(HttpServletRequest.class);
+//        HttpServletRequest request = mock(HttpServletRequest.class);
         when(dataSource.getConnection()).thenThrow(new SQLException());
-        assertThrows(ServiceException.class, () -> activityService.getNumberOfRecords(request));
+        assertThrows(ServiceException.class, () -> activityService.getNumberOfRecords("asdf"));
     }
     @Test
     void testGetListActivitiesSorted() throws SQLException {
         DataSource dataSource = mock(DataSource.class);
         ActivityService activityService = new ActivityServiceImpl(dataSource);
-        HttpServletRequest request = mock(HttpServletRequest.class);
+//        HttpServletRequest request = mock(HttpServletRequest.class);
         try (PreparedStatement preparedStatement = prepareMocks(dataSource)) {
             ResultSet resultSet = mock(ResultSet.class);
             when(preparedStatement.executeQuery()).thenReturn(resultSet);
             prepareDTOResultSet(resultSet);
-            assertEquals(1, activityService.listActivitiesSorted(request).size());
+            assertEquals(1, activityService.listActivitiesSorted("asdf", "asdf", "asdf", "1").size());
         }
     }
     @Test
     void testListActivitiesSortedEmpty() throws SQLException {
         DataSource dataSource = mock(DataSource.class);
         ActivityService activityService = new ActivityServiceImpl(dataSource);
-        HttpServletRequest request = mock(HttpServletRequest.class);
+//        HttpServletRequest request = mock(HttpServletRequest.class);
         try (PreparedStatement preparedStatement = prepareMocks(dataSource)) {
             ResultSet resultSet = mock(ResultSet.class);
             when(preparedStatement.executeQuery()).thenReturn(resultSet);
             when(resultSet.next()).thenReturn(false);
-            assertEquals(0, activityService.listActivitiesSorted(request).size());
+            assertEquals(0, activityService.listActivitiesSorted("asdf", "asdf", "asdf", "1").size());
         }
     }
     @Test
     void testSqlExceptionListActivitiesSorted() throws SQLException {
         DataSource dataSource = mock(DataSource.class);
         ActivityService activityService = new ActivityServiceImpl(dataSource);
-        HttpServletRequest request = mock(HttpServletRequest.class);
+//        HttpServletRequest request = mock(HttpServletRequest.class);
         when(dataSource.getConnection()).thenThrow(new SQLException());
-        assertThrows(ServiceException.class, () -> activityService.listActivitiesSorted(request));
+        assertThrows(ServiceException.class, () -> activityService.listActivitiesSorted("asdf", "asdf", "asdf", "1"));
     }
     @Test
     void testIsNameAvailable() throws SQLException {

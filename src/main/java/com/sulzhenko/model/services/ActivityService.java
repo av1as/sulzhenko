@@ -13,7 +13,7 @@ public interface ActivityService extends Constants {
     void addActivity(String name, String categoryName);
     void updateActivity(String oldName, String newName, String newCategoryName);
     void deleteActivity(String name);
-    int getNumberOfRecords(HttpServletRequest request) throws SQLException;
-    List<ActivityDTO> listActivitiesSorted(HttpServletRequest request);
+    int getNumberOfRecords(String filter) throws SQLException;
+    List<ActivityDTO> listActivitiesSorted(String filter, String order, String parameter, String page);
     boolean isNameAvailable(String name);
 }

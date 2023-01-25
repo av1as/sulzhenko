@@ -81,7 +81,7 @@
             <div class="form-group">
 
                 <label><span class="req">* </span><fmt:message key="current.password"/>: </label><br>
-                <input name="currentpassword" type="password" class="input-xlarge"   id="password" />
+                <input name="currentpassword" type="password" class="input-xlarge"   id="password1" />
             </div>
 
             <div class="form-group">
@@ -96,6 +96,24 @@
                 <input name="newpasswordconfirm" type="password" class="input-xlarge" placeholder="<fmt:message key="repeat.validate"/>"  id="pass2" onkeyup="checkPass(); return false;" />
                 <span id="confirmMessage" class="confirmMessage"></span>
             </div>
+
+            <input type="checkbox"
+                       onclick="Toggle('password1'); Toggle('pass1'); Toggle('pass2')">
+                <strong><fmt:message key="show.password"/></strong>
+
+                <script>
+                    // Change the type of input to password or text
+                    function Toggle(id) {
+                        var temp = document.getElementById(id);
+                        if (temp.type === "password") {
+                            temp.type = "text";
+                        }
+                        else {
+                            temp.type = "password";
+                        }
+                    }
+                </script>
+
             <br>
             <div class="form-group">
                 <input type="checkbox" name="newnotifications"   id="notifications" ${user.isNotificationChecked()}> <label for="notifications"><fmt:message key="get.notification"/>.</label>

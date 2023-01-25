@@ -7,13 +7,12 @@ import com.sulzhenko.DTO.UserDTO;
 import com.sulzhenko.model.entity.User;
 import com.sulzhenko.Util.notifications.NotificationFactories;
 import com.sulzhenko.Util.notifications.NotificationFactory;
-import com.sulzhenko.model.hashingPasswords.Sha;
+import com.sulzhenko.Util.hashingPasswords.Sha;
 import com.sulzhenko.model.services.ServiceException;
 import com.sulzhenko.model.services.UserService;
-import jakarta.servlet.http.HttpServletRequest;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import javax.sql.DataSource;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -25,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-
 import static com.sulzhenko.model.services.validator.InputValidator.*;
 
 public class UserServiceImpl implements UserService {
@@ -81,13 +79,32 @@ public class UserServiceImpl implements UserService {
         User user = getUser(t.getLogin());
         try {
             isUpdateCorrect(params, t.getLogin());
-            if(Objects.equals(params[2], ""))  params[2] = t.getPassword();
+            if(params[2].isEmpty())  params[2] = t.getPassword();
             else params[2] = sha.hashToHex(params[2], Optional.ofNullable(params[0]));
             userDAO.update(user, params);
             notifyAboutUpdate(user);
         } catch (DAOException | UnsupportedEncodingException | NoSuchAlgorithmException e){
             logger.warn(e.getMessage());
             throw new ServiceException(UNKNOWN_ERROR);
+        }
+    }
+    @Override
+    public void recoverPassword(String login){
+        User user = userDAO.getByLogin(login).orElse(null);
+        String randomPassword = RandomStringUtils.randomAlphanumeric(10);
+        if(user != null) {
+            try {
+                String[] param = {login, user.getEmail(), sha.hashToHex(randomPassword, Optional.ofNullable(login)), user.getFirstName(),
+                        user.getLastName(), user.getRole().value, user.getStatus(), user.getNotification()};
+                userDAO.update(user, param);
+                sendTemporaryPassword(user, randomPassword);
+            } catch (DAOException | UnsupportedEncodingException | NoSuchAlgorithmException e) {
+                logger.warn(e.getMessage());
+                throw new ServiceException(UNKNOWN_ERROR);
+            }
+        } else {
+            logger.warn(WRONG_LOGIN + login);
+            throw new ServiceException(WRONG_LOGIN);
         }
     }
     @Override
@@ -248,10 +265,8 @@ public class UserServiceImpl implements UserService {
         }
         return errorMessage;
     }
-    public String areFieldsBlank(HttpServletRequest request) {
+    public String areFieldsBlank(String login, String password) {
         String errorMessage = null;
-        String login = request.getParameter(LOGIN);
-        String password = request.getParameter(PASSWORD);
         if (login == null || login.isEmpty()) {
             errorMessage = EMPTY_LOGIN;
             logger.warn(errorMessage);
@@ -338,5 +353,12 @@ public class UserServiceImpl implements UserService {
             String subject = factory.createSubject();
             String body = factory.createBody();
             Mailer.send(user.getEmail(), subject, body);
+    }
+    @Override
+    public void sendTemporaryPassword(User user, String temporaryPassword){
+        NotificationFactory factory = new NotificationFactories().recoverPasswordFactory(user, temporaryPassword);
+        String subject = factory.createSubject();
+        String body = factory.createBody();
+        Mailer.send(user.getEmail(), subject, body);
     }
 }

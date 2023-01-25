@@ -8,7 +8,6 @@ import com.sulzhenko.model.entity.User;
 import com.sulzhenko.model.services.ServiceException;
 import com.sulzhenko.model.services.UserService;
 import com.sulzhenko.model.services.implementation.UserServiceImpl;
-import jakarta.servlet.http.HttpServletRequest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -137,6 +136,13 @@ class ServiceUserTests {
                 "updated last", "administrator", "active", "off"};
         when(dataSource.getConnection()).thenThrow(new SQLException());
         assertThrows(DAOException.class, () -> userService.updateUser(userDTO,param));
+    }
+    @Test
+    void testSQLExceptionRecoverPassword() throws DAOException, SQLException {
+        DataSource dataSource = mock(DataSource.class);
+        UserService userService = new UserServiceImpl(dataSource);
+        when(dataSource.getConnection()).thenThrow(new SQLException());
+        assertThrows(DAOException.class, () -> userService.recoverPassword("login"));
     }
     @Test
     void testSQLExceptionAdminUpdateUser() throws DAOException, SQLException {
@@ -284,13 +290,11 @@ class ServiceUserTests {
     void testAreFieldsBlankNullLogin() throws DAOException, SQLException {
         DataSource dataSource = mock(DataSource.class);
         UserService userService = new UserServiceImpl(dataSource);
-        HttpServletRequest request = mock(HttpServletRequest.class);
         try (PreparedStatement stmt = prepareMocks(dataSource)) {
             ResultSet rs = mock(ResultSet.class);
             when(stmt.executeQuery()).thenReturn(rs);
             when(rs.next()).thenReturn(false);
-            doReturn(null).when(request).getParameter("login");
-            assertEquals("empty.login", userService.areFieldsBlank(request));
+            assertEquals("empty.login", userService.areFieldsBlank(null, "asfd"));
         }
     }
 
@@ -298,14 +302,11 @@ class ServiceUserTests {
     void testAreFieldsBlankNullPassword() throws DAOException, SQLException {
         DataSource dataSource = mock(DataSource.class);
         UserService userService = new UserServiceImpl(dataSource);
-        HttpServletRequest request = mock(HttpServletRequest.class);
         try (PreparedStatement stmt = prepareMocks(dataSource)) {
             ResultSet rs = mock(ResultSet.class);
             when(stmt.executeQuery()).thenReturn(rs);
             when(rs.next()).thenReturn(false);
-            doReturn("login").when(request).getParameter("login");
-            doReturn(null).when(request).getParameter("password");
-            assertEquals("empty.password", userService.areFieldsBlank(request));
+            assertEquals("empty.password", userService.areFieldsBlank("login", null));
         }
     }
     @ParameterizedTest

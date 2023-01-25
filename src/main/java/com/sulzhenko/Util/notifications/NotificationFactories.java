@@ -1,5 +1,6 @@
 package com.sulzhenko.Util.notifications;
 
+import com.sulzhenko.Util.notifications.implementations.*;
 import com.sulzhenko.model.entity.Request;
 import com.sulzhenko.model.entity.User;
 
@@ -53,6 +54,19 @@ public class NotificationFactories {
             @Override
             public String createBody() {
                 return new SystemUpdateBody(user, updateDescription).asText();
+            }
+        };
+    }
+    public NotificationFactory recoverPasswordFactory (User user, String temporaryPassword){
+        return new NotificationFactory() {
+            @Override
+            public String createSubject() {
+                return new RecoverPasswordSubject().asSubject();
+            }
+
+            @Override
+            public String createBody() {
+                return new RecoverPasswordBody(user, temporaryPassword).asText();
             }
         };
     }

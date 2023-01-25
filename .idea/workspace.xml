@@ -4,29 +4,49 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b53abc5-250e-4348-917a-700a8c9b6890" name="Changes" comment="Added possibility for user to update and remove their requests">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/PdfMakerUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="2b53abc5-250e-4348-917a-700a8c9b6890" name="Changes" comment="Added possibility to convert report into PDF">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/implementations/RecoverPasswordBody.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/implementations/RecoverPasswordSubject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/RecoverPasswordCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/jsp/check_email.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/jsp/recover_password_form.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/AccountUpdateBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/implementations/AccountUpdateBody.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/AccountUpdateSubject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/implementations/AccountUpdateSubject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/NotificationFactories.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/NotificationFactories.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/RequestUpdateBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/implementations/RequestUpdateBody.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/RequestUpdateSubject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/implementations/RequestUpdateSubject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/SystemUpdateBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/implementations/SystemUpdateBody.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/SystemUpdateSubject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/implementations/SystemUpdateSubject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/CommandFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/CommandFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/DeleteCategoryCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/DeleteCategoryCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/RequestToRemoveActivityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/RequestToRemoveActivityCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowFullReportCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowFullReportCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/filters/domain/Domain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/filters/domain/Domain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/Path.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/LoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/LoginCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/NewActivityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/NewActivityCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowActivityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowActivityCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowUserActivitiesCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowUserActivitiesCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/filters/domain/DomainActionsSets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/filters/domain/DomainActionsSets.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/filters/domain/DomainPagesSets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/filters/domain/DomainPagesSets.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DAO/implementation/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DAO/implementation/UserDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/hashingPasswords/Sha.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/hashingPasswords/Sha.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/ActivityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/ActivityService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/UserActivityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/UserActivityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/RequestServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/RequestServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/ActivityServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/ActivityServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/UserActivityServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/UserActivityServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/log.log" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/resources.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/resources.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/resources_uk_UA.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/resources_uk_UA.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/full_report.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/full_report.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/report.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/report.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/profile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Service/ServiceActivityTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Service/ServiceActivityTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Service/ServiceUserActivityTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Service/ServiceUserActivityTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/DAOActivityTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/DAOActivityTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Service/ServiceUserTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Service/ServiceUserTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ShaTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ShaTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/util/NotificationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/util/NotificationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +86,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "last_opened_file_path": "C:/data/temp/tasks/fp/sulzhenko/src/main/java/com/sulzhenko/controller/command",
+    "last_opened_file_path": "C:/data/temp/tasks/fp/sulzhenko/src/main/webapp/js",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -75,11 +95,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\data\temp\tasks\fp\sulzhenko\src\main\webapp\js" />
       <recent name="C:\data\temp\tasks\fp\sulzhenko\src\main\java\com\sulzhenko\controller\command" />
       <recent name="C:\data\temp\tasks\fp\sulzhenko\src\main\java\com\sulzhenko\Util" />
       <recent name="C:\data\temp\tasks\fp\sulzhenko\src\test\java\controller" />
       <recent name="C:\data\temp\tasks\fp\sulzhenko\src\test\java\controller\commands" />
-      <recent name="C:\data\temp\tasks\fp\sulzhenko\src\test\java\controller\listener" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\data\temp\tasks\fp\sulzhenko\src\main\webapp" />
@@ -108,7 +128,7 @@
       <recent name="com.sulzhenko.model.DAO" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DAOActivityTests.testGetByCategoryEmpty">
+  <component name="RunManager" selected="JUnit.All in TimeKeeping">
     <configuration name="All in TimeKeeping" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TimeKeeping" />
       <option name="PACKAGE_NAME" value="" />
@@ -117,65 +137,65 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DAOActivityTests.testByCategory" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="NotificationTests.testRecoverPasswordFactory" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TimeKeeping" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.*" />
+          <option name="PATTERN" value="util.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model" />
-      <option name="MAIN_CLASS_NAME" value="model.DAOActivityTests" />
-      <option name="METHOD_NAME" value="testByCategory" />
+      <option name="PACKAGE_NAME" value="util" />
+      <option name="MAIN_CLASS_NAME" value="util.NotificationTests" />
+      <option name="METHOD_NAME" value="testRecoverPasswordFactory" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DAOActivityTests.testGetByCategoryEmpty" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServiceUserTests.testAreFieldsBlankNullLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TimeKeeping" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.*" />
+          <option name="PATTERN" value="Service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model" />
-      <option name="MAIN_CLASS_NAME" value="model.DAOActivityTests" />
-      <option name="METHOD_NAME" value="testGetByCategoryEmpty" />
+      <option name="PACKAGE_NAME" value="Service" />
+      <option name="MAIN_CLASS_NAME" value="Service.ServiceUserTests" />
+      <option name="METHOD_NAME" value="testAreFieldsBlankNullLogin" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DAOActivityTests.testSqlExceptionGetByCategory" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServiceUserTests.testAreFieldsBlankNullPassword" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TimeKeeping" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.*" />
+          <option name="PATTERN" value="Service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model" />
-      <option name="MAIN_CLASS_NAME" value="model.DAOActivityTests" />
-      <option name="METHOD_NAME" value="testSqlExceptionGetByCategory" />
+      <option name="PACKAGE_NAME" value="Service" />
+      <option name="MAIN_CLASS_NAME" value="Service.ServiceUserTests" />
+      <option name="METHOD_NAME" value="testAreFieldsBlankNullPassword" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DomainTests.getAdminActionsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServiceUserTests.testGetNumberOfRecords" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TimeKeeping" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="controller.filters.*" />
+          <option name="PATTERN" value="Service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="controller.filters" />
-      <option name="MAIN_CLASS_NAME" value="controller.filters.DomainTests" />
-      <option name="METHOD_NAME" value="getAdminActionsTest" />
+      <option name="PACKAGE_NAME" value="Service" />
+      <option name="MAIN_CLASS_NAME" value="Service.ServiceUserTests" />
+      <option name="METHOD_NAME" value="testGetNumberOfRecords(java.lang.String)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -206,20 +226,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.DAOActivityTests.testByCategory" />
-      <item itemvalue="JUnit.DAOActivityTests.testGetByCategoryEmpty" />
-      <item itemvalue="JUnit.DAOActivityTests.testSqlExceptionGetByCategory" />
-      <item itemvalue="JUnit.DomainTests.getAdminActionsTest" />
+      <item itemvalue="JUnit.NotificationTests.testRecoverPasswordFactory" />
+      <item itemvalue="JUnit.ServiceUserTests.testAreFieldsBlankNullLogin" />
+      <item itemvalue="JUnit.ServiceUserTests.testAreFieldsBlankNullPassword" />
+      <item itemvalue="JUnit.ServiceUserTests.testGetNumberOfRecords" />
       <item itemvalue="JUnit.All in TimeKeeping" />
       <item itemvalue="Smart Tomcat.TimeKeeping" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DAOActivityTests.testGetByCategoryEmpty" />
-        <item itemvalue="JUnit.DAOActivityTests.testByCategory" />
-        <item itemvalue="JUnit.DAOActivityTests.testSqlExceptionGetByCategory" />
         <item itemvalue="JUnit.All in TimeKeeping" />
-        <item itemvalue="JUnit.DomainTests.getAdminActionsTest" />
+        <item itemvalue="JUnit.NotificationTests.testRecoverPasswordFactory" />
+        <item itemvalue="JUnit.ServiceUserTests.testAreFieldsBlankNullLogin" />
+        <item itemvalue="JUnit.ServiceUserTests.testAreFieldsBlankNullPassword" />
+        <item itemvalue="JUnit.ServiceUserTests.testGetNumberOfRecords" />
       </list>
     </recent_temporary>
   </component>
@@ -323,7 +343,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674385919994</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Added possibility to convert report into PDF">
+      <created>1674579042275</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1674579042275</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -350,7 +377,8 @@
     <MESSAGE value="Added some tests" />
     <MESSAGE value="Updated some tests" />
     <MESSAGE value="Added possibility for user to update and remove their requests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added possibility for user to update and remove their requests" />
+    <MESSAGE value="Added possibility to convert report into PDF" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added possibility to convert report into PDF" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
@@ -383,7 +411,7 @@
     <SUITE FILE_PATH="coverage/sulzhenko$DAOUserActivityTests_testIfRequestToRemoveExists.ic" NAME="DAOUserActivityTests.testIfRequestToRemoveExists Coverage Results" MODIFIED="1673887140877" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/sulzhenko$All_in_TimeKeeping.ic" NAME="All in TimeKeeping Coverage Results" MODIFIED="1674577235469" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/sulzhenko$All_in_TimeKeeping.ic" NAME="All in TimeKeeping Coverage Results" MODIFIED="1674663427537" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/sulzhenko$DAOActivityTests_testSqlExceptionGetByCategory.ic" NAME="DAOActivityTests.testSqlExceptionGetByCategory Coverage Results" MODIFIED="1674578497566" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
     </SUITE>

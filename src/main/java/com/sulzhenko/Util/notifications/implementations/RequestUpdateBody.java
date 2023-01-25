@@ -1,11 +1,12 @@
-package com.sulzhenko.Util.notifications;
+package com.sulzhenko.Util.notifications.implementations;
 
+import com.sulzhenko.Util.notifications.Body;
 import com.sulzhenko.model.entity.Request;
 import com.sulzhenko.model.entity.User;
 /**
  * This class describes the main part of notification about user request update
  */
-public class RequestUpdateBody implements Body{
+public class RequestUpdateBody implements Body {
     User user;
     Request request;
     String updateDescription;

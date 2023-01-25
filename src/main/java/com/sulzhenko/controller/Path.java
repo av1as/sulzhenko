@@ -7,6 +7,7 @@ package com.sulzhenko.controller;
 public interface Path {
   String PAGE_ACTIVITIES = "/jsp/activities.jsp";
   String PAGE_CATEGORIES = "/jsp/categories.jsp";
+  String PAGE_CHECK_EMAIL = "jsp/check_email.jsp";
   String PAGE_CONTROLLER_USER_ACTIVITIES = "controller?action=user_activities";
   String PAGE_CONTROLLER_USER_REQUESTS = "controller?action=user_requests";
   String PAGE_ERROR_FULL = "/TimeKeeping/jsp/error_page.jsp";

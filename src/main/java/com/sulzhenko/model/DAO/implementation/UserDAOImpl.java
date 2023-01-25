@@ -3,7 +3,7 @@ package com.sulzhenko.model.DAO.implementation;
 import com.sulzhenko.model.Constants;
 import com.sulzhenko.model.DAO.*;
 import com.sulzhenko.model.entity.User;
-import com.sulzhenko.model.hashingPasswords.Sha;
+import com.sulzhenko.Util.hashingPasswords.Sha;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

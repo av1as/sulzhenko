@@ -16,6 +16,7 @@ public final class DomainActionsSets {
         GUEST_ACTIONS.add("redirect");
         GUEST_ACTIONS.add("controller");
         GUEST_ACTIONS.add("logout");
+        GUEST_ACTIONS.add("recover_password");
     }
 
     static {

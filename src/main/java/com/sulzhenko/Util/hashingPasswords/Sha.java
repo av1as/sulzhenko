@@ -1,4 +1,4 @@
-package com.sulzhenko.model.hashingPasswords;
+package com.sulzhenko.Util.hashingPasswords;
 
 import com.sulzhenko.model.Constants;
 import java.io.UnsupportedEncodingException;

@@ -27,22 +27,19 @@ public class LoginCommand implements Command, Constants, Path {
   @Override
   public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
     HttpSession session = request.getSession(true);
-    String forward;
-    if (userService.areFieldsBlank(request) != null) {
-      session.setAttribute(ERROR, userService.areFieldsBlank(request));
-      return PAGE_ERROR_FULL;
+    String forward = PAGE_ERROR_FULL;
+    String login = request.getParameter(LOGIN);
+    String password = request.getParameter(PASSWORD);
+    if (userService.areFieldsBlank(login, password) != null) {
+      session.setAttribute(ERROR, userService.areFieldsBlank(login, password));
+    } else if (userService.areFieldsIncorrect(login, password) != null){
+        session.setAttribute(ERROR, userService.areFieldsIncorrect(login, password));
     } else {
-      String login = request.getParameter(LOGIN);
-      if (userService.areFieldsIncorrect(login, request.getParameter(PASSWORD)) != null){
-        session.setAttribute(ERROR, userService.areFieldsIncorrect(login, request.getParameter(PASSWORD)));
-        forward = PAGE_ERROR_FULL;
-      } else {
-        UserDTO userDTO = userService.getUserDTO(login);
-        session.setAttribute(USER, userDTO);
-        setMenu(userDTO, session);
-        forward = getPageOnRole(userDTO.getRole(), userDTO.getStatus());
-        logger.info("user log in: {}", login);
-      }
+      UserDTO userDTO = userService.getUserDTO(login);
+      session.setAttribute(USER, userDTO);
+      setMenu(userDTO, session);
+      forward = getPageOnRole(userDTO.getRole(), userDTO.getStatus());
+      logger.info("user log in: {}", login);
     }
     return forward;
   }

@@ -19,6 +19,7 @@ public interface Constants {
     String EMAIL = "email";
     String EMPTY = "";
     String ERROR = "error";
+    String FILTER = "filter";
     String FIRST_NAME = "firstname";
     String ID = "id";
     String INACTIVE = "inactive";
@@ -41,7 +42,9 @@ public interface Constants {
     String NOTIFICATIONS = "notifications";
     String OFF = "off";
     String OLD_LOGIN = "oldlogin";
+    String ORDER = "order";
     String PAGE = "page";
+    String PARAMETER = "parameter";
     String PASSWORD = "password";
     String PASSWORD1 = "password1";
     String PASSWORD2 = "password2";

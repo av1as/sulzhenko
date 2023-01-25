@@ -5,8 +5,6 @@ import com.sulzhenko.model.DAO.DAOException;
 import com.sulzhenko.DTO.ActivityDTO;
 import com.sulzhenko.DTO.UserActivityDTO;
 import com.sulzhenko.DTO.UserDTO;
-import jakarta.servlet.http.HttpServletRequest;
-
 import java.util.List;
 
 public interface UserActivityService extends Constants {
@@ -14,7 +12,7 @@ public interface UserActivityService extends Constants {
     List<ActivityDTO> allAvailableActivities(UserDTO u);
     int getNumberOfRecords(String login);
     List<UserActivityDTO> listAllUserActivitiesSorted(String page);
-    List<UserActivityDTO> listUserActivitiesBriefSorted(HttpServletRequest request);
-    List<UserActivityDTO> listUserActivitiesSorted(HttpServletRequest request, UserDTO userDTO);
+    List<UserActivityDTO> listUserActivitiesBriefSorted(String page);
+    List<UserActivityDTO> listUserActivitiesSorted(String page, UserDTO userDTO);
     List<UserActivityDTO> listFullPdf();
 }

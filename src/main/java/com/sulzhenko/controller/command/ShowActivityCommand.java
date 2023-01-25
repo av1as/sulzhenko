@@ -29,13 +29,17 @@ public class ShowActivityCommand implements Command, Constants, Path {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         setPage(request);
-        List<ActivityDTO> activities = activityService.listActivitiesSorted(request);
+        String filter = request.getParameter(FILTER);
+        String order = request.getParameter(ORDER);
+        String parameter = request.getParameter(PARAMETER);
+        String page = request.getParameter(PAGE);
+        List<ActivityDTO> activities = activityService.listActivitiesSorted(filter, order, parameter, page);
         request.setAttribute(ACTIVITIES, activities);
         List<CategoryDTO> categories = categoryService.getAllCategories();
         request.setAttribute(CATEGORIES, categories);
         int noOfRecords;
         try {
-            noOfRecords = activityService.getNumberOfRecords(request);
+            noOfRecords = activityService.getNumberOfRecords(filter);
         } catch (ServiceException e) {
             logger.warn(e);
             session.setAttribute(ERROR, e.getMessage());

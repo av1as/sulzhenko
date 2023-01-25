@@ -92,6 +92,22 @@
                     <input name="password2" type="password" class="form-control inputpass"  placeholder="<fmt:message key="repeat.validate"/>"  id="pass2" onkeyup="checkPass(); return false;" />
                         <span id="confirmMessage" class="confirmMessage"></span>
             </div>
+                        <input type="checkbox"
+                                   onclick="Toggle('pass1'); Toggle('pass2')">
+                            <strong><fmt:message key="show.password"/></strong>
+
+                            <script>
+                                // Change the type of input to password or text
+                                function Toggle(id) {
+                                    var temp = document.getElementById(id);
+                                    if (temp.type === "password") {
+                                        temp.type = "text";
+                                    }
+                                    else {
+                                        temp.type = "password";
+                                    }
+                                }
+                            </script>
 
             <div class="form-group">
 

@@ -1,25 +1,13 @@
 package util;
 
 import com.sulzhenko.Util.notifications.*;
-import com.sulzhenko.model.DAO.DAOException;
-import com.sulzhenko.model.services.ServiceException;
+import com.sulzhenko.Util.notifications.implementations.*;
 import org.junit.jupiter.api.Test;
-
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.MimeMessage;
-
-import static com.sulzhenko.Util.PaginationUtil.paginate;
-import static com.sulzhenko.model.Constants.*;
 import static model.DAOTestUtils.getTestRequestToAdd;
 import static model.DAOTestUtils.getTestUser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
 
-public class NotificationTests {
+class NotificationTests {
     @Test
     void testAccountUpdateBody() {
         AccountUpdateBody accountUpdateBody = new AccountUpdateBody(getTestUser());
@@ -57,6 +45,20 @@ public class NotificationTests {
         assertEquals(expected, systemUpdateSubject.asSubject());
     }
     @Test
+    void testRecoverPasswordBody() {
+        RecoverPasswordBody recoverPasswordBody = new RecoverPasswordBody(getTestUser(), "PASSWORD");
+        String expected = "Hello, asfd asdf,\nsomeone reset password for your account testuser.\n" +
+                "Here is your new password: PASSWORD.\n" +
+                "Note: for security reason, you must change your password after logging in.";
+        assertEquals(expected, recoverPasswordBody.asText());
+    }
+    @Test
+    void testRecoverPasswordSubject() {
+        RecoverPasswordSubject recoverPasswordSubject = new RecoverPasswordSubject();
+        String expected = "Timekeeping: reset password";
+        assertEquals(expected, recoverPasswordSubject.asSubject());
+    }
+    @Test
     void testAccountUpdateFactory() {
         NotificationFactory accountUpdateFactory = new NotificationFactories().accountUpdateFactory(getTestUser());
         String expectedBody = "Hello, asfd asdf,\nyour account testuser was updated.";
@@ -79,5 +81,15 @@ public class NotificationTests {
         String expectedSubject = "Timekeeping: system update";
         assertEquals(expectedBody, systemUpdateFactory.createBody());
         assertEquals(expectedSubject, systemUpdateFactory.createSubject());
+    }
+    @Test
+    void testRecoverPasswordFactory() {
+        NotificationFactory recoverPasswordFactory = new NotificationFactories().recoverPasswordFactory(getTestUser(), "PASSWORD");
+        String expectedBody = "Hello, asfd asdf,\nsomeone reset password for your account testuser.\n" +
+                "Here is your new password: PASSWORD.\n" +
+                "Note: for security reason, you must change your password after logging in.";
+        String expectedSubject = "Timekeeping: reset password";
+        assertEquals(expectedBody, recoverPasswordFactory.createBody());
+        assertEquals(expectedSubject, recoverPasswordFactory.createSubject());
     }
 }

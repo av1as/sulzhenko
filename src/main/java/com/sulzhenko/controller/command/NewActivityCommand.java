@@ -26,9 +26,13 @@ public class NewActivityCommand implements Command, Constants, Path {
         String forward = PAGE_SHOW_ACTIVITIES;
         String addedName = request.getParameter(ADDED_NAME);
         String addedCategory = request.getParameter(ADDED_CATEGORY);
+        String filter = request.getParameter(FILTER);
+        String order = request.getParameter(ORDER);
+        String parameter = request.getParameter(PARAMETER);
+        String page = request.getParameter(PAGE);
         try {
             activityService.addActivity(addedName, addedCategory);
-            List<ActivityDTO> activities = activityService.listActivitiesSorted(request);
+            List<ActivityDTO> activities = activityService.listActivitiesSorted(filter, order, parameter, page);
             request.setAttribute(ACTIVITIES, activities);
         } catch(ServiceException e){
             logger.warn(e.getMessage());

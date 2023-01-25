@@ -8,7 +8,6 @@ import com.sulzhenko.model.entity.*;
 import com.sulzhenko.Util.notifications.NotificationFactories;
 import com.sulzhenko.Util.notifications.NotificationFactory;
 import com.sulzhenko.model.services.*;
-import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -95,13 +94,12 @@ public class ActivityServiceImpl implements ActivityService {
             throw new ServiceException(WRONG_ACTIVITY);
         }
     }
-    private String buildQuery(HttpServletRequest request){
-        String order = getOrder(request);
-        String parameter = getParam(request);
-        String filter = request.getParameter(FILTER);
+    private String buildQuery(String pageFromRequest, String filter, String orderFromRequest, String parameterFromRequest){
+        String order = getOrder(orderFromRequest);
+        String parameter = getParam(parameterFromRequest);
         int page = 1;
-        if(request.getParameter(PAGE) != null)
-            page = Integer.parseInt(request.getParameter(PAGE));
+        if(pageFromRequest != null)
+            page = Integer.parseInt(pageFromRequest);
         int records = 5;
         int offset = (page - 1) * records;
         return COMMON_PART +
@@ -110,23 +108,21 @@ public class ActivityServiceImpl implements ActivityService {
                 applyOrder(parameter, order, offset, records);
     }
 
-    private static String getParam(HttpServletRequest request) {
-        String parameter = request.getParameter(PARAMETER);
+    private static String getParam(String parameter) {
         if(Objects.equals(parameter, NUMBER_OF_USERS)) parameter = QUANTITY;
         else if(Objects.equals(parameter, NAME_OF_ACTIVITY)) parameter = ACTIVITY_NAME;
         else if(Objects.equals(parameter, CATEGORY_OF_ACTIVITY)) parameter = CATEGORY_NAME;
         return parameter;
     }
 
-    private static String getOrder(HttpServletRequest request) {
-        String order;
-        if(Objects.equals(request.getParameter(ORDER), DESCENDING)) order = DESC;
+    private static String getOrder(String order) {
+        if(Objects.equals(order, DESCENDING)) order = DESC;
         else order = ASC;
         return order;
     }
 
-    private String getTotalRecords(HttpServletRequest request){
-        String filter = request.getParameter(FILTER);
+    private String getTotalRecords(String filter){
+
         String query = "SELECT COUNT(activity.activity_name)\n" +
                     "FROM activity\n" +
                     "INNER JOIN category_of_activity\n" +
@@ -134,10 +130,10 @@ public class ActivityServiceImpl implements ActivityService {
         if(!Objects.equals(filter, ALL_CATEGORIES)) query += "WHERE category_name = '" + filter + "'";
         return query;
     }
-    public int getNumberOfRecords(HttpServletRequest request) throws DAOException{
+    public int getNumberOfRecords(String filter) throws DAOException{
         int number = 0;
         try(Connection con = dataSource.getConnection();
-            PreparedStatement stmt = con.prepareStatement(getTotalRecords(request))){
+            PreparedStatement stmt = con.prepareStatement(getTotalRecords(filter))){
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 number = rs.getInt(1);
@@ -147,10 +143,10 @@ public class ActivityServiceImpl implements ActivityService {
         }
         return number;
     }
-    public List<ActivityDTO> listActivitiesSorted(HttpServletRequest request){
+    public List<ActivityDTO> listActivitiesSorted(String filter, String order, String parameter, String page){
         List<ActivityDTO> list = new ArrayList<>();
         try (Connection con = dataSource.getConnection();
-            PreparedStatement stmt = con.prepareStatement(buildQuery(request))) {
+            PreparedStatement stmt = con.prepareStatement(buildQuery(page, filter, order, parameter))) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 ActivityDTO activity = getActivityDTOWithFields(rs);

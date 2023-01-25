@@ -33,6 +33,7 @@ public class CommandFactory {
     actions.put("user_requests", new ShowUserRequestsCommand());
     actions.put("set_request_description", new SetRequestDescriptionCommand());
     actions.put("remove_request", new RemoveUserRequestCommand());
+    actions.put("recover_password", new RecoverPasswordCommand());
 
     //admin commands
     actions.put("admin_update", new AdminUpdateUserCommand());

@@ -32,7 +32,8 @@ public class ShowUserActivitiesCommand implements Command, Constants, Path {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         HttpSession session = request.getSession();
         UserDTO userDTO = (UserDTO) session.getAttribute(USER);
-        List <UserActivityDTO> activities = userActivityService.listUserActivitiesSorted(request, userDTO);
+        String page = request.getParameter(PAGE);
+        List <UserActivityDTO> activities = userActivityService.listUserActivitiesSorted(page, userDTO);
         List<ActivityDTO> available = userActivityService.allAvailableActivities(userDTO);
         setPage(request);
         int noOfRecords;

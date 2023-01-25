@@ -12,7 +12,6 @@ import com.sulzhenko.model.entity.User;
 import com.sulzhenko.model.services.ServiceException;
 import com.sulzhenko.model.services.UserActivityService;
 import com.sulzhenko.model.services.UserService;
-import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -52,6 +51,19 @@ public class UserActivityServiceImpl implements UserActivityService {
             "INNER JOIN activity\n" +
             "ON user_activity.activity_id = activity.activity_id\n" +
             "ORDER BY current_account ASC LIMIT %d, %d";
+    private static final String FULL_QUERY = "SELECT \n" +
+            "user_activity.account as current_account,\n" +
+            "user.login,\n" +
+            "activity.activity_name,\n" +
+            "time_amount,\n" +
+            "(SELECT COUNT(*) FROM user_activity WHERE user_activity.account=current_account) as number,\n" +
+            "(SELECT SUM(time_amount) FROM user_activity WHERE user_activity.account=current_account) as total\n" +
+            "FROM user_activity\n" +
+            "INNER JOIN user\n" +
+            "ON user_activity.account=user.account\n" +
+            "INNER JOIN activity\n" +
+            "ON user_activity.activity_id = activity.activity_id\n" +
+            "ORDER BY current_account";
     private static final String QUERY_BRIEF = "SELECT \n" +
             "user_activity.account as current_account,\n" +
             "user.login,\n" +
@@ -152,7 +164,7 @@ public class UserActivityServiceImpl implements UserActivityService {
     public List<UserActivityDTO> listFullPdf(){
         List<UserActivityDTO> list = new ArrayList<>();
         try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(buildFullPDFQuery())) {
+             PreparedStatement stmt = con.prepareStatement(FULL_QUERY)) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 UserActivityDTO userActivity = getUserActivityDTOWithFields(rs);
@@ -164,10 +176,10 @@ public class UserActivityServiceImpl implements UserActivityService {
         }
         return list;
     }
-    public List<UserActivityDTO> listUserActivitiesSorted(HttpServletRequest request, UserDTO userDTO){
+    public List<UserActivityDTO> listUserActivitiesSorted(String page, UserDTO userDTO){
         List<UserActivityDTO> list = new ArrayList<>();
         try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(buildUserQuery(request))) {
+             PreparedStatement stmt = con.prepareStatement(buildUserQuery(page))) {
             stmt.setString(1, userDTO.getLogin());
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -180,10 +192,10 @@ public class UserActivityServiceImpl implements UserActivityService {
         }
         return list;
     }
-    public List<UserActivityDTO> listUserActivitiesBriefSorted(HttpServletRequest request){
+    public List<UserActivityDTO> listUserActivitiesBriefSorted(String page){
         List<UserActivityDTO> list = new ArrayList<>();
         try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(buildQueryBrief(request))) {
+             PreparedStatement stmt = con.prepareStatement(buildQueryBrief(page))) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 UserActivityDTO userActivity = getUserActivityDTOWithFieldsBrief(rs);
@@ -203,24 +215,18 @@ public class UserActivityServiceImpl implements UserActivityService {
         int offset = (page - 1) * records;
         return String.format(ALL_USER_QUERY, offset, records);
     }
-    private String buildFullPDFQuery(){
+    private String buildQueryBrief(String pageFromRequest){
         int page = 1;
-        int records = 1000;
-        int offset = (page - 1) * records;
-        return String.format(ALL_USER_QUERY, offset, records);
-    }
-    private String buildQueryBrief(HttpServletRequest request){
-        int page = 1;
-        if(request.getParameter(PAGE) != null)
-            page = Integer.parseInt(request.getParameter(PAGE));
+        if(pageFromRequest != null)
+            page = Integer.parseInt(pageFromRequest);
         int records = 5;
         int offset = (page - 1) * records;
         return String.format(QUERY_BRIEF, offset, records);
     }
-    private String buildUserQuery(HttpServletRequest request){
+    private String buildUserQuery(String pageFromRequest){
         int page = 1;
-        if(request.getParameter(PAGE) != null)
-            page = Integer.parseInt(request.getParameter(PAGE));
+        if(pageFromRequest != null)
+            page = Integer.parseInt(pageFromRequest);
         int records = 5;
         int offset = (page - 1) * records;
         return String.format(USER_QUERY, offset, records);

@@ -16,6 +16,10 @@ public final class DomainPagesSets {
         GUEST_PAGES.add("controller");
         GUEST_PAGES.add("jsp/error_page.jsp");
         GUEST_PAGES.add("jsp/hellouser.jsp");
+        GUEST_PAGES.add("jsp/recover_password_form.jsp");
+        GUEST_PAGES.add("jsp/check_email.jsp");
+
+        GUEST_PAGES.add("jsp/test_password.jsp");
     }
 
     static {

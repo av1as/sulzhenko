@@ -1,13 +1,13 @@
 package controller.commands;
 
 import com.sulzhenko.controller.ApplicationContext;
-import com.sulzhenko.controller.Command;
-import com.sulzhenko.controller.CommandFactory;
-import com.sulzhenko.controller.command.DefaultCommand;
-import com.sulzhenko.controller.command.LoginCommand;
+import com.sulzhenko.controller.command.Command;
+import com.sulzhenko.controller.command.CommandFactory;
+import com.sulzhenko.controller.command.base.DefaultCommand;
+import com.sulzhenko.controller.command.base.LoginCommand;
 import jakarta.servlet.ServletContext;
 import org.junit.jupiter.api.Test;
-import static com.sulzhenko.controller.CommandFactory.getCommandFactory;
+import static com.sulzhenko.controller.command.CommandFactory.getCommandFactory;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 

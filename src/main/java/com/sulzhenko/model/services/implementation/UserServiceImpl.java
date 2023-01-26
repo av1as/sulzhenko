@@ -190,8 +190,10 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException(WRONG_ROLE);
         } else if (!isStatusCorrect(t.getStatus())){
             throw new ServiceException(WRONG_STATUS);
-        } else if (t.getLogin() == null || !isLoginAvailable(t.getLogin())){
+        } else if (t.getLogin() == null){
             throw new ServiceException(WRONG_LOGIN);
+        } else if (!isLoginAvailable(t.getLogin())){
+            throw new ServiceException(DUPLICATE_LOGIN);
         } else if(!Objects.equals(errorMessage, null)){
             throw new ServiceException(errorMessage);
         }

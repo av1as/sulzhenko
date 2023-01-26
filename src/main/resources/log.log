@@ -2,13 +2,13 @@
 2023-01-20 11:05:36 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7ed7ae
 2023-01-20 11:05:36 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-20 11:05:36 [main] INFO  com.sulzhenko.listeners.ContextListener- ApplicationContext is set
-2023-01-20 11:05:54 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Aeneas
-2023-01-20 11:06:11 [http-nio-8080-exec-7] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: Aeneas
+2023-01-20 11:05:54 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Aeneas
+2023-01-20 11:06:11 [http-nio-8080-exec-7] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: Aeneas
 2023-01-20 11:11:48 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-20 11:11:49 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@726a8729
 2023-01-20 11:11:49 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-20 11:11:49 [main] INFO  com.sulzhenko.listeners.ContextListener- ApplicationContext is set
-2023-01-20 11:12:01 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Aeneas
+2023-01-20 11:12:01 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Aeneas
 2023-01-20 11:12:08 [http-nio-8080-exec-3] INFO  sulzhenko.model.services.implementation.UserActivityServiceImpl- SELECT 
 user_activity.account as current_account,
 user.login,
@@ -23,12 +23,12 @@ INNER JOIN activity
 ON user_activity.activity_id = activity.activity_id
 WHERE login = ?
 ORDER BY activity_name ASC LIMIT 0, 5
-2023-01-20 11:12:12 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: Aeneas
+2023-01-20 11:12:12 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: Aeneas
 2023-01-20 11:28:47 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-20 11:28:49 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7ed7ae
 2023-01-20 11:28:49 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-20 11:28:49 [main] INFO  com.sulzhenko.listeners.ContextListener- ApplicationContext is set
-2023-01-20 11:29:00 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Aeneas
+2023-01-20 11:29:00 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Aeneas
 2023-01-20 11:29:07 [http-nio-8080-exec-4] INFO  sulzhenko.model.services.implementation.UserActivityServiceImpl- SELECT 
 user_activity.account as current_account,
 user.login,
@@ -91,16 +91,16 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-20 11:35:49 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@53ba1175
 2023-01-20 11:35:49 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-20 11:35:49 [main] INFO  com.sulzhenko.listeners.ContextListener- ApplicationContext is set
-2023-01-20 11:36:04 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Aeneas
+2023-01-20 11:36:04 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Aeneas
 2023-01-20 12:07:11 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=27m21s853ms483µs300ns).
 2023-01-20 12:19:00 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-20 12:19:01 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5ef2cbe6
 2023-01-20 12:19:01 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-20 12:19:01 [main] INFO  com.sulzhenko.listeners.ContextListener- ApplicationContext is set
-2023-01-20 12:19:17 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Aeneas
-2023-01-20 12:19:32 [http-nio-8080-exec-6] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: Aeneas
-2023-01-20 12:19:44 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
-2023-01-20 12:20:05 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-20 12:19:17 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Aeneas
+2023-01-20 12:19:32 [http-nio-8080-exec-6] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: Aeneas
+2023-01-20 12:19:44 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-20 12:20:05 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-20 12:20:18 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
 2023-01-20 12:20:18 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- java.sql.SQLException
 2023-01-20 12:20:18 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
@@ -243,31 +243,31 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-20 13:43:00 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7ed7ae
 2023-01-20 13:43:00 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-20 13:43:00 [main] INFO  com.sulzhenko.listeners.ContextListener- ApplicationContext is set
-2023-01-20 13:43:10 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-20 13:43:10 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-20 13:46:56 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-20 13:46:57 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7dd45c93
 2023-01-20 13:46:57 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-20 13:46:57 [main] INFO  com.sulzhenko.listeners.ContextListener- ApplicationContext is set
-2023-01-20 13:47:09 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-20 13:47:09 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-20 13:51:43 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-20 13:51:44 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@cd5ff55
 2023-01-20 13:51:44 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-20 13:51:44 [main] INFO  com.sulzhenko.listeners.ContextListener- ApplicationContext is set
-2023-01-20 13:51:58 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
-2023-01-20 13:52:18 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
-2023-01-20 13:52:35 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Aeneas
-2023-01-20 13:52:45 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: Aeneas
+2023-01-20 13:51:58 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-20 13:52:18 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
+2023-01-20 13:52:35 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Aeneas
+2023-01-20 13:52:45 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: Aeneas
 2023-01-20 14:01:57 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-20 14:01:58 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7ed7ae
 2023-01-20 14:01:58 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-20 14:01:58 [main] INFO  com.sulzhenko.listeners.ContextListener- ApplicationContext is set
-2023-01-20 14:02:10 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-20 14:02:10 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-20 14:03:05 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-20 14:03:06 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@166ce247
 2023-01-20 14:03:06 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-20 14:03:06 [main] INFO  com.sulzhenko.listeners.ContextListener- ApplicationContext is set
-2023-01-20 14:03:12 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
-2023-01-20 14:03:32 [http-nio-8080-exec-6] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-20 14:03:12 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-20 14:03:32 [http-nio-8080-exec-6] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-20 14:04:47 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
 2023-01-20 14:04:47 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- java.sql.SQLException
 2023-01-20 14:04:47 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
@@ -470,68 +470,68 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-20 17:26:51 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@365e65bb
 2023-01-20 17:26:51 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-20 17:26:51 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-20 17:27:13 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-20 17:27:13 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-21 08:31:37 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-21 08:31:38 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@9f1ca74
 2023-01-21 08:31:38 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-21 08:31:38 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-21 08:32:02 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-21 08:32:02 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-21 08:39:38 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-21 08:39:39 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@365e65bb
 2023-01-21 08:39:39 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-21 08:39:39 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-21 08:39:54 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-21 08:39:54 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-21 09:07:28 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=26m48s202ms559µs).
-2023-01-21 09:08:32 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
-2023-01-21 09:08:40 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Venus
-2023-01-21 09:09:18 [http-nio-8080-exec-9] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: Venus
-2023-01-21 09:09:27 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Zeus
-2023-01-21 09:09:36 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: Zeus
-2023-01-21 09:09:42 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-21 09:08:32 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
+2023-01-21 09:08:40 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Venus
+2023-01-21 09:09:18 [http-nio-8080-exec-9] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: Venus
+2023-01-21 09:09:27 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Zeus
+2023-01-21 09:09:36 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: Zeus
+2023-01-21 09:09:42 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-21 09:09:48 [http-nio-8080-exec-4] ERROR com.sulzhenko.controller.Controller- null
 2023-01-21 09:10:00 [http-nio-8080-exec-7] ERROR com.sulzhenko.controller.Controller- null
 2023-01-21 09:18:45 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-21 09:18:46 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@365e65bb
 2023-01-21 09:18:46 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-21 09:18:46 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-21 09:19:01 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-21 09:19:01 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-21 09:39:14 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-21 09:39:15 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@18bb1b88
 2023-01-21 09:39:15 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-21 09:39:15 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-21 09:39:32 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
-2023-01-21 09:39:49 [http-nio-8080-exec-9] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-21 09:39:32 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-21 09:39:49 [http-nio-8080-exec-9] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-21 12:05:52 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h26m6s525ms501µs400ns).
-2023-01-21 12:06:13 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Venus
-2023-01-21 12:06:27 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: Venus
-2023-01-21 12:06:34 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Zeus
-2023-01-21 12:06:40 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: Zeus
-2023-01-21 12:06:45 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-21 12:06:13 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Venus
+2023-01-21 12:06:27 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: Venus
+2023-01-21 12:06:34 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Zeus
+2023-01-21 12:06:40 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: Zeus
+2023-01-21 12:06:45 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-21 12:09:04 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-21 12:09:05 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@365e65bb
 2023-01-21 12:09:05 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-21 12:09:05 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-21 12:09:25 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Venus
-2023-01-21 12:09:31 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: Venus
-2023-01-21 12:09:37 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
-2023-01-21 12:09:43 [http-nio-8080-exec-9] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
-2023-01-21 12:09:56 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Venus
-2023-01-21 12:10:01 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: Venus
-2023-01-21 12:10:07 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-21 12:09:25 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Venus
+2023-01-21 12:09:31 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: Venus
+2023-01-21 12:09:37 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-21 12:09:43 [http-nio-8080-exec-9] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
+2023-01-21 12:09:56 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Venus
+2023-01-21 12:10:01 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: Venus
+2023-01-21 12:10:07 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-21 12:24:50 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-21 12:24:51 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@e72fb04
 2023-01-21 12:24:51 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-21 12:24:51 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-21 12:25:10 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Venus
+2023-01-21 12:25:10 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Venus
 2023-01-21 12:27:13 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-21 12:27:14 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@761f234c
 2023-01-21 12:27:14 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-21 12:27:14 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-21 12:27:32 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Venus
-2023-01-21 12:27:49 [http-nio-8080-exec-7] WARN  com.sulzhenko.controller.command.UpdateUserCommand- name.requirements
-2023-01-21 12:28:02 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: Venus
-2023-01-21 12:28:08 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
-2023-01-21 12:28:25 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-21 12:27:32 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Venus
+2023-01-21 12:27:49 [http-nio-8080-exec-7] WARN  com.sulzhenko.controller.command.user.UpdateUserCommand- name.requirements
+2023-01-21 12:28:02 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: Venus
+2023-01-21 12:28:08 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-21 12:28:25 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-21 12:45:31 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
 2023-01-21 12:45:31 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- java.sql.SQLException
 2023-01-21 12:45:31 [main] INFO  sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
@@ -1636,110 +1636,110 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-22 09:43:12 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@55d1f065
 2023-01-22 09:43:12 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-22 09:43:12 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-22 09:43:28 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Venus
-2023-01-22 09:43:54 [http-nio-8080-exec-1] WARN  com.sulzhenko.controller.command.RequestToAddActivityCommand- wrong.activity
-2023-01-22 09:43:57 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: Venus
-2023-01-22 09:44:03 [http-nio-8080-exec-6] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
-2023-01-22 09:44:26 [http-nio-8080-exec-7] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-22 09:43:28 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Venus
+2023-01-22 09:43:54 [http-nio-8080-exec-1] WARN  com.sulzhenko.controller.command.user.RequestToAddActivityCommand- wrong.activity
+2023-01-22 09:43:57 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: Venus
+2023-01-22 09:44:03 [http-nio-8080-exec-6] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-22 09:44:26 [http-nio-8080-exec-7] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-22 09:46:56 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-22 09:46:56 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@362a6aa5
 2023-01-22 09:46:56 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-22 09:46:56 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-22 09:47:04 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-22 09:47:04 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-22 10:19:54 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=27m27s158ms91µs800ns).
 2023-01-22 11:01:05 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-22 11:01:06 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@55d1f065
 2023-01-22 11:01:06 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-22 11:01:06 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-22 11:02:22 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Venus
-2023-01-22 11:02:30 [http-nio-8080-exec-6] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: Venus
+2023-01-22 11:02:22 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Venus
+2023-01-22 11:02:30 [http-nio-8080-exec-6] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: Venus
 2023-01-22 11:03:55 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-22 11:03:56 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5fe5c68b
 2023-01-22 11:03:56 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-22 11:03:56 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-22 11:04:07 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Venus
-2023-01-22 11:07:10 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: Venus
+2023-01-22 11:04:07 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Venus
+2023-01-22 11:07:10 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: Venus
 2023-01-22 11:28:10 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-22 11:28:11 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@365e65bb
 2023-01-22 11:28:11 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-22 11:28:11 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-22 11:28:21 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Venus
+2023-01-22 11:28:21 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Venus
 2023-01-22 11:28:28 [http-nio-8080-exec-5] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- No value specified for parameter 5
 2023-01-22 11:28:28 [http-nio-8080-exec-5] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
-2023-01-22 11:28:28 [http-nio-8080-exec-5] WARN  com.sulzhenko.controller.command.SetRequestDescriptionCommand- unknown.error
+2023-01-22 11:28:28 [http-nio-8080-exec-5] WARN  com.sulzhenko.controller.command.user.SetRequestDescriptionCommand- unknown.error
 2023-01-22 11:33:50 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-22 11:33:51 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@42b4df5a
 2023-01-22 11:33:51 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-22 11:33:51 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-22 11:34:05 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Venus
+2023-01-22 11:34:05 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Venus
 2023-01-22 11:34:13 [http-nio-8080-exec-8] INFO  sulzhenko.model.services.implementation.RequestServiceImpl- Request{id=100, login='Venus', activityName='test', actionToDo='add', description='null'}
 2023-01-22 11:34:13 [http-nio-8080-exec-8] INFO  sulzhenko.model.services.implementation.RequestServiceImpl- [Ljava.lang.String;@45f9925
 2023-01-22 11:34:13 [http-nio-8080-exec-8] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- No value specified for parameter 5
 2023-01-22 11:34:13 [http-nio-8080-exec-8] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
-2023-01-22 11:34:13 [http-nio-8080-exec-8] WARN  com.sulzhenko.controller.command.SetRequestDescriptionCommand- unknown.error
-2023-01-22 11:34:15 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: Venus
+2023-01-22 11:34:13 [http-nio-8080-exec-8] WARN  com.sulzhenko.controller.command.user.SetRequestDescriptionCommand- unknown.error
+2023-01-22 11:34:15 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: Venus
 2023-01-22 11:51:06 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-22 11:51:07 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@365e65bb
 2023-01-22 11:51:07 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-22 11:51:07 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-22 11:51:22 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Venus
+2023-01-22 11:51:22 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Venus
 2023-01-22 11:51:27 [http-nio-8080-exec-5] INFO  sulzhenko.model.services.implementation.RequestServiceImpl- Request{id=100, login='Venus', activityName='test', actionToDo='add', description='null'}
 2023-01-22 11:51:27 [http-nio-8080-exec-5] INFO  sulzhenko.model.services.implementation.RequestServiceImpl- [Venus, test, add, asdf]
 2023-01-22 11:51:27 [http-nio-8080-exec-5] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- No value specified for parameter 5
 2023-01-22 11:51:27 [http-nio-8080-exec-5] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
-2023-01-22 11:51:27 [http-nio-8080-exec-5] WARN  com.sulzhenko.controller.command.SetRequestDescriptionCommand- unknown.error
-2023-01-22 11:51:30 [http-nio-8080-exec-7] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: Venus
+2023-01-22 11:51:27 [http-nio-8080-exec-5] WARN  com.sulzhenko.controller.command.user.SetRequestDescriptionCommand- unknown.error
+2023-01-22 11:51:30 [http-nio-8080-exec-7] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: Venus
 2023-01-22 12:30:47 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-22 12:30:48 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@55d1f065
 2023-01-22 12:30:48 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-22 12:30:48 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-22 12:31:00 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Venus
+2023-01-22 12:31:00 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Venus
 2023-01-22 12:31:06 [http-nio-8080-exec-3] INFO  sulzhenko.model.services.implementation.RequestServiceImpl- Request{id=100, login='Venus', activityName='test', actionToDo='add', description='null'}
 2023-01-22 12:31:06 [http-nio-8080-exec-3] INFO  sulzhenko.model.services.implementation.RequestServiceImpl- [Venus, test, add, asdf]
 2023-01-22 12:33:34 [http-nio-8080-exec-3] INFO  sulzhenko.model.services.implementation.RequestServiceImpl- Request{id=100, login='Venus', activityName='test', actionToDo='add', description='asdf'}
 2023-01-22 12:33:34 [http-nio-8080-exec-3] INFO  sulzhenko.model.services.implementation.RequestServiceImpl- [Venus, test, add, ]
-2023-01-22 12:33:46 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: Venus
+2023-01-22 12:33:46 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: Venus
 2023-01-22 12:48:36 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-22 12:48:37 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@53b7bf01
 2023-01-22 12:48:37 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-22 12:48:37 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-22 12:48:47 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Venus
+2023-01-22 12:48:47 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Venus
 2023-01-22 12:50:06 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-22 12:50:07 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@365e65bb
 2023-01-22 12:50:07 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-22 12:50:07 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-22 12:50:20 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Venus
+2023-01-22 12:50:20 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Venus
 2023-01-22 12:50:35 [http-nio-8080-exec-10] INFO  sulzhenko.model.services.implementation.RequestServiceImpl- Request{id=102, login='Venus', activityName='вітри всі порозпускав', actionToDo='add', description='null'}
 2023-01-22 12:50:35 [http-nio-8080-exec-10] INFO  sulzhenko.model.services.implementation.RequestServiceImpl- [Venus, вітри всі порозпускав, add, asfd]
-2023-01-22 12:51:19 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: Venus
+2023-01-22 12:51:19 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: Venus
 2023-01-22 12:51:29 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-22 12:51:30 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@9f1ca74
 2023-01-22 12:51:30 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-22 12:51:30 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-22 12:52:11 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Venus
-2023-01-22 12:52:36 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: Venus
-2023-01-22 12:52:42 [http-nio-8080-exec-5] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-22 12:52:11 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Venus
+2023-01-22 12:52:36 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: Venus
+2023-01-22 12:52:42 [http-nio-8080-exec-5] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-22 12:52:49 [http-nio-8080-exec-8] INFO  com.sulzhenko.Util.notifications.Mailer- message sent successfully
-2023-01-22 12:52:57 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-22 12:52:57 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-22 13:04:34 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-22 13:04:35 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@9f1ca74
 2023-01-22 13:04:35 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-22 13:04:35 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-22 13:04:46 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Venus
-2023-01-22 13:05:00 [http-nio-8080-exec-5] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: Venus
-2023-01-22 13:05:07 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
-2023-01-22 13:06:25 [http-nio-8080-exec-7] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-22 13:04:46 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Venus
+2023-01-22 13:05:00 [http-nio-8080-exec-5] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: Venus
+2023-01-22 13:05:07 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-22 13:06:25 [http-nio-8080-exec-7] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-22 13:06:35 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-22 13:06:36 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@63326a3a
 2023-01-22 13:06:36 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-22 13:06:36 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
 2023-01-22 13:06:45 [http-nio-8080-exec-1] WARN  sulzhenko.model.services.implementation.UserServiceImpl- wrong.password
 2023-01-22 13:06:45 [http-nio-8080-exec-1] WARN  sulzhenko.model.services.implementation.UserServiceImpl- wrong.password
-2023-01-22 13:06:53 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-22 13:06:53 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-22 13:07:18 [http-nio-8080-exec-8] INFO  com.sulzhenko.Util.notifications.Mailer- message sent successfully
 2023-01-22 13:07:21 [http-nio-8080-exec-10] INFO  com.sulzhenko.Util.notifications.Mailer- message sent successfully
 2023-01-22 13:07:24 [http-nio-8080-exec-2] INFO  com.sulzhenko.Util.notifications.Mailer- message sent successfully
-2023-01-22 13:07:35 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-22 13:07:35 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-22 13:08:20 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
 2023-01-22 13:08:20 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- java.sql.SQLException
 2023-01-22 13:08:20 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
@@ -1822,7 +1822,7 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-22 15:46:30 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5817b0d1
 2023-01-22 15:46:30 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-22 15:46:30 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-22 15:46:47 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-22 15:46:47 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-22 17:56:53 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-22 17:56:54 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@61d7df22
 2023-01-22 17:56:54 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
@@ -1914,7 +1914,7 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-23 18:02:42 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@35129b9e
 2023-01-23 18:02:42 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-23 18:02:42 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-23 18:02:59 [http-nio-8080-exec-5] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-23 18:02:59 [http-nio-8080-exec-5] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-23 18:15:19 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-23 18:15:19 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4d63b624
 2023-01-23 18:15:19 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
@@ -1970,7 +1970,7 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-23 19:49:37 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@623dc0b8
 2023-01-23 19:49:37 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-23 19:49:37 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-23 19:49:53 [http-nio-8080-exec-5] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-23 19:49:53 [http-nio-8080-exec-5] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-23 19:50:04 [http-nio-8080-exec-8] FATAL sulzhenko.model.services.implementation.UserActivityServiceImpl- java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SORT BY loginORDER BY current_account ASC LIMIT 0, 5' at line 13
 2023-01-23 19:50:04 [http-nio-8080-exec-8] ERROR com.sulzhenko.controller.Controller- unknown.error
 2023-01-23 19:50:25 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
@@ -1987,8 +1987,8 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-23 20:11:39 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@598f6c93
 2023-01-23 20:11:39 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-23 20:11:40 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-23 20:11:55 [http-nio-8080-exec-6] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
-2023-01-23 20:12:05 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-23 20:11:55 [http-nio-8080-exec-6] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-23 20:12:05 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-23 20:14:31 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-23 20:14:32 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@466cf502
 2023-01-23 20:14:32 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
@@ -1996,12 +1996,12 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-23 20:14:48 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@fee1e32
 2023-01-23 20:14:48 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-23 20:14:48 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-23 20:14:59 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-23 20:14:59 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-23 20:17:00 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-23 20:17:01 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5817b0d1
 2023-01-23 20:17:01 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-23 20:17:01 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-23 20:17:10 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-23 20:17:10 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-23 20:19:06 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-23 20:19:06 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4d63b624
 2023-01-23 20:19:06 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
@@ -2009,12 +2009,12 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-23 20:19:38 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@623dc0b8
 2023-01-23 20:19:38 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-23 20:19:38 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-23 20:19:50 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-23 20:19:50 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-23 20:23:49 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-23 20:23:49 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@35129b9e
 2023-01-23 20:23:49 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-23 20:23:50 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-23 20:24:03 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-23 20:24:03 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-23 20:24:28 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-23 20:24:29 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@466cf502
 2023-01-23 20:24:29 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
@@ -2022,7 +2022,7 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-23 20:25:06 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7be9582e
 2023-01-23 20:25:06 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-23 20:25:06 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-23 20:25:32 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-23 20:25:32 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-23 20:48:42 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-23 20:48:42 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4d63b624
 2023-01-23 20:48:42 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
@@ -2030,20 +2030,20 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-23 20:56:04 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@623dc0b8
 2023-01-23 20:56:04 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-23 20:56:04 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-23 20:56:18 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-23 20:56:18 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-23 20:56:21 [http-nio-8080-exec-6] ERROR com.sulzhenko.controller.Controller- null
 2023-01-23 20:56:37 [http-nio-8080-exec-1] ERROR com.sulzhenko.controller.Controller- null
 2023-01-23 20:57:47 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-23 20:57:48 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@75e068dc
 2023-01-23 20:57:48 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-23 20:57:48 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-23 20:58:05 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-23 20:58:05 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-23 20:58:08 [http-nio-8080-exec-6] ERROR com.sulzhenko.controller.Controller- null
 2023-01-23 20:59:39 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-23 20:59:39 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2297c8bf
 2023-01-23 20:59:39 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-23 20:59:39 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-23 20:59:53 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-23 20:59:53 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-23 21:03:29 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-23 21:03:29 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@466cf502
 2023-01-23 21:03:29 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
@@ -2055,112 +2055,112 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-23 21:04:08 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@75e068dc
 2023-01-23 21:04:08 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-23 21:04:08 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-23 21:04:25 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-23 21:04:25 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-23 21:04:28 [http-nio-8080-exec-5] ERROR com.sulzhenko.controller.Controller- null
 2023-01-23 21:07:25 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-23 21:07:26 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@13231e7b
 2023-01-23 21:07:26 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-23 21:07:26 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-23 21:07:37 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
-2023-01-23 21:07:40 [http-nio-8080-exec-6] FATAL com.sulzhenko.controller.command.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.PDFmaker (Системе не удается найти указанный путь)
-2023-01-23 21:08:09 [http-nio-8080-exec-1] FATAL com.sulzhenko.controller.command.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.PDFmaker (Системе не удается найти указанный путь)
+2023-01-23 21:07:37 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-23 21:07:40 [http-nio-8080-exec-6] FATAL com.sulzhenko.controller.command.admin.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.PDFmaker (Системе не удается найти указанный путь)
+2023-01-23 21:08:09 [http-nio-8080-exec-1] FATAL com.sulzhenko.controller.command.admin.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.PDFmaker (Системе не удается найти указанный путь)
 2023-01-24 07:39:01 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-24 07:39:02 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@623dc0b8
 2023-01-24 07:39:02 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 07:39:02 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 07:39:18 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
-2023-01-24 07:39:22 [http-nio-8080-exec-6] FATAL com.sulzhenko.controller.command.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.PDFmaker (Системе не удается найти указанный путь)
-2023-01-24 07:39:36 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-24 07:39:18 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-24 07:39:22 [http-nio-8080-exec-6] FATAL com.sulzhenko.controller.command.admin.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.PDFmaker (Системе не удается найти указанный путь)
+2023-01-24 07:39:36 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-24 07:53:51 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-24 07:53:53 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@623dc0b8
 2023-01-24 07:53:53 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 07:53:53 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 07:54:04 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
-2023-01-24 07:54:10 [http-nio-8080-exec-2] FATAL com.sulzhenko.controller.command.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
+2023-01-24 07:54:04 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-24 07:54:10 [http-nio-8080-exec-2] FATAL com.sulzhenko.controller.command.admin.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
 2023-01-24 08:08:19 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-24 08:08:20 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5817b0d1
 2023-01-24 08:08:20 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 08:08:20 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 08:08:35 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-24 08:08:35 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-24 08:08:38 [http-nio-8080-exec-6] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 08:08:38 [http-nio-8080-exec-6] WARN  com.sulzhenko.Util.PdfMakerUtil- start get reportPDF
-2023-01-24 08:08:38 [http-nio-8080-exec-6] FATAL com.sulzhenko.controller.command.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
-2023-01-24 08:08:43 [http-nio-8080-exec-9] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-24 08:08:38 [http-nio-8080-exec-6] FATAL com.sulzhenko.controller.command.admin.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
+2023-01-24 08:08:43 [http-nio-8080-exec-9] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-24 13:04:51 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-24 13:04:52 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@fffb4a8
 2023-01-24 13:04:52 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 13:04:52 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 13:05:02 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-24 13:05:02 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-24 13:05:09 [http-nio-8080-exec-2] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 13:05:09 [http-nio-8080-exec-2] WARN  com.sulzhenko.Util.PdfMakerUtil- start get reportPDF
-2023-01-24 13:05:09 [http-nio-8080-exec-2] FATAL com.sulzhenko.controller.command.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
+2023-01-24 13:05:09 [http-nio-8080-exec-2] FATAL com.sulzhenko.controller.command.admin.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
 2023-01-24 13:05:12 [http-nio-8080-exec-6] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 13:05:12 [http-nio-8080-exec-6] WARN  com.sulzhenko.Util.PdfMakerUtil- start get reportPDF
-2023-01-24 13:05:12 [http-nio-8080-exec-6] FATAL com.sulzhenko.controller.command.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
+2023-01-24 13:05:12 [http-nio-8080-exec-6] FATAL com.sulzhenko.controller.command.admin.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
 2023-01-24 13:05:13 [http-nio-8080-exec-8] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 13:05:13 [http-nio-8080-exec-8] WARN  com.sulzhenko.Util.PdfMakerUtil- start get reportPDF
-2023-01-24 13:05:13 [http-nio-8080-exec-8] FATAL com.sulzhenko.controller.command.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
+2023-01-24 13:05:13 [http-nio-8080-exec-8] FATAL com.sulzhenko.controller.command.admin.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
 2023-01-24 13:05:17 [http-nio-8080-exec-1] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 13:05:17 [http-nio-8080-exec-1] WARN  com.sulzhenko.Util.PdfMakerUtil- start get reportPDF
-2023-01-24 13:05:17 [http-nio-8080-exec-1] FATAL com.sulzhenko.controller.command.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
-2023-01-24 13:05:26 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-24 13:05:17 [http-nio-8080-exec-1] FATAL com.sulzhenko.controller.command.admin.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
+2023-01-24 13:05:26 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-24 13:14:24 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-24 13:14:25 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5817b0d1
 2023-01-24 13:14:25 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 13:14:25 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 13:14:58 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-24 13:14:58 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-24 13:15:08 [http-nio-8080-exec-8] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 13:15:08 [http-nio-8080-exec-8] WARN  com.sulzhenko.Util.PdfMakerUtil- start get reportPDF
-2023-01-24 13:15:08 [http-nio-8080-exec-8] FATAL com.sulzhenko.controller.command.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
+2023-01-24 13:15:08 [http-nio-8080-exec-8] FATAL com.sulzhenko.controller.command.admin.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
 2023-01-24 13:15:16 [http-nio-8080-exec-1] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 13:15:16 [http-nio-8080-exec-1] WARN  com.sulzhenko.Util.PdfMakerUtil- start get reportPDF
-2023-01-24 13:15:16 [http-nio-8080-exec-1] FATAL com.sulzhenko.controller.command.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
-2023-01-24 13:15:20 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-24 13:15:16 [http-nio-8080-exec-1] FATAL com.sulzhenko.controller.command.admin.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
+2023-01-24 13:15:20 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-24 13:18:19 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-24 13:18:20 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@75e068dc
 2023-01-24 13:18:20 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 13:18:20 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 13:18:29 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-24 13:18:29 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-24 13:18:42 [http-nio-8080-exec-7] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 13:18:42 [http-nio-8080-exec-7] WARN  com.sulzhenko.Util.PdfMakerUtil- bundle =java.util.PropertyResourceBundle@230820b3
 2023-01-24 13:18:42 [http-nio-8080-exec-7] WARN  com.sulzhenko.Util.PdfMakerUtil- start get reportPDF
-2023-01-24 13:18:42 [http-nio-8080-exec-7] FATAL com.sulzhenko.controller.command.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
-2023-01-24 13:18:53 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-24 13:18:42 [http-nio-8080-exec-7] FATAL com.sulzhenko.controller.command.admin.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
+2023-01-24 13:18:53 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-24 13:19:47 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-24 13:19:48 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@13231e7b
 2023-01-24 13:19:48 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 13:19:48 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 13:19:52 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-24 13:19:52 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-24 13:19:59 [http-nio-8080-exec-3] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 13:19:59 [http-nio-8080-exec-3] WARN  com.sulzhenko.Util.PdfMakerUtil- bundle =java.util.PropertyResourceBundle@620b6d95
 2023-01-24 13:19:59 [http-nio-8080-exec-3] WARN  com.sulzhenko.Util.PdfMakerUtil- start get reportPDF
-2023-01-24 13:19:59 [http-nio-8080-exec-3] FATAL com.sulzhenko.controller.command.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
-2023-01-24 13:20:16 [http-nio-8080-exec-5] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-24 13:19:59 [http-nio-8080-exec-3] FATAL com.sulzhenko.controller.command.admin.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
+2023-01-24 13:20:16 [http-nio-8080-exec-5] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-24 13:21:01 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-24 13:21:02 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@598f6c93
 2023-01-24 13:21:02 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 13:21:02 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 13:21:11 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-24 13:21:11 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-24 13:21:23 [http-nio-8080-exec-8] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 13:21:23 [http-nio-8080-exec-8] WARN  com.sulzhenko.Util.PdfMakerUtil- bundle =java.util.PropertyResourceBundle@2c8ea1e6
 2023-01-24 13:21:23 [http-nio-8080-exec-8] WARN  com.sulzhenko.Util.PdfMakerUtil- start get reportPDF
-2023-01-24 13:21:23 [http-nio-8080-exec-8] FATAL com.sulzhenko.controller.command.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
-2023-01-24 13:21:33 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-24 13:21:23 [http-nio-8080-exec-8] FATAL com.sulzhenko.controller.command.admin.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
+2023-01-24 13:21:33 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-24 13:25:10 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-24 13:25:11 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@509e4d53
 2023-01-24 13:25:11 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 13:25:11 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 13:25:24 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-24 13:25:24 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-24 13:25:36 [http-nio-8080-exec-8] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 13:25:36 [http-nio-8080-exec-8] WARN  com.sulzhenko.Util.PdfMakerUtil- bundle =java.util.PropertyResourceBundle@651bb9b6
 2023-01-24 13:25:36 [http-nio-8080-exec-8] WARN  com.sulzhenko.Util.PdfMakerUtil- start get reportPDF
-2023-01-24 13:25:36 [http-nio-8080-exec-8] FATAL com.sulzhenko.controller.command.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
-2023-01-24 13:25:43 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-24 13:25:36 [http-nio-8080-exec-8] FATAL com.sulzhenko.controller.command.admin.ShowFullReportCommand- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
+2023-01-24 13:25:43 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-24 13:26:48 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-24 13:26:49 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1d642682
 2023-01-24 13:26:49 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 13:26:49 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 13:27:00 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-24 13:27:00 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-24 13:27:10 [http-nio-8080-exec-8] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 13:27:10 [http-nio-8080-exec-8] WARN  com.sulzhenko.Util.PdfMakerUtil- bundle =java.util.PropertyResourceBundle@3f6392f1
 2023-01-24 13:27:10 [http-nio-8080-exec-8] WARN  com.sulzhenko.Util.PdfMakerUtil- start get reportPDF
@@ -2172,12 +2172,12 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-24 13:27:11 [http-nio-8080-exec-8] WARN  com.sulzhenko.Util.PdfMakerUtil- finish get report rows
 2023-01-24 13:27:11 [http-nio-8080-exec-8] WARN  com.sulzhenko.Util.PdfMakerUtil- finish get report table
 2023-01-24 13:27:12 [http-nio-8080-exec-8] WARN  com.sulzhenko.Util.PdfMakerUtil- finish get reportPDF
-2023-01-24 13:27:18 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-24 13:27:18 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-24 13:58:18 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-24 13:58:19 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@623dc0b8
 2023-01-24 13:58:19 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 13:58:19 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 13:58:30 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-24 13:58:30 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-24 13:58:38 [http-nio-8080-exec-4] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 13:58:38 [http-nio-8080-exec-4] WARN  com.sulzhenko.Util.PdfMakerUtil- bundle =java.util.PropertyResourceBundle@496a0140
 2023-01-24 13:58:38 [http-nio-8080-exec-4] WARN  com.sulzhenko.Util.PdfMakerUtil- start get reportPDF
@@ -2193,7 +2193,7 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-24 13:59:32 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6153aca1
 2023-01-24 13:59:32 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 13:59:32 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 13:59:46 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-24 13:59:46 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-24 13:59:50 [http-nio-8080-exec-6] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 13:59:50 [http-nio-8080-exec-6] WARN  com.sulzhenko.Util.PdfMakerUtil- start get reportPDF
 2023-01-24 13:59:51 [http-nio-8080-exec-6] WARN  com.sulzhenko.Util.PdfMakerUtil- start get report table
@@ -2252,7 +2252,7 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-24 14:04:42 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2d2710a8
 2023-01-24 14:04:42 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 14:04:42 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 14:04:57 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-24 14:04:57 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-24 14:05:03 [http-nio-8080-exec-9] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 14:05:03 [http-nio-8080-exec-9] WARN  com.sulzhenko.Util.PdfMakerUtil- bundle =java.util.PropertyResourceBundle@3e48690a
 2023-01-24 14:05:03 [http-nio-8080-exec-9] WARN  com.sulzhenko.Util.PdfMakerUtil- start get reportPDF
@@ -2274,8 +2274,8 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-24 14:05:21 [http-nio-8080-exec-4] WARN  com.sulzhenko.Util.PdfMakerUtil- finish get report rows
 2023-01-24 14:05:21 [http-nio-8080-exec-4] WARN  com.sulzhenko.Util.PdfMakerUtil- finish get report table
 2023-01-24 14:05:21 [http-nio-8080-exec-4] WARN  com.sulzhenko.Util.PdfMakerUtil- finish get reportPDF
-2023-01-24 14:05:30 [http-nio-8080-exec-6] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
-2023-01-24 14:05:37 [http-nio-8080-exec-9] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-24 14:05:30 [http-nio-8080-exec-6] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
+2023-01-24 14:05:37 [http-nio-8080-exec-9] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-24 14:05:39 [http-nio-8080-exec-1] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 14:05:39 [http-nio-8080-exec-1] WARN  com.sulzhenko.Util.PdfMakerUtil- start get reportPDF
 2023-01-24 14:05:39 [http-nio-8080-exec-1] WARN  com.sulzhenko.Util.PdfMakerUtil- start get report table
@@ -2286,12 +2286,12 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-24 14:05:39 [http-nio-8080-exec-1] WARN  com.sulzhenko.Util.PdfMakerUtil- finish get report rows
 2023-01-24 14:05:39 [http-nio-8080-exec-1] WARN  com.sulzhenko.Util.PdfMakerUtil- finish get report table
 2023-01-24 14:05:39 [http-nio-8080-exec-1] WARN  com.sulzhenko.Util.PdfMakerUtil- finish get reportPDF
-2023-01-24 14:05:52 [http-nio-8080-exec-5] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-24 14:05:52 [http-nio-8080-exec-5] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-24 14:06:11 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-24 14:06:12 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@75e068dc
 2023-01-24 14:06:12 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 14:06:13 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 14:06:22 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-24 14:06:22 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-24 14:06:29 [http-nio-8080-exec-3] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 14:06:29 [http-nio-8080-exec-3] WARN  com.sulzhenko.Util.PdfMakerUtil- start get reportPDF
 2023-01-24 14:06:30 [http-nio-8080-exec-3] WARN  com.sulzhenko.Util.PdfMakerUtil- start get report table
@@ -2313,27 +2313,27 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-24 14:06:39 [http-nio-8080-exec-6] WARN  com.sulzhenko.Util.PdfMakerUtil- finish get report rows
 2023-01-24 14:06:39 [http-nio-8080-exec-6] WARN  com.sulzhenko.Util.PdfMakerUtil- finish get report table
 2023-01-24 14:06:39 [http-nio-8080-exec-6] WARN  com.sulzhenko.Util.PdfMakerUtil- finish get reportPDF
-2023-01-24 14:07:07 [http-nio-8080-exec-9] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-24 14:07:07 [http-nio-8080-exec-9] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-24 16:05:07 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-24 16:05:08 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5817b0d1
 2023-01-24 16:05:08 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 16:05:08 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 16:05:24 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-24 16:05:24 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-24 16:05:29 [http-nio-8080-exec-6] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 16:41:10 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=34m1s694ms583µs800ns).
 2023-01-24 16:42:13 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-24 16:42:14 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6afdb486
 2023-01-24 16:42:14 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 16:42:14 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 16:42:30 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-24 16:42:30 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-24 16:42:32 [http-nio-8080-exec-7] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
-2023-01-24 16:42:33 [http-nio-8080-exec-7] WARN  com.sulzhenko.controller.command.ShowFullReportCommand- path ==> C:\data\temp\tasks\fp\sulzhenko\src\main\webapp\report.pdf
-2023-01-24 16:42:39 [http-nio-8080-exec-9] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-24 16:42:33 [http-nio-8080-exec-7] WARN  com.sulzhenko.controller.command.admin.ShowFullReportCommand- path ==> C:\data\temp\tasks\fp\sulzhenko\src\main\webapp\report.pdf
+2023-01-24 16:42:39 [http-nio-8080-exec-9] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-24 16:46:26 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-24 16:46:27 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5817b0d1
 2023-01-24 16:46:27 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 16:46:27 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 16:46:37 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-24 16:46:37 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-24 16:46:42 [http-nio-8080-exec-3] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 16:46:50 [http-nio-8080-exec-7] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 17:11:17 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=18m19s572ms384µs200ns).
@@ -2341,65 +2341,65 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-24 17:26:19 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5817b0d1
 2023-01-24 17:26:19 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 17:26:20 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 17:26:35 [http-nio-8080-exec-5] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-24 17:26:35 [http-nio-8080-exec-5] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-24 17:26:38 [http-nio-8080-exec-6] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 17:26:39 [http-nio-8080-exec-6] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
-2023-01-24 17:27:26 [http-nio-8080-exec-9] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-24 17:27:26 [http-nio-8080-exec-9] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-24 17:27:38 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-24 17:27:39 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5817b0d1
 2023-01-24 17:27:39 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 17:27:39 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 17:27:50 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-24 17:27:50 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-24 17:27:53 [http-nio-8080-exec-3] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 17:27:54 [http-nio-8080-exec-3] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 17:28:33 [http-nio-8080-exec-8] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 17:28:34 [http-nio-8080-exec-8] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
-2023-01-24 17:28:49 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-24 17:28:49 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-24 17:30:41 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-24 17:30:42 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1d642682
 2023-01-24 17:30:42 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 17:30:42 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 17:30:59 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-24 17:30:59 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-24 17:31:03 [http-nio-8080-exec-7] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 17:31:03 [http-nio-8080-exec-7] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 17:31:15 [http-nio-8080-exec-2] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 17:31:15 [http-nio-8080-exec-2] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 17:31:37 [http-nio-8080-exec-8] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 17:31:37 [http-nio-8080-exec-8] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
-2023-01-24 17:44:05 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-24 17:44:05 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-24 17:44:17 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-24 17:44:18 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2297c8bf
 2023-01-24 17:44:18 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 17:44:18 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 17:44:31 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-24 17:44:31 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-24 17:44:35 [http-nio-8080-exec-3] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 17:44:35 [http-nio-8080-exec-3] ERROR com.sulzhenko.controller.Controller- null
-2023-01-24 17:51:21 [http-nio-8080-exec-5] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-24 17:51:21 [http-nio-8080-exec-5] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-24 17:51:34 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-24 17:51:35 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2297c8bf
 2023-01-24 17:51:35 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 17:51:35 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 17:51:44 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-24 17:51:44 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-24 17:51:48 [http-nio-8080-exec-4] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 17:51:49 [http-nio-8080-exec-4] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 17:52:02 [http-nio-8080-exec-8] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 17:52:02 [http-nio-8080-exec-8] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
-2023-01-24 17:53:55 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-24 17:53:55 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-24 17:54:08 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-24 17:54:09 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@75e068dc
 2023-01-24 17:54:09 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 17:54:09 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 17:54:18 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-24 17:54:18 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-24 17:54:22 [http-nio-8080-exec-3] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 17:54:23 [http-nio-8080-exec-3] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 17:54:29 [http-nio-8080-exec-7] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 17:54:29 [http-nio-8080-exec-7] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
-2023-01-24 17:56:36 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-24 17:56:36 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-24 17:56:48 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-24 17:56:49 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1d642682
 2023-01-24 17:56:49 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 17:56:49 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 17:56:57 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-24 17:56:57 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-24 17:57:01 [http-nio-8080-exec-3] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 17:57:02 [http-nio-8080-exec-3] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 17:57:11 [http-nio-8080-exec-8] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
@@ -2426,7 +2426,7 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-24 17:58:17 [http-nio-8080-exec-2] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 17:58:22 [http-nio-8080-exec-5] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
 2023-01-24 17:58:22 [http-nio-8080-exec-5] WARN  com.sulzhenko.Util.PdfMakerUtil- start get bundle
-2023-01-24 17:58:31 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-24 17:58:31 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-24 18:00:07 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
 2023-01-24 18:00:07 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- java.sql.SQLException
 2023-01-24 18:00:07 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
@@ -2673,23 +2673,23 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-24 18:22:07 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2297c8bf
 2023-01-24 18:22:07 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-24 18:22:07 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-24 18:22:18 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
-2023-01-24 18:24:18 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-24 18:22:18 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-24 18:24:18 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-24 18:41:32 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
 2023-01-24 18:41:39 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
 2023-01-25 08:08:54 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-25 08:08:55 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@623dc0b8
 2023-01-25 08:08:55 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-25 08:08:55 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-25 08:09:22 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-25 08:09:22 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-25 08:09:55 [http-nio-8080-exec-4] INFO  com.sulzhenko.Util.notifications.Mailer- message sent successfully
-2023-01-25 08:10:00 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-25 08:10:00 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-25 08:15:55 [http-nio-8080-exec-6] INFO  com.sulzhenko.Util.notifications.Mailer- message sent successfully
-2023-01-25 08:16:47 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: testuser
+2023-01-25 08:16:47 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: testuser
 2023-01-25 08:17:06 [http-nio-8080-exec-8] INFO  com.sulzhenko.Util.notifications.Mailer- message sent successfully
-2023-01-25 08:17:11 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: testuser
-2023-01-25 08:17:19 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: testuser
-2023-01-25 08:17:21 [http-nio-8080-exec-5] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: testuser
+2023-01-25 08:17:11 [http-nio-8080-exec-10] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: testuser
+2023-01-25 08:17:19 [http-nio-8080-exec-3] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: testuser
+2023-01-25 08:17:21 [http-nio-8080-exec-5] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: testuser
 2023-01-25 09:53:04 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-25 09:53:05 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@79a12552
 2023-01-25 09:53:05 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
@@ -2701,13 +2701,13 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-25 10:01:08 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-25 10:01:08 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
 2023-01-25 10:01:21 [http-nio-8080-exec-2] WARN  sulzhenko.model.services.implementation.UserServiceImpl- wrong.loginasdfasdfasdf
-2023-01-25 10:01:21 [http-nio-8080-exec-2] WARN  com.sulzhenko.controller.command.RecoverPasswordCommand- wrong.login
+2023-01-25 10:01:21 [http-nio-8080-exec-2] WARN  com.sulzhenko.controller.command.user.RecoverPasswordCommand- wrong.login
 2023-01-25 10:01:28 [http-nio-8080-exec-6] WARN  sulzhenko.model.services.implementation.UserServiceImpl- wrong.loginasdfasfdasf
-2023-01-25 10:01:28 [http-nio-8080-exec-6] WARN  com.sulzhenko.controller.command.RecoverPasswordCommand- wrong.login
+2023-01-25 10:01:28 [http-nio-8080-exec-6] WARN  com.sulzhenko.controller.command.user.RecoverPasswordCommand- wrong.login
 2023-01-25 10:01:34 [http-nio-8080-exec-1] WARN  sulzhenko.model.services.implementation.UserServiceImpl- wrong.login
-2023-01-25 10:01:34 [http-nio-8080-exec-1] WARN  com.sulzhenko.controller.command.RecoverPasswordCommand- wrong.login
+2023-01-25 10:01:34 [http-nio-8080-exec-1] WARN  com.sulzhenko.controller.command.user.RecoverPasswordCommand- wrong.login
 2023-01-25 10:01:42 [http-nio-8080-exec-6] WARN  sulzhenko.model.services.implementation.UserServiceImpl- wrong.login
-2023-01-25 10:01:42 [http-nio-8080-exec-6] WARN  com.sulzhenko.controller.command.RecoverPasswordCommand- wrong.login
+2023-01-25 10:01:42 [http-nio-8080-exec-6] WARN  com.sulzhenko.controller.command.user.RecoverPasswordCommand- wrong.login
 2023-01-25 10:04:22 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
 2023-01-25 10:04:55 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
 2023-01-25 10:10:56 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
@@ -2812,8 +2812,8 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-25 14:16:50 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@437a4e61
 2023-01-25 14:16:50 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-25 14:16:50 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-25 14:23:19 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
-2023-01-25 14:23:24 [http-nio-8080-exec-6] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-25 14:23:19 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-25 14:23:24 [http-nio-8080-exec-6] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-25 14:30:05 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-25 14:30:05 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5817b0d1
 2023-01-25 14:30:05 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
@@ -2822,7 +2822,7 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-25 16:33:36 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4c25687b
 2023-01-25 16:33:36 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-25 16:33:36 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-25 16:33:50 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-25 16:33:50 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-25 16:43:19 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-25 16:43:20 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@509e4d53
 2023-01-25 16:43:20 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
@@ -2831,8 +2831,8 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-25 16:46:20 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@35129b9e
 2023-01-25 16:46:20 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-25 16:46:21 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-25 16:49:31 [http-nio-8080-exec-5] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
-2023-01-25 16:49:59 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-25 16:49:31 [http-nio-8080-exec-5] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-25 16:49:59 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-25 16:57:26 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
 2023-01-25 16:57:26 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- java.sql.SQLException
 2023-01-25 16:57:26 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
@@ -3077,21 +3077,21 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-25 17:32:02 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2d2710a8
 2023-01-25 17:32:02 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-25 17:32:02 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-25 17:32:16 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
+2023-01-25 17:32:16 [http-nio-8080-exec-2] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
 2023-01-25 17:43:30 [main] FATAL sulzhenko.model.services.implementation.UserActivityServiceImpl- java.sql.SQLException
 2023-01-25 17:44:53 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-25 17:44:53 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1d642682
 2023-01-25 17:44:53 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-25 17:44:53 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-25 17:45:10 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: Aeneas
-2023-01-25 17:45:19 [http-nio-8080-exec-9] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: Aeneas
+2023-01-25 17:45:10 [http-nio-8080-exec-4] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: Aeneas
+2023-01-25 17:45:19 [http-nio-8080-exec-9] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: Aeneas
 2023-01-25 17:47:35 [main] FATAL sulzhenko.model.services.implementation.UserActivityServiceImpl- java.sql.SQLException
 2023-01-25 17:51:05 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
 2023-01-25 17:51:05 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4c25687b
 2023-01-25 17:51:05 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
 2023-01-25 17:51:06 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
-2023-01-25 17:51:15 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.LoginCommand- user log in: admin
-2023-01-25 17:51:39 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.LogoutCommand- user log out: admin
+2023-01-25 17:51:15 [http-nio-8080-exec-1] INFO  com.sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-25 17:51:39 [http-nio-8080-exec-8] INFO  com.sulzhenko.controller.command.common.LogoutCommand- user log out: admin
 2023-01-25 18:05:35 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.login
 2023-01-25 18:05:56 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.login
 2023-01-25 18:06:04 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.password
@@ -3256,3 +3256,393 @@ ORDER BY activity_name ASC LIMIT -10, 5
 2023-01-25 18:17:15 [main] FATAL sulzhenko.model.services.implementation.RequestServiceImpl- java.sql.SQLException
 2023-01-25 18:17:15 [main] FATAL sulzhenko.model.services.implementation.RequestServiceImpl- java.sql.SQLException
 2023-01-25 18:17:16 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
+2023-01-25 19:39:25 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 19:39:25 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- java.sql.SQLException
+2023-01-25 19:39:25 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 19:39:25 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 19:39:25 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 19:39:25 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 19:39:25 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 19:39:25 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 19:39:25 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 19:39:25 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 19:39:26 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
+2023-01-25 19:39:27 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5773d271
+2023-01-25 19:39:27 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
+2023-01-25 19:39:27 [main] ERROR com.sulzhenko.controller.ApplicationContext- inStream parameter is null
+2023-01-25 19:39:27 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:27 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:27 [main] FATAL sulzhenko.model.services.implementation.UserServiceImpl- java.sql.SQLException
+2023-01-25 19:39:27 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- wrong.login
+2023-01-25 19:39:27 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:27 [main] FATAL sulzhenko.model.services.implementation.UserServiceImpl- java.sql.SQLException
+2023-01-25 19:39:27 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:27 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- com.sulzhenko.model.DAO.DAOException: unknown.error
+2023-01-25 19:39:27 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:27 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:27 [main] FATAL sulzhenko.model.services.implementation.UserServiceImpl- java.sql.SQLException
+2023-01-25 19:39:27 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:28 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.login
+2023-01-25 19:39:28 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.password
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- java.sql.SQLException
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.services.implementation.UserActivityServiceImpl- java.sql.SQLException
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.services.implementation.UserActivityServiceImpl- java.sql.SQLException
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.services.implementation.UserActivityServiceImpl- java.sql.SQLException
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.services.implementation.UserActivityServiceImpl- java.sql.SQLException
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 19:39:28 [main] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 19:39:28 [main] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.services.implementation.RequestServiceImpl- java.sql.SQLException
+2023-01-25 19:39:28 [main] FATAL sulzhenko.model.services.implementation.RequestServiceImpl- java.sql.SQLException
+2023-01-25 19:39:29 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
+2023-01-25 20:12:00 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 20:12:00 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- java.sql.SQLException
+2023-01-25 20:12:00 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 20:12:00 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 20:12:00 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 20:12:00 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 20:12:00 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 20:12:00 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 20:12:00 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 20:12:00 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 20:12:00 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
+2023-01-25 20:12:02 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4ce267cc
+2023-01-25 20:12:02 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
+2023-01-25 20:12:02 [main] ERROR com.sulzhenko.controller.ApplicationContext- inStream parameter is null
+2023-01-25 20:12:02 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:02 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:02 [main] FATAL sulzhenko.model.services.implementation.UserServiceImpl- java.sql.SQLException
+2023-01-25 20:12:02 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- wrong.login
+2023-01-25 20:12:02 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:02 [main] FATAL sulzhenko.model.services.implementation.UserServiceImpl- java.sql.SQLException
+2023-01-25 20:12:02 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:02 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- com.sulzhenko.model.DAO.DAOException: unknown.error
+2023-01-25 20:12:02 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:02 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:02 [main] FATAL sulzhenko.model.services.implementation.UserServiceImpl- java.sql.SQLException
+2023-01-25 20:12:02 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:02 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:02 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:02 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.login
+2023-01-25 20:12:02 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.password
+2023-01-25 20:12:02 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:02 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:02 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 20:12:02 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- java.sql.SQLException
+2023-01-25 20:12:02 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 20:12:02 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 20:12:02 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.services.implementation.UserActivityServiceImpl- java.sql.SQLException
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.services.implementation.UserActivityServiceImpl- java.sql.SQLException
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.services.implementation.UserActivityServiceImpl- java.sql.SQLException
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.services.implementation.UserActivityServiceImpl- java.sql.SQLException
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 20:12:03 [main] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:12:03 [main] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.services.implementation.RequestServiceImpl- java.sql.SQLException
+2023-01-25 20:12:03 [main] FATAL sulzhenko.model.services.implementation.RequestServiceImpl- java.sql.SQLException
+2023-01-25 20:12:03 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
+2023-01-25 20:30:53 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
+2023-01-25 20:30:54 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@fffb4a8
+2023-01-25 20:30:54 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
+2023-01-25 20:30:54 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
+2023-01-25 20:31:45 [http-nio-8080-exec-3] WARN  sulzhenko.controller.command.base.RegisterCommand- wrong.login
+2023-01-25 20:32:06 [http-nio-8080-exec-9] INFO  sulzhenko.controller.command.common.LogoutCommand- user log out: testuser07
+2023-01-25 20:35:46 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 20:35:46 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- java.sql.SQLException
+2023-01-25 20:35:46 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 20:35:46 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 20:35:46 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 20:35:46 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 20:35:47 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 20:35:47 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 20:35:47 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 20:35:47 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 20:35:47 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
+2023-01-25 20:35:49 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4438938e
+2023-01-25 20:35:49 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
+2023-01-25 20:35:49 [main] ERROR com.sulzhenko.controller.ApplicationContext- inStream parameter is null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.services.implementation.UserServiceImpl- java.sql.SQLException
+2023-01-25 20:35:49 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- wrong.login
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.services.implementation.UserServiceImpl- java.sql.SQLException
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- com.sulzhenko.model.DAO.DAOException: unknown.error
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.services.implementation.UserServiceImpl- java.sql.SQLException
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.login
+2023-01-25 20:35:49 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.password
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- java.sql.SQLException
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.services.implementation.UserActivityServiceImpl- java.sql.SQLException
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.services.implementation.UserActivityServiceImpl- java.sql.SQLException
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.services.implementation.UserActivityServiceImpl- java.sql.SQLException
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.services.implementation.UserActivityServiceImpl- java.sql.SQLException
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-25 20:35:49 [main] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-25 20:35:49 [main] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.services.implementation.RequestServiceImpl- java.sql.SQLException
+2023-01-25 20:35:49 [main] FATAL sulzhenko.model.services.implementation.RequestServiceImpl- java.sql.SQLException
+2023-01-25 20:35:50 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
+2023-01-26 10:57:51 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-26 10:57:51 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- java.sql.SQLException
+2023-01-26 10:57:51 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-26 10:57:51 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-26 10:57:51 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-26 10:57:51 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-26 10:57:51 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-26 10:57:51 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-26 10:57:51 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-26 10:57:51 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-26 10:57:51 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
+2023-01-26 10:57:52 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5d7f8467
+2023-01-26 10:57:52 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
+2023-01-26 10:57:52 [main] ERROR com.sulzhenko.controller.ApplicationContext- inStream parameter is null
+2023-01-26 10:57:52 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:52 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:52 [main] FATAL sulzhenko.model.services.implementation.UserServiceImpl- java.sql.SQLException
+2023-01-26 10:57:53 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- wrong.login
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.services.implementation.UserServiceImpl- java.sql.SQLException
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- com.sulzhenko.model.DAO.DAOException: unknown.error
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.services.implementation.UserServiceImpl- java.sql.SQLException
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.login
+2023-01-26 10:57:53 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.password
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- java.sql.SQLException
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.services.implementation.UserActivityServiceImpl- java.sql.SQLException
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.services.implementation.UserActivityServiceImpl- java.sql.SQLException
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.services.implementation.UserActivityServiceImpl- java.sql.SQLException
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.services.implementation.UserActivityServiceImpl- java.sql.SQLException
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-01-26 10:57:53 [main] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-01-26 10:57:53 [main] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.services.implementation.RequestServiceImpl- java.sql.SQLException
+2023-01-26 10:57:53 [main] FATAL sulzhenko.model.services.implementation.RequestServiceImpl- java.sql.SQLException
+2023-01-26 10:57:54 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
+2023-01-26 10:58:10 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
+2023-01-26 10:58:11 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4c25687b
+2023-01-26 10:58:11 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
+2023-01-26 10:58:11 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
+2023-01-26 10:58:27 [http-nio-8080-exec-1] INFO  sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-26 10:58:35 [http-nio-8080-exec-3] FATAL com.sulzhenko.Util.PdfMakerUtil- webapp\report.pdf (Системе не удается найти указанный путь)
+2023-01-26 10:58:35 [http-nio-8080-exec-3] ERROR com.sulzhenko.controller.Controller- java.io.FileNotFoundException: webapp\report.pdf (Системе не удается найти указанный путь)
+2023-01-26 11:06:01 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
+2023-01-26 11:06:02 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4c25687b
+2023-01-26 11:06:02 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
+2023-01-26 11:06:02 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
+2023-01-26 11:06:21 [http-nio-8080-exec-4] INFO  sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-26 11:08:27 [http-nio-8080-exec-8] INFO  sulzhenko.controller.command.common.LogoutCommand- user log out: admin
+2023-01-26 11:08:34 [http-nio-8080-exec-1] INFO  sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-26 16:24:54 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
+2023-01-26 16:24:56 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4c25687b
+2023-01-26 16:24:56 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
+2023-01-26 16:24:56 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
+2023-01-26 16:25:16 [http-nio-8080-exec-4] INFO  sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-26 16:42:34 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
+2023-01-26 16:42:35 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5817b0d1
+2023-01-26 16:42:35 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
+2023-01-26 16:42:35 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
+2023-01-26 16:43:05 [http-nio-8080-exec-3] INFO  sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-26 16:44:26 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
+2023-01-26 16:44:27 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@35129b9e
+2023-01-26 16:44:27 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
+2023-01-26 16:44:27 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
+2023-01-26 16:44:42 [http-nio-8080-exec-4] INFO  sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-26 16:44:45 [http-nio-8080-exec-6] FATAL com.sulzhenko.Util.PdfMakerUtil- src\main\webapp\report.pdf (Системе не удается найти указанный путь)
+2023-01-26 16:44:45 [http-nio-8080-exec-6] ERROR com.sulzhenko.controller.Controller- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
+2023-01-26 16:48:02 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
+2023-01-26 16:48:03 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@fee1e32
+2023-01-26 16:48:03 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
+2023-01-26 16:48:03 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
+2023-01-26 16:48:18 [http-nio-8080-exec-4] INFO  sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-26 16:48:21 [http-nio-8080-exec-6] FATAL com.sulzhenko.Util.PdfMakerUtil- src\main\webapp\report.pdf (Системе не удается найти указанный путь)
+2023-01-26 16:48:21 [http-nio-8080-exec-6] ERROR com.sulzhenko.controller.Controller- java.io.FileNotFoundException: src\main\webapp\report.pdf (Системе не удается найти указанный путь)
+2023-01-26 16:51:50 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
+2023-01-26 16:51:52 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@437a4e61
+2023-01-26 16:51:52 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
+2023-01-26 16:51:52 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
+2023-01-26 16:52:11 [http-nio-8080-exec-4] INFO  sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-26 16:55:23 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
+2023-01-26 16:55:24 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@35129b9e
+2023-01-26 16:55:24 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
+2023-01-26 16:55:24 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
+2023-01-26 16:55:37 [http-nio-8080-exec-4] INFO  sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-26 17:00:03 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
+2023-01-26 17:00:04 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7be9582e
+2023-01-26 17:00:04 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
+2023-01-26 17:00:04 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
+2023-01-26 17:02:32 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
+2023-01-26 17:02:33 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@fee1e32
+2023-01-26 17:02:33 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
+2023-01-26 17:02:33 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
+2023-01-26 17:03:19 [http-nio-8080-exec-6] INFO  sulzhenko.controller.command.base.LoginCommand- user log in: admin
+2023-01-26 17:09:00 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m57s389ms307µs600ns).
+2023-01-26 17:12:05 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m34s685ms624µs200ns).
+2023-01-26 17:33:09 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
+2023-01-26 17:33:11 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@437a4e61
+2023-01-26 17:33:11 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
+2023-01-26 17:33:11 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
+2023-01-26 17:33:30 [http-nio-8080-exec-4] INFO  sulzhenko.controller.command.base.LoginCommand- user log in: admin

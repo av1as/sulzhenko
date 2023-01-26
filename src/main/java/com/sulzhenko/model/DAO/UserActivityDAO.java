@@ -3,7 +3,6 @@ package com.sulzhenko.model.DAO;
 import com.sulzhenko.model.entity.*;
 import java.sql.SQLException;
 
-
 public interface UserActivityDAO {
     boolean ifUserHasActivity(User u, Activity a);
     void addActivityToUser(Request request) throws SQLException;

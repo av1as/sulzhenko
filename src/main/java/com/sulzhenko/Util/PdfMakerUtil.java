@@ -28,7 +28,7 @@ import java.util.stream.Stream;
 import static com.sulzhenko.controller.Constants.PAGE;
 import static com.sulzhenko.controller.Constants.REPORT;
 
-public class PdfMakerUtil {
+public class PdfMakerUtil implements Constants {
     private static final Logger logger = LogManager.getLogger(PdfMakerUtil.class);
     private static final String[] REPORT_CELLS = new String[]{"login", "number.activities", "total.time", "activity.name", "time.amount"};
     private final List<ReportDTO> report;
@@ -84,9 +84,9 @@ public class PdfMakerUtil {
         }
     }
     public void getReportPDF(String name, String page, String currentPage) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
         Date date = new Date();
-        String file = "C:\\data\\temp\\tasks\\fp\\sulzhenko\\src\\main\\webapp\\" + name + ".pdf";
+        String file = FILE_PATH + name + PDF;
         PdfDocument pdfDoc;
         try {
             pdfDoc = new PdfDocument(new PdfWriter(file));
@@ -97,7 +97,7 @@ public class PdfMakerUtil {
         Document doc = new Document(pdfDoc);
         PdfFont font;
         try {
-            font = PdfFontFactory.createFont("C:\\WINDOWS\\Fonts\\ARIAL.TTF");
+            font = PdfFontFactory.createFont(FONT_PATH);
             doc.setFont(font);
         } catch (IOException e) {
             logger.fatal(e.getMessage());

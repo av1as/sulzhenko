@@ -1,6 +1,6 @@
 package controller.commands;
 
-import com.sulzhenko.controller.command.ProfileInfoCommand;
+import com.sulzhenko.controller.command.common.ProfileInfoCommand;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;

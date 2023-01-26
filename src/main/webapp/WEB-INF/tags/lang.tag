@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-
 <fmt:setLocale value="${sessionScope.locale}" scope="session"/>
 <fmt:setBundle basename="resources"/>
 
@@ -9,6 +8,5 @@
            <fmt:message key="ua"/>
     <input type="radio" name="locale" value="en" ${sessionScope.locale eq 'en' ? 'checked' : ''} onchange="submit()">
            <fmt:message key="en"/>
-
     </label>
 </form>

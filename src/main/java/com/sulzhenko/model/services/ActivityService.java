@@ -3,7 +3,6 @@ package com.sulzhenko.model.services;
 import com.sulzhenko.model.Constants;
 import com.sulzhenko.DTO.ActivityDTO;
 import com.sulzhenko.model.entity.Activity;
-import jakarta.servlet.http.HttpServletRequest;
 
 import java.sql.SQLException;
 import java.util.List;

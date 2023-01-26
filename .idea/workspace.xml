@@ -4,49 +4,76 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b53abc5-250e-4348-917a-700a8c9b6890" name="Changes" comment="Added possibility to convert report into PDF">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/implementations/RecoverPasswordBody.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/implementations/RecoverPasswordSubject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/RecoverPasswordCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jsp/check_email.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jsp/recover_password_form.jsp" afterDir="false" />
+    <list default="true" id="2b53abc5-250e-4348-917a-700a8c9b6890" name="Changes" comment="Improved interaction between controller and services">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/AccountUpdateBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/implementations/AccountUpdateBody.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/AccountUpdateSubject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/implementations/AccountUpdateSubject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/NotificationFactories.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/NotificationFactories.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/RequestUpdateBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/implementations/RequestUpdateBody.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/RequestUpdateSubject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/implementations/RequestUpdateSubject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/SystemUpdateBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/implementations/SystemUpdateBody.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/SystemUpdateSubject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/notifications/implementations/SystemUpdateSubject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/CommandFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/CommandFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/Path.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/LoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/LoginCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/NewActivityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/NewActivityCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowActivityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowActivityCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowUserActivitiesCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowUserActivitiesCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/filters/domain/DomainActionsSets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/filters/domain/DomainActionsSets.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/filters/domain/DomainPagesSets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/filters/domain/DomainPagesSets.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DAO/implementation/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DAO/implementation/UserDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/hashingPasswords/Sha.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/hashingPasswords/Sha.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DTO/RequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/DTO/RequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/PdfMakerUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/Util/PdfMakerUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/CommandFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/CommandFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/AddCategoryCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/admin/AddCategoryCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/AdminUpdateUserCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/admin/AdminUpdateUserCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ApproveRequestCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/admin/ApproveRequestCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/DeclineRequestCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/admin/DeclineRequestCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/DefaultCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/base/DefaultCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/DeleteActivityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/admin/DeleteActivityCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/DeleteCategoryCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/admin/DeleteCategoryCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/LoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/base/LoginCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/LogoutCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/common/LogoutCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/NewActivityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/admin/NewActivityCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ProfileInfoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/common/ProfileInfoCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/RecoverPasswordCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/user/RecoverPasswordCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/RegisterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/base/RegisterCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/RemoveUserRequestCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/user/RemoveUserRequestCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/RequestToAddActivityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/user/RequestToAddActivityCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/RequestToRemoveActivityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/user/RequestToRemoveActivityCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/SetAmountCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/user/SetAmountCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/SetRequestDescriptionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/user/SetRequestDescriptionCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowActivityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/admin/ShowActivityCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowCategoryCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/admin/ShowCategoryCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowFullReportCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/admin/ShowFullReportCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowRequestsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/admin/ShowRequestsCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowUserActivitiesCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/user/ShowUserActivitiesCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowUserRequestsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/user/ShowUserRequestsCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/ShowUsersCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/admin/ShowUsersCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/UpdateActivityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/admin/UpdateActivityCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/UpdateCategoryCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/admin/UpdateCategoryCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/UpdateUserCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/controller/command/user/UpdateUserCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DAO/UserActivityDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/DAO/UserActivityDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/entity/Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/entity/Activity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/entity/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/entity/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/entity/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/entity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/ActivityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/ActivityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/UserActivityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/UserActivityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/ActivityServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/ActivityServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/UserActivityServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/UserActivityServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sulzhenko/model/services/implementation/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/log.log" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/resources.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/resources.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/resources_uk_UA.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/resources_uk_UA.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/lang.tag" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/lang.tag" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tld/custom.tld" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tld/custom.tld" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/blocks/lang.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/blocks/lang.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/blocks/logout.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/blocks/logout.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/blocks/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/blocks/profile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/activities.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/activities.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/brief_report.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/brief_report.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/categories.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/categories.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/check_email.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/check_email.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/error_page.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/error_page.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/full_report.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/full_report.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/hellouser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/hellouser.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/menu_admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/menu_admin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/menu_user.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/menu_user.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/profile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/recover_password_form.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/recover_password_form.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Service/ServiceActivityTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Service/ServiceActivityTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Service/ServiceUserActivityTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Service/ServiceUserActivityTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Service/ServiceUserTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Service/ServiceUserTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ShaTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ShaTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/util/NotificationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/util/NotificationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/report.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/report.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/requests.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/requests.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/user_activities.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/user_activities.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/user_requests.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/user_requests.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/users.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/users.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/controller/commands/CommandFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/commands/CommandFactoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/controller/commands/ProfileInfoCommandTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/commands/ProfileInfoCommandTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,8 +83,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -90,7 +117,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
+    "settings.editor.selected.configurable": "File.Encoding"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -128,7 +155,7 @@
       <recent name="com.sulzhenko.model.DAO" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in TimeKeeping">
+  <component name="RunManager" selected="Smart Tomcat.TimeKeeping">
     <configuration name="All in TimeKeeping" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TimeKeeping" />
       <option name="PACKAGE_NAME" value="" />
@@ -350,7 +377,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674579042275</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Improved interaction between controller and services">
+      <created>1674665453005</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1674665453005</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -378,7 +412,8 @@
     <MESSAGE value="Updated some tests" />
     <MESSAGE value="Added possibility for user to update and remove their requests" />
     <MESSAGE value="Added possibility to convert report into PDF" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added possibility to convert report into PDF" />
+    <MESSAGE value="Improved interaction between controller and services" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved interaction between controller and services" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
@@ -411,7 +446,7 @@
     <SUITE FILE_PATH="coverage/sulzhenko$DAOUserActivityTests_testIfRequestToRemoveExists.ic" NAME="DAOUserActivityTests.testIfRequestToRemoveExists Coverage Results" MODIFIED="1673887140877" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/sulzhenko$All_in_TimeKeeping.ic" NAME="All in TimeKeeping Coverage Results" MODIFIED="1674663427537" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/sulzhenko$All_in_TimeKeeping.ic" NAME="All in TimeKeeping Coverage Results" MODIFIED="1674671740095" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/sulzhenko$DAOActivityTests_testSqlExceptionGetByCategory.ic" NAME="DAOActivityTests.testSqlExceptionGetByCategory Coverage Results" MODIFIED="1674578497566" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
     </SUITE>

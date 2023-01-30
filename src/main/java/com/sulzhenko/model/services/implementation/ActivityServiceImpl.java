@@ -28,7 +28,6 @@ public class ActivityServiceImpl implements ActivityService {
         this.activityDAO = new ActivityDAOImpl(dataSource);
         this.categoryService = new CategoryServiceImpl(dataSource);
     }
-
     private static final String COMMON_PART = "SELECT activity.activity_name, \n" +
             "COUNT(user_activity.activity_id) as quantity, \n" +
             "category_of_activity.category_name \n" +
@@ -66,9 +65,8 @@ public class ActivityServiceImpl implements ActivityService {
             Activity activity = activityDAO.getByName(oldName);
             String[] param = {newName, newCategoryName};
             List<User> connectedUsers = getConnectedUsersWithNotification(activity);
-            String description = "activity " + "\"" + oldName + "\" "
-                    + "now has name " + "\"" + param[0] + "\" "
-                    + "and category " + "\"" + param[1] + "\"";
+            String description = String.format("activity \"%s\" now has name \"%s\" and category \"%s\"",
+                    oldName, param[0], param[1]);
             try{
                 activityDAO.update(activity, param);
                 notifyAboutUpdate(connectedUsers, description);
@@ -81,7 +79,7 @@ public class ActivityServiceImpl implements ActivityService {
     public void deleteActivity(String name){
         if(!isNameAvailable(name)) {
             List<User> connectedUsers = getConnectedUsersWithNotification(getActivity(name));
-            String description = "activity " + "\"" + name + "\" has been deleted";
+            String description = String.format("activity \"%s\" has been deleted ", name);
             try{
                 activityDAO.delete(activityDAO.getByName(name));
                 notifyAboutUpdate(connectedUsers, description);
@@ -122,12 +120,11 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     private String getTotalRecords(String filter){
-
         String query = "SELECT COUNT(activity.activity_name)\n" +
                     "FROM activity\n" +
                     "INNER JOIN category_of_activity\n" +
                     "ON activity.category_id = category_of_activity.category_id\n";
-        if(!Objects.equals(filter, ALL_CATEGORIES)) query += "WHERE category_name = '" + filter + "'";
+        if(!Objects.equals(filter, ALL_CATEGORIES)) query += String.format("WHERE category_name = '%s'", filter);
         return query;
     }
     public int getNumberOfRecords(String filter) throws DAOException{
@@ -170,10 +167,10 @@ public class ActivityServiceImpl implements ActivityService {
         }
     }
     private String applyFilter(String filter){
-        return Objects.equals(filter, ALL_CATEGORIES) ? "": "WHERE category_name = '" + filter + "'\n";
+        return Objects.equals(filter, ALL_CATEGORIES) ? "": String.format("WHERE category_name = '%s'\n", filter);
     }
     private String applySorting(String sortParameter){
-        return "GROUP BY " + sortParameter + " \n";
+        return String.format("GROUP BY %s \n", sortParameter);
     }
     private String applyOrder(String parameter, String order, int offset, int number){
         return String.format("ORDER BY %s %s LIMIT %d, %d", parameter, order, offset, number);

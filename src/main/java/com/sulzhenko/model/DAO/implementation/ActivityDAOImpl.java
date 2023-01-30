@@ -82,7 +82,6 @@ public class ActivityDAOImpl implements ActivityDAO, Constants {
     public void save(Activity t) throws DAOException{
         try (Connection con = dataSource.getConnection();
              PreparedStatement stmt = con.prepareStatement(SQLQueries.ActivityQueries.INSERT_ACTIVITY)) {
-
             int k = 0;
             stmt.setString(++k, t.getName());
             stmt.setString(++k, t.getCategory().getName());
@@ -109,15 +108,14 @@ public class ActivityDAOImpl implements ActivityDAO, Constants {
     }
     @Override
     public void delete(Activity t) throws DAOException{
-            try (Connection con = dataSource.getConnection();
-                    PreparedStatement stmt = con.prepareStatement(SQLQueries.ActivityQueries.DELETE_ACTIVITY)
-            ) {
-                stmt.setString(1, t.getName());
-                stmt.executeUpdate();
-            } catch (SQLException e) {
-                logger.fatal(e.getMessage());
-                throw new DAOException(UNKNOWN_ERROR);
-            }
+        try (Connection con = dataSource.getConnection();
+             PreparedStatement stmt = con.prepareStatement(SQLQueries.ActivityQueries.DELETE_ACTIVITY)) {
+            stmt.setString(1, t.getName());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            logger.fatal(e.getMessage());
+            throw new DAOException(UNKNOWN_ERROR);
+        }
     }
     @Override
     public Activity getById(long id) {

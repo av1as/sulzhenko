@@ -83,7 +83,6 @@ public class UserDAOImpl implements UserDAO, Constants {
     public List<User> getByNotification(String notification) {
         return getList(notification, SQLQueries.UserQueries.GET_USERS_BY_NOTIFICATION);
     }
-
     @Override
     public List<User> getAll() {
         List<User> list = new ArrayList<>();
@@ -145,8 +144,7 @@ public class UserDAOImpl implements UserDAO, Constants {
     @Override
     public void delete(User t) throws DAOException {
             try (Connection con = dataSource.getConnection();
-                    PreparedStatement stmt = con.prepareStatement(SQLQueries.UserQueries.DELETE_USER)
-            ) {
+                    PreparedStatement stmt = con.prepareStatement(SQLQueries.UserQueries.DELETE_USER)){
                 stmt.setString(1, t.getLogin());
                 stmt.executeUpdate();
             } catch (SQLException e) {
@@ -161,6 +159,7 @@ public class UserDAOImpl implements UserDAO, Constants {
         try {
             stmt.setString(++k, new Sha().hashToHex(t.getPassword(), Optional.ofNullable(t.getLogin())));
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            logger.fatal(e.getMessage());
             throw new DAOException(UNKNOWN_ERROR);
         }
         stmt.setString(++k, t.getFirstName());
@@ -186,8 +185,7 @@ public class UserDAOImpl implements UserDAO, Constants {
     }
     public void addStatus(String statusName) throws DAOException{
         try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(SQLQueries.UserQueries.ADD_STATUS)
-        ) {
+             PreparedStatement stmt = con.prepareStatement(SQLQueries.UserQueries.ADD_STATUS)){
             stmt.setString(1, statusName);
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -197,7 +195,7 @@ public class UserDAOImpl implements UserDAO, Constants {
     }
     public void deleteStatus(String statusName) throws DAOException {
         try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(SQLQueries.UserQueries.DELETE_STATUS)) {
+             PreparedStatement stmt = con.prepareStatement(SQLQueries.UserQueries.DELETE_STATUS)){
             stmt.setString(1, statusName);
             stmt.executeUpdate();
         } catch (SQLException e) {

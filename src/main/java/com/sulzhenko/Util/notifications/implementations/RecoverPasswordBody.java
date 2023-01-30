@@ -12,9 +12,9 @@ public class RecoverPasswordBody implements Body {
     }
     @Override
     public String asText() {
-        return "Hello, " + user.getFullName() + ",\n" +
-                "someone reset password for your account " + user.getLogin() + ".\n" +
-                "Here is your new password: " + temporaryPassword + ".\n" +
-                "Note: for security reason, you must change your password after logging in.";
+        return String.format("Hello, %s,\nsomeone reset password for your account %s.\n" +
+                "Here is your new password: %s.\n" +
+                "Note: for security reason, you must change your password after logging in.",
+                user.getFullName(), user.getLogin(), temporaryPassword);
     }
 }

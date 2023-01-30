@@ -311,7 +311,7 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public void notifyAboutUpdate(Request request, String description){
         User user = userService.getUser(request.getLogin());
-        if(Objects.equals(user.getNotification(), "on")) {
+        if(Objects.equals(user.getNotification(), ON)) {
             NotificationFactory factory = new NotificationFactories().requestUpdateFactory(user, request, description);
             String subject = factory.createSubject();
             String body = factory.createBody();

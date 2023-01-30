@@ -24,6 +24,7 @@ public interface Constants {
     String NO_OF_PAGES = "noOfPages";
     String NUMBER_OF_USERS = "number of users";
     String OFFSET = "offset";
+    String ON = "on";
     String PAGE = "page";
     String PENDING_ADDING = "pending.adding";
     String PENDING_REMOVING = "pending.removing";

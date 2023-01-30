@@ -27,7 +27,6 @@ public class RegisterCommand implements Command, Constants, Path {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         HttpSession session = request.getSession();
-
         String forward = PAGE_ERROR_FULL;
         try{
             userService.addUser(getUserDTO(request), request.getParameter(PASSWORD2));

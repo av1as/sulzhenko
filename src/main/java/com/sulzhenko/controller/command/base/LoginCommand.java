@@ -37,7 +37,7 @@ public class LoginCommand implements Command, Constants, Path {
       session.setAttribute(USER, userDTO);
       setMenu(userDTO, session);
       forward = getPageOnRole(userDTO.getRole(), userDTO.getStatus());
-      logger.info("user log in: {}", login);
+      logger.info(USER_LOG_IN, login);
     }
     return forward;
   }

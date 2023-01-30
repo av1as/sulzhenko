@@ -19,10 +19,8 @@ public class RequestUpdateBody implements Body {
 
     @Override
     public String asText() {
-        return "Hello, " + user.getFullName() + ",\n"
-                + "the request from your account " + user.getLogin()
-                + " to " + request.getActionToDo()
-                + " activity " + request.getActivityName() + " "
-                + updateDescription + ".";
+        return String.format("Hello, %s,\nthe request from your account %s to %s activity %s %s.",
+                user.getFullName(), user.getLogin(), request.getActionToDo(),
+                request.getActivityName(), updateDescription);
     }
 }

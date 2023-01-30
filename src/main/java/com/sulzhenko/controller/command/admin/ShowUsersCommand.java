@@ -21,11 +21,13 @@ public class ShowUsersCommand implements Command, Constants, Path {
         if(request.getParameter(PAGE) != null)
             page = Integer.parseInt(request.getParameter(PAGE));
         String status = request.getParameter(STATUS);
+        if(status == null) status = ALL;
         request.setAttribute(USERS, userService.getUserList(status, page, recordsPerPage));
         int noOfRecords = userService.getNumberOfRecords(status);
         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
         request.setAttribute(NO_OF_PAGES, noOfPages);
         request.setAttribute(CURRENT_PAGE, page);
+        request.setAttribute(QUERY, String.format(USERS_AND_STATUS, status));
         return PAGE_USERS;
     }
 }

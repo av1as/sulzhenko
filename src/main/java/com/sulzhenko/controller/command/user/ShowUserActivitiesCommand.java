@@ -50,6 +50,7 @@ public class ShowUserActivitiesCommand implements Command, Constants, Path {
         request.setAttribute(USER, userDTO);
         request.setAttribute(ACTIVITIES, activities);
         request.setAttribute(TO_ADD, available);
+        request.setAttribute(QUERY, USER_ACTIVITIES);
         return PAGE_USER_ACTIVITIES;
     }
     private static void setPage(HttpServletRequest request) {

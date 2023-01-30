@@ -20,7 +20,7 @@ public class LogoutCommand implements Command, Path, Constants {
         session.invalidate();
         if (userDTO != null) {
             String login = userDTO.getLogin();
-            logger.info("user log out: {}", login);
+            logger.info(USER_LOG_OUT, login);
         }
         return PAGE_LOGIN;
     }

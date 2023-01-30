@@ -33,6 +33,7 @@ public class ShowActivityCommand implements Command, Constants, Path {
         String order = request.getParameter(ORDER);
         String parameter = request.getParameter(PARAMETER);
         String page = request.getParameter(PAGE);
+        request.setAttribute(QUERY, String.format(SHOW_ACTIVITIES, filter, order, parameter));
         List<ActivityDTO> activities = activityService.listActivitiesSorted(filter, order, parameter, page);
         request.setAttribute(ACTIVITIES, activities);
         List<CategoryDTO> categories = categoryService.getAllCategories();

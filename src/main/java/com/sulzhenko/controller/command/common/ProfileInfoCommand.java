@@ -16,14 +16,11 @@ public class ProfileInfoCommand implements Command, Constants, Path {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         UserDTO userDTO = (UserDTO) session.getAttribute(USER);
-        setAttributes(request, userDTO);
-        return PAGE_PROFILE;
-    }
-    private void setAttributes(HttpServletRequest request, UserDTO userDTO) {
         request.setAttribute(LOGIN, userDTO.getLogin());
         request.setAttribute(PASSWORD, userDTO.getPassword());
         request.setAttribute(EMAIL, userDTO.getEmail());
         request.setAttribute(FIRST_NAME, userDTO.getFirstName());
         request.setAttribute(LAST_NAME, userDTO.getLastName());
+        return PAGE_PROFILE;
     }
 }

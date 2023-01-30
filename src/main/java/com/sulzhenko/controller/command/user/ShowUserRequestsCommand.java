@@ -29,6 +29,7 @@ public class ShowUserRequestsCommand implements Command, Constants, Path {
         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
         request.setAttribute(NO_OF_PAGES, noOfPages);
         request.setAttribute(CURRENT_PAGE, page);
+        request.setAttribute(QUERY, USER_REQUESTS);
         return PAGE_USER_REQUESTS;
     }
 }

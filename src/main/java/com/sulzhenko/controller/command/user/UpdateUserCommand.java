@@ -53,7 +53,8 @@ public class UpdateUserCommand implements Command, Constants, Path {
     private static String[] getParam(HttpServletRequest request, UserDTO userDTO) {
         String notifications = request.getParameter(NEW_NOTIFICATIONS);
         if (notifications == null) notifications = OFF;
-        return new String[]{userDTO.getLogin(), request.getParameter(NEW_EMAIL), request.getParameter(NEW_PASSWORD), request.getParameter(NEW_FIRST_NAME),
+        return new String[]{userDTO.getLogin(), request.getParameter(NEW_EMAIL),
+                request.getParameter(NEW_PASSWORD), request.getParameter(NEW_FIRST_NAME),
                 request.getParameter(NEW_LAST_NAME), userDTO.getRole().value, ACTIVE, notifications};
     }
 }

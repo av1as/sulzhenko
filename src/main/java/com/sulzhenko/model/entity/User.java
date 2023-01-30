@@ -160,8 +160,6 @@ public class User implements Serializable {
                 ", notifications='" + notification + '\'' +
                 '}';
     }
-
-
     public enum Role {
         ADMIN("administrator"), SYSTEM_USER("system user"), UNKNOWN("unknown role");
         public final String value;

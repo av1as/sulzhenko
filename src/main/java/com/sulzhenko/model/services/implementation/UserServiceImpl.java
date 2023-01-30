@@ -1,6 +1,5 @@
 package com.sulzhenko.model.services.implementation;
 
-import com.sulzhenko.Util.notifications.Mailer;
 import com.sulzhenko.model.DAO.*;
 import com.sulzhenko.model.DAO.implementation.UserDAOImpl;
 import com.sulzhenko.DTO.UserDTO;
@@ -24,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import static com.sulzhenko.Util.notifications.Mailer.send;
 import static com.sulzhenko.model.services.validator.InputValidator.*;
 
 public class UserServiceImpl implements UserService {
@@ -213,7 +213,7 @@ public class UserServiceImpl implements UserService {
             }
         } catch (SQLException e) {
             logger.fatal(e);
-            throw new ServiceException(UNKNOWN_ERROR, e);
+            throw new ServiceException(UNKNOWN_ERROR);
         }
         return false;
     }
@@ -354,13 +354,13 @@ public class UserServiceImpl implements UserService {
             NotificationFactory factory = new NotificationFactories().accountUpdateFactory(user);
             String subject = factory.createSubject();
             String body = factory.createBody();
-            Mailer.send(user.getEmail(), subject, body);
+            send(user.getEmail(), subject, body);
     }
     @Override
     public void sendTemporaryPassword(User user, String temporaryPassword){
         NotificationFactory factory = new NotificationFactories().recoverPasswordFactory(user, temporaryPassword);
         String subject = factory.createSubject();
         String body = factory.createBody();
-        Mailer.send(user.getEmail(), subject, body);
+        send(user.getEmail(), subject, body);
     }
 }

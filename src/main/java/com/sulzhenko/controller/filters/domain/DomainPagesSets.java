@@ -47,8 +47,8 @@ public final class DomainPagesSets {
         ADMIN_PAGES.add("jsp/menu_admin.jsp");
         ADMIN_PAGES.add("jsp/requests.jsp");
         ADMIN_PAGES.add("jsp/users.jsp");
-        ADMIN_PAGES.add("report.pdf");
-        ADMIN_PAGES.add("page.pdf");
+        ADMIN_PAGES.add("pdf/report.pdf");
+        ADMIN_PAGES.add("pdf/page.pdf");
     }
 
     public static Set<String> getGuestPages() {

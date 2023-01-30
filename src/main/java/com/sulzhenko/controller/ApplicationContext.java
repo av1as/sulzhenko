@@ -1,5 +1,6 @@
 package com.sulzhenko.controller;
 
+import com.sulzhenko.Util.PdfMakerUtil;
 import com.sulzhenko.model.connectionPool.MyDataSource;
 import com.sulzhenko.model.services.*;
 import com.sulzhenko.model.services.implementation.*;
@@ -18,7 +19,9 @@ public class ApplicationContext {
     private final ReportService reportService;
     private final UserActivityService userActivityService;
     private final RequestService requestService;
+    private final PdfMakerUtil pdfUtil;
     private ApplicationContext(ServletContext servletContext, String propertiesFile) {
+        pdfUtil = new PdfMakerUtil(servletContext);
         Properties properties = getProperties(propertiesFile);
         DataSource dataSource = MyDataSource.getDataSource(properties);
         userService = new UserServiceImpl(dataSource);
@@ -69,5 +72,9 @@ public class ApplicationContext {
 
     public RequestService getRequestService() {
         return requestService;
+    }
+
+    public PdfMakerUtil getPdfUtil() {
+        return pdfUtil;
     }
 }

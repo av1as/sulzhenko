@@ -31,8 +31,7 @@ public class RequestDAOImpl implements RequestDAO, Constants {
     public Optional<Request> get(Object parameter, String querySQL) throws DAOException{
         Request t = null;
         try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(querySQL)
-        ) {
+             PreparedStatement stmt = con.prepareStatement(querySQL)){
             stmt.setObject(1, parameter);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
@@ -48,8 +47,7 @@ public class RequestDAOImpl implements RequestDAO, Constants {
     public List<Request> getList(Object parameter, String querySQL) throws DAOException{
         List<Request> list = new ArrayList<>();
         try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(querySQL)
-        ) {
+             PreparedStatement stmt = con.prepareStatement(querySQL)){
             stmt.setObject(1, parameter);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -77,8 +75,7 @@ public class RequestDAOImpl implements RequestDAO, Constants {
     public List<Request> getByLoginAndAction(String login, String action) throws DAOException{
         List<Request> list = new ArrayList<>();
         try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_REQUESTS_BY_LOGIN_AND_ACTION)
-        ) {
+             PreparedStatement stmt = con.prepareStatement(GET_REQUESTS_BY_LOGIN_AND_ACTION)){
             stmt.setString(1, login);
             stmt.setString(2, action);
             ResultSet rs = stmt.executeQuery();
@@ -96,8 +93,7 @@ public class RequestDAOImpl implements RequestDAO, Constants {
     public List<Request> getAll() throws DAOException {
         List<Request> list = new ArrayList<>();
         try (Connection con = dataSource.getConnection();
-                PreparedStatement stmt = con.prepareStatement(SQLQueries.RequestQueries.SELECT_ALL_REQUEST_FIELDS)
-        ) {
+                PreparedStatement stmt = con.prepareStatement(SQLQueries.RequestQueries.SELECT_ALL_REQUEST_FIELDS)){
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 list.add(getRequestWithFields(rs));
@@ -135,7 +131,7 @@ public class RequestDAOImpl implements RequestDAO, Constants {
     @Override
     public void update(Request t, String[] params) {
         try(Connection con = dataSource.getConnection();
-            PreparedStatement stmt = con.prepareStatement(SQLQueries.RequestQueries.UPDATE_REQUEST)) {
+            PreparedStatement stmt = con.prepareStatement(SQLQueries.RequestQueries.UPDATE_REQUEST)){
             int k = 0;
             stmt.setString(++k, params[0]);
             stmt.setString(++k, params[1]);
@@ -155,7 +151,6 @@ public class RequestDAOImpl implements RequestDAO, Constants {
     public void delete(Request t) throws DAOException{
         try (Connection con = dataSource.getConnection();
              PreparedStatement stmt = con.prepareStatement(SQLQueries.RequestQueries.DELETE_REQUEST)){
-
             stmt.setLong(1, t.getId());
             stmt.executeUpdate();
         } catch (SQLException e) {

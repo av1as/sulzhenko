@@ -4,7 +4,6 @@ package com.sulzhenko.model.DAO;
  * This class contains constants of SQL queries
  */
 public abstract class SQLQueries {
-
     public static class DroppingTablesQueries{
         public static final String DROP_USER_TABLE = "DROP TABLE IF EXISTS user ;\n";
         public static final String DROP_ACTION_WITH_REQUEST_TABLE =
@@ -16,8 +15,6 @@ public abstract class SQLQueries {
         public static final String DROP_USER_STATUS_TABLE = "DROP TABLE IF EXISTS user_status ;\n";
         public static final String DROP_REQUEST_TABLE = "DROP TABLE IF EXISTS request ;\n";
         public static final String DROP_USER_ACTIVITY_TABLE = "DROP TABLE IF EXISTS user_activity` ;\n";
-
-
     }
     public static class CreatingTablesQueries{
         public static final String CREATE_USER_TABLE =
@@ -159,7 +156,6 @@ public abstract class SQLQueries {
                 "    ON UPDATE CASCADE)\n" +
                 "ENGINE = InnoDB\n" +
                 "DEFAULT CHARACTER SET = utf8;";
-
     }
     public static class InitialData{
         public static final String INITIAL_ROLE_ADMIN = "INSERT INTO role\n" +
@@ -182,7 +178,6 @@ public abstract class SQLQueries {
                 "(action_description)\n" +
                 "VALUE\n" +
                 "('remove');\n";
-
     }
     public static class UserQueries{
         public static final String SELECT_ALL_USER_FIELDS = "SELECT user.account,\n" +

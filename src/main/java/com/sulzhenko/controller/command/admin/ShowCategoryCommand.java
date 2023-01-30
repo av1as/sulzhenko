@@ -31,6 +31,7 @@ public class ShowCategoryCommand implements Command, Constants, Path {
         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
         request.setAttribute(NO_OF_PAGES, noOfPages);
         request.setAttribute(CURRENT_PAGE, page);
+        request.setAttribute(QUERY, SHOW_CATEGORIES);
         return PAGE_CATEGORIES;
     }
 }

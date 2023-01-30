@@ -10,6 +10,7 @@ public interface Constants {
     String ADD = "add";
     String ADDED_CATEGORY = "addedcategory";
     String ADDED_NAME = "addedname";
+    String ALL = "all";
     String AMOUNT = "amount";
     String CATEGORIES = "categories";
     String CATEGORY_NAME = "category_name";
@@ -18,6 +19,7 @@ public interface Constants {
     String DESCRIPTION = "description";
     String EMAIL = "email";
     String EMPTY = "";
+    String EN = "en";
     String ERROR = "error";
     String FILTER = "filter";
     String FIRST_NAME = "firstname";
@@ -49,16 +51,26 @@ public interface Constants {
     String PASSWORD1 = "password1";
     String PASSWORD2 = "password2";
     String PATH = "path";
+    String QUERY = "query";
     String REMOVE = "remove";
     String REPORT = "report";
     String REQUESTS = "requests";
     String REQUEST_ID = "request_id";
+    String SHOW_ACTIVITIES = "show_activities&filter=%s&order=%s&parameter=%s";
+    String SHOW_CATEGORIES = "show_categories";
+    String SHOW_FULL_REPORT = "show_full_report";
+    String SHOW_REQUESTS = "show_requests";
     String STATUS = "status";
     String SYSTEM_USER = "system user";
     String TO_ADD = "to_add";
-    String USER = "user";
-    String USERS = "users";
     String UNKNOWN = "UNKNOWN";
     String UNKNOWN_ERROR = "unknown.error";
+    String USER = "user";
+    String USER_ACTIVITIES = "user_activities";
+    String USER_LOG_IN = "user log in: {}";
+    String USER_LOG_OUT = "user log out: {}";
+    String USER_REQUESTS = "user_requests";
+    String USERS = "users";
+    String USERS_AND_STATUS = "users&status=%s";
     String WRONG_ACTIVITY = "wrong.activity";
 }

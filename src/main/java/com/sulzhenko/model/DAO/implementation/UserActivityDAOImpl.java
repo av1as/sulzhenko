@@ -27,12 +27,11 @@ public class UserActivityDAOImpl implements UserActivityDAO, Constants {
     }
     private static final Logger logger = LogManager.getLogger(UserActivityDAOImpl.class);
 
-
     @Override
     public void addActivityToUser(Request request) throws SQLException {
         try (Connection con = dataSource.getConnection()) {
             PreparedStatement stmt;
-            if (Objects.equals(request.getActionToDo(), ADD)) {
+            if (Objects.equals(request.getActionToDo(), ADD)){
                 try {
                     User user = userDAO.getByLogin(request.getLogin()).orElse(null);
                     Activity activity = activityDAO.getByName(request.getActivityName());
@@ -99,8 +98,7 @@ public class UserActivityDAOImpl implements UserActivityDAO, Constants {
     @Override
     public boolean ifUserHasActivity(User u, Activity a){
         try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt
-                     = con.prepareStatement(SQLQueries.RequestQueries.IF_USER_HAS_ACTIVITY)) {
+             PreparedStatement stmt = con.prepareStatement(SQLQueries.RequestQueries.IF_USER_HAS_ACTIVITY)){
             stmt.setLong(1, u.getAccount());
             stmt.setLong(2, a.getId());
             ResultSet rs = stmt.executeQuery();

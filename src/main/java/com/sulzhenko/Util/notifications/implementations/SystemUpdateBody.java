@@ -16,8 +16,7 @@ public class SystemUpdateBody implements Body {
 
     @Override
     public String asText() {
-        return "Hello, " + user.getFullName() + ",\n"
-                + "system update connected with your account " + user.getLogin()
-                + " was made: " + updateDescription + ".";
+        return String.format("Hello, %s,\nsystem update connected with your account %s was made: %s.",
+                user.getFullName(), user.getLogin(), updateDescription);
     }
 }

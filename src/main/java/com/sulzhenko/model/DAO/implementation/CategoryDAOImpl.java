@@ -30,8 +30,7 @@ public class CategoryDAOImpl implements CategoryDAO, Constants {
     public Optional<Category> get(Object parameter, String querySQL) throws DAOException {
         Category c = null;
         try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(querySQL)
-        ) {
+             PreparedStatement stmt = con.prepareStatement(querySQL)) {
             stmt.setObject(1, parameter);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
@@ -48,8 +47,7 @@ public class CategoryDAOImpl implements CategoryDAO, Constants {
     public List<Category> getAll() throws DAOException {
         List<Category> list = new ArrayList<>();
         try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(SQLQueries.CategoryQueries.GET_ALL_CATEGORIES)
-        ) {
+             PreparedStatement stmt = con.prepareStatement(SQLQueries.CategoryQueries.GET_ALL_CATEGORIES)){
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 list.add(new Category(rs.getString(2), rs.getLong(1)));
@@ -72,8 +70,7 @@ public class CategoryDAOImpl implements CategoryDAO, Constants {
     public List<Category> getList(Object parameter, String querySQL) throws DAOException {
         List<Category> list = new ArrayList<>();
         try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(querySQL)
-        ) {
+             PreparedStatement stmt = con.prepareStatement(querySQL)){
             stmt.setObject(1, parameter);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -89,8 +86,7 @@ public class CategoryDAOImpl implements CategoryDAO, Constants {
     @Override
     public void save(Category t) throws DAOException{
         try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(SQLQueries.CategoryQueries.ADD_CATEGORY)
-        ) {
+             PreparedStatement stmt = con.prepareStatement(SQLQueries.CategoryQueries.ADD_CATEGORY)){
             stmt.setString(1, t.getName());
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -117,8 +113,7 @@ public class CategoryDAOImpl implements CategoryDAO, Constants {
     @Override
     public void delete(Category t) throws DAOException{
         try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(SQLQueries.CategoryQueries.DELETE_CATEGORY)
-        ) {
+             PreparedStatement stmt = con.prepareStatement(SQLQueries.CategoryQueries.DELETE_CATEGORY)){
             stmt.setString(1, t.getName());
             stmt.executeUpdate();
         } catch (SQLException e) {

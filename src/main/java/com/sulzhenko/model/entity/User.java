@@ -4,7 +4,11 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * This class describes user entity
+ * User entity class. Matches table 'user' in database.
+ * Use User.builder().withFieldName(fieldValue).build() to create an instance
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 
 public class User implements Serializable {

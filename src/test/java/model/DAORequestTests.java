@@ -76,7 +76,7 @@ class DAORequestTests {
             ResultSet rs = mock(ResultSet.class);
             when(stmt.executeQuery()).thenReturn(rs);
             prepareResultSet(rs);
-            Request resultRequest = requestDAO.getById(1L);
+            Request resultRequest = requestDAO.getById(1L).orElse(null);
             assertNotNull(resultRequest);
             assertEquals(getTestRequestToAdd(), resultRequest);
         }
@@ -89,7 +89,7 @@ class DAORequestTests {
             ResultSet resultSet = mock(ResultSet.class);
             when(preparedStatement.executeQuery()).thenReturn(resultSet);
             when(resultSet.next()).thenReturn(false);
-            Request resultRequest = requestDAO.getById(1L);
+            Request resultRequest = requestDAO.getById(1L).orElse(null);
             assertNull(resultRequest);
         }
     }
@@ -293,6 +293,30 @@ class DAORequestTests {
         RequestDAO requestDAO = new RequestDAOImpl(dataSource);
         when(dataSource.getConnection()).thenThrow(new SQLException());
         assertThrows(DAOException.class, () -> requestDAO.delete(request));
+    }
+    @Test
+    void testIfRequestUnique() throws SQLException {
+        DataSource dataSource = mock(DataSource.class);
+        RequestDAO requestDAO = new RequestDAOImpl(dataSource);
+        try(Connection con = mock(Connection.class);
+        PreparedStatement stmt = prepareMocks(dataSource)) {
+            ResultSet rs = mock(ResultSet.class);
+            when(dataSource.getConnection()).thenReturn(con);
+            when(con.prepareStatement(anyString())).thenReturn(stmt);
+            when(stmt.executeQuery()).thenReturn(rs);
+            when(rs.next()).thenReturn(false);
+            assertDoesNotThrow(() -> requestDAO.ifRequestUnique(getTestRequestToAdd()));
+            assertTrue(requestDAO.ifRequestUnique(getTestRequestToAdd()));
+        }
+    }
+    @Test
+    void testSqlExceptionIfRequestUnique() throws SQLException {
+        DataSource dataSource = mock(DataSource.class);
+        RequestDAO requestDAO = new RequestDAOImpl(dataSource);
+        when(dataSource.getConnection()).thenThrow(new SQLException());
+        Request request = getTestRequestToAdd();
+        assertThrows(DAOException.class,
+                () -> requestDAO.ifRequestUnique(request));
     }
     private PreparedStatement prepareMocks(DataSource dataSource) throws SQLException {
         Connection con = mock(Connection.class);

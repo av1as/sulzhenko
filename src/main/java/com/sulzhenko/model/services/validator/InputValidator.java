@@ -4,7 +4,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * This class validates input values.
+ * InputValidator class to check validity of input data
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 public class InputValidator {
     /**
@@ -37,8 +40,8 @@ public class InputValidator {
 
     /**
      * Compares input value with regular expression.
-     * Params: input - The input value to be validated
-     *         regex – The valid regular expression
+     * @param input - The input value to be validated
+     * @param regex – The valid regular expression
      * Return true if matches otherwise false.
      */
 

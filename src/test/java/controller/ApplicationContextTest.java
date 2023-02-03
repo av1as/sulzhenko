@@ -1,6 +1,6 @@
 package controller;
 
-import com.sulzhenko.controller.ApplicationContext;
+import com.sulzhenko.controller.context.ApplicationContext;
 import jakarta.servlet.ServletContext;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
 class ApplicationContextTest {
-    private static final String PROPERTIES_FILE = "datasourse.properties";
+    private static final String PROPERTIES_FILE = "datasource.properties";
     private final ServletContext SERVLET_CONTEXT = mock(ServletContext.class);
 
     @Test

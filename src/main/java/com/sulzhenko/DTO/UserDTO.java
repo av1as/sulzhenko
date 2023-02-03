@@ -5,6 +5,14 @@ import java.util.Objects;
 
 import static com.sulzhenko.DTO.UserDTO.Role.extractRole;
 
+/**
+ * UserDTO class. Fields are similar to User entity
+ * Use UserDTO.builder().withFieldName(fieldValue).build() to create an instance
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
+ */
+
 public class UserDTO implements Serializable {
     private static final long serialVersionUID = 1L;
     private Long account;

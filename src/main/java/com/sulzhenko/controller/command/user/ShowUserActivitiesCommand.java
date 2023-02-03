@@ -13,11 +13,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.sql.SQLException;
 import java.util.List;
 
-import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
+import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 import static com.sulzhenko.Util.PaginationUtil.paginate;
 
 
@@ -28,7 +26,7 @@ public class ShowUserActivitiesCommand implements Command, Constants, Path {
     UserActivityService userActivityService = getApplicationContext().getUserActivityService();
     private static final Logger logger = LogManager.getLogger(ShowUserActivitiesCommand.class);
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         HttpSession session = request.getSession();
         UserDTO userDTO = (UserDTO) session.getAttribute(USER);
         String page = request.getParameter(PAGE);

@@ -3,7 +3,10 @@ package com.sulzhenko.model.entity;
 import java.io.Serializable;
 import java.util.Objects;
 /**
- * This class describes request entity
+ * Request entity class. Matches table 'request' in database.
+ * Use Request.builder().withFieldName(fieldValue).build() to create an instance
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 
 public class Request implements Serializable {
@@ -16,15 +19,6 @@ public class Request implements Serializable {
 
     private Request() {
     }
-
-    public Request(Long id, String login, String activityName, String actionToDo, String description) {
-        this.id = id;
-        this.login = login;
-        this.activityName = activityName;
-        this.actionToDo = actionToDo;
-        this.description = description;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }

@@ -2,6 +2,13 @@ package com.sulzhenko.DTO;
 
 import java.io.Serializable;
 
+/**
+ * ActivityDTO class. Fields adapted to view.
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
+ */
+
 public class ActivityDTO implements Serializable {
     private static final long serialVersionUID = 1L;
     private String name;

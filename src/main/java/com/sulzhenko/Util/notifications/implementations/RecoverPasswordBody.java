@@ -3,6 +3,12 @@ package com.sulzhenko.Util.notifications.implementations;
 import com.sulzhenko.Util.notifications.Body;
 import com.sulzhenko.model.entity.User;
 
+/**
+ * RecoverPasswordBody class for creating message text about user password recovering
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
+ */
 public class RecoverPasswordBody implements Body {
     User user;
     String temporaryPassword;
@@ -10,6 +16,10 @@ public class RecoverPasswordBody implements Body {
         this.user = user;
         this.temporaryPassword = temporaryPassword;
     }
+    /**
+     * Forms body of message about password recovering
+     * @return text of email
+     */
     @Override
     public String asText() {
         return String.format("Hello, %s,\nsomeone reset password for your account %s.\n" +

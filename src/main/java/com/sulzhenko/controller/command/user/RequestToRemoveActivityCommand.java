@@ -11,10 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.sql.SQLException;
-
-import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
+import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 
 /**
  * Register controller action
@@ -25,7 +22,7 @@ public class RequestToRemoveActivityCommand implements Command, Constants, Path 
     private static final Logger logger = LogManager.getLogger(RequestToRemoveActivityCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         RequestDTO req = new RequestDTO.Builder()
                 .withLogin(((UserDTO) request.getSession().getAttribute(USER)).getLogin())
                 .withActivityName(request.getParameter(ACTIVITY_NAME))

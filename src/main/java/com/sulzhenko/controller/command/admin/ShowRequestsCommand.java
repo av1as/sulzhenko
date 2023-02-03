@@ -5,12 +5,12 @@ import com.sulzhenko.controller.Constants;
 import com.sulzhenko.controller.Path;
 
 import com.sulzhenko.model.services.RequestService;
+import com.sulzhenko.model.services.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.sql.SQLException;
 
-import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
+import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 /**
  * Show list of requests controller action
  *
@@ -18,7 +18,7 @@ import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
 public class ShowRequestsCommand implements Command, Constants, Path {
     RequestService requestService = getApplicationContext().getRequestService();
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         int page = (request.getParameter(PAGE) != null)?
                 Integer.parseInt(request.getParameter(PAGE)): 1;
         int recordsPerPage = 5;

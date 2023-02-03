@@ -3,12 +3,19 @@ package com.sulzhenko.DTO;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * ReportDTO class. Fields adapted to view.
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
+ */
+
 public class ReportDTO implements Serializable {
     private static final long serialVersionUID = 1L;
     private String login;
-    private List<UserActivityDTO> activitiesWithTime;
-    private int numberOfActivities;
-    private int totalTime;
+    private final List<UserActivityDTO> activitiesWithTime;
+    private final int numberOfActivities;
+    private final int totalTime;
 
     public ReportDTO(String login, List<UserActivityDTO> activitiesWithTime, int numberOfActivities, int totalTime) {
         this.login = login;
@@ -29,23 +36,11 @@ public class ReportDTO implements Serializable {
         return activitiesWithTime;
     }
 
-    public void setActivitiesWithTime(List<UserActivityDTO> activitiesWithTime) {
-        this.activitiesWithTime = activitiesWithTime;
-    }
-
     public int getNumberOfActivities() {
         return numberOfActivities;
     }
 
-    public void setNumberOfActivities(int numberOfActivities) {
-        this.numberOfActivities = numberOfActivities;
-    }
-
     public int getTotalTime() {
         return totalTime;
-    }
-
-    public void setTotalTime(int totalTime) {
-        this.totalTime = totalTime;
     }
 }

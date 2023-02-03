@@ -1,10 +1,14 @@
 package com.sulzhenko.model.entity;
 
-
 import java.io.Serializable;
 import java.util.Objects;
+
 /**
- * This class describes activity entity
+ * Activity entity class. Matches table 'activity' in database.
+ * Use Activity.builder().withFieldName(fieldValue).build() to create an instance
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 
 public class Activity implements Serializable {
@@ -13,15 +17,8 @@ public class Activity implements Serializable {
     private String name;
     private Category category;
 
-    public Activity() {
+    private Activity() {
     }
-
-    public Activity(Long id, String name, Category category) {
-        this.id = id;
-        this.name = name;
-        this.category = category;
-    }
-
     public Long getId() {
         return id;
     }

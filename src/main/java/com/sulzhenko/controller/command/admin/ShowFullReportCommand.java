@@ -12,9 +12,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import java.util.List;
 
-import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
+import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 import static com.sulzhenko.Util.PaginationUtil.paginate;
 
 public class ShowFullReportCommand implements Command, Constants, Path {
@@ -22,7 +23,7 @@ public class ShowFullReportCommand implements Command, Constants, Path {
     ReportService reportService = getApplicationContext().getReportService();
     private static final Logger logger = LogManager.getLogger(ShowFullReportCommand.class);
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         HttpSession session = request.getSession();
         setPage(request);
         List<UserActivityDTO> userActivities = userActivityService.listAllUserActivitiesSorted(request.getParameter(PAGE));

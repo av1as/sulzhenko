@@ -1,5 +1,6 @@
 package com.sulzhenko.controller.command;
 
+import com.sulzhenko.model.services.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -15,5 +16,5 @@ public interface Command {
    *
    * @return Address to go once the command is executed.
    */
-  String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException;
+  String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException;
 }

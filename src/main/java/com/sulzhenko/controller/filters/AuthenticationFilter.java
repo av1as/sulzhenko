@@ -9,8 +9,21 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+/**
+ * AuthenticationFilter class. Controls access to pages for anonymous user
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
+ */
 @WebFilter(urlPatterns = { "/*" })
 public class AuthenticationFilter implements Filter, Constants, Path {
+
+    /**
+     * Checks user in session and then checks if user has access to page or action.
+     * @param request passed by application
+     * @param response passed by application
+     * @param chain passed by application
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;

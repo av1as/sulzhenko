@@ -16,4 +16,6 @@ public interface UserDAO extends DAO<User>{
     List<User> getByNotification(String notification);
     void addStatus(String statusName);
     void deleteStatus(String statusName);
+    boolean isRoleCorrect(String role) throws DAOException;
+    boolean isStatusCorrect(String status) throws DAOException;
 }

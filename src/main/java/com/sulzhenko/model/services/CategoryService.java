@@ -14,5 +14,5 @@ public interface CategoryService extends Constants {
     void updateCategory(String name, String newCategoryName);
     List<CategoryDTO> viewAllCategories(int startPosition, int size);
     int getNumberOfCategories();
-    boolean isCategoryNameUnique(String name);
+    boolean isCategoryNameAvailable(String name);
 }

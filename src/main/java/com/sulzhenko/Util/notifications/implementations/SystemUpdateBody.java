@@ -2,8 +2,12 @@ package com.sulzhenko.Util.notifications.implementations;
 
 import com.sulzhenko.Util.notifications.Body;
 import com.sulzhenko.model.entity.User;
+
 /**
- * This class describes the main part of notification about some system update connected with user
+ * SystemUpdateBody class for creating message text about system update
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 public class SystemUpdateBody implements Body {
     User user;
@@ -14,6 +18,10 @@ public class SystemUpdateBody implements Body {
         this.updateDescription = updateDescription;
     }
 
+    /**
+     * Forms body of message about system update
+     * @return text of email
+     */
     @Override
     public String asText() {
         return String.format("Hello, %s,\nsystem update connected with your account %s was made: %s.",

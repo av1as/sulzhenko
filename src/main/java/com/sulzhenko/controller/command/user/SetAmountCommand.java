@@ -3,7 +3,6 @@ package com.sulzhenko.controller.command.user;
 import com.sulzhenko.controller.command.Command;
 import com.sulzhenko.controller.Constants;
 import com.sulzhenko.controller.Path;
-import com.sulzhenko.DTO.ActivityDTO;
 import com.sulzhenko.DTO.UserDTO;
 import com.sulzhenko.model.services.ServiceException;
 import com.sulzhenko.model.services.UserActivityService;
@@ -12,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
+import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 
 /**
  * Register controller action
@@ -23,14 +22,13 @@ public class SetAmountCommand implements Command, Constants, Path {
     private static final Logger logger = LogManager.getLogger(SetAmountCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response)  {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException  {
         HttpSession session = request.getSession();
         UserDTO userDTO = (UserDTO) session.getAttribute(USER);
         String activityName = request.getParameter(ACTIVITY_NAME);
         int amount = Integer.parseInt(request.getParameter(AMOUNT));
-        ActivityDTO activityDTO = new ActivityDTO(activityName);
         try{
-            userActivityService.setAmount(userDTO, activityDTO, amount);
+            userActivityService.setAmount(userDTO.getLogin(), activityName, amount);
         } catch (ServiceException e){
             session.setAttribute(ERROR, e.getMessage());
             logger.warn(e.getMessage());

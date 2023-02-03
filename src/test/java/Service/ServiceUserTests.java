@@ -173,10 +173,15 @@ class ServiceUserTests {
         assertThrows(DAOException.class, () -> userService.deleteUser(user));
     }
     @Test
-    void testViewAllSystemUsers() throws DAOException {
+    void testViewAllSystemUsers() throws DAOException, SQLException {
         DataSource dataSource = mock(DataSource.class);
         UserService userService = new UserServiceImpl(dataSource);
-        assertDoesNotThrow(()-> userService.viewAllSystemUsers(0, 0));
+        try (PreparedStatement stmt = prepareMocks(dataSource)) {
+            ResultSet rs = mock(ResultSet.class);
+            when(stmt.executeQuery()).thenReturn(rs);
+            when(rs.next()).thenReturn(false);
+            assertDoesNotThrow(() -> userService.viewAllSystemUsers(0, 0));
+        }
     }
     @Test
     void testSQLExceptionViewAllSystemUsers() throws DAOException, SQLException {
@@ -186,10 +191,15 @@ class ServiceUserTests {
         assertThrows(DAOException.class, () -> userService.viewAllSystemUsers(0, 1));
     }
     @Test
-    void testViewAllActiveUsers() throws DAOException {
+    void testViewAllActiveUsers() throws DAOException, SQLException {
         DataSource dataSource = mock(DataSource.class);
         UserService userService = new UserServiceImpl(dataSource);
-        assertDoesNotThrow(()-> userService.viewAllActiveUsers(0, 0));
+        try (PreparedStatement stmt = prepareMocks(dataSource)) {
+            ResultSet rs = mock(ResultSet.class);
+            when(stmt.executeQuery()).thenReturn(rs);
+            when(rs.next()).thenReturn(false);
+            assertDoesNotThrow(() -> userService.viewAllActiveUsers(0, 0));
+        }
     }
     @Test
     void testSQLExceptionViewAllActiveUsers() throws DAOException, SQLException {
@@ -199,10 +209,15 @@ class ServiceUserTests {
         assertThrows(DAOException.class, () -> userService.viewAllActiveUsers(0, 1));
     }
     @Test
-    void testViewAllInactiveUsers() throws DAOException {
+    void testViewAllInactiveUsers() throws DAOException, SQLException {
         DataSource dataSource = mock(DataSource.class);
         UserService userService = new UserServiceImpl(dataSource);
-        assertDoesNotThrow(()-> userService.viewAllInactiveUsers(0, 0));
+        try (PreparedStatement stmt = prepareMocks(dataSource)) {
+            ResultSet rs = mock(ResultSet.class);
+            when(stmt.executeQuery()).thenReturn(rs);
+            when(rs.next()).thenReturn(false);
+            assertDoesNotThrow(() -> userService.viewAllInactiveUsers(0, 0));
+        }
     }
     @Test
     void testSQLExceptionViewAllInactiveUsers() throws DAOException, SQLException {
@@ -212,10 +227,15 @@ class ServiceUserTests {
         assertThrows(DAOException.class, () -> userService.viewAllInactiveUsers(0, 1));
     }
     @Test
-    void testViewAllDeactivatedUsers() throws DAOException {
+    void testViewAllDeactivatedUsers() throws DAOException, SQLException {
         DataSource dataSource = mock(DataSource.class);
         UserService userService = new UserServiceImpl(dataSource);
-        assertDoesNotThrow(()-> userService.viewAllDeactivatedUsers(0, 0));
+        try (PreparedStatement stmt = prepareMocks(dataSource)) {
+            ResultSet rs = mock(ResultSet.class);
+            when(stmt.executeQuery()).thenReturn(rs);
+            when(rs.next()).thenReturn(false);
+            assertDoesNotThrow(() -> userService.viewAllDeactivatedUsers(0, 0));
+        }
     }
     @Test
     void testSQLExceptionViewAllDeactivatedUsers() throws DAOException, SQLException {
@@ -230,20 +250,6 @@ class ServiceUserTests {
         UserService userService = new UserServiceImpl(dataSource);
         when(dataSource.getConnection()).thenThrow(new SQLException());
         assertThrows(DAOException.class, () -> userService.isLoginAvailable("test user"));
-    }
-    @Test
-    void testSQLExceptionIsRoleCorrect() throws DAOException, SQLException {
-        DataSource dataSource = mock(DataSource.class);
-        UserService userService = new UserServiceImpl(dataSource);
-        when(dataSource.getConnection()).thenThrow(new SQLException());
-        assertThrows(ServiceException.class, () -> userService.isRoleCorrect("role"));
-    }
-    @Test
-    void testSQLExceptionIsStatusCorrect() throws DAOException, SQLException {
-        DataSource dataSource = mock(DataSource.class);
-        UserService userService = new UserServiceImpl(dataSource);
-        when(dataSource.getConnection()).thenThrow(new SQLException());
-        assertThrows(ServiceException.class, () -> userService.isStatusCorrect("status"));
     }
     @Test
     void testIsUpdateCorrect(){

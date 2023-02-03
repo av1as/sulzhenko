@@ -1,8 +1,10 @@
 package com.sulzhenko.model.services;
 
 /**
- * This class represents a generic Service exception. It should wrap any exception to the underlying
- * code, such as DAOExceptions.
+ * ServiceException class creates custom exception thrown at Service layer
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 public class ServiceException extends RuntimeException {
 
@@ -14,7 +16,7 @@ public class ServiceException extends RuntimeException {
 
     /**
      * Constructs a ServiceException with the given detail message.
-     * @param message The detail message of the DAOException.
+     * @param message The detail message of the ServiceException.
      */
     public ServiceException(String message) {
         super(message);
@@ -22,19 +24,18 @@ public class ServiceException extends RuntimeException {
 
     /**
      * Constructs a ServiceException with the given root cause.
-     * @param cause The root cause of the DAOException.
+     * @param cause The root cause of the ServiceException.
      */
     public ServiceException(Throwable cause) {
         super(cause);
     }
 
     /**
-     * Constructs a DAOException with the given detail message and root cause.
-     * @param message The detail message of the DAOException.
-     * @param cause The root cause of the DAOException.
+     * Constructs a ServiceException with the given detail message and root cause.
+     * @param message The detail message of the ServiceException.
+     * @param cause The root cause of the ServiceException.
      */
     public ServiceException(String message, Throwable cause) {
         super(message, cause);
     }
-
 }

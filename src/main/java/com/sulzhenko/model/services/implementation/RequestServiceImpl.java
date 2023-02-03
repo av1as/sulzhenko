@@ -15,11 +15,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import static com.sulzhenko.model.DAO.SQLQueries.RequestQueries.GET_EQUAL_REQUEST;
-import static com.sulzhenko.model.DAO.SQLQueries.RequestQueries.IF_USER_HAS_ACTIVITY;
 
+/**
+ * RequestService class for interaction between controller and Request DAO
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
+ */
 public class RequestServiceImpl implements RequestService {
-    private final DataSource dataSource;
     UserService userService;
     UserDAO userDAO;
     ActivityDAO activityDAO;
@@ -28,7 +31,6 @@ public class RequestServiceImpl implements RequestService {
     RequestDAO requestDAO;
 
     public RequestServiceImpl(DataSource dataSource) {
-        this.dataSource = dataSource;
         this.userService = new UserServiceImpl(dataSource);
         this.userDAO = new UserDAOImpl(dataSource);
         this.userActivityDAO = new UserActivityDAOImpl(dataSource);
@@ -37,28 +39,54 @@ public class RequestServiceImpl implements RequestService {
         this.activityService = new ActivityServiceImpl(dataSource);
     }
     private static final Logger logger = LogManager.getLogger(RequestServiceImpl.class);
+
+    /**
+     * Gets instance of Request by id
+     * @param id - request id
+     * @return instance of Activity class
+     */
     @Override
     public Request getRequest(long id){
-        return requestDAO.getById(id);
+        return requestDAO.getById(id).orElse(null);
     }
+
+    /**
+     * Gets list of all requests
+     * @return list of Requests
+     */
     @Override
     public List<Request> getAllRequest(){
         return requestDAO.getAll();
     }
+
+    /**
+     * Gets list of all requests to add activity
+     * @return list of Requests
+     */
     @Override
     public List<Request> getRequestsToAdd(){
         return requestDAO.getByActionToDo(ADD);
     }
+
+    /**
+     * Gets list of all requests to remove activity
+     * @return list of Requests
+     */
     @Override
     public List<Request> getRequestsToRemove(){
         return requestDAO.getByActionToDo(REMOVE);
     }
+
+    /**
+     * Approves request
+     * @throws ServiceException is wrapper for SQLException, DAOException
+     */
     @Override
-    public void approveRequest(Request request){
+    public void approveRequest(Request request) throws ServiceException{
         if(Objects.equals(request.getActionToDo(), ADD)){
             try {
                 userActivityDAO.addActivityToUser(request);
-                notifyAboutUpdate(request, "has been approved");
+                notifyAboutUpdate(request, APPROVED_DESCRIPTION);
             } catch (SQLException e) {
                 logger.fatal(e);
                 throw new ServiceException(UNKNOWN_ERROR);
@@ -66,25 +94,35 @@ public class RequestServiceImpl implements RequestService {
         } else if(Objects.equals(request.getActionToDo(), REMOVE)){
             try {
                 userActivityDAO.removeUserActivity(request);
-                notifyAboutUpdate(request, "has been approved");
+                notifyAboutUpdate(request, APPROVED_DESCRIPTION);
             } catch (SQLException e) {
                 logger.fatal(e);
                 throw new ServiceException(UNKNOWN_ERROR);
             }
         }
     }
+
+    /**
+     * Deletes request
+     * @throws ServiceException is wrapper for DAOException
+     */
     @Override
-    public void deleteRequest(Request request){
+    public void deleteRequest(Request request) throws ServiceException{
         try{
             requestDAO.delete(request);
-            notifyAboutUpdate(request, "has been declined");
+            notifyAboutUpdate(request, DECLINED_DESCRIPTION);
         } catch (DAOException e){
             logger.warn(e.getMessage());
             throw new ServiceException(e);
         }
     }
+
+    /**
+     * Removes request
+     * @throws ServiceException is wrapper for DAOException
+     */
     @Override
-    public void removeRequest(Long requestId){
+    public void removeRequest(Long requestId) throws ServiceException{
         Request request = getRequest(requestId);
         try{
             requestDAO.delete(request);
@@ -93,8 +131,14 @@ public class RequestServiceImpl implements RequestService {
             throw new ServiceException(e);
         }
     }
+
+    /**
+     * Inserts new request to database
+     * @param requestDTO - request to insert as DTO
+     * @throws ServiceException is wrapper for DAOException
+     */
     @Override
-    public void addRequest(RequestDTO requestDTO){
+    public void addRequest(RequestDTO requestDTO) throws ServiceException{
         Request request = new Request.Builder()
                 .withLogin(requestDTO.getLogin())
                 .withActivityName(requestDTO.getActivityName())
@@ -111,8 +155,15 @@ public class RequestServiceImpl implements RequestService {
             }
         } else throw new ServiceException("request.not.unique");
     }
+
+    /**
+     * Updates request
+     * @param request - request to update
+     * @param params - new fields of request
+     * @throws ServiceException is wrapper for DAOException
+     */
     @Override
-    public void updateRequest(Request request, String[] params){
+    public void updateRequest(Request request, String[] params) throws ServiceException{
         try{
             isDataCorrect(createUpdatedRequest(params));
             requestDAO.update(request, params);
@@ -121,12 +172,26 @@ public class RequestServiceImpl implements RequestService {
             throw new ServiceException(e.getMessage());
         }
     }
+
+    /**
+     * Sets request's description
+     * @param id - request id
+     * @param description - some request's description
+     */
     @Override
     public void setRequestDescription(Long id, String description){
-        Request request = requestDAO.getById(id);
+        Request request = requestDAO.getById(id).orElse(null);
+        assert request != null;
         String[] params = {request.getLogin(), request.getActivityName(), request.getActionToDo(), description};
         updateRequest(request, params);
     }
+
+    /**
+     * Gets sorted and ordered list of requests in database
+     * @param startPosition - offset for record's list
+     * @param size - number of records per page
+     * @return List of RequestDTO
+     */
     @Override
     public List<RequestDTO> viewAllRequests(int startPosition, int size){
         List<RequestDTO> list = new ArrayList<>();
@@ -143,6 +208,13 @@ public class RequestServiceImpl implements RequestService {
         }
         return list;
     }
+
+    /**
+     * Gets sorted and ordered list of requests to add activity
+     * @param startPosition - offset for record's list
+     * @param size - number of records per page
+     * @return List of RequestDTO
+     */
     @Override
     public List<RequestDTO> viewRequestsToAdd(int startPosition, int size){
         List<RequestDTO> list = new ArrayList<>();
@@ -159,6 +231,13 @@ public class RequestServiceImpl implements RequestService {
         }
         return list;
     }
+
+    /**
+     * Gets sorted and ordered list of requests to remove activity
+     * @param startPosition - offset for records' list
+     * @param size - number of records per page
+     * @return List of RequestDTO
+     */
     @Override
     public List<RequestDTO> viewRequestsToRemove(int startPosition, int size){
         List<RequestDTO> list = new ArrayList<>();
@@ -175,6 +254,14 @@ public class RequestServiceImpl implements RequestService {
         }
         return list;
     }
+
+    /**
+     * Gets sorted and ordered list of requests
+     * @param page - number of page from the whole list to show
+     * @param actionToDo - requesting action: to add or to remove activity (or both)
+     * @param recordsPerPage - number of records per page
+     * @return List of RequestDTO
+     */
     public List<RequestDTO> getRequestList(int page, String actionToDo, int recordsPerPage){
         if(Objects.equals(actionToDo, ADD)) {
             return viewRequestsToAdd((page-1)*recordsPerPage, recordsPerPage);
@@ -184,6 +271,14 @@ public class RequestServiceImpl implements RequestService {
             return viewAllRequests((page-1)*recordsPerPage, recordsPerPage);
         }
     }
+
+    /**
+     * Gets sorted and ordered list of certain user's requests
+     * @param login - user login
+     * @param startPosition - offset for records' list
+     * @param size - number of records per page
+     * @return List of RequestDTO
+     */
     @Override
     public List<RequestDTO> viewAllUserRequests(String login, int startPosition, int size){
         List<RequestDTO> list = new ArrayList<>();
@@ -200,8 +295,17 @@ public class RequestServiceImpl implements RequestService {
         }
         return list;
     }
+
+    /**
+     * Shows list of certain user's requests filtered by action
+     * @param login - user login
+     * @param action - requested action with activity: to add or to remove
+     * @param startPosition - offset for records' list
+     * @param size - number of records per page
+     * @return List of RequestDTO
+     */
     @Override
-    public List<RequestDTO> viewUserRequestsAction(String login, String action, int startPosition, int size){
+    public List<RequestDTO> viewUserRequestsByAction(String login, String action, int startPosition, int size){
         List<RequestDTO> list = new ArrayList<>();
         for(int i = startPosition; (i < (startPosition + size))
                 && (i < requestDAO.getByLoginAndAction(login, action).size()); i++){
@@ -217,15 +321,30 @@ public class RequestServiceImpl implements RequestService {
         }
         return list;
     }
+
+    /**
+     * Shows list of certain user's requests depending on filter
+     * @param login - user login
+     * @param page - number of page from view
+     * @param actionToDo - requested action with activity: to add or to remove
+     * @param recordsPerPage - number of records per page
+     * @return List of RequestDTO
+     */
     public List<RequestDTO> getUserRequestList(String login, int page, String actionToDo, int recordsPerPage){
         if(Objects.equals(actionToDo, ADD)) {
-            return viewUserRequestsAction(login, ADD, (page-1)*recordsPerPage, recordsPerPage);
+            return viewUserRequestsByAction(login, ADD, (page-1)*recordsPerPage, recordsPerPage);
         } else if(Objects.equals(actionToDo, REMOVE)) {
-            return viewUserRequestsAction(login, REMOVE, (page-1)*recordsPerPage, recordsPerPage);
+            return viewUserRequestsByAction(login, REMOVE, (page-1)*recordsPerPage, recordsPerPage);
         } else {
             return viewAllUserRequests(login, (page-1)*recordsPerPage, recordsPerPage);
         }
     }
+
+    /**
+     * Gets number of records in database according to requested action
+     * @param actionToDo - requested action with activity: to add or to remove
+     * @return number of records
+     */
     public int getNumberOfRecords(String actionToDo){
         if(Objects.equals(actionToDo, ADD)) {
             return getRequestsToAdd().size();
@@ -235,6 +354,13 @@ public class RequestServiceImpl implements RequestService {
             return getAllRequest().size();
         }
     }
+
+    /**
+     * Gets number of records in database according to certain user and requested action
+     * @param login - user login
+     * @param actionToDo - requested action with activity: to add or to remove
+     * @return number of records
+     */
     public int getUserNumberOfRecords(String login, String actionToDo){
         if(Objects.equals(actionToDo, ADD)) {
             return requestDAO.getByLoginAndAction(login, ADD).size();
@@ -244,22 +370,30 @@ public class RequestServiceImpl implements RequestService {
             return requestDAO.getByLogin(login).size();
         }
     }
-    private boolean ifRequestUnique(Request request) {
-        try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_EQUAL_REQUEST)) {
-            stmt.setString(1, request.getLogin());
-            stmt.setString(2, request.getActivityName());
-            stmt.setString(3, request.getActionToDo());
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                return false;
-            }
-        } catch (SQLException e){
+
+    /**
+     * Checks if there is equal request in database
+     * @param request - request to check
+     * @return true if database doesn't contain equal request, false otherwise
+     * @throws ServiceException is wrapper for DAOException
+     */
+    @Override
+    public boolean ifRequestUnique(Request request) throws ServiceException {
+        boolean result;
+        try  {
+            result = requestDAO.ifRequestUnique(request);
+        } catch (DAOException e){
             logger.fatal(e);
             throw new ServiceException(UNKNOWN_ERROR);
         }
-        return true;
+        return result;
     }
+
+    /**
+     * Auxiliary method to check if input is correct
+     * @param request - request to check
+     * @throws ServiceException is custom Exception explaining what is wrong with input
+     */
     private void isDataCorrect(Request request) throws ServiceException{
         if(userService.isLoginAvailable(request.getLogin())) {
             throw new ServiceException(WRONG_LOGIN);
@@ -269,36 +403,45 @@ public class RequestServiceImpl implements RequestService {
             throw new ServiceException(WRONG_ACTION);
         }
     }
+
+    /**
+     * Auxiliary method to check if input action is correct
+     * @param request - request to check
+     * @throws ServiceException is custom Exception explaining what is wrong with input
+     */
     private boolean isActionCorrect(Request request){
         return canRequestBeAdded(request) || canRequestBeRemoved(request);
     }
+
+    /**
+     * Auxiliary method to check if request to add activity can be approved
+     * @param request - request to check
+     * @return true if request can be approved, otherwise false
+     */
     private boolean canRequestBeAdded(Request request){
         return (Objects.equals(request.getActionToDo(), ADD)) &&
-                !ifUserHasActivity(Objects.requireNonNull(userDAO.getByLogin(request.getLogin())
+                !requestDAO.ifUserHasActivity(Objects.requireNonNull(userDAO.getByLogin(request.getLogin())
                                 .orElse(null)),
-                        activityDAO.getByName(request.getActivityName()));
+                        Objects.requireNonNull(activityDAO.getByName(request.getActivityName()).orElse(null)));
     }
+
+    /**
+     * Auxiliary method to check if request to remove activity can be approved
+     * @param request - request to check
+     * @return true if request can be approved, otherwise false
+     */
     private boolean canRequestBeRemoved(Request request){
         return (Objects.equals(request.getActionToDo(), REMOVE) &&
-                ifUserHasActivity(Objects.requireNonNull(userDAO.getByLogin(request.getLogin())
+                requestDAO.ifUserHasActivity(Objects.requireNonNull(userDAO.getByLogin(request.getLogin())
                                 .orElse(null)),
-                        activityDAO.getByName(request.getActivityName())));
+                        Objects.requireNonNull(activityDAO.getByName(request.getActivityName()).orElse(null))));
     }
-    private boolean ifUserHasActivity(User u, Activity a){
-        try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(IF_USER_HAS_ACTIVITY)) {
-            stmt.setLong(1, u.getAccount());
-            stmt.setLong(2, a.getId());
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                return true;
-            }
-        } catch (SQLException e) {
-            logger.fatal(e.getMessage());
-            throw new DAOException(UNKNOWN_ERROR);
-        }
-        return false;
-    }
+
+    /**
+     * Auxiliary method to create Request entity and transfer it for checking
+     * @param params - request fields to check
+     * @return Request entity
+     */
     private static Request createUpdatedRequest(String[] params) {
         int k = -1;
         return new Request.Builder()
@@ -308,6 +451,12 @@ public class RequestServiceImpl implements RequestService {
                 .withDescription(params[++k])
                 .build();
     }
+
+    /**
+     * Creates and sends emails to certain user about their request
+     * @param request - Request entity
+     * @param description - text fragment to form email body
+     */
     @Override
     public void notifyAboutUpdate(Request request, String description){
         User user = userService.getUser(request.getLogin());

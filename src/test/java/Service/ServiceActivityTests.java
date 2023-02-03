@@ -80,7 +80,6 @@ class ServiceActivityTests {
     void testGetNumberOfRecords() throws SQLException {
         DataSource dataSource = mock(DataSource.class);
         ActivityService activityService = new ActivityServiceImpl(dataSource);
-//        HttpServletRequest request = mock(HttpServletRequest.class);
         try (PreparedStatement preparedStatement = prepareMocks(dataSource)) {
             ResultSet resultSet = mock(ResultSet.class);
             when(preparedStatement.executeQuery()).thenReturn(resultSet);
@@ -92,7 +91,6 @@ class ServiceActivityTests {
     void testGetNumberOfRecordsEmpty() throws SQLException {
         DataSource dataSource = mock(DataSource.class);
         ActivityService activityService = new ActivityServiceImpl(dataSource);
-//        HttpServletRequest request = mock(HttpServletRequest.class);
         try (PreparedStatement preparedStatement = prepareMocks(dataSource)) {
             ResultSet resultSet = mock(ResultSet.class);
             when(preparedStatement.executeQuery()).thenReturn(resultSet);
@@ -104,7 +102,6 @@ class ServiceActivityTests {
     void testSqlGetNumberOfRecords() throws SQLException {
         DataSource dataSource = mock(DataSource.class);
         ActivityService activityService = new ActivityServiceImpl(dataSource);
-//        HttpServletRequest request = mock(HttpServletRequest.class);
         when(dataSource.getConnection()).thenThrow(new SQLException());
         assertThrows(ServiceException.class, () -> activityService.getNumberOfRecords("asdf"));
     }

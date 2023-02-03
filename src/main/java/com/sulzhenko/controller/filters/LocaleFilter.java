@@ -7,6 +7,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+
+/**
+ * LocaleFilter  class. Sets and changes locale
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
+ */
 @WebFilter(urlPatterns = { "/*" },
         initParams = {
                 @WebInitParam(name = "defaultLocale", value = "en") })
@@ -16,11 +23,24 @@ public class LocaleFilter implements Filter {
     private static final int REFRESH_TIME = 0;
     private String defaultLocale;
 
+    /**
+     * Sets default locale
+     * @param config passed by application
+     */
     @Override
     public void init(FilterConfig config) {
         defaultLocale = config.getInitParameter("defaultLocale");
     }
 
+    /**
+     * Checks if request contains locale parameter and sets locale to session as attribute if present.
+     * Returns previous page in such case.
+     * In other case checks if locale presents in session. If not sets default locale.
+     * doFilter after that.
+     * @param request passed by application
+     * @param response passed by application
+     * @param chain passed by application
+     */
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String locale = httpRequest.getParameter(LOCALE);

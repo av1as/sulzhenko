@@ -11,12 +11,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.sql.SQLException;
 import java.util.List;
 
-import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
+import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 import static com.sulzhenko.Util.PaginationUtil.paginate;
+import static com.sulzhenko.model.Constants.ALL_CATEGORIES;
+import static com.sulzhenko.model.Constants.ASC;
 
 /**
  * ProfileInfo controller action
@@ -26,14 +26,14 @@ public class ShowActivityCommand implements Command, Constants, Path {
     CategoryService categoryService = getApplicationContext().getCategoryService();
     private static final Logger logger = LogManager.getLogger(ShowActivityCommand.class);
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         HttpSession session = request.getSession();
         setPage(request);
         String filter = request.getParameter(FILTER);
         String order = request.getParameter(ORDER);
         String parameter = request.getParameter(PARAMETER);
         String page = request.getParameter(PAGE);
-        request.setAttribute(QUERY, String.format(SHOW_ACTIVITIES, filter, order, parameter));
+        request.setAttribute(QUERY, getQuery(filter, order, parameter));
         List<ActivityDTO> activities = activityService.listActivitiesSorted(filter, order, parameter, page);
         request.setAttribute(ACTIVITIES, activities);
         List<CategoryDTO> categories = categoryService.getAllCategories();
@@ -44,10 +44,6 @@ public class ShowActivityCommand implements Command, Constants, Path {
         } catch (ServiceException e) {
             logger.warn(e);
             session.setAttribute(ERROR, e.getMessage());
-            return PAGE_ERROR;
-        } catch (SQLException e) {
-            logger.warn(e);
-            session.setAttribute(ERROR, UNKNOWN_ERROR);
             return PAGE_ERROR;
         }
         int recordsPerPage = 5;
@@ -61,6 +57,12 @@ public class ShowActivityCommand implements Command, Constants, Path {
         if(request.getParameter(PAGE) != null)
             page = Integer.parseInt(request.getParameter(PAGE));
         request.setAttribute(CURRENT_PAGE, page);
+    }
+    private String getQuery(String filter, String order, String parameter){
+        if (filter == null) filter = ALL_CATEGORIES;
+        if(order == null) order = ASC;
+        if(parameter == null) parameter = ACTIVITY_NAME;
+        return String.format(SHOW_ACTIVITIES, filter, order, parameter);
     }
 }
 

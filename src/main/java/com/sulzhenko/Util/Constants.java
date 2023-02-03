@@ -7,5 +7,6 @@ public interface Constants {
     String PDF_DIRECTORY = "pdf/";
     String RESOURCES = "resources";
     String UNDERSCORE = "_";
+    String UNKNOWN_ERROR = "unknown.error";
 
 }

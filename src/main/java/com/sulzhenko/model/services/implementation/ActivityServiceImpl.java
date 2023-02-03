@@ -10,38 +10,49 @@ import com.sulzhenko.Util.notifications.NotificationFactory;
 import com.sulzhenko.model.services.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.*;
+import static com.sulzhenko.model.DAO.SQLQueries.ActivityQueries.COMMON_PART;
+import static com.sulzhenko.model.DAO.SQLQueries.ActivityQueries.FIND_CONNECTED_USERS_WITH_NOTIFICATION;
 
+/**
+ * ActivityService class for interaction between controller and Activity DAO
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
+ */
 public class ActivityServiceImpl implements ActivityService {
-    private final DataSource dataSource;
     ActivityDAO activityDAO;
+    UserDAO userDAO;
     CategoryService categoryService;
 
     public ActivityServiceImpl(DataSource dataSource) {
-        this.dataSource = dataSource;
         this.activityDAO = new ActivityDAOImpl(dataSource);
         this.categoryService = new CategoryServiceImpl(dataSource);
+        this.userDAO = new UserDAOImpl(dataSource);
     }
-    private static final String COMMON_PART = "SELECT activity.activity_name, \n" +
-            "COUNT(user_activity.activity_id) as quantity, \n" +
-            "category_of_activity.category_name \n" +
-            "FROM activity\n" +
-            "LEFT JOIN user_activity\n" +
-            "ON activity.activity_id = user_activity.activity_id\n" +
-            "INNER JOIN category_of_activity\n" +
-            "ON category_of_activity.category_id = activity.category_id\n";
+
     private static final Logger logger = LogManager.getLogger(ActivityServiceImpl.class);
-    public Activity getActivity(String activityName){
-            return activityDAO.getByName(activityName);
+
+    /**
+     * Gets instance of Activity by name
+     * @param activityName - value of activity name
+     * @return instance of Activity class
+     */
+    @Override
+    public Activity getActivity(String activityName) throws ServiceException{
+            return activityDAO.getByName(activityName).orElse(null);
     }
-    public void addActivity(String name, String categoryName){
-        if(!categoryService.isCategoryNameUnique(categoryName) && isNameAvailable(name)) {
+
+    /**
+     * Inserts new activity to database
+     * @param name - name of activity
+     * @param categoryName - name of category
+     * @throws ServiceException is wrapper for DAOException
+     */
+    @Override
+    public void addActivity(String name, String categoryName) throws ServiceException{
+        if(!categoryService.isCategoryNameAvailable(categoryName) && isNameAvailable(name)) {
             Category category = categoryService.getCategory(categoryName);
             Activity activity = new Activity.Builder()
                     .withName(name)
@@ -54,19 +65,28 @@ public class ActivityServiceImpl implements ActivityService {
                 throw new ServiceException(e);
             }
         } else if(!isNameAvailable(name)) throw new ServiceException(WRONG_ACTIVITY);
-        else if(categoryService.isCategoryNameUnique(categoryName)) throw new ServiceException(WRONG_CATEGORY);
+        else if(categoryService.isCategoryNameAvailable(categoryName)) throw new ServiceException(WRONG_CATEGORY);
     }
-    public void updateActivity(String oldName, String newName, String newCategoryName){
+
+    /**
+     * Updates activity
+     * @param oldName - name of activity before update
+     * @param newName - name of activity after update
+     * @param newCategoryName - name of category after update
+     * @throws ServiceException is wrapper for DAOException
+     */
+    @Override
+    public void updateActivity(String oldName, String newName, String newCategoryName) throws ServiceException{
         if(isNameAvailable(oldName) || ((!Objects.equals(newName, oldName)) && !isNameAvailable(newName))){
             throw new ServiceException(WRONG_ACTIVITY);
-        } else if(categoryService.isCategoryNameUnique(newCategoryName)){
+        } else if(categoryService.isCategoryNameAvailable(newCategoryName)){
             throw new ServiceException(WRONG_CATEGORY);
         } else{
-            Activity activity = activityDAO.getByName(oldName);
+            Activity activity = activityDAO.getByName(oldName).orElse(null);
             String[] param = {newName, newCategoryName};
-            List<User> connectedUsers = getConnectedUsersWithNotification(activity);
-            String description = String.format("activity \"%s\" now has name \"%s\" and category \"%s\"",
-                    oldName, param[0], param[1]);
+            assert activity != null;
+            List<User> connectedUsers = getConnectedUsersWithNotification(oldName);
+            String description = String.format(ACTIVITY_UPDATE, oldName, param[0], param[1]);
             try{
                 activityDAO.update(activity, param);
                 notifyAboutUpdate(connectedUsers, description);
@@ -76,12 +96,19 @@ public class ActivityServiceImpl implements ActivityService {
             }
         }
     }
-    public void deleteActivity(String name){
+
+    /**
+     * Deletes activity record
+     * @param name - activity name
+     * @throws ServiceException is wrapper for DAOException
+     */
+    @Override
+    public void deleteActivity(String name) throws ServiceException{
         if(!isNameAvailable(name)) {
-            List<User> connectedUsers = getConnectedUsersWithNotification(getActivity(name));
-            String description = String.format("activity \"%s\" has been deleted ", name);
+            List<User> connectedUsers = getConnectedUsersWithNotification(name);
+            String description = String.format(ACTIVITY_DELETE, name);
             try{
-                activityDAO.delete(activityDAO.getByName(name));
+                activityDAO.delete(activityDAO.getByName(name).orElse(null));
                 notifyAboutUpdate(connectedUsers, description);
             } catch(DAOException e){
                 logger.warn(e.getMessage());
@@ -92,72 +119,126 @@ public class ActivityServiceImpl implements ActivityService {
             throw new ServiceException(WRONG_ACTIVITY);
         }
     }
+
+    /**
+     * Construes SQL query to call DAO class methods
+     * @param pageFromRequest - number of page of the whole list of records, represented as a String
+     * @param filter - filter to choose some records
+     * @param orderFromRequest - ascending or descending order
+     * @param parameterFromRequest - parameter to which order is applied
+     * @return SQL query
+     */
     private String buildQuery(String pageFromRequest, String filter, String orderFromRequest, String parameterFromRequest){
-        String order = getOrder(orderFromRequest);
-        String parameter = getParam(parameterFromRequest);
+        String parameter = getParam(parameterFromRequest, getOrder(orderFromRequest));
         int page = 1;
         if(pageFromRequest != null)
             page = Integer.parseInt(pageFromRequest);
         int records = 5;
         int offset = (page - 1) * records;
-        return COMMON_PART +
-                applyFilter(filter) +
-                applySorting(ACTIVITY_NAME) +
-                applyOrder(parameter, order, offset, records);
+        return COMMON_PART + applyFilter(filter) + GROUP_ACTIVITY_NAME +
+                applyOrder(parameter, offset, records);
     }
 
-    private static String getParam(String parameter) {
-        if(Objects.equals(parameter, NUMBER_OF_USERS)) parameter = QUANTITY;
-        else if(Objects.equals(parameter, NAME_OF_ACTIVITY)) parameter = ACTIVITY_NAME;
-        else if(Objects.equals(parameter, CATEGORY_OF_ACTIVITY)) parameter = CATEGORY_NAME;
+    /**
+     * Construes part of SQL query containing parameter of ordering
+     * @param parameter - parameter to which ascending or descending order is applied
+     * @param order - ascending or descending order for sorting
+     * @return part of SQL query
+     */
+    private static String getParam(String parameter, String order) {
+        if(Objects.equals(parameter, NUMBER_OF_USERS)) parameter = String.format(QUANTITY, order);
+        else if(Objects.equals(parameter, CATEGORY_OF_ACTIVITY)) parameter = String.format(CATEGORY_NAME, order);
+        else parameter = String.format(ACTIVITY_NAME, order);
         return parameter;
     }
 
+    /**
+     * Construes part of SQL query containing order of sorting
+     * @param order - ascending or descending order
+     * @return part of SQL query
+     */
     private static String getOrder(String order) {
         if(Objects.equals(order, DESCENDING)) order = DESC;
         else order = ASC;
         return order;
     }
 
-    private String getTotalRecords(String filter){
-        String query = "SELECT COUNT(activity.activity_name)\n" +
-                    "FROM activity\n" +
-                    "INNER JOIN category_of_activity\n" +
-                    "ON activity.category_id = category_of_activity.category_id\n";
-        if(!Objects.equals(filter, ALL_CATEGORIES)) query += String.format("WHERE category_name = '%s'", filter);
-        return query;
+    /**
+     * Construes filter to form SQL query
+     * @param filter - filter for sorting records
+     * @return part of SQL query
+     */
+    private String applyFilter(String filter){
+        if(filter == null || filter.isEmpty() || Objects.equals(filter, ALL_CATEGORIES)) return "";
+        else return String.format("WHERE category_name = '%s'\n", filter);
     }
-    public int getNumberOfRecords(String filter) throws DAOException{
-        int number = 0;
-        try(Connection con = dataSource.getConnection();
-            PreparedStatement stmt = con.prepareStatement(getTotalRecords(filter))){
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                number = rs.getInt(1);
-            }
-        } catch (SQLException e){
-            throw new ServiceException(UNKNOWN_ERROR);
+
+    /**
+     * Construes ordering part of SQL query
+     * @param parameter - parameter for ordering records
+     * @param offset - offset records
+     * @param number - number of records per page
+     * @return part of SQL query
+     */
+    private String applyOrder(String parameter, int offset, int number){
+        return String.format(ORDER_BY, parameter, offset, number);
+    }
+
+    /**
+     * Gets number of records in database according to filter
+     * @param filter - filter for accounting records
+     * @return number of records
+     * @throws ServiceException is wrapper for DAOException
+     */
+    @Override
+    public int getNumberOfRecords(String filter) throws ServiceException{
+        int number;
+        try {
+            number = activityDAO.getNumberOfRecords(filter);
+        } catch (DAOException e){
+            logger.warn(e.getMessage());
+            throw new ServiceException(e.getMessage());
         }
         return number;
     }
-    public List<ActivityDTO> listActivitiesSorted(String filter, String order, String parameter, String page){
+
+    /**
+     * Gets sorted and ordered list of records in database
+     * @param filter - filter for accounting records
+     * @param order - ascending or descending order
+     * @param parameter - parameter of sorting
+     * @param page - number of page of the whole list of records, represented as a String
+     * @return List of ActivityDTO
+     * @throws ServiceException is wrapper for DAOException
+     */
+    @Override
+    public List<ActivityDTO> listActivitiesSorted(String filter, String order, String parameter,
+                                                  String page) throws ServiceException{
         List<ActivityDTO> list = new ArrayList<>();
-        try (Connection con = dataSource.getConnection();
-            PreparedStatement stmt = con.prepareStatement(buildQuery(page, filter, order, parameter))) {
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                ActivityDTO activity = getActivityDTOWithFields(rs);
-                list.add(activity);
-            }
-        } catch (SQLException e) {
+        try {
+            Map<Activity, Integer> map = activityDAO.getSortedList(buildQuery(page, filter, order, parameter));
+            map.forEach((activity, number)
+                    -> list.add(new ActivityDTO(activity.getName(), activity.getCategory().getName(), number)));
+        } catch (DAOException e) {
             throw new ServiceException(UNKNOWN_ERROR);
         }
         return list;
     }
-    private List<User> getConnectedUsersWithNotification(Activity activity){
-        UserDAO userDAOImpl = new UserDAOImpl(dataSource);
-        return userDAOImpl.getList(activity.getName(), SQLQueries.UserQueries.FIND_CONNECTED_USERS_WITH_NOTIFICATION);
+    /**
+     * Gets list of users connected with certain activity who turned on notifications
+     * @param activityName - name of activity
+     * @return List of User entities
+     * @throws ServiceException is wrapper for SQLException
+     */
+    private List<User> getConnectedUsersWithNotification(String activityName){
+        return userDAO.getList(activityName, FIND_CONNECTED_USERS_WITH_NOTIFICATION);
     }
+
+    /**
+     * Creates and sends emails to certain list of users
+     * @param connectedUsers - list of addressees
+     * @param description - text fragment to form email body
+     */
     private void notifyAboutUpdate(List<User> connectedUsers, String description){
         for(User user: connectedUsers){
             NotificationFactory factory = new NotificationFactories().systemUpdateFactory(user, description);
@@ -166,21 +247,15 @@ public class ActivityServiceImpl implements ActivityService {
             Mailer.send(user.getEmail(),subject,body);
         }
     }
-    private String applyFilter(String filter){
-        return Objects.equals(filter, ALL_CATEGORIES) ? "": String.format("WHERE category_name = '%s'\n", filter);
-    }
-    private String applySorting(String sortParameter){
-        return String.format("GROUP BY %s \n", sortParameter);
-    }
-    private String applyOrder(String parameter, String order, int offset, int number){
-        return String.format("ORDER BY %s %s LIMIT %d, %d", parameter, order, offset, number);
-    }
-    private static ActivityDTO getActivityDTOWithFields(ResultSet rs) throws SQLException {
-        return new ActivityDTO(rs.getString(1),
-                rs.getString(3), rs.getInt(2));
-    }
+
+    /**
+     * Checks if activity name is not already used in database
+     * @param name - name of new activity
+     * @return true if name is not used, false otherwise
+     * @throws ServiceException is wrapper for SQLException
+     */
     @Override
-    public boolean isNameAvailable(String name){
-        return activityDAO.getByName(name) == null;
+    public boolean isNameAvailable(String name) throws ServiceException{
+        return activityDAO.getByName(name).isEmpty();
     }
 }

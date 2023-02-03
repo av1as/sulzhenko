@@ -4,15 +4,15 @@ import com.sulzhenko.controller.command.Command;
 import com.sulzhenko.controller.Constants;
 import com.sulzhenko.controller.Path;
 import com.sulzhenko.DTO.UserDTO;
+import com.sulzhenko.model.services.ServiceException;
 import com.sulzhenko.model.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import java.sql.SQLException;
 import java.util.Objects;
-import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
+import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 
 /**
  * Login controller action
@@ -23,7 +23,7 @@ public class LoginCommand implements Command, Constants, Path {
   private static final Logger logger = LogManager.getLogger(LoginCommand.class);
 
   @Override
-  public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+  public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
     HttpSession session = request.getSession(true);
     String forward = PAGE_ERROR_FULL;
     String login = request.getParameter(LOGIN);

@@ -1,6 +1,6 @@
 package controller.commands;
 
-import com.sulzhenko.controller.ApplicationContext;
+import com.sulzhenko.controller.context.ApplicationContext;
 import com.sulzhenko.controller.command.Command;
 import com.sulzhenko.controller.command.CommandFactory;
 import com.sulzhenko.controller.command.base.DefaultCommand;
@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
 class CommandFactoryTest {
-    private static final String PROPERTIES_FILE = "datasourse.properties";
+    private static final String PROPERTIES_FILE = "datasource.properties";
     private final ServletContext servletContext = mock(ServletContext.class);
 
     @Test

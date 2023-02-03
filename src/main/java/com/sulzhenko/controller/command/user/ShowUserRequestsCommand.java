@@ -5,18 +5,17 @@ import com.sulzhenko.controller.command.Command;
 import com.sulzhenko.controller.Constants;
 import com.sulzhenko.controller.Path;
 import com.sulzhenko.model.services.RequestService;
+import com.sulzhenko.model.services.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import java.sql.SQLException;
-
-import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
+import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 
 public class ShowUserRequestsCommand implements Command, Constants, Path {
     RequestService requestService = getApplicationContext().getRequestService();
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         HttpSession session = request.getSession();
         UserDTO userDTO = (UserDTO) session.getAttribute(USER);
         int page = (request.getParameter(PAGE) != null)?

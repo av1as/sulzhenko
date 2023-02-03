@@ -11,14 +11,14 @@ import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
+import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 
 public class SetRequestDescriptionCommand implements Command, Constants, Path {
     RequestService requestService = getApplicationContext().getRequestService();
     private static final Logger logger = LogManager.getLogger(SetRequestDescriptionCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response)  {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException  {
         HttpSession session = request.getSession();
         Long requestId = Long.valueOf(request.getParameter(REQUEST_ID));
         String description = request.getParameter(DESCRIPTION);

@@ -3,6 +3,7 @@ package model;
 import com.sulzhenko.model.DAO.*;
 import com.sulzhenko.model.DAO.implementation.UserDAOImpl;
 import com.sulzhenko.model.entity.User;
+import com.sulzhenko.model.services.ServiceException;
 import org.junit.jupiter.api.Test;
 
 import javax.sql.DataSource;
@@ -439,6 +440,20 @@ class DAOUserTests {
         UserDAO userDAO = new UserDAOImpl(dataSource);
         when(dataSource.getConnection()).thenThrow(new SQLException());
         assertThrows(DAOException.class, () -> userDAO.deleteStatus("new status"));
+    }
+    @Test
+    void testSQLExceptionIsRoleCorrect() throws DAOException, SQLException {
+        DataSource dataSource = mock(DataSource.class);
+        UserDAO userDAO = new UserDAOImpl(dataSource);
+        when(dataSource.getConnection()).thenThrow(new SQLException());
+        assertThrows(DAOException.class, () -> userDAO.isRoleCorrect("role"));
+    }
+    @Test
+    void testSQLExceptionIsStatusCorrect() throws DAOException, SQLException {
+        DataSource dataSource = mock(DataSource.class);
+        UserDAO userDAO = new UserDAOImpl(dataSource);
+        when(dataSource.getConnection()).thenThrow(new SQLException());
+        assertThrows(DAOException.class, () -> userDAO.isStatusCorrect("status"));
     }
     private PreparedStatement prepareMocks(DataSource dataSource) throws SQLException {
         Connection con = mock(Connection.class);

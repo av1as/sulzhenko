@@ -9,9 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.SQLException;
-
-import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
+import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 
 /**
  * Add category controller action
@@ -22,7 +20,7 @@ public class AddCategoryCommand implements Command, Path, Constants {
     private static final Logger logger = LogManager.getLogger(AddCategoryCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         String forward;
         try{
             categoryService.addCategory(request.getParameter(ADDED_NAME));

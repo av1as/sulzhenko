@@ -4,6 +4,7 @@ import com.sulzhenko.controller.command.Command;
 import com.sulzhenko.controller.Constants;
 import com.sulzhenko.controller.Path;
 import com.sulzhenko.DTO.UserDTO;
+import com.sulzhenko.model.services.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -13,7 +14,7 @@ import jakarta.servlet.http.HttpSession;
  */
 public class ProfileInfoCommand implements Command, Constants, Path {
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         HttpSession session = request.getSession();
         UserDTO userDTO = (UserDTO) session.getAttribute(USER);
         request.setAttribute(LOGIN, userDTO.getLogin());

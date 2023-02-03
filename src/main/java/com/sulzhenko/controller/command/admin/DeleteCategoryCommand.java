@@ -10,9 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.SQLException;
-
-import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
+import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 
 /**
  * Delete category controller action
@@ -23,7 +21,7 @@ public class DeleteCategoryCommand implements Command, Constants, Path {
     private static final Logger logger = LogManager.getLogger(DeleteCategoryCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         String categoryName = request.getParameter(CATEGORY_NAME);
         try{
             categoryService.deleteCategory(categoryName);

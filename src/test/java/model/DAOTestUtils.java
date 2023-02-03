@@ -23,13 +23,29 @@ public final class DAOTestUtils {
     }
 
     public static Activity getTestActivity() {
-        return new Activity(1L, "test activity", getTestCategory());
+        return new Activity.Builder()
+                .withId(1L)
+                .withName("test activity")
+                .withCategory(getTestCategory())
+                .build();
     }
     public static Request getTestRequestToAdd(){
 
-        return new Request(1L, "testuser", "test activity", "add", "asap");
+        return new Request.Builder()
+                .withId(1L)
+                .withLogin("testuser")
+                .withActivityName("test activity")
+                .withActionToDo("add")
+                .withDescription("asap")
+                .build();
     }
     public static Request getTestRequestToRemove() {
-        return new Request(2L, "testuser", "test activity", "remove", "asap");
+        return new Request.Builder()
+                .withId(2L)
+                .withLogin("testuser")
+                .withActivityName("test activity")
+                .withActionToDo("remove")
+                .withDescription("asap")
+                .build();
     }
 }

@@ -4,6 +4,9 @@ import com.sulzhenko.model.DAO.ActivityDAO;
 import com.sulzhenko.model.DAO.DAOException;
 import com.sulzhenko.model.DAO.implementation.ActivityDAOImpl;
 import com.sulzhenko.model.entity.Activity;
+import com.sulzhenko.model.services.ActivityService;
+import com.sulzhenko.model.services.ServiceException;
+import com.sulzhenko.model.services.implementation.ActivityServiceImpl;
 import org.junit.jupiter.api.Test;
 
 import javax.sql.DataSource;
@@ -64,7 +67,7 @@ class DAOActivityTests {
             ResultSet rs = mock(ResultSet.class);
             when(stmt.executeQuery()).thenReturn(rs);
             prepareResultSet(rs);
-            Activity resultActivity = activityDAO.getById(1L);
+            Activity resultActivity = activityDAO.getById(1L).orElse(null);
             assertNotNull(resultActivity);
             assertEquals(getTestActivity(), resultActivity);
         }
@@ -77,7 +80,7 @@ class DAOActivityTests {
             ResultSet resultSet = mock(ResultSet.class);
             when(preparedStatement.executeQuery()).thenReturn(resultSet);
             when(resultSet.next()).thenReturn(false);
-            Activity resultActivity = activityDAO.getById(1L);
+            Activity resultActivity = activityDAO.getById(1L).orElse(null);
             assertNull(resultActivity);
         }
     }
@@ -96,7 +99,7 @@ class DAOActivityTests {
             ResultSet rs = mock(ResultSet.class);
             when(stmt.executeQuery()).thenReturn(rs);
             prepareResultSet(rs);
-            Activity resultActivity = activityDAO.getByName("test activity");
+            Activity resultActivity = activityDAO.getByName("test activity").orElse(null);
             assertNotNull(resultActivity);
             assertEquals(getTestActivity(), resultActivity);
         }
@@ -109,7 +112,7 @@ class DAOActivityTests {
             ResultSet resultSet = mock(ResultSet.class);
             when(preparedStatement.executeQuery()).thenReturn(resultSet);
             when(resultSet.next()).thenReturn(false);
-            Activity resultActivity = activityDAO.getByName("test activity");
+            Activity resultActivity = activityDAO.getByName("test activity").orElse(null);
             assertNull(resultActivity);
         }
     }
@@ -249,6 +252,35 @@ class DAOActivityTests {
         Activity activity = getTestActivity();
         when(dataSource.getConnection()).thenThrow(new SQLException());
         assertThrows(DAOException.class, () -> activityDAO.delete(activity));
+    }
+    @Test
+    void testGetNumberOfRecords() throws SQLException {
+        DataSource dataSource = mock(DataSource.class);
+        ActivityDAO activityDAO = new ActivityDAOImpl(dataSource);
+        try (PreparedStatement preparedStatement = prepareMocks(dataSource)) {
+            ResultSet resultSet = mock(ResultSet.class);
+            when(preparedStatement.executeQuery()).thenReturn(resultSet);
+            prepareResultSet(resultSet);
+            assertEquals(0, activityDAO.getNumberOfRecords("asdf"));
+        }
+    }
+    @Test
+    void testGetNumberOfRecordsEmpty() throws SQLException {
+        DataSource dataSource = mock(DataSource.class);
+        ActivityDAO activityDAO = new ActivityDAOImpl(dataSource);
+        try (PreparedStatement preparedStatement = prepareMocks(dataSource)) {
+            ResultSet resultSet = mock(ResultSet.class);
+            when(preparedStatement.executeQuery()).thenReturn(resultSet);
+            when(resultSet.next()).thenReturn(false);
+            assertEquals(0, activityDAO.getNumberOfRecords("asdf"));
+        }
+    }
+    @Test
+    void testSqlGetNumberOfRecords() throws SQLException {
+        DataSource dataSource = mock(DataSource.class);
+        ActivityDAO activityDAO = new ActivityDAOImpl(dataSource);
+        when(dataSource.getConnection()).thenThrow(new SQLException());
+        assertThrows(DAOException.class, () -> activityDAO.getNumberOfRecords("asdf"));
     }
     private PreparedStatement prepareMocks(DataSource dataSource) throws SQLException {
         Connection con = mock(Connection.class);

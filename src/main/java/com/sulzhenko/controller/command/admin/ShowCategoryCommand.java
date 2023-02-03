@@ -6,12 +6,12 @@ import com.sulzhenko.controller.Path;
 
 import com.sulzhenko.DTO.CategoryDTO;
 import com.sulzhenko.model.services.CategoryService;
+import com.sulzhenko.model.services.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.SQLException;
 import java.util.List;
 
-import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
+import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 
 /**
  * Show categories controller action
@@ -19,7 +19,7 @@ import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
 public class ShowCategoryCommand implements Command, Constants, Path {
     CategoryService categoryService = getApplicationContext().getCategoryService();
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         int page = 1;
         int recordsPerPage = 5;
         if(request.getParameter(PAGE) != null)

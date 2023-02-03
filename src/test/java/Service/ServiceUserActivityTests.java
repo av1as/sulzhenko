@@ -1,11 +1,12 @@
 package Service;
 
-import com.sulzhenko.DTO.ActivityDTO;
 import com.sulzhenko.DTO.UserDTO;
+import com.sulzhenko.model.entity.Activity;
+import com.sulzhenko.model.entity.Category;
+import com.sulzhenko.model.entity.User;
 import com.sulzhenko.model.services.ServiceException;
 import com.sulzhenko.model.services.UserActivityService;
 import com.sulzhenko.model.services.implementation.UserActivityServiceImpl;
-import jakarta.servlet.http.HttpServletRequest;
 import org.junit.jupiter.api.Test;
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -21,18 +22,8 @@ class ServiceUserActivityTests {
     void testSetAmountNegative() {
         DataSource dataSource = mock(DataSource.class);
         UserActivityService userActivityService = new UserActivityServiceImpl(dataSource);
-        UserDTO userDTO = new UserDTO.Builder()
-                .withLogin("login")
-                .withPassword("password")
-                .withEmail("email")
-                .withFirstName("fn")
-                .withLastName("ln")
-                .withRole("system user")
-                .withStatus("active")
-                .withNotification("on")
-                .build();
-        ActivityDTO activityDTO = new ActivityDTO("activity");
-        assertThrows(ServiceException.class, ()-> userActivityService.setAmount(userDTO, activityDTO, -5));
+        assertThrows(ServiceException.class,
+                ()-> userActivityService.setAmount("login", "activity", -5));
     }
     @Test
     void testSQLExceptionGetNumberOfRecords() throws SQLException {
@@ -88,25 +79,27 @@ class ServiceUserActivityTests {
             assertThrows(ServiceException.class, () -> userActivityService.listUserActivitiesSorted("1", userDTO));
         }
     }
+
     @Test
-    void testListUserActivitiesBriefSorted() throws SQLException {
+    void testIfRequestToAddExists() throws SQLException {
         DataSource dataSource = mock(DataSource.class);
         UserActivityService userActivityService = new UserActivityServiceImpl(dataSource);
-        try (PreparedStatement ignored = prepareMocks(dataSource)) {
+        try (PreparedStatement stmt = prepareMocks(dataSource)) {
             ResultSet rs = mock(ResultSet.class);
-            when(ignored.executeQuery()).thenReturn(rs);
-            when(rs.next()).thenReturn(false);
-            assertDoesNotThrow(() -> userActivityService.listUserActivitiesBriefSorted("1"));
-            assertEquals(0, userActivityService.listUserActivitiesBriefSorted("1").size());
+            when(stmt.executeQuery()).thenReturn(rs);
+            prepareResultSet(rs);
+            assertTrue(userActivityService.isRequestToAddExists(getTestUser(), getTestActivity()));
         }
     }
     @Test
-    void testSQLExceptionListUserActivitiesBriefSorted() throws SQLException {
+    void testIfRequestToRemoveExists() throws SQLException {
         DataSource dataSource = mock(DataSource.class);
         UserActivityService userActivityService = new UserActivityServiceImpl(dataSource);
-        try (PreparedStatement ignored = prepareMocks(dataSource)) {
-            when(dataSource.getConnection()).thenThrow(new SQLException());
-            assertThrows(ServiceException.class, () -> userActivityService.listUserActivitiesBriefSorted("1"));
+        try (PreparedStatement stmt = prepareMocks(dataSource)) {
+            ResultSet rs = mock(ResultSet.class);
+            when(stmt.executeQuery()).thenReturn(rs);
+            prepareRemoveResultSet(rs);
+            assertTrue(userActivityService.isRequestToRemoveExists(getTestUser(), getTestActivity()));
         }
     }
     private PreparedStatement prepareMocks(DataSource dataSource) throws SQLException {
@@ -122,5 +115,45 @@ class ServiceUserActivityTests {
         doNothing().when(preparedStatement).close();
         when(preparedStatement.execute()).thenReturn(true);
         return preparedStatement;
+    }
+    public static User getTestUser() {
+        return new User.Builder()
+                .withLogin("testuser")
+                .withAccount(1L)
+                .withEmail("me@me.me")
+                .withPassword("asdf")
+                .withFirstName("asfd")
+                .withLastName("asdf")
+                .withRole("system user")
+                .withStatus("active")
+                .withNotification("on")
+                .build();
+    }
+    public static Category getTestCategory() {
+        return new Category("test category", 1L);
+    }
+    public static Activity getTestActivity() {
+        return new Activity.Builder()
+                .withId(1L)
+                .withName("test activity")
+                .withCategory(getTestCategory())
+                .build();
+    }
+    private static void prepareResultSet(ResultSet resultSet) throws SQLException {
+        when(resultSet.next()).thenReturn(true).thenReturn(false);
+        when(resultSet.getLong(1)).thenReturn(1L);
+        when(resultSet.getString(2)).thenReturn("testuser");
+        when(resultSet.getString(3)).thenReturn("test activity");
+        when(resultSet.getString(4)).thenReturn("add");
+        when(resultSet.getString(5)).thenReturn("asap");
+
+    }
+    private static void prepareRemoveResultSet(ResultSet resultSet) throws SQLException {
+        when(resultSet.next()).thenReturn(true).thenReturn(false);
+        when(resultSet.getLong(1)).thenReturn(1L);
+        when(resultSet.getString(2)).thenReturn("testuser");
+        when(resultSet.getString(3)).thenReturn("test activity");
+        when(resultSet.getString(4)).thenReturn("remove");
+        when(resultSet.getString(5)).thenReturn("asap");
     }
 }

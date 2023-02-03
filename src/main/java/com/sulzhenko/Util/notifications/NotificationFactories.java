@@ -5,11 +5,16 @@ import com.sulzhenko.model.entity.Request;
 import com.sulzhenko.model.entity.User;
 
 /**
- * This class describes factories for producing different types of notifications
+ * NotificationFactories class for creating factories which make emails
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 public class NotificationFactories {
     /**
-     * This method produces notifications about account's update
+     * Creates factory which produces notifications about account's update
+     * @param user - addressee
+     * @return NotificationFactory object which creates emails about user account update
      */
     public NotificationFactory accountUpdateFactory (User user){
         return new NotificationFactory() {
@@ -24,8 +29,13 @@ public class NotificationFactories {
             }
         };
     }
+
     /**
-     * This method produces notifications about user request update
+     * Creates factory which produces notifications about request's update
+     * @param user - addressee
+     * @param request - updated request
+     * @param updateDescription - some description to form text of email
+     * @return NotificationFactory object which creates emails about user request update
      */
     public NotificationFactory requestUpdateFactory (User user, Request request, String updateDescription){
         return new NotificationFactory() {
@@ -40,11 +50,14 @@ public class NotificationFactories {
             }
         };
     }
+
     /**
-     * This method produces notifications about some update in system connected with user
+     * Creates factory which produces notifications about system update
+     * @param user - addressee
+     * @param updateDescription - some description to form text of email
+     * @return NotificationFactory object which creates emails about system update
      */
     public NotificationFactory systemUpdateFactory (User user, String updateDescription){
-
         return new NotificationFactory() {
             @Override
             public String createSubject() {
@@ -57,6 +70,13 @@ public class NotificationFactories {
             }
         };
     }
+
+    /**
+     * Creates factory which produces notifications about recovering password
+     * @param user - addressee
+     * @param temporaryPassword - temporary password to access account
+     * @return NotificationFactory object which creates emails about recovered password
+     */
     public NotificationFactory recoverPasswordFactory (User user, String temporaryPassword){
         return new NotificationFactory() {
             @Override

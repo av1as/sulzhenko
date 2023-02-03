@@ -2,6 +2,13 @@ package com.sulzhenko.controller.filters.domain;
 
 import java.util.HashSet;
 import java.util.Set;
+
+/**
+ * Contains action sets for guest, system user and administrator. Defines if user has access to the action
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
+ */
 public final class DomainActionsSets {
     private DomainActionsSets() {}
 

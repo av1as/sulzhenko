@@ -2,6 +2,10 @@ package model;
 
 import com.sulzhenko.model.DAO.*;
 import com.sulzhenko.model.DAO.implementation.UserActivityDAOImpl;
+import com.sulzhenko.model.entity.Activity;
+import com.sulzhenko.model.entity.Category;
+import com.sulzhenko.model.entity.User;
+import com.sulzhenko.model.services.ServiceException;
 import org.junit.jupiter.api.Test;
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -14,7 +18,6 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.*;
 
 class DAOUserActivityTests {
-
     @Test
     void testAddActivityToUserWrongAction() throws SQLException {
         DataSource dataSource = mock(DataSource.class);
@@ -64,43 +67,75 @@ class DAOUserActivityTests {
         DataSource dataSource = mock(DataSource.class);
         UserActivityDAO userActivityDAO = new UserActivityDAOImpl(dataSource);
         when(dataSource.getConnection()).thenThrow(new SQLException());
-        assertThrows(DAOException.class, () -> userActivityDAO.getAmount(getTestUser(), getTestActivity()));
+        User user = getTestUser();
+        Activity activity = getTestActivity();
+        assertThrows(DAOException.class, () -> userActivityDAO.getAmount(user, activity));
+    }
+    @Test
+    void testGetNumberOfRecords() throws SQLException {
+        DataSource dataSource = mock(DataSource.class);
+        UserActivityDAO userActivityDAO = new UserActivityDAOImpl(dataSource);
+        try (PreparedStatement stmt = prepareMocks(dataSource)) {
+            ResultSet rs = mock(ResultSet.class);
+            when(stmt.executeQuery()).thenReturn(rs);
+            when(rs.next()).thenReturn(false);
+            assertEquals(0, userActivityDAO.getNumberOfRecords());
+        }
+    }
+    @Test
+    void testSqlExceptionGetNumberOfRecords() throws SQLException {
+        DataSource dataSource = mock(DataSource.class);
+        UserActivityDAO userActivityDAO = new UserActivityDAOImpl(dataSource);
+        when(dataSource.getConnection()).thenThrow(new SQLException());
+        assertThrows(DAOException.class, userActivityDAO::getNumberOfRecords);
+    }
+    @Test
+    void testGetNumberOfRecordsByUser() throws SQLException {
+        DataSource dataSource = mock(DataSource.class);
+        UserActivityDAO userActivityDAO = new UserActivityDAOImpl(dataSource);
+        try (PreparedStatement stmt = prepareMocks(dataSource)) {
+            ResultSet rs = mock(ResultSet.class);
+            when(stmt.executeQuery()).thenReturn(rs);
+            when(rs.next()).thenReturn(false);
+            assertEquals(0, userActivityDAO.getNumberOfRecordsByUser("login"));
+        }
+    }
+    @Test
+    void testSqlExceptionGetNumberOfRecordsByUser() throws SQLException {
+        DataSource dataSource = mock(DataSource.class);
+        UserActivityDAO userActivityDAO = new UserActivityDAOImpl(dataSource);
+        when(dataSource.getConnection()).thenThrow(new SQLException());
+        assertThrows(DAOException.class, () -> userActivityDAO.getNumberOfRecordsByUser("login"));
+    }
+    @Test
+    void testSQLExceptionSetAmount() throws SQLException {
+        DataSource dataSource = mock(DataSource.class);
+        UserActivityDAO userActivityDAO = new UserActivityDAOImpl(dataSource);
+        User user = new User.Builder()
+                .withLogin("login")
+                .withPassword("password")
+                .withEmail("email")
+                .withFirstName("fn")
+                .withLastName("ln")
+                .withRole("system user")
+                .withStatus("active")
+                .withNotification("on")
+                .build();
+        Activity activity = new Activity.Builder()
+                .withName("activity")
+                .withCategory(new Category("category")).build();
+        when(dataSource.getConnection()).thenThrow(new SQLException());
+        assertThrows(DAOException.class, ()-> userActivityDAO.setAmount(user, activity, -5));
     }
     @Test
     void testSqlExceptionIfUserHasActivity() throws SQLException {
         DataSource dataSource = mock(DataSource.class);
         UserActivityDAO userActivityDAO = new UserActivityDAOImpl(dataSource);
         when(dataSource.getConnection()).thenThrow(new SQLException());
-        assertThrows(DAOException.class, () -> userActivityDAO.ifUserHasActivity(getTestUser(), getTestActivity()));
+        User user = getTestUser();
+        Activity activity = getTestActivity();
+        assertThrows(ServiceException.class, () -> userActivityDAO.ifUserHasActivity(user, activity));
     }
-    @Test
-    void testIfRequestToAddExists() throws SQLException {
-        DataSource dataSource = mock(DataSource.class);
-        UserActivityDAO userActivityDAO = new UserActivityDAOImpl(dataSource);
-        try (PreparedStatement stmt = prepareMocks(dataSource)) {
-            ResultSet rs = mock(ResultSet.class);
-            when(stmt.executeQuery()).thenReturn(rs);
-            prepareResultSet(rs);
-            assertTrue(userActivityDAO.isRequestToAddExists(getTestUser(), getTestActivity()));
-        }
-    }
-    @Test
-    void testIfRequestToRemoveExists() throws SQLException {
-        DataSource dataSource = mock(DataSource.class);
-        UserActivityDAO userActivityDAO = new UserActivityDAOImpl(dataSource);
-        try (PreparedStatement stmt = prepareMocks(dataSource)) {
-            ResultSet rs = mock(ResultSet.class);
-            when(stmt.executeQuery()).thenReturn(rs);
-            prepareRemoveResultSet(rs);
-            assertTrue(userActivityDAO.isRequestToRemoveExists(getTestUser(), getTestActivity()));
-        }
-    }
-
-
-
-
-
-
     private PreparedStatement prepareMocks(DataSource dataSource) throws SQLException {
         Connection con = mock(Connection.class);
         PreparedStatement preparedStatement = mock(PreparedStatement.class);
@@ -115,22 +150,4 @@ class DAOUserActivityTests {
         when(preparedStatement.execute()).thenReturn(true);
         return preparedStatement;
     }
-    private static void prepareResultSet(ResultSet resultSet) throws SQLException {
-        when(resultSet.next()).thenReturn(true).thenReturn(false);
-        when(resultSet.getLong(1)).thenReturn(1L);
-        when(resultSet.getString(2)).thenReturn("testuser");
-        when(resultSet.getString(3)).thenReturn("test activity");
-        when(resultSet.getString(4)).thenReturn("add");
-        when(resultSet.getString(5)).thenReturn("asap");
-
-    }
-    private static void prepareRemoveResultSet(ResultSet resultSet) throws SQLException {
-        when(resultSet.next()).thenReturn(true).thenReturn(false);
-        when(resultSet.getLong(1)).thenReturn(1L);
-        when(resultSet.getString(2)).thenReturn("testuser");
-        when(resultSet.getString(3)).thenReturn("test activity");
-        when(resultSet.getString(4)).thenReturn("remove");
-        when(resultSet.getString(5)).thenReturn("asap");
-    }
-
 }

@@ -2,6 +2,14 @@ package com.sulzhenko.DTO;
 
 import java.io.Serializable;
 
+/**
+ * RequestDTO class. Fields adapted to view.
+ * Use RequestDTO.builder().withFieldName(fieldValue).build() to create an instance
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
+ */
+
 public class RequestDTO implements Serializable {
     private static final long serialVersionUID = 1L;
     private Long id;

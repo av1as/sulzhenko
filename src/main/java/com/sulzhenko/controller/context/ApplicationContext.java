@@ -1,4 +1,4 @@
-package com.sulzhenko.controller;
+package com.sulzhenko.controller.context;
 
 import com.sulzhenko.Util.PdfMakerUtil;
 import com.sulzhenko.model.connectionPool.MyDataSource;
@@ -11,6 +11,13 @@ import org.apache.logging.log4j.Logger;
 import javax.sql.DataSource;
 import java.io.InputStream;
 import java.util.Properties;
+
+/**
+ * ApplicationContext  class. Contains all objects required for correct application work
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
+ */
 
 public class ApplicationContext {
     private final UserService userService;
@@ -46,6 +53,9 @@ public class ApplicationContext {
         return userActivityService;
     }
 
+    /**
+     * @return instance of ApplicationContext
+     */
     public static ApplicationContext getApplicationContext() {
         return applicationContext;
     }
@@ -54,6 +64,11 @@ public class ApplicationContext {
         return userService;
     }
 
+    /**
+     * Creates instance of ApplicationContext to use in Commands. Configure all required classes. Loads properties
+     * @param servletContext - to use relative path in classes
+     * @param propertiesFile - to configure DataSource and Mailer
+     */
     public static void createAppContext(ServletContext servletContext, String propertiesFile) {
         applicationContext = new ApplicationContext(servletContext, propertiesFile);
     }

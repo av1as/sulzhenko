@@ -1,6 +1,6 @@
 package controller.listener;
 
-import com.sulzhenko.controller.ApplicationContext;
+import com.sulzhenko.controller.context.ApplicationContext;
 import com.sulzhenko.controller.listeners.ContextListener;
 import jakarta.servlet.*;
 import org.junit.jupiter.api.Test;

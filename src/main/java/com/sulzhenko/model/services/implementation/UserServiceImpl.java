@@ -15,10 +15,6 @@ import org.apache.logging.log4j.Logger;
 import javax.sql.DataSource;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -26,20 +22,37 @@ import java.util.Optional;
 import static com.sulzhenko.Util.notifications.Mailer.send;
 import static com.sulzhenko.model.services.validator.InputValidator.*;
 
+/**
+ * UserService class for interaction between controller and User DAO
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
+ */
 public class UserServiceImpl implements UserService {
-    private final DataSource dataSource;
     UserDAO userDAO;
     Sha sha;
     public UserServiceImpl(DataSource dataSource){
-        this.dataSource = dataSource;
         this.userDAO = new UserDAOImpl(dataSource);
         this.sha = new Sha();
     }
     private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
+
+    /**
+     * Gets instance of User by login
+     * @param login - value of user login
+     * @return instance of User class
+     */
     @Override
     public User getUser(String login){
         return userDAO.getByLogin(login).orElse(null);
     }
+
+    /**
+     * Gets instance of UserDTO by login
+     * @param login - value of user login
+     * @return instance of UserDTO class
+     */
+    @Override
     public UserDTO getUserDTO(String login) {
         User user = getUser(login);
         if (user != null) {
@@ -54,6 +67,13 @@ public class UserServiceImpl implements UserService {
                     .build();
         } else return null;
     }
+
+    /**
+     * Inserts new user to database
+     * @param userDTO - UserDTO
+     * @param passwordConfirm - confirmation of password
+     * @throws ServiceException is wrapper for DAOException
+     */
     @Override
     public void addUser(UserDTO userDTO, String passwordConfirm) {
         User user = new User.Builder()
@@ -74,12 +94,19 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException(e);
         }
     }
+
+    /**
+     * Updates user
+     * @param userDTO - UserDTO to update
+     * @param params - list of new fields
+     * @throws ServiceException is wrapper for DAOException
+     */
     @Override
-    public void updateUser(UserDTO t, String[] params){
-        User user = getUser(t.getLogin());
+    public void updateUser(UserDTO userDTO, String[] params){
+        User user = getUser(userDTO.getLogin());
         try {
-            isUpdateCorrect(params, t.getLogin());
-            if(params[2].isEmpty())  params[2] = t.getPassword();
+            isUpdateCorrect(params, userDTO.getLogin());
+            if(params[2].isEmpty())  params[2] = userDTO.getPassword();
             else params[2] = sha.hashToHex(params[2], Optional.ofNullable(params[0]));
             userDAO.update(user, params);
             notifyAboutUpdate(user);
@@ -88,6 +115,12 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException(UNKNOWN_ERROR);
         }
     }
+
+    /**
+     * Sends temporary password
+     * @param login - user login
+     * @throws ServiceException is wrapper for DAOException
+     */
     @Override
     public void recoverPassword(String login){
         User user = userDAO.getByLogin(login).orElse(null);
@@ -107,6 +140,12 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException(WRONG_LOGIN);
         }
     }
+    /**
+     * Updates user by admin
+     * @param userDTO - UserDTO to update
+     * @param params - new user fields
+     * @throws ServiceException is wrapper for DAOException
+     */
     @Override
     public void adminUpdateUser(UserDTO userDTO, String[] params){
         try {
@@ -120,8 +159,14 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException(e);
         }
     }
+
+    /**
+     * Deletes user record
+     * @param user - user
+     * @throws ServiceException is custom Exception
+     */
     @Override
-    public void deleteUser(User user) throws DAOException {
+    public void deleteUser(User user) throws ServiceException {
         if(!isLoginAvailable(user.getLogin())) {
             userDAO.delete(user);
         } else {
@@ -129,50 +174,83 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException(WRONG_LOGIN);
         }
     }
+
+    /**
+     * Gets sorted and ordered list of user records in database
+     * @param startPosition - offset for list
+     * @param size - number of records per page
+     * @return List of UserDTO
+     */
     @Override
     public List<UserDTO> viewAllSystemUsers(int startPosition, int size){
         List<UserDTO> list = new ArrayList<>();
+        List<User> users = userDAO.getByRole(SYSTEM_USER);
         for(int i = startPosition; (i < (startPosition + size))
-                && (i < userDAO.getByRole(SYSTEM_USER).size()); i++){
-            User user = userDAO.getByRole(SYSTEM_USER).get(i);
-            UserDTO userDTO = getUserDTO(user.getLogin());
-            list.add(userDTO);
+                && (i < users.size()); i++){
+            list.add(getUserDTO(users.get(i).getLogin()));
         }
         return list;
     }
+
+    /**
+     * Gets sorted and ordered list of user records in database with status 'active'
+     * @param startPosition - offset for list
+     * @param size - number of records per page
+     * @return List of UserDTO
+     */
     @Override
     public List<UserDTO> viewAllActiveUsers(int startPosition, int size){
         List<UserDTO> list = new ArrayList<>();
+        List<User> users = userDAO.getByStatus(ACTIVE);
         for(int i = startPosition; (i < (startPosition + size))
-                && (i < new UserDAOImpl(dataSource).getByStatus(ACTIVE).size()); i++){
-            User user = userDAO.getByStatus(ACTIVE).get(i);
-            UserDTO userDTO = getUserDTO(user.getLogin());
-            list.add(userDTO);
+                && (i < users.size()); i++){
+            list.add(getUserDTO(users.get(i).getLogin()));
         }
         return list;
     }
+
+    /**
+     * Gets sorted and ordered list of user records in database with status 'inactive'
+     * @param startPosition - offset for list
+     * @param size - number of records per page
+     * @return List of UserDTO
+     */
     @Override
     public List<UserDTO> viewAllInactiveUsers(int startPosition, int size){
         List<UserDTO> list = new ArrayList<>();
+        List<User> users = userDAO.getByStatus(INACTIVE);
         for(int i = startPosition; (i < (startPosition + size))
-                && (i < new UserDAOImpl(dataSource).getByStatus(INACTIVE).size()); i++){
-            User user = userDAO.getByStatus(INACTIVE).get(i);
-            UserDTO userDTO = getUserDTO(user.getLogin());
-            list.add(userDTO);
+                && (i < users.size()); i++){
+            list.add(getUserDTO(users.get(i).getLogin()));
         }
         return list;
     }
+
+    /**
+     * Gets sorted and ordered list of user records in database with status 'deactivated'
+     * @param startPosition - offset for list
+     * @param size - number of records per page
+     * @return List of UserDTO
+     */
     @Override
     public List<UserDTO> viewAllDeactivatedUsers(int startPosition, int size){
         List<UserDTO> list = new ArrayList<>();
+        List<User> users = userDAO.getByStatus(DEACTIVATED);
         for(int i = startPosition; (i < (startPosition + size))
-                && (i < new UserDAOImpl(dataSource).getByStatus(DEACTIVATED).size()); i++){
-            User user = userDAO.getByStatus(DEACTIVATED).get(i);
-            UserDTO userDTO = getUserDTO(user.getLogin());
-            list.add(userDTO);
+                && (i < users.size()); i++){
+            list.add(getUserDTO(users.get(i).getLogin()));
         }
         return list;
     }
+
+    /**
+     * Gets sorted and ordered list of user records in database according to filter
+     * @param status - set filter for list
+     * @param page - number of page in list
+     * @param recordsPerPage - number of records per page
+     * @return List of UserDTO
+     */
+    @Override
     public List<UserDTO> getUserList(String status, int page, int recordsPerPage){
         if(Objects.equals(status, ACTIVE)) {
             return viewAllActiveUsers((page-1)*recordsPerPage, recordsPerPage);
@@ -184,69 +262,85 @@ public class UserServiceImpl implements UserService {
             return viewAllSystemUsers((page-1)*recordsPerPage, recordsPerPage);
         }
     }
-    private void isDataCorrect(User t, String passwordConfirm) {
-        String errorMessage = validateNewUser(t, passwordConfirm);
-        if (!isRoleCorrect(t.getRole().value)){
+
+    /**
+     * Auxiliary method to check if input data are correct
+     * @param user - user to check
+     * @param passwordConfirm - confirmation of password
+     * @throws ServiceException is custom exception
+     */
+    private void isDataCorrect(User user, String passwordConfirm) {
+        String errorMessage = validateNewUser(user, passwordConfirm);
+        if (!userDAO.isRoleCorrect(user.getRole().value)){
             throw new ServiceException(WRONG_ROLE);
-        } else if (!isStatusCorrect(t.getStatus())){
+        } else if (!userDAO.isStatusCorrect(user.getStatus())){
             throw new ServiceException(WRONG_STATUS);
-        } else if (t.getLogin() == null){
+        } else if (user.getLogin() == null){
             throw new ServiceException(WRONG_LOGIN);
-        } else if (!isLoginAvailable(t.getLogin())){
+        } else if (!isLoginAvailable(user.getLogin())){
             throw new ServiceException(DUPLICATE_LOGIN);
         } else if(!Objects.equals(errorMessage, null)){
             throw new ServiceException(errorMessage);
         }
     }
+    /**
+     * Checks if user login is not already used in database
+     * @param login - login to check
+     * @return true if login is not used, false otherwise
+     */
     @Override
     public boolean isLoginAvailable(String login){
         return userDAO.getByLogin(login).isEmpty();
     }
-    @Override
-    public boolean isRoleCorrect(String role) throws DAOException{
-        try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(SQLQueries.UserQueries.FIND_ROLE_BY_DESCRIPTION)) {
-            stmt.setString(1, role);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                return true;
-            }
-        } catch (SQLException e) {
-            logger.fatal(e);
-            throw new ServiceException(UNKNOWN_ERROR);
-        }
-        return false;
-    }
-    @Override
-    public boolean isStatusCorrect(String status) throws DAOException{
-        try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(SQLQueries.UserQueries.FIND_STATUS_BY_NAME)) {
-            stmt.setString(1, status);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                return true;
-            }
-        } catch (SQLException e) {
-            logger.fatal(e);
-            throw new ServiceException(UNKNOWN_ERROR);
-        }
-        return false;
-    }
+
+    /**
+     * Checks if input data for user update are correct
+     * @param params - set of new user fields
+     * @param passwordConfirm - confirmation of password
+     * @throws ServiceException if data are incorrect
+     */
     @Override
     public void isUpdateCorrect(String[] params, String passwordConfirm) {
-        User user = new User.Builder().withLogin(params[0]).withEmail(params[1]).withPassword(params[2]).withFirstName(params[3]).withLastName(params[4]).build();
+        User user = new User.Builder()
+                .withLogin(params[0])
+                .withEmail(params[1])
+                .withPassword(params[2])
+                .withFirstName(params[3])
+                .withLastName(params[4])
+                .build();
         String errorMessage = validateUserUpdate(user);
         if (!Objects.equals(errorMessage, null)){
             throw new ServiceException(errorMessage);
         }
     }
+
+    /**
+     * Checks if input data for user update by admin are correct
+     * @param params - set of new user fields
+     * @throws ServiceException if data are incorrect
+     */
+    @Override
     public void isAdminUpdateCorrect(String[] params) {
-        User user = new User.Builder().withLogin(params[0]).withEmail(params[1]).withPassword(params[2]).withFirstName(params[3]).withLastName(params[4]).build();
+        User user = new User.Builder()
+                .withLogin(params[0])
+                .withEmail(params[1]).withPassword(params[2])
+                .withFirstName(params[3])
+                .withLastName(params[4])
+                .build();
         String errorMessage = validateAdminUserUpdate(user);
         if(!Objects.equals(errorMessage, null)){
             throw new ServiceException(errorMessage);
         }
     }
+
+    /**
+     * Checks if input data are correct
+     * @param login - user login
+     * @param password - user password
+     * @return error message if fields are incorrect, null otherwise
+     * @throws ServiceException is wrapper for NoSuchAlgorithmException, UnsupportedEncodingException
+     */
+    @Override
     public String areFieldsIncorrect(String login, String password) {
         String errorMessage = null;
         if (getUser(login) == null) {
@@ -267,6 +361,14 @@ public class UserServiceImpl implements UserService {
         }
         return errorMessage;
     }
+
+    /**
+     * Checks if input data are blank
+     * @param login - user login
+     * @param password - user password
+     * @return error message if fields are blank, null otherwise
+     */
+    @Override
     public String areFieldsBlank(String login, String password) {
         String errorMessage = null;
         if (login == null || login.isEmpty()) {
@@ -278,6 +380,13 @@ public class UserServiceImpl implements UserService {
         }
         return errorMessage;
     }
+
+    /**
+     * Gets number of records in database according to filter
+     * @param status - filter for accounting records (user status)
+     * @return number of records
+     */
+    @Override
     public int getNumberOfRecords(String status){
         if(Objects.equals(status, ACTIVE)) {
             return userDAO.getByStatus(ACTIVE).size();
@@ -289,6 +398,16 @@ public class UserServiceImpl implements UserService {
             return userDAO.getByRole(SYSTEM_USER).size();
         }
     }
+
+    /**
+     * Checks if input data for update are correct
+     * @param login - user login
+     * @param password - user password
+     * @param newPassword - new user password
+     * @param newPasswordConfirm - confirmation of new user password
+     * @return error message if data are incorrect, null otherwise
+     */
+    @Override
     public String getErrorMessageUpdate(String login, String password,
                                         String newPassword, String newPasswordConfirm){
         String errorMessage = null;
@@ -308,6 +427,14 @@ public class UserServiceImpl implements UserService {
         }
         return errorMessage;
     }
+
+    /**
+     * Checks if input data for new user record are valid
+     * @param user - user entity
+     * @param passwordConfirm - user password confirmation
+     * @return error message if fields are not valid, null otherwise
+     */
+    @Override
     public String validateNewUser(User user, String passwordConfirm){
         String result;
         if(!isValid(user.getLogin(), LOGIN_REGEX)) {
@@ -325,19 +452,33 @@ public class UserServiceImpl implements UserService {
         } else result = null;
         return result;
     }
+
+    /**
+     * Checks if input data for user update are valid
+     * @param user - user entity
+     * @return error message if fields are not valid, null otherwise
+     */
+    @Override
     public String validateUserUpdate(User user){
-        String result;
+        String errorMessage;
         if(!user.getPassword().isEmpty() && !isValid(user.getPassword(), PASSWORD_REGEX)){
-            result = PASSWORD_ERROR;
-        } else  if(!isValid(user.getEmail(), EMAIL_REGEX)){
-            result = EMAIL_ERROR;
+            errorMessage = PASSWORD_ERROR;
+        } else if(!isValid(user.getEmail(), EMAIL_REGEX)){
+            errorMessage = EMAIL_ERROR;
         } else if(!user.getFirstName().isEmpty() && !isValid(user.getFirstName(), NAME_REGEX)){
-            result = NAME_ERROR;
+            errorMessage = NAME_ERROR;
         } else if(!user.getLastName().isEmpty() && !isValid(user.getLastName(), NAME_REGEX)){
-            result = NAME_ERROR;
-        } else result = null;
-        return result;
+            errorMessage = NAME_ERROR;
+        } else errorMessage = null;
+        return errorMessage;
     }
+
+    /**
+     * Checks if input data for user update by admin are valid
+     * @param user - user entity
+     * @return error message if fields are not valid, null otherwise
+     */
+    @Override
     public String validateAdminUserUpdate(User user){
         String result;
         if(!isValid(user.getEmail(), EMAIL_REGEX)){
@@ -349,6 +490,11 @@ public class UserServiceImpl implements UserService {
         } else result = null;
         return result;
     }
+
+    /**
+     * Creates and sends emails to certain user about update their account
+     * @param user - user
+     */
     @Override
     public void notifyAboutUpdate(User user){
             NotificationFactory factory = new NotificationFactories().accountUpdateFactory(user);
@@ -356,8 +502,13 @@ public class UserServiceImpl implements UserService {
             String body = factory.createBody();
             send(user.getEmail(), subject, body);
     }
-    @Override
-    public void sendTemporaryPassword(User user, String temporaryPassword){
+
+    /**
+     * Creates and sends emails with temporary password to user who asked for recovering password
+     * @param user - user
+     * @param temporaryPassword - temporary password
+     */
+    private void sendTemporaryPassword(User user, String temporaryPassword){
         NotificationFactory factory = new NotificationFactories().recoverPasswordFactory(user, temporaryPassword);
         String subject = factory.createSubject();
         String body = factory.createBody();

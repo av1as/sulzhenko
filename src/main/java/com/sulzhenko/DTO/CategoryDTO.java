@@ -2,6 +2,13 @@ package com.sulzhenko.DTO;
 
 import java.io.Serializable;
 
+/**
+ * CategoryDTO class. Fields adapted to view.
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
+ */
+
 public class CategoryDTO implements Serializable {
     String name;
     long id;

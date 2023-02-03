@@ -9,6 +9,8 @@ import java.time.LocalDate;
 /**
  * TodayTag  class.
  *
+ *  @author Artem Sulzhenko
+ *  @version 1.0
  */
 public class TodayTag extends SimpleTagSupport {
 

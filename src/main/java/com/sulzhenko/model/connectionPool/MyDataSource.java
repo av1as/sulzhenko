@@ -7,11 +7,19 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 /**
- * This class provides ready for use Hikari pool connection.
+ * Class to configure and get HikariDataSource. Use it to connect to database
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 
 public class MyDataSource {
     private static DataSource dataSource;
+    /**
+     * Configures and gets HikariDataSource.
+     * @param properties - all required info to configure datasource
+     * @return singleton instance of HikariDataSource
+     */
     public static synchronized DataSource getDataSource(Properties properties) {
         if (dataSource == null) {
             HikariConfig config = getHikariConfig(properties);

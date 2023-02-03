@@ -15,37 +15,57 @@ import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.UnitValue;
 import com.sulzhenko.DTO.ReportDTO;
 import com.sulzhenko.DTO.UserActivityDTO;
-import com.sulzhenko.model.services.ServiceException;
 import jakarta.servlet.ServletContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Stream;
-
 import static com.sulzhenko.controller.Constants.*;
 
+/**
+ * Creates required pdf docs with itext pdf library
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
+ */
 public class PdfMakerUtil implements Constants {
     private final ServletContext servletContext;
     private static final Logger logger = LogManager.getLogger(PdfMakerUtil.class);
     private static final String[] REPORT_CELLS =
             new String[]{"login", "number.activities", "total.time", "activity.name", "time.amount"};
 
+    /**
+     * @param servletContext to properly define way to font file
+     */
     public PdfMakerUtil(ServletContext servletContext) {
         this.servletContext = servletContext;
     }
 
+    /**
+     * Creates table as main part of pdf document
+     * @param report - list of records to insert into pdf document
+     * @param resourceBundle - resource bundle for localization
+     * @return Table
+     *
+     */
     private Table getReportTable(List<ReportDTO> report, ResourceBundle resourceBundle) {
         Table table = new Table(new float[]{4, 12, 6, 6, 6});
         table.setWidth(UnitValue.createPercentValue(100));
         addTableHeader(table, resourceBundle);
-        addUserTableRows(table,report);
+        addReportTableRows(table,report);
         return table;
     }
+
+    /**
+     * Adds header to table
+     * @param table - table
+     * @param resourceBundle - resource bundle for localization
+     *
+     */
     private void addTableHeader(Table table, ResourceBundle resourceBundle) {
         Stream.of(REPORT_CELLS)
                 .forEach(columnTitle -> {
@@ -56,7 +76,14 @@ public class PdfMakerUtil implements Constants {
                     table.addCell(header);
                 });
     }
-    private void addUserTableRows(Table table, List<ReportDTO> report) {
+
+    /**
+     * Adds rows to table
+     * @param table - table
+     * @param report - list of records to insert into table
+     *
+     */
+    private void addReportTableRows(Table table, List<ReportDTO> report) {
         report.forEach(element ->
                 {
                     int rawSpan = element.getActivitiesWithTime().size();
@@ -73,6 +100,12 @@ public class PdfMakerUtil implements Constants {
                 }
         );
     }
+
+    /**
+     * Gets ResourceBundle based on locale. Works for any type - short - 'en', long - 'uk_UA'
+     * @param locale to set ResourceBundle
+     * @return ResourceBundle
+     */
     private static ResourceBundle getBundle(String locale) {
         String resources = RESOURCES;
         if (locale.contains(UNDERSCORE)) {
@@ -84,7 +117,19 @@ public class PdfMakerUtil implements Constants {
             return ResourceBundle.getBundle(resources, new Locale(locale));
         }
     }
-    public void getReportPDF(String locale, List<ReportDTO> report, String name, String page, String currentPage) throws ServiceException {
+
+    /**
+     * Creates pdf document with report's info
+     * @param locale - for localization
+     * @param report - list of records to insert into pdf document
+     * @param name - type of document ('report' for full document or 'page' for one page)
+     * @param page - symbol of page if applicable to insert into document's head
+     * @param currentPage  - number of page if applicable to insert into document's head
+     * @throws UtilException is a wrapper for MalformedURLException, FileNotFoundException. NullPointerException
+     *
+     */
+    public void getReportPDF(String locale, List<ReportDTO> report, String name, String page,
+                             String currentPage) throws UtilException {
         final ResourceBundle resourceBundle = getBundle(locale);
         SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
         Date date = new Date();
@@ -92,18 +137,17 @@ public class PdfMakerUtil implements Constants {
         try {
             String file = servletContext.getResource(PDF_DIRECTORY + name + PDF).getFile();
             pdfDoc = new PdfDocument(new PdfWriter(file));
-        } catch (MalformedURLException | FileNotFoundException e) {
+        } catch (MalformedURLException | FileNotFoundException | NullPointerException e) {
             logger.fatal(e.getMessage());
-            throw new ServiceException(UNKNOWN_ERROR);
+            throw new UtilException(UNKNOWN_ERROR);
         }
         Document doc = new Document(pdfDoc);
-        PdfFont font;
         try {
-            font = PdfFontFactory.createFont(servletContext.getResource(FONT_PATH).getFile());
+            PdfFont font = PdfFontFactory.createFont(servletContext.getResource(FONT_PATH).getFile());
             doc.setFont(font);
         } catch (IOException e) {
             logger.fatal(e.getMessage());
-            throw new ServiceException(UNKNOWN_ERROR);
+            throw new UtilException(UNKNOWN_ERROR);
         }
         doc.add(new Paragraph(new Text(formatter.format(date))));
         doc.add(new Paragraph(new Text(getHead(resourceBundle, page, currentPage)))
@@ -113,6 +157,14 @@ public class PdfMakerUtil implements Constants {
         doc.add(getReportTable(report, resourceBundle));
         doc.close();
     }
+
+    /**
+     * Creates name for pdf document
+     * @param resourceBundle - resource bundle for localization
+     * @param page - symbol of page if applicable to insert into document's head
+     * @param currentPage  - number of page if applicable to insert into document's head
+     * @return name of pdf document
+     */
     private String getHead(ResourceBundle resourceBundle, String page, String currentPage){
         if(page != null && currentPage != null){
             return resourceBundle.getString(REPORT).toUpperCase() + resourceBundle.getString(PAGE) + currentPage;

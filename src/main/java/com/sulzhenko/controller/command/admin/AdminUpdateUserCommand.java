@@ -11,9 +11,7 @@ import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.SQLException;
-
-import static com.sulzhenko.controller.ApplicationContext.getApplicationContext;
+import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 
 /**
  * Update user controller action
@@ -24,7 +22,7 @@ public class AdminUpdateUserCommand implements Command, Constants, Path {
     private static final Logger logger = LogManager.getLogger(AdminUpdateUserCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         HttpSession session = request.getSession();
         String forward = PAGE_ERROR_FULL;
         try{

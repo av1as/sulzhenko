@@ -7,11 +7,11 @@ import java.util.Optional;
  * This interface sets the list of CRUD operations
  */
 public interface DAO<Entity> {
-    Optional<Entity> get(Object parameter, String querySQL);
-    List<Entity> getAll();
-    List<Entity> getList(Object parameter, String querySQL);
-    void save(Entity t);
-    void update(Entity t, String[] params);
+    Optional<Entity> get(Object parameter, String querySQL) throws DAOException;
+    List<Entity> getAll() throws DAOException;
+    List<Entity> getList(Object parameter, String querySQL) throws DAOException;
+    void save(Entity t) throws DAOException;
+    void update(Entity t, String[] params) throws DAOException;
 
-    void delete(Entity t);
+    void delete(Entity t) throws DAOException;
 }

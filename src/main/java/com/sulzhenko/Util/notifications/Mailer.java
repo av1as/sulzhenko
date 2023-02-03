@@ -1,19 +1,34 @@
 package com.sulzhenko.Util.notifications;
 
-import com.sulzhenko.model.services.ServiceException;
+import com.sulzhenko.Util.UtilException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
+import static com.sulzhenko.Util.Constants.UNKNOWN_ERROR;
+
+/**
+ * Mailer class for sending email
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
+ */
 public class Mailer{
     private static final String FROM = "newemailforfp@gmail.com";
     private static final String PASSWORD = "jspimzkggethafoa";
     private static final Logger logger = LogManager.getLogger(Mailer.class);
     private Mailer() {
     }
-    public static void send(String to, String sub, String msg){
+
+    /**
+     * Sends email
+     * @param to - adressee
+     * @param subject - subject
+     * @param msg - message body
+     * @throws UtilException is wrapper for MessagingException
+     */
+    public static void send(String to, String subject, String msg) throws UtilException{
         //Get properties object
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -34,14 +49,14 @@ public class Mailer{
         try {
             MimeMessage message = new MimeMessage(session);
             message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
-            message.setSubject(sub);
+            message.setSubject(subject);
             message.setText(msg);
             //send message
             Transport.send(message);
             logger.info("message sent successfully");
         } catch (MessagingException e) {
             logger.error(e.getMessage());
-            throw new ServiceException(e);
+            throw new UtilException(UNKNOWN_ERROR);
         }
     }
 }

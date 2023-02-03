@@ -3,6 +3,12 @@ package com.sulzhenko.model.entity;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Category entity class. Matches table 'category' in database.
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
+ */
 public class Category implements Serializable {
     private static final long serialVersionUID = 1L;
     String name;
@@ -12,7 +18,6 @@ public class Category implements Serializable {
         this.name = name;
         this.id = id;
     }
-
     public Category(String name) {
         this.name = name;
     }

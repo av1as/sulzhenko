@@ -2,6 +2,14 @@ package com.sulzhenko.DTO;
 
 import java.io.Serializable;
 
+/**
+ * UserActivityDTO class. Fields necessary for view.
+ * Use appropriate constructor to create an instance
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
+ */
+
 public class UserActivityDTO implements Serializable {
     private static final long serialVersionUID = 1L;
     private String login;
@@ -20,6 +28,13 @@ public class UserActivityDTO implements Serializable {
         this.totalAmount = totalAmount;
         this.status = status;
         this.category = category;
+    }
+    public UserActivityDTO(String login, String activityName, int activityTime, int numberOfActivities, int totalAmount) {
+        this.login = login;
+        this.activityName = activityName;
+        this.activityTime = activityTime;
+        this.numberOfActivities = numberOfActivities;
+        this.totalAmount = totalAmount;
     }
 
     public UserActivityDTO(String login, int numberOfActivities, int totalAmount) {
@@ -52,24 +67,12 @@ public class UserActivityDTO implements Serializable {
         return activityTime;
     }
 
-    public void setActivityTime(int activityTime) {
-        this.activityTime = activityTime;
-    }
-
     public int getNumberOfActivities() {
         return numberOfActivities;
     }
 
-    public void setNumberOfActivities(int numberOfActivities) {
-        this.numberOfActivities = numberOfActivities;
-    }
-
     public int getTotalAmount() {
         return totalAmount;
-    }
-
-    public void setTotalAmount(int totalAmount) {
-        this.totalAmount = totalAmount;
     }
 
     public String getStatus() {

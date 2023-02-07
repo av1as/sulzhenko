@@ -5,7 +5,6 @@ import com.sulzhenko.model.DAO.implementation.UserActivityDAOImpl;
 import com.sulzhenko.model.entity.Activity;
 import com.sulzhenko.model.entity.Category;
 import com.sulzhenko.model.entity.User;
-import com.sulzhenko.model.services.ServiceException;
 import org.junit.jupiter.api.Test;
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -134,7 +133,7 @@ class DAOUserActivityTests {
         when(dataSource.getConnection()).thenThrow(new SQLException());
         User user = getTestUser();
         Activity activity = getTestActivity();
-        assertThrows(ServiceException.class, () -> userActivityDAO.ifUserHasActivity(user, activity));
+        assertThrows(DAOException.class, () -> userActivityDAO.ifUserHasActivity(user, activity));
     }
     private PreparedStatement prepareMocks(DataSource dataSource) throws SQLException {
         Connection con = mock(Connection.class);

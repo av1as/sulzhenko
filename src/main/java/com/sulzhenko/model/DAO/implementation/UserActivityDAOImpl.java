@@ -5,7 +5,6 @@ import com.sulzhenko.model.Constants;
 import com.sulzhenko.model.DAO.*;
 import javax.sql.DataSource;
 import com.sulzhenko.model.entity.*;
-import com.sulzhenko.model.services.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.sql.Connection;
@@ -26,9 +25,9 @@ import static com.sulzhenko.model.DAO.SQLQueries.UserActivityQueries.*;
 public class UserActivityDAOImpl implements UserActivityDAO, Constants {
     /** An instance of datasource to provide connection to database */
     private final DataSource dataSource;
-    UserDAO userDAO;
-    ActivityDAO activityDAO;
-    RequestDAO requestDAO;
+    private final UserDAO userDAO;
+    private final ActivityDAO activityDAO;
+    private final RequestDAO requestDAO;
     private static final Logger logger = LogManager.getLogger(UserActivityDAOImpl.class);
     public UserActivityDAOImpl(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -95,10 +94,11 @@ public class UserActivityDAOImpl implements UserActivityDAO, Constants {
         }
     }
     /**
-     * Gets amount of time from table 'user_activity'
+     * Sets amount of time to table 'user_activity'
      * @param user - User entity
      * @param activity - Activity entity
-     * @throws DAOException is wrapper for SQLException, SQLException
+     * @param amount - amount of time
+     * @throws DAOException is wrapper for SQLException
      */
     @Override
     public void setAmount(User user, Activity activity, int amount) throws DAOException {
@@ -114,6 +114,13 @@ public class UserActivityDAOImpl implements UserActivityDAO, Constants {
         }
     }
 
+    /**
+     * Gets amount of time from database table 'user_activity'
+     * @param user - User entity
+     * @param activity - Activity entity
+     * @return amount of time
+     * @throws DAOException is wrapper for SQLException
+     */
     @Override
     public int getAmount(User user, Activity activity) throws DAOException {
         int amount = 0;
@@ -155,6 +162,7 @@ public class UserActivityDAOImpl implements UserActivityDAO, Constants {
     /**
      * Gets number of records from table 'user_activity' for certain user
      * @param login - user login
+     * @return number of records
      * @throws DAOException is wrapper for SQLException
      */
     @Override
@@ -174,8 +182,13 @@ public class UserActivityDAOImpl implements UserActivityDAO, Constants {
         return number;
     }
 
-
-
+    /**
+     * Gets sorted list of all records from table 'user_activity'
+     * @param query - SQL query
+     * @return number of records
+     * @throws DAOException is wrapper for SQLException
+     */
+    @Override
     public List<UserActivityDTO> listAllUserActivitiesSorted(String query) throws DAOException{
         List<UserActivityDTO> list = new ArrayList<>();
         try (Connection con = dataSource.getConnection();
@@ -191,6 +204,15 @@ public class UserActivityDAOImpl implements UserActivityDAO, Constants {
         }
         return list;
     }
+
+    /**
+     * Gets sorted list of certain user records from table 'user_activity'
+     * @param query - SQL query
+     * @param login - user login
+     * @return number of records
+     * @throws DAOException is wrapper for SQLException
+     */
+    @Override
     public List<UserActivityDTO> listUserActivitiesSorted(String query, String login) throws DAOException{
         List<UserActivityDTO> list = new ArrayList<>();
         try (Connection con = dataSource.getConnection();
@@ -207,6 +229,14 @@ public class UserActivityDAOImpl implements UserActivityDAO, Constants {
         }
         return list;
     }
+
+    /**
+     * Checks if user has certain activity
+     * @param user - user
+     * @param activity - activity
+     * @return true if user has activity, false otherwise
+     * @throws DAOException is wrapper for SQLException
+     */
     @Override
     public boolean ifUserHasActivity(User user, Activity activity){
         try (Connection con = dataSource.getConnection();
@@ -219,17 +249,13 @@ public class UserActivityDAOImpl implements UserActivityDAO, Constants {
             }
         } catch (SQLException e) {
             logger.fatal(e.getMessage());
-            throw new ServiceException(UNKNOWN_ERROR);
+            throw new DAOException(UNKNOWN_ERROR);
         }
         return false;
     }
-    private UserActivityDTO getUserActivityDTOWithFields(ResultSet rs) throws SQLException {
+    private static UserActivityDTO getUserActivityDTOWithFields(ResultSet rs) throws SQLException {
         return new UserActivityDTO(rs.getString(2),
                 rs.getString(3), rs.getInt(4),
                 rs.getInt(5), rs.getInt(6));
-    }
-    private UserActivityDTO getUserActivityDTOWithFieldsBrief(ResultSet rs) throws SQLException {
-        return new UserActivityDTO(rs.getString(2),
-                rs.getInt(3), rs.getInt(4));
     }
 }

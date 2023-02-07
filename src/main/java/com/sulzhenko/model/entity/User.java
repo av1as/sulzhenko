@@ -150,20 +150,6 @@ public class User implements Serializable {
         return Objects.hash(login);
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "account=" + account +
-                ", login='" + login + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + firstName + '\'' +
-                ", surname='" + lastName + '\'' +
-                ", role='" + role + '\'' +
-                ", status='" + status + '\'' +
-                ", notifications='" + notification + '\'' +
-                '}';
-    }
     public enum Role {
         ADMIN("administrator"), SYSTEM_USER("system user"), UNKNOWN("unknown role");
         public final String value;

@@ -29,8 +29,8 @@ import static com.sulzhenko.model.services.validator.InputValidator.*;
  * @version 1.0
  */
 public class UserServiceImpl implements UserService {
-    UserDAO userDAO;
-    Sha sha;
+    private final UserDAO userDAO;
+    private final Sha sha;
     public UserServiceImpl(DataSource dataSource){
         this.userDAO = new UserDAOImpl(dataSource);
         this.sha = new Sha();
@@ -185,8 +185,7 @@ public class UserServiceImpl implements UserService {
     public List<UserDTO> viewAllSystemUsers(int startPosition, int size){
         List<UserDTO> list = new ArrayList<>();
         List<User> users = userDAO.getByRole(SYSTEM_USER);
-        for(int i = startPosition; (i < (startPosition + size))
-                && (i < users.size()); i++){
+        for(int i = startPosition; (i < (startPosition + size)) && (i < users.size()); i++){
             list.add(getUserDTO(users.get(i).getLogin()));
         }
         return list;
@@ -202,8 +201,7 @@ public class UserServiceImpl implements UserService {
     public List<UserDTO> viewAllActiveUsers(int startPosition, int size){
         List<UserDTO> list = new ArrayList<>();
         List<User> users = userDAO.getByStatus(ACTIVE);
-        for(int i = startPosition; (i < (startPosition + size))
-                && (i < users.size()); i++){
+        for(int i = startPosition; (i < (startPosition + size)) && (i < users.size()); i++){
             list.add(getUserDTO(users.get(i).getLogin()));
         }
         return list;
@@ -219,8 +217,7 @@ public class UserServiceImpl implements UserService {
     public List<UserDTO> viewAllInactiveUsers(int startPosition, int size){
         List<UserDTO> list = new ArrayList<>();
         List<User> users = userDAO.getByStatus(INACTIVE);
-        for(int i = startPosition; (i < (startPosition + size))
-                && (i < users.size()); i++){
+        for(int i = startPosition; (i < (startPosition + size)) && (i < users.size()); i++){
             list.add(getUserDTO(users.get(i).getLogin()));
         }
         return list;
@@ -236,8 +233,7 @@ public class UserServiceImpl implements UserService {
     public List<UserDTO> viewAllDeactivatedUsers(int startPosition, int size){
         List<UserDTO> list = new ArrayList<>();
         List<User> users = userDAO.getByStatus(DEACTIVATED);
-        for(int i = startPosition; (i < (startPosition + size))
-                && (i < users.size()); i++){
+        for(int i = startPosition; (i < (startPosition + size)) && (i < users.size()); i++){
             list.add(getUserDTO(users.get(i).getLogin()));
         }
         return list;
@@ -368,8 +364,8 @@ public class UserServiceImpl implements UserService {
      * @param password - user password
      * @return error message if fields are blank, null otherwise
      */
-    @Override
-    public String areFieldsBlank(String login, String password) {
+
+    public static String areFieldsBlank(String login, String password) {
         String errorMessage = null;
         if (login == null || login.isEmpty()) {
             errorMessage = EMPTY_LOGIN;
@@ -434,8 +430,8 @@ public class UserServiceImpl implements UserService {
      * @param passwordConfirm - user password confirmation
      * @return error message if fields are not valid, null otherwise
      */
-    @Override
-    public String validateNewUser(User user, String passwordConfirm){
+
+    public static String validateNewUser(User user, String passwordConfirm){
         String result;
         if(!isValid(user.getLogin(), LOGIN_REGEX)) {
             result = LOGIN_ERROR;
@@ -458,8 +454,8 @@ public class UserServiceImpl implements UserService {
      * @param user - user entity
      * @return error message if fields are not valid, null otherwise
      */
-    @Override
-    public String validateUserUpdate(User user){
+
+    public static String validateUserUpdate(User user){
         String errorMessage;
         if(!user.getPassword().isEmpty() && !isValid(user.getPassword(), PASSWORD_REGEX)){
             errorMessage = PASSWORD_ERROR;
@@ -478,8 +474,8 @@ public class UserServiceImpl implements UserService {
      * @param user - user entity
      * @return error message if fields are not valid, null otherwise
      */
-    @Override
-    public String validateAdminUserUpdate(User user){
+
+    public static String validateAdminUserUpdate(User user){
         String result;
         if(!isValid(user.getEmail(), EMAIL_REGEX)){
             result = EMAIL_ERROR;
@@ -495,8 +491,8 @@ public class UserServiceImpl implements UserService {
      * Creates and sends emails to certain user about update their account
      * @param user - user
      */
-    @Override
-    public void notifyAboutUpdate(User user){
+
+    public static void notifyAboutUpdate(User user){
             NotificationFactory factory = new NotificationFactories().accountUpdateFactory(user);
             String subject = factory.createSubject();
             String body = factory.createBody();
@@ -508,7 +504,7 @@ public class UserServiceImpl implements UserService {
      * @param user - user
      * @param temporaryPassword - temporary password
      */
-    private void sendTemporaryPassword(User user, String temporaryPassword){
+    private static void sendTemporaryPassword(User user, String temporaryPassword){
         NotificationFactory factory = new NotificationFactories().recoverPasswordFactory(user, temporaryPassword);
         String subject = factory.createSubject();
         String body = factory.createBody();

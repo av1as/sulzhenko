@@ -25,7 +25,7 @@ import static com.sulzhenko.model.DAO.SQLQueries.ActivityQueries.*;
 public class ActivityDAOImpl implements ActivityDAO, Constants {
     /** An instance of datasource to provide connection to database */
     private final DataSource dataSource;
-    CategoryDAO categoryDAO;
+    private final CategoryDAO categoryDAO;
 
     public ActivityDAOImpl(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -83,13 +83,13 @@ public class ActivityDAOImpl implements ActivityDAO, Constants {
     }
 
     /**
-     * Gets sorted and ordered list of records in database
+     * Gets sorted and ordered map of records in database
      * @param querySQL - SQL query for database
      * @return LinkedHashMap of Activity as key and number of users as value
      * @throws DAOException is wrapper for SQLException
      */
     @Override
-    public Map<Activity, Integer> getSortedList(String querySQL) throws DAOException{
+    public Map<Activity, Integer> getSortedMap(String querySQL) throws DAOException{
         Map<Activity, Integer> map = new LinkedHashMap<>();
         try (Connection con = dataSource.getConnection();
              PreparedStatement stmt = con.prepareStatement(querySQL)) {
@@ -257,7 +257,7 @@ public class ActivityDAOImpl implements ActivityDAO, Constants {
      * @param filter - filter to choose some records
      * @return SQL query
      */
-    private String getTotalRecords(String filter){
+    private static String getTotalRecords(String filter){
         String query = "SELECT COUNT(activity.activity_name)\n" +
                 "FROM activity\n" +
                 "INNER JOIN category_of_activity\n" +

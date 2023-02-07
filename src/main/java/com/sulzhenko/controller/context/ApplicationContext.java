@@ -7,7 +7,6 @@ import com.sulzhenko.model.services.implementation.*;
 import jakarta.servlet.ServletContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import javax.sql.DataSource;
 import java.io.InputStream;
 import java.util.Properties;

@@ -14,8 +14,8 @@ import static com.sulzhenko.model.DAO.SQLQueries.RequestQueries.*;
 import static com.sulzhenko.model.DAO.SQLQueries.UserActivityQueries.IF_USER_HAS_ACTIVITY;
 
 /**
- * Request DAO class for CRUD operations with database. Matches tables 'request', 'user', 'activity',
- * 'action_with_request' in database.
+ * Request DAO class for CRUD operations with database. Matches tables 'request', 'action_with_request'
+ * in database.
  *
  * @author Artem Sulzhenko
  * @version 1.0
@@ -23,13 +23,9 @@ import static com.sulzhenko.model.DAO.SQLQueries.UserActivityQueries.IF_USER_HAS
 public class RequestDAOImpl implements RequestDAO, Constants {
     /** An instance of datasource to provide connection to database */
     private final DataSource dataSource;
-    UserDAO userDAO;
-    ActivityDAO activityDAO;
     private static final Logger logger = LogManager.getLogger(RequestDAOImpl.class);
     public RequestDAOImpl(DataSource dataSource) {
         this.dataSource = dataSource;
-        this.userDAO = new UserDAOImpl(dataSource);
-        this.activityDAO = new ActivityDAOImpl(dataSource);
     }
 
     /**

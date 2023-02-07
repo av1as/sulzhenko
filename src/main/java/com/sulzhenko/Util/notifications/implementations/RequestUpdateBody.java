@@ -11,9 +11,9 @@ import com.sulzhenko.model.entity.User;
  * @version 1.0
  */
 public class RequestUpdateBody implements Body {
-    User user;
-    Request request;
-    String updateDescription;
+    private final User user;
+    private final Request request;
+    private final String updateDescription;
 
     public RequestUpdateBody(User user, Request request, String updateDescription) {
         this.user = user;

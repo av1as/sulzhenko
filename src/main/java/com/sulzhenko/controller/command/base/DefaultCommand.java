@@ -5,6 +5,11 @@ import com.sulzhenko.controller.Path;
 import com.sulzhenko.model.services.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+/**
+ * Default command controller action
+ *
+ */
 public class DefaultCommand implements Command, Path {
 
     @Override

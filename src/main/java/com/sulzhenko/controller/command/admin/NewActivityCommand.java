@@ -12,9 +12,12 @@ import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.util.List;
-
 import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 
+/**
+ * NewActivity controller action
+ *
+ */
 public class NewActivityCommand implements Command, Constants, Path {
     ActivityService activityService = getApplicationContext().getActivityService();
     private static final Logger logger = LogManager.getLogger(NewActivityCommand.class);

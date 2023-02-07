@@ -50,12 +50,4 @@ public class Category implements Serializable {
     public int hashCode() {
         return Objects.hash(name);
     }
-
-    @Override
-    public String toString() {
-        return "Category{" +
-                "name='" + name + '\'' +
-                ", id=" + id +
-                '}';
-    }
 }

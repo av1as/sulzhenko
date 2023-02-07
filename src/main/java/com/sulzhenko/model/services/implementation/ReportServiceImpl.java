@@ -21,8 +21,8 @@ import java.util.Objects;
  * @version 1.0
  */
 public class ReportServiceImpl implements ReportService {
+    private final UserActivityDAO userActivityDAO;
     private static final Logger logger = LogManager.getLogger(ReportServiceImpl.class);
-    UserActivityDAO userActivityDAO;
     public ReportServiceImpl(DataSource dataSource) {
         this.userActivityDAO = new UserActivityDAOImpl(dataSource);
     }
@@ -53,6 +53,7 @@ public class ReportServiceImpl implements ReportService {
 
     /**
      * Gets number of records from database
+     * @return  number or records
      * @throws ServiceException is wrapper for SQLException
      */
     @Override
@@ -90,7 +91,7 @@ public class ReportServiceImpl implements ReportService {
      * @param i - sequence number of record
      * @return true if record is first, false otherwise
      */
-    private boolean isFirstRecord(List<UserActivityDTO> activities, int i){
+    private static boolean isFirstRecord(List<UserActivityDTO> activities, int i){
         return isFirstOfList(i) || isFirstOfBlock(i, activities);
     }
 
@@ -100,7 +101,7 @@ public class ReportServiceImpl implements ReportService {
      * @param i - sequence number of record
      * @return true if record is last, false otherwise
      */
-    private boolean isLastRecord(List<UserActivityDTO> activities, int i){
+    private static boolean isLastRecord(List<UserActivityDTO> activities, int i){
         return isLastOfList(i, activities) || isLastOfBlock(i, activities);
     }
 
@@ -109,7 +110,7 @@ public class ReportServiceImpl implements ReportService {
      * @param i - sequence number of record
      * @return true if record is first, false otherwise
      */
-    private boolean isFirstOfList(int i){
+    private static boolean isFirstOfList(int i){
         return i == 0;
     }
 
@@ -118,7 +119,7 @@ public class ReportServiceImpl implements ReportService {
      * @param i - sequence number of record
      * @return true if record is last, false otherwise
      */
-    private boolean isLastOfList(int i, List<UserActivityDTO> list){
+    private static boolean isLastOfList(int i, List<UserActivityDTO> list){
         return i == list.size() - 1;
     }
 
@@ -127,7 +128,7 @@ public class ReportServiceImpl implements ReportService {
      * @param i - sequence number of record
      * @return true if record is first, false otherwise
      */
-    private boolean isFirstOfBlock(int i, List<UserActivityDTO> list){
+    private static boolean isFirstOfBlock(int i, List<UserActivityDTO> list){
         return !Objects.equals(list.get(i).getLogin(), list.get(i - 1).getLogin());
     }
 
@@ -136,7 +137,7 @@ public class ReportServiceImpl implements ReportService {
      * @param i - sequence number of record
      * @return true if record is last, false otherwise
      */
-    private boolean isLastOfBlock(int i, List<UserActivityDTO> list){
+    private static boolean isLastOfBlock(int i, List<UserActivityDTO> list){
         return !Objects.equals(list.get(i).getLogin(), list.get(i + 1).getLogin());
     }
 }

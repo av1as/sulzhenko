@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 
 /**
- * ProfileInfo controller action
+ * Show user list controller action
  */
 public class ShowUsersCommand implements Command, Constants, Path {
     UserService userService = getApplicationContext().getUserService();

@@ -23,12 +23,12 @@ import java.util.Objects;
  * @version 1.0
  */
 public class RequestServiceImpl implements RequestService {
-    UserService userService;
-    UserDAO userDAO;
-    ActivityDAO activityDAO;
-    ActivityService activityService;
-    UserActivityDAO userActivityDAO;
-    RequestDAO requestDAO;
+    private  final UserService userService;
+    private  final UserDAO userDAO;
+    private  final ActivityDAO activityDAO;
+    private  final ActivityService activityService;
+    private  final UserActivityDAO userActivityDAO;
+    private  final RequestDAO requestDAO;
 
     public RequestServiceImpl(DataSource dataSource) {
         this.userService = new UserServiceImpl(dataSource);
@@ -196,17 +196,24 @@ public class RequestServiceImpl implements RequestService {
     public List<RequestDTO> viewAllRequests(int startPosition, int size){
         List<RequestDTO> list = new ArrayList<>();
         for(int i = startPosition; (i < (startPosition + size)) && (i < requestDAO.getAll().size()); i++){
-            Request request = requestDAO.getAll().get(i);
-            RequestDTO requestDTO = new RequestDTO.Builder()
-                    .withId(request.getId())
-                    .withLogin(request.getLogin())
-                    .withActivityName(request.getActivityName())
-                    .withActionToDo(request.getActionToDo())
-                    .withDescription(request.getDescription())
-                    .build();
-            list.add(requestDTO);
+            list.add(getRequestDtoFromRequest(requestDAO.getAll().get(i)));
         }
         return list;
+    }
+
+    /**
+     * Auxiliary method to convert request into requestDTO
+     * @param request - Request entity
+     * @return RequestDTO
+     */
+    private static RequestDTO getRequestDtoFromRequest(Request request) {
+        return new RequestDTO.Builder()
+                .withId(request.getId())
+                .withLogin(request.getLogin())
+                .withActivityName(request.getActivityName())
+                .withActionToDo(request.getActionToDo())
+                .withDescription(request.getDescription())
+                .build();
     }
 
     /**
@@ -220,14 +227,7 @@ public class RequestServiceImpl implements RequestService {
         List<RequestDTO> list = new ArrayList<>();
         for(int i = startPosition; (i < (startPosition + size))
                 && (i < requestDAO.getByActionToDo(ADD).size()); i++){
-            Request request = requestDAO.getByActionToDo(ADD).get(i);
-            RequestDTO requestDTO = new RequestDTO.Builder()
-                    .withLogin(request.getLogin())
-                    .withActivityName(request.getActivityName())
-                    .withActionToDo(request.getActionToDo())
-                    .withDescription(request.getDescription())
-                    .build();
-            list.add(requestDTO);
+            list.add(getRequestDtoFromRequest(requestDAO.getAll().get(i)));
         }
         return list;
     }
@@ -243,14 +243,7 @@ public class RequestServiceImpl implements RequestService {
         List<RequestDTO> list = new ArrayList<>();
         for(int i = startPosition; (i < (startPosition + size))
                 && (i < requestDAO.getByActionToDo(REMOVE).size()); i++){
-            Request request = requestDAO.getByActionToDo(REMOVE).get(i);
-            RequestDTO requestDTO = new RequestDTO.Builder()
-                    .withLogin(request.getLogin())
-                    .withActivityName(request.getActivityName())
-                    .withActionToDo(request.getActionToDo())
-                    .withDescription(request.getDescription())
-                    .build();
-            list.add(requestDTO);
+            list.add(getRequestDtoFromRequest(requestDAO.getAll().get(i)));
         }
         return list;
     }
@@ -282,16 +275,9 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public List<RequestDTO> viewAllUserRequests(String login, int startPosition, int size){
         List<RequestDTO> list = new ArrayList<>();
-        for(int i = startPosition; (i < (startPosition + size)) && (i < requestDAO.getByLogin(login).size()); i++){
-            Request request = requestDAO.getByLogin(login).get(i);
-            RequestDTO requestDTO = new RequestDTO.Builder()
-                    .withId(request.getId())
-                    .withLogin(request.getLogin())
-                    .withActivityName(request.getActivityName())
-                    .withActionToDo(request.getActionToDo())
-                    .withDescription(request.getDescription())
-                    .build();
-            list.add(requestDTO);
+        for(int i = startPosition; (i < (startPosition + size)) &&
+                (i < requestDAO.getByLogin(login).size()); i++){
+            list.add(getRequestDtoFromRequest(requestDAO.getByLogin(login).get(i)));
         }
         return list;
     }
@@ -309,15 +295,7 @@ public class RequestServiceImpl implements RequestService {
         List<RequestDTO> list = new ArrayList<>();
         for(int i = startPosition; (i < (startPosition + size))
                 && (i < requestDAO.getByLoginAndAction(login, action).size()); i++){
-            Request request = requestDAO.getByLoginAndAction(login, action).get(i);
-            RequestDTO requestDTO = new RequestDTO.Builder()
-                    .withId(request.getId())
-                    .withLogin(request.getLogin())
-                    .withActivityName(request.getActivityName())
-                    .withActionToDo(request.getActionToDo())
-                    .withDescription(request.getDescription())
-                    .build();
-            list.add(requestDTO);
+            list.add(getRequestDtoFromRequest(requestDAO.getByLoginAndAction(login, action).get(i)));
         }
         return list;
     }
@@ -380,7 +358,7 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public boolean ifRequestUnique(Request request) throws ServiceException {
         boolean result;
-        try  {
+        try {
             result = requestDAO.ifRequestUnique(request);
         } catch (DAOException e){
             logger.fatal(e);

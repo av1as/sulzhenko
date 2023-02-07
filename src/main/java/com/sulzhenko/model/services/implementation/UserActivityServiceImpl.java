@@ -27,19 +27,17 @@ import static com.sulzhenko.model.DAO.SQLQueries.UserActivityQueries.*;
  */
 
 public class UserActivityServiceImpl implements UserActivityService {
-    UserDAO userDAO;
-    ActivityDAO activityDAO;
-    UserActivityDAO userActivityDAO;
-    RequestDAO requestDAO;
-    RequestService requestService;
-    UserService userService;
+    private  final UserDAO userDAO;
+    private  final ActivityDAO activityDAO;
+    private  final UserActivityDAO userActivityDAO;
+    private  final RequestService requestService;
+    private  final UserService userService;
     private static final Logger logger = LogManager.getLogger(UserActivityServiceImpl.class);
 
     public UserActivityServiceImpl(DataSource dataSource) {
         this.userDAO = new UserDAOImpl(dataSource);
         this.activityDAO = new ActivityDAOImpl(dataSource);
         this.userActivityDAO = new UserActivityDAOImpl(dataSource);
-        this.requestDAO = new RequestDAOImpl(dataSource);
         this.requestService = new RequestServiceImpl(dataSource);
         this.userService = new UserServiceImpl(dataSource);
     }
@@ -216,7 +214,7 @@ public class UserActivityServiceImpl implements UserActivityService {
      * @param currentPage - number of page of the whole list of records, represented as a String
      * @return SQL query
      */
-    private String buildAllUsersQuery(String currentPage){
+    private static String buildAllUsersQuery(String currentPage){
         int page = 1;
         if(currentPage != null)
             page = Integer.parseInt(currentPage);
@@ -230,7 +228,7 @@ public class UserActivityServiceImpl implements UserActivityService {
      * @param pageFromRequest - number of page of the whole list of records, represented as a String
      * @return SQL query
      */
-    private String buildUserQuery(String pageFromRequest){
+    private static String buildUserQuery(String pageFromRequest){
         int page = 1;
         if(pageFromRequest != null)
             page = Integer.parseInt(pageFromRequest);
@@ -244,7 +242,7 @@ public class UserActivityServiceImpl implements UserActivityService {
      * @param activity - activity
      * @return Category entity
      */
-    private String defineCategory(Activity activity){
+    private static String defineCategory(Activity activity){
         return activity.getCategory().getName();
     }
 

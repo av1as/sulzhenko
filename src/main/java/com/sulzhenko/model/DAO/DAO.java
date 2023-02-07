@@ -12,6 +12,5 @@ public interface DAO<Entity> {
     List<Entity> getList(Object parameter, String querySQL) throws DAOException;
     void save(Entity t) throws DAOException;
     void update(Entity t, String[] params) throws DAOException;
-
     void delete(Entity t) throws DAOException;
 }

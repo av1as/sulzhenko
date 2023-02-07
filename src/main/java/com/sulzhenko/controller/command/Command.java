@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 
 /**
- * Main interface for the Action pattern implementation.
+ * Main interface for the Command pattern implementation.
  *
  */
 public interface Command {

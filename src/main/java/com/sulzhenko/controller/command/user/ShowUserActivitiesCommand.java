@@ -20,7 +20,7 @@ import static com.sulzhenko.Util.PaginationUtil.paginate;
 
 
 /**
- * ProfileInfo controller action
+ * Show user activities list controller action
  */
 public class ShowUserActivitiesCommand implements Command, Constants, Path {
     UserActivityService userActivityService = getApplicationContext().getUserActivityService();

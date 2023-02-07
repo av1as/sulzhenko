@@ -19,7 +19,7 @@ import static com.sulzhenko.model.Constants.ALL_CATEGORIES;
 import static com.sulzhenko.model.Constants.ASC;
 
 /**
- * ProfileInfo controller action
+ * ShowActivity controller action
  */
 public class ShowActivityCommand implements Command, Constants, Path {
     ActivityService activityService = getApplicationContext().getActivityService();

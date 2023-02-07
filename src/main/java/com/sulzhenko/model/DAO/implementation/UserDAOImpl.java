@@ -25,10 +25,10 @@ import static com.sulzhenko.model.DAO.SQLQueries.UserQueries.*;
 public class UserDAOImpl implements UserDAO, Constants {
     /** An instance of datasource to provide connection to database */
     private final DataSource dataSource;
+    private static final Logger logger = LogManager.getLogger(UserDAOImpl.class);
     public UserDAOImpl(DataSource dataSource){
         this.dataSource = dataSource;
     }
-    private static final Logger logger = LogManager.getLogger(UserDAOImpl.class);
 
     /**
      * Gets instance of User from database by some parameter

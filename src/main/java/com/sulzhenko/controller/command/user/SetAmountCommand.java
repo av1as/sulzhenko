@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 
 /**
- * Register controller action
+ * Set amount of time controller action
  *
  */
 public class SetAmountCommand implements Command, Constants, Path {
@@ -32,7 +32,7 @@ public class SetAmountCommand implements Command, Constants, Path {
         } catch (ServiceException e){
             session.setAttribute(ERROR, e.getMessage());
             logger.warn(e.getMessage());
-            return Path.PAGE_ERROR_FULL;
+            return PAGE_ERROR_FULL;
         }
         request.setAttribute(USER, userDTO);
         return PAGE_CONTROLLER_USER_ACTIVITIES;

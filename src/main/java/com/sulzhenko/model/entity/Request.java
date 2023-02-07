@@ -92,15 +92,4 @@ public class Request implements Serializable {
     public int hashCode() {
         return Objects.hash(login, activityName, actionToDo);
     }
-
-    @Override
-    public String toString() {
-        return "Request{" +
-                "id=" + id +
-                ", login='" + login + '\'' +
-                ", activityName='" + activityName + '\'' +
-                ", actionToDo='" + actionToDo + '\'' +
-                ", description='" + description + '\'' +
-                '}';
-    }
 }

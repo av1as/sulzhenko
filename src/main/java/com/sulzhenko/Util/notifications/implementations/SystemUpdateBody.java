@@ -10,8 +10,8 @@ import com.sulzhenko.model.entity.User;
  * @version 1.0
  */
 public class SystemUpdateBody implements Body {
-    User user;
-    String updateDescription;
+    private final User user;
+    private final String updateDescription;
 
     public SystemUpdateBody(User user, String updateDescription) {
         this.user = user;

@@ -12,12 +12,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import java.util.List;
-
 import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 import static com.sulzhenko.Util.PaginationUtil.paginate;
 
+/**
+ * Show full report controller action
+ *
+ */
 public class ShowFullReportCommand implements Command, Constants, Path {
     UserActivityService userActivityService = getApplicationContext().getUserActivityService();
     ReportService reportService = getApplicationContext().getReportService();

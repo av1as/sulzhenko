@@ -42,7 +42,6 @@ public interface Constants {
     String USER = "user";
     String USER_HAS_NO_ACTIVITY ="user.has.no.activity";
     String UNKNOWN_ERROR = "unknown.error";
-
     String UTF8 = "UTF-8";
     String WRONG_ACTION = "wrong.action";
     String WRONG_ACTIVITY = "wrong.activity";

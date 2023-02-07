@@ -12,6 +12,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 
+/**
+ * Remove user request controller action
+ *
+ */
 public class RemoveUserRequestCommand implements Command, Constants, Path {
     RequestService requestService = getApplicationContext().getRequestService();
     private static final Logger logger = LogManager.getLogger(RemoveUserRequestCommand.class);

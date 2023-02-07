@@ -22,16 +22,14 @@ import static com.sulzhenko.model.DAO.SQLQueries.ActivityQueries.FIND_CONNECTED_
  * @version 1.0
  */
 public class ActivityServiceImpl implements ActivityService {
-    ActivityDAO activityDAO;
-    UserDAO userDAO;
-    CategoryService categoryService;
-
+    private  final ActivityDAO activityDAO;
+    private  final UserDAO userDAO;
+    private  final CategoryService categoryService;
     public ActivityServiceImpl(DataSource dataSource) {
         this.activityDAO = new ActivityDAOImpl(dataSource);
         this.categoryService = new CategoryServiceImpl(dataSource);
         this.userDAO = new UserDAOImpl(dataSource);
     }
-
     private static final Logger logger = LogManager.getLogger(ActivityServiceImpl.class);
 
     /**
@@ -53,10 +51,9 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public void addActivity(String name, String categoryName) throws ServiceException{
         if(!categoryService.isCategoryNameAvailable(categoryName) && isNameAvailable(name)) {
-            Category category = categoryService.getCategory(categoryName);
             Activity activity = new Activity.Builder()
                     .withName(name)
-                    .withCategory(category)
+                    .withCategory(categoryService.getCategory(categoryName))
                     .build();
             try {
                 activityDAO.save(activity);
@@ -105,11 +102,10 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public void deleteActivity(String name) throws ServiceException{
         if(!isNameAvailable(name)) {
-            List<User> connectedUsers = getConnectedUsersWithNotification(name);
-            String description = String.format(ACTIVITY_DELETE, name);
             try{
                 activityDAO.delete(activityDAO.getByName(name).orElse(null));
-                notifyAboutUpdate(connectedUsers, description);
+                List<User> connectedUsers = getConnectedUsersWithNotification(name);
+                notifyAboutUpdate(connectedUsers, String.format(ACTIVITY_DELETE, name));
             } catch(DAOException e){
                 logger.warn(e.getMessage());
                 throw new ServiceException(e.getMessage());
@@ -128,7 +124,8 @@ public class ActivityServiceImpl implements ActivityService {
      * @param parameterFromRequest - parameter to which order is applied
      * @return SQL query
      */
-    private String buildQuery(String pageFromRequest, String filter, String orderFromRequest, String parameterFromRequest){
+    private static String buildQuery(String pageFromRequest, String filter, String orderFromRequest,
+                                     String parameterFromRequest){
         String parameter = getParam(parameterFromRequest, getOrder(orderFromRequest));
         int page = 1;
         if(pageFromRequest != null)
@@ -136,7 +133,7 @@ public class ActivityServiceImpl implements ActivityService {
         int records = 5;
         int offset = (page - 1) * records;
         return COMMON_PART + applyFilter(filter) + GROUP_ACTIVITY_NAME +
-                applyOrder(parameter, offset, records);
+                String.format(ORDER_BY, parameter, offset, records);
     }
 
     /**
@@ -158,9 +155,7 @@ public class ActivityServiceImpl implements ActivityService {
      * @return part of SQL query
      */
     private static String getOrder(String order) {
-        if(Objects.equals(order, DESCENDING)) order = DESC;
-        else order = ASC;
-        return order;
+        return Objects.equals(order, DESCENDING)? DESC : ASC;
     }
 
     /**
@@ -168,20 +163,9 @@ public class ActivityServiceImpl implements ActivityService {
      * @param filter - filter for sorting records
      * @return part of SQL query
      */
-    private String applyFilter(String filter){
+    private static String applyFilter(String filter){
         if(filter == null || filter.isEmpty() || Objects.equals(filter, ALL_CATEGORIES)) return "";
         else return String.format("WHERE category_name = '%s'\n", filter);
-    }
-
-    /**
-     * Construes ordering part of SQL query
-     * @param parameter - parameter for ordering records
-     * @param offset - offset records
-     * @param number - number of records per page
-     * @return part of SQL query
-     */
-    private String applyOrder(String parameter, int offset, int number){
-        return String.format(ORDER_BY, parameter, offset, number);
     }
 
     /**
@@ -216,7 +200,7 @@ public class ActivityServiceImpl implements ActivityService {
                                                   String page) throws ServiceException{
         List<ActivityDTO> list = new ArrayList<>();
         try {
-            Map<Activity, Integer> map = activityDAO.getSortedList(buildQuery(page, filter, order, parameter));
+            Map<Activity, Integer> map = activityDAO.getSortedMap(buildQuery(page, filter, order, parameter));
             map.forEach((activity, number)
                     -> list.add(new ActivityDTO(activity.getName(), activity.getCategory().getName(), number)));
         } catch (DAOException e) {
@@ -239,12 +223,12 @@ public class ActivityServiceImpl implements ActivityService {
      * @param connectedUsers - list of addressees
      * @param description - text fragment to form email body
      */
-    private void notifyAboutUpdate(List<User> connectedUsers, String description){
+    private static void notifyAboutUpdate(List<User> connectedUsers, String description){
         for(User user: connectedUsers){
             NotificationFactory factory = new NotificationFactories().systemUpdateFactory(user, description);
             String subject = factory.createSubject();
             String body = factory.createBody();
-            Mailer.send(user.getEmail(),subject,body);
+            Mailer.send(user.getEmail(), subject, body);
         }
     }
 
@@ -256,6 +240,6 @@ public class ActivityServiceImpl implements ActivityService {
      */
     @Override
     public boolean isNameAvailable(String name) throws ServiceException{
-        return activityDAO.getByName(name).isEmpty();
+        return getActivity(name) == null;
     }
 }

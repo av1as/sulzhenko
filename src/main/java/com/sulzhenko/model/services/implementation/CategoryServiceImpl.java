@@ -20,12 +20,10 @@ import java.util.List;
  */
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryDAO categoryDAO;
-
+    private static final Logger logger = LogManager.getLogger(CategoryServiceImpl.class);
     public CategoryServiceImpl(DataSource dataSource) {
         this.categoryDAO = new CategoryDAOImpl(dataSource);
     }
-
-    private static final Logger logger = LogManager.getLogger(CategoryServiceImpl.class);
 
     /**
      * Gets instance of Category by name

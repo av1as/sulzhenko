@@ -13,6 +13,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.util.Objects;
 import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
+import static com.sulzhenko.model.services.implementation.UserServiceImpl.areFieldsBlank;
 
 /**
  * Login controller action
@@ -28,8 +29,8 @@ public class LoginCommand implements Command, Constants, Path {
     String forward = PAGE_ERROR_FULL;
     String login = request.getParameter(LOGIN);
     String password = request.getParameter(PASSWORD);
-    if (userService.areFieldsBlank(login, password) != null) {
-      session.setAttribute(ERROR, userService.areFieldsBlank(login, password));
+    if (areFieldsBlank(login, password) != null) {
+      session.setAttribute(ERROR, areFieldsBlank(login, password));
     } else if (userService.areFieldsIncorrect(login, password) != null){
         session.setAttribute(ERROR, userService.areFieldsIncorrect(login, password));
     } else {

@@ -18,6 +18,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static com.sulzhenko.model.services.implementation.UserServiceImpl.*;
 import static model.DAOTestUtils.getTestUser;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.isA;
@@ -295,24 +296,22 @@ class ServiceUserTests {
     @Test
     void testAreFieldsBlankNullLogin() throws DAOException, SQLException {
         DataSource dataSource = mock(DataSource.class);
-        UserService userService = new UserServiceImpl(dataSource);
         try (PreparedStatement stmt = prepareMocks(dataSource)) {
             ResultSet rs = mock(ResultSet.class);
             when(stmt.executeQuery()).thenReturn(rs);
             when(rs.next()).thenReturn(false);
-            assertEquals("empty.login", userService.areFieldsBlank(null, "asfd"));
+            assertEquals("empty.login", areFieldsBlank(null, "asfd"));
         }
     }
 
     @Test
     void testAreFieldsBlankNullPassword() throws DAOException, SQLException {
         DataSource dataSource = mock(DataSource.class);
-        UserService userService = new UserServiceImpl(dataSource);
         try (PreparedStatement stmt = prepareMocks(dataSource)) {
             ResultSet rs = mock(ResultSet.class);
             when(stmt.executeQuery()).thenReturn(rs);
             when(rs.next()).thenReturn(false);
-            assertEquals("empty.password", userService.areFieldsBlank("login", null));
+            assertEquals("empty.password", areFieldsBlank("login", null));
         }
     }
     @ParameterizedTest
@@ -346,31 +345,23 @@ class ServiceUserTests {
     }
     @Test
     void testValidateNewUserDifferentPasswords() throws DAOException {
-        DataSource dataSource = mock(DataSource.class);
-        UserService userService = new UserServiceImpl(dataSource);
         User user = getTestUser();
-        assertEquals("different.passwords", userService.validateNewUser(user, "newPassword"));
+        assertEquals("different.passwords", validateNewUser(user, "newPassword"));
     }
     @Test
     void testValidateNewUserWrongPassword() throws DAOException {
-        DataSource dataSource = mock(DataSource.class);
-        UserService userService = new UserServiceImpl(dataSource);
         User user = getTestUser();
-        assertEquals("password.requirements", userService.validateNewUser(user, "asdf"));
+        assertEquals("password.requirements", validateNewUser(user, "asdf"));
     }
     @Test
     void testValidateUserUpdateWrongPassword() throws DAOException {
-        DataSource dataSource = mock(DataSource.class);
-        UserService userService = new UserServiceImpl(dataSource);
         User user = getTestUser();
-        assertEquals("password.requirements", userService.validateUserUpdate(user));
+        assertEquals("password.requirements", validateUserUpdate(user));
     }
     @Test
     void testValidateAdminUserUpdate() throws DAOException {
-        DataSource dataSource = mock(DataSource.class);
-        UserService userService = new UserServiceImpl(dataSource);
         User user = getTestUser();
-        assertNull(userService.validateAdminUserUpdate(user));
+        assertNull(validateAdminUserUpdate(user));
     }
     private PreparedStatement prepareMocks(DataSource dataSource) throws SQLException {
         Connection con = mock(Connection.class);

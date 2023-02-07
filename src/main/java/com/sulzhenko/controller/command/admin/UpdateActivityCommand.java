@@ -11,6 +11,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 
+/**
+ * Update activity controller action
+ *
+ */
 public class UpdateActivityCommand implements Command, Constants, Path {
     ActivityService activityService = getApplicationContext().getActivityService();
     private static final Logger logger = LogManager.getLogger(UpdateActivityCommand.class);

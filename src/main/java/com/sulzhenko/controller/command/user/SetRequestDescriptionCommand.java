@@ -10,9 +10,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 
+/**
+ * Set user request description controller action
+ *
+ */
 public class SetRequestDescriptionCommand implements Command, Constants, Path {
     RequestService requestService = getApplicationContext().getRequestService();
     private static final Logger logger = LogManager.getLogger(SetRequestDescriptionCommand.class);
@@ -27,7 +30,7 @@ public class SetRequestDescriptionCommand implements Command, Constants, Path {
         } catch (ServiceException e){
             session.setAttribute(ERROR, e.getMessage());
             logger.warn(e.getMessage());
-            return Path.PAGE_ERROR_FULL;
+            return PAGE_ERROR_FULL;
         }
         return PAGE_CONTROLLER_USER_REQUESTS;
     }

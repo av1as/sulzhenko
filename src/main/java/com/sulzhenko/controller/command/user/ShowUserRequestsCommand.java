@@ -12,6 +12,10 @@ import jakarta.servlet.http.HttpSession;
 
 import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 
+/**
+ * Show user requests list controller action
+ *
+ */
 public class ShowUserRequestsCommand implements Command, Constants, Path {
     RequestService requestService = getApplicationContext().getRequestService();
     @Override

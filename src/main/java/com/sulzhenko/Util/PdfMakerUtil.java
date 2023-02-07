@@ -84,8 +84,7 @@ public class PdfMakerUtil implements Constants {
      *
      */
     private void addReportTableRows(Table table, List<ReportDTO> report) {
-        report.forEach(element ->
-                {
+        report.forEach(element -> {
                     int rawSpan = element.getActivitiesWithTime().size();
                     Cell cell = new Cell(rawSpan, 1).add(new Paragraph(element.getLogin()));
                     table.addCell(cell);

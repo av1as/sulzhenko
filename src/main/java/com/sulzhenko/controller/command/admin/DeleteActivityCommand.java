@@ -8,8 +8,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
+
+/**
+ * DeleteActivity controller action
+ *
+ */
 
 public class DeleteActivityCommand implements Command, Constants, Path {
     ActivityService activityService = getApplicationContext().getActivityService();

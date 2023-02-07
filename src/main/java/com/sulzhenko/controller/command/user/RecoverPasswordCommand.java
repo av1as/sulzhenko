@@ -10,9 +10,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 
+/**
+ * Recover user password controller action
+ *
+ */
 public class RecoverPasswordCommand implements Command, Constants, Path {
     UserService userService = getApplicationContext().getUserService();
     private static final Logger logger = LogManager.getLogger(RecoverPasswordCommand.class);
@@ -20,10 +23,9 @@ public class RecoverPasswordCommand implements Command, Constants, Path {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         HttpSession session = request.getSession();
-        String login = request.getParameter(LOGIN);
         String forward;
         try{
-            userService.recoverPassword(login);
+            userService.recoverPassword(request.getParameter(LOGIN));
             forward = PAGE_CHECK_EMAIL;
         } catch(ServiceException e) {
             logger.warn(e.getMessage());

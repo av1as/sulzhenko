@@ -9,9 +9,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 
+/**
+ * DeclineRequest controller action
+ *
+ */
 public class DeclineRequestCommand implements Command, Constants, Path {
     RequestService requestService = getApplicationContext().getRequestService();
     private static final Logger logger = LogManager.getLogger(DeclineRequestCommand.class);

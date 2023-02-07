@@ -11,6 +11,10 @@ import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * log out controller action
+ *
+ */
 public class LogoutCommand implements Command, Path, Constants {
     private static final Logger logger = LogManager.getLogger(LogoutCommand.class);
 

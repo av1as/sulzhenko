@@ -18,16 +18,11 @@ public interface UserService extends Constants {
     void isAdminUpdateCorrect(String[] params);
     String getErrorMessageUpdate(String login, String password, String newPassword, String newPasswordConfirm);
     int getNumberOfRecords(String status);
-    void notifyAboutUpdate(User user);
     List<UserDTO> viewAllSystemUsers(int startPosition, int size);
     List<UserDTO> viewAllActiveUsers(int startPosition, int size);
     List<UserDTO> viewAllInactiveUsers(int startPosition, int size);
     List<UserDTO> viewAllDeactivatedUsers(int startPosition, int size);
     void adminUpdateUser(UserDTO userDTO, String[] params);
     String areFieldsIncorrect(String login, String password);
-    String areFieldsBlank(String login, String password);
-    String validateNewUser(User user, String passwordConfirm);
-    String validateUserUpdate(User user);
-    String validateAdminUserUpdate(User user);
     List<UserDTO> getUserList(String status, int page, int recordsPerPage);
 }

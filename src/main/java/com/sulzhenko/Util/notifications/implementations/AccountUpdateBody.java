@@ -10,7 +10,7 @@ import com.sulzhenko.model.entity.User;
  * @version 1.0
  */
 public class AccountUpdateBody implements Body {
-    User user;
+    private final User user;
     public AccountUpdateBody(User user) {
         this.user = user;
     }

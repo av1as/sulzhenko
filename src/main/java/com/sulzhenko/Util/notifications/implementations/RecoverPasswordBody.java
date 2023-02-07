@@ -10,8 +10,8 @@ import com.sulzhenko.model.entity.User;
  * @version 1.0
  */
 public class RecoverPasswordBody implements Body {
-    User user;
-    String temporaryPassword;
+    private final User user;
+    private final String temporaryPassword;
     public RecoverPasswordBody(User user, String temporaryPassword) {
         this.user = user;
         this.temporaryPassword = temporaryPassword;

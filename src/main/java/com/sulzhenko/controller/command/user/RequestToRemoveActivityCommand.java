@@ -14,8 +14,10 @@ import org.apache.logging.log4j.Logger;
 import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 
 /**
- * Register controller action
+ * Request to remove activity controller action
  *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 public class RequestToRemoveActivityCommand implements Command, Constants, Path {
     RequestService requestService = getApplicationContext().getRequestService();

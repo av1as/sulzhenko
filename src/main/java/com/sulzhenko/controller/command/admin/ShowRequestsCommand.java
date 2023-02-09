@@ -14,6 +14,8 @@ import static com.sulzhenko.controller.context.ApplicationContext.getApplication
 /**
  * Show list of requests controller action
  *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 public class ShowRequestsCommand implements Command, Constants, Path {
     RequestService requestService = getApplicationContext().getRequestService();

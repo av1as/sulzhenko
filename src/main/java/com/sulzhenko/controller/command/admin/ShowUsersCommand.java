@@ -11,6 +11,9 @@ import static com.sulzhenko.controller.context.ApplicationContext.getApplication
 
 /**
  * Show user list controller action
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 public class ShowUsersCommand implements Command, Constants, Path {
     UserService userService = getApplicationContext().getUserService();

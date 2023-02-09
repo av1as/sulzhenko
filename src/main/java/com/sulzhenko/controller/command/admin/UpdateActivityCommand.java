@@ -14,6 +14,8 @@ import static com.sulzhenko.controller.context.ApplicationContext.getApplication
 /**
  * Update activity controller action
  *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 public class UpdateActivityCommand implements Command, Constants, Path {
     ActivityService activityService = getApplicationContext().getActivityService();

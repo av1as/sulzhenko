@@ -14081,3 +14081,187 @@ ORDER BY activity_name COLLATE utf8_unicode_ci ASC LIMIT 10, 5
 2023-02-07 13:48:58 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- java.sql.SQLException
 2023-02-07 13:48:58 [main] FATAL sulzhenko.model.services.implementation.RequestServiceImpl- com.sulzhenko.model.DAO.DAOException: unknown.error
 2023-02-07 13:48:58 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
+2023-02-08 16:57:47 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-02-08 16:57:47 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- java.sql.SQLException
+2023-02-08 16:57:47 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-02-08 16:57:47 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-02-08 16:57:47 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-02-08 16:57:47 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-02-08 16:57:47 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-02-08 16:57:47 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-02-08 16:57:47 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-02-08 16:57:47 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-02-08 16:57:47 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
+2023-02-08 16:57:48 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6734ff92
+2023-02-08 16:57:48 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
+2023-02-08 16:57:48 [main] ERROR com.sulzhenko.controller.context.ApplicationContext- inStream parameter is null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- java.sql.SQLException
+2023-02-08 16:57:48 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- unknown.error
+2023-02-08 16:57:48 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- wrong.login
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- com.sulzhenko.model.DAO.DAOException: unknown.error
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.login
+2023-02-08 16:57:48 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.password
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- java.sql.SQLException
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-02-08 16:57:48 [main] WARN  sulzhenko.model.services.implementation.ActivityServiceImpl- unknown.error
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- java.sql.SQLException
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- java.sql.SQLException
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- java.sql.SQLException
+2023-02-08 16:57:48 [main] WARN  sulzhenko.model.services.implementation.UserActivityServiceImpl- unknown.error
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- java.sql.SQLException
+2023-02-08 16:57:48 [main] WARN  sulzhenko.model.services.implementation.UserActivityServiceImpl- unknown.error
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- java.sql.SQLException
+2023-02-08 16:57:48 [main] WARN  sulzhenko.model.services.implementation.UserActivityServiceImpl- unknown.error
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- java.sql.SQLException
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.services.implementation.ReportServiceImpl- com.sulzhenko.model.DAO.DAOException: unknown.error
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- java.sql.SQLException
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- java.sql.SQLException
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- null
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- java.sql.SQLException
+2023-02-08 16:57:48 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- null
+2023-02-08 16:57:49 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-02-08 16:57:49 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-02-08 16:57:49 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-02-08 16:57:49 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-02-08 16:57:49 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-02-08 16:57:49 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-02-08 16:57:49 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-02-08 16:57:49 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-02-08 16:57:49 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-02-08 16:57:49 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- java.sql.SQLException
+2023-02-08 16:57:49 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-02-08 16:57:49 [main] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
+2023-02-08 16:57:49 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 16:57:49 [main] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
+2023-02-08 16:57:49 [main] FATAL sulzhenko.model.services.implementation.RequestServiceImpl- java.sql.SQLException
+2023-02-08 16:57:49 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- java.sql.SQLException
+2023-02-08 16:57:49 [main] FATAL sulzhenko.model.services.implementation.RequestServiceImpl- com.sulzhenko.model.DAO.DAOException: unknown.error
+2023-02-08 16:57:49 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set
+2023-02-08 17:02:39 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-02-08 17:02:39 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- java.sql.SQLException
+2023-02-08 17:02:39 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-02-08 17:02:39 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-02-08 17:02:39 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-02-08 17:02:39 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-02-08 17:02:39 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-02-08 17:02:39 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-02-08 17:02:39 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-02-08 17:02:39 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-02-08 17:02:40 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Starting...
+2023-02-08 17:02:40 [main] INFO  com.zaxxer.hikari.pool.HikariPool- HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4ebd6fd6
+2023-02-08 17:02:40 [main] INFO  com.zaxxer.hikari.HikariDataSource- HikariPool-1 - Start completed.
+2023-02-08 17:02:40 [main] ERROR com.sulzhenko.controller.context.ApplicationContext- inStream parameter is null
+2023-02-08 17:02:40 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:40 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:40 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- java.sql.SQLException
+2023-02-08 17:02:40 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- unknown.error
+2023-02-08 17:02:40 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- wrong.login
+2023-02-08 17:02:40 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:40 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:40 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- com.sulzhenko.model.DAO.DAOException: unknown.error
+2023-02-08 17:02:40 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:40 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:40 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:41 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.login
+2023-02-08 17:02:41 [main] WARN  sulzhenko.model.services.implementation.UserServiceImpl- empty.password
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- java.sql.SQLException
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-02-08 17:02:41 [main] WARN  sulzhenko.model.services.implementation.ActivityServiceImpl- unknown.error
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.CategoryDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.ActivityDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- java.sql.SQLException
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- java.sql.SQLException
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- java.sql.SQLException
+2023-02-08 17:02:41 [main] WARN  sulzhenko.model.services.implementation.UserActivityServiceImpl- unknown.error
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- java.sql.SQLException
+2023-02-08 17:02:41 [main] WARN  sulzhenko.model.services.implementation.UserActivityServiceImpl- unknown.error
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- java.sql.SQLException
+2023-02-08 17:02:41 [main] WARN  sulzhenko.model.services.implementation.UserActivityServiceImpl- unknown.error
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- java.sql.SQLException
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.services.implementation.ReportServiceImpl- com.sulzhenko.model.DAO.DAOException: unknown.error
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- java.sql.SQLException
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- java.sql.SQLException
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- java.sql.SQLException
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserActivityDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- java.sql.SQLException
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- null
+2023-02-08 17:02:41 [main] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.UserDAOImpl- null
+2023-02-08 17:02:41 [main] WARN  sulzhenko.model.services.implementation.RequestServiceImpl- unknown.error
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.services.implementation.RequestServiceImpl- java.sql.SQLException
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.DAO.implementation.RequestDAOImpl- java.sql.SQLException
+2023-02-08 17:02:41 [main] FATAL sulzhenko.model.services.implementation.RequestServiceImpl- com.sulzhenko.model.DAO.DAOException: unknown.error
+2023-02-08 17:02:41 [main] INFO  com.sulzhenko.controller.listeners.ContextListener- ApplicationContext is set

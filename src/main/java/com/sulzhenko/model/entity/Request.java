@@ -87,7 +87,6 @@ public class Request implements Serializable {
         Request request = (Request) o;
         return login.equals(request.login) && activityName.equals(request.activityName) && actionToDo.equals(request.actionToDo);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(login, activityName, actionToDo);

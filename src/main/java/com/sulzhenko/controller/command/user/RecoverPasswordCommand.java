@@ -15,6 +15,8 @@ import static com.sulzhenko.controller.context.ApplicationContext.getApplication
 /**
  * Recover user password controller action
  *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 public class RecoverPasswordCommand implements Command, Constants, Path {
     UserService userService = getApplicationContext().getUserService();

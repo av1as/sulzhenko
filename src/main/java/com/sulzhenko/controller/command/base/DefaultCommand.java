@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServletResponse;
 /**
  * Default command controller action
  *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 public class DefaultCommand implements Command, Path {
 

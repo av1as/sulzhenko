@@ -16,6 +16,8 @@ import static com.sulzhenko.controller.context.ApplicationContext.getApplication
 /**
  * Update category controller action
  *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 public class UpdateCategoryCommand implements Command, Constants, Path {
     CategoryService categoryService = getApplicationContext().getCategoryService();

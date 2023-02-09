@@ -18,6 +18,8 @@ import static com.sulzhenko.model.services.implementation.UserServiceImpl.areFie
 /**
  * Login controller action
  *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 public class LoginCommand implements Command, Constants, Path {
   UserService userService = getApplicationContext().getUserService();

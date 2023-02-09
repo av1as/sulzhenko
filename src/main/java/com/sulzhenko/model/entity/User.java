@@ -64,7 +64,7 @@ public class User implements Serializable {
     }
 
     public String getFullName() {
-        if (!firstName.isEmpty() && !lastName.isEmpty()) return firstName + " " + lastName;
+        if (!firstName.isEmpty() && !lastName.isEmpty()) return String.format("%s %s",firstName, lastName);
         else if (!firstName.isEmpty()) return firstName;
         else if (!lastName.isEmpty()) return lastName;
         else return login;

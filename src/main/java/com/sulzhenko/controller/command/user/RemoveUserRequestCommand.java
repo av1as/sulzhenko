@@ -15,6 +15,8 @@ import static com.sulzhenko.controller.context.ApplicationContext.getApplication
 /**
  * Remove user request controller action
  *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 public class RemoveUserRequestCommand implements Command, Constants, Path {
     RequestService requestService = getApplicationContext().getRequestService();

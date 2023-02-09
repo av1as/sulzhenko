@@ -17,6 +17,8 @@ import static com.sulzhenko.controller.context.ApplicationContext.getApplication
 /**
  * NewActivity controller action
  *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 public class NewActivityCommand implements Command, Constants, Path {
     ActivityService activityService = getApplicationContext().getActivityService();

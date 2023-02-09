@@ -18,6 +18,8 @@ import static com.sulzhenko.controller.context.ApplicationContext.getApplication
 /**
  * Request to add User activity controller action
  *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 public class RequestToAddActivityCommand implements Command, Constants, Path {
     RequestService requestService = getApplicationContext().getRequestService();

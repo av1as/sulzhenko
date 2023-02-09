@@ -21,6 +21,9 @@ import static com.sulzhenko.Util.PaginationUtil.paginate;
 
 /**
  * Show user activities list controller action
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 public class ShowUserActivitiesCommand implements Command, Constants, Path {
     UserActivityService userActivityService = getApplicationContext().getUserActivityService();

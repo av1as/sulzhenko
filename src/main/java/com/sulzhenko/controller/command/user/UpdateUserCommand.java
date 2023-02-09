@@ -18,6 +18,8 @@ import static com.sulzhenko.controller.context.ApplicationContext.getApplication
 /**
  * Update user controller action
  *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 public class UpdateUserCommand implements Command, Constants, Path {
     UserService userService = getApplicationContext().getUserService();

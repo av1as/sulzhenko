@@ -20,6 +20,9 @@ import static com.sulzhenko.model.Constants.ASC;
 
 /**
  * ShowActivity controller action
+ *
+ *  @author Artem Sulzhenko
+ *  @version 1.0
  */
 public class ShowActivityCommand implements Command, Constants, Path {
     ActivityService activityService = getApplicationContext().getActivityService();

@@ -14,6 +14,8 @@ import java.util.Map;
 /**
  * Main Command factory for Controller
  *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 public class CommandFactory {
   private static final CommandFactory ACTION_FACTORY = new CommandFactory();

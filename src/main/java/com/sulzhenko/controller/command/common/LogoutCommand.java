@@ -14,6 +14,8 @@ import org.apache.logging.log4j.Logger;
 /**
  * log out controller action
  *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 public class LogoutCommand implements Command, Path, Constants {
     private static final Logger logger = LogManager.getLogger(LogoutCommand.class);

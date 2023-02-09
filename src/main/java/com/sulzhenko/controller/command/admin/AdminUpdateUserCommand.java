@@ -14,8 +14,10 @@ import org.apache.logging.log4j.Logger;
 import static com.sulzhenko.controller.context.ApplicationContext.getApplicationContext;
 
 /**
- * Update user controller action
+ * Update user by admin controller action
  *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 public class AdminUpdateUserCommand implements Command, Constants, Path {
     UserService userService = getApplicationContext().getUserService();

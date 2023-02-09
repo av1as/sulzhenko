@@ -16,6 +16,8 @@ import static com.sulzhenko.controller.context.ApplicationContext.getApplication
 /**
  * Set amount of time controller action
  *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 public class SetAmountCommand implements Command, Constants, Path {
     UserActivityService userActivityService = getApplicationContext().getUserActivityService();

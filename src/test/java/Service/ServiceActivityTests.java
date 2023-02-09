@@ -7,7 +7,6 @@ import com.sulzhenko.model.entity.Activity;
 import com.sulzhenko.model.services.ActivityService;
 import com.sulzhenko.model.services.ServiceException;
 import com.sulzhenko.model.services.implementation.ActivityServiceImpl;
-import jakarta.servlet.http.HttpServletRequest;
 import org.junit.jupiter.api.Test;
 
 import javax.sql.DataSource;
@@ -109,7 +108,6 @@ class ServiceActivityTests {
     void testGetListActivitiesSorted() throws SQLException {
         DataSource dataSource = mock(DataSource.class);
         ActivityService activityService = new ActivityServiceImpl(dataSource);
-//        HttpServletRequest request = mock(HttpServletRequest.class);
         try (PreparedStatement preparedStatement = prepareMocks(dataSource)) {
             ResultSet resultSet = mock(ResultSet.class);
             when(preparedStatement.executeQuery()).thenReturn(resultSet);
@@ -121,7 +119,6 @@ class ServiceActivityTests {
     void testListActivitiesSortedEmpty() throws SQLException {
         DataSource dataSource = mock(DataSource.class);
         ActivityService activityService = new ActivityServiceImpl(dataSource);
-//        HttpServletRequest request = mock(HttpServletRequest.class);
         try (PreparedStatement preparedStatement = prepareMocks(dataSource)) {
             ResultSet resultSet = mock(ResultSet.class);
             when(preparedStatement.executeQuery()).thenReturn(resultSet);
@@ -133,7 +130,6 @@ class ServiceActivityTests {
     void testSqlExceptionListActivitiesSorted() throws SQLException {
         DataSource dataSource = mock(DataSource.class);
         ActivityService activityService = new ActivityServiceImpl(dataSource);
-//        HttpServletRequest request = mock(HttpServletRequest.class);
         when(dataSource.getConnection()).thenThrow(new SQLException());
         assertThrows(ServiceException.class, () -> activityService.listActivitiesSorted("asdf", "asdf", "asdf", "1"));
     }

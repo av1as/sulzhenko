@@ -14,6 +14,8 @@ import static com.sulzhenko.controller.context.ApplicationContext.getApplication
 /**
  * ApproveRequest controller action
  *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 public class ApproveRequestCommand implements Command, Constants, Path {
     RequestService requestService = getApplicationContext().getRequestService();

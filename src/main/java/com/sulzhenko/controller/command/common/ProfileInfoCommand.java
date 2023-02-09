@@ -11,6 +11,9 @@ import jakarta.servlet.http.HttpSession;
 
 /**
  * ProfileInfo controller action
+ *
+ * @author Artem Sulzhenko
+ * @version 1.0
  */
 public class ProfileInfoCommand implements Command, Constants, Path {
     @Override

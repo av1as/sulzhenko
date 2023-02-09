@@ -15,6 +15,9 @@ import static com.sulzhenko.controller.context.ApplicationContext.getApplication
 
 /**
  * Show categories controller action
+ *
+ *  @author Artem Sulzhenko
+ *  @version 1.0
  */
 public class ShowCategoryCommand implements Command, Constants, Path {
     CategoryService categoryService = getApplicationContext().getCategoryService();

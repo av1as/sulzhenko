@@ -1,9 +1,11 @@
+package DTO;
+
 import com.sulzhenko.DTO.UserDTO;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class UserDTOTests {
+class UserDtoTests {
     @Test
     void testIsNotificationChecked(){
         UserDTO userDTO = new UserDTO.Builder()

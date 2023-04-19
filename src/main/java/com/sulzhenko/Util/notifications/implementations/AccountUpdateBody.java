@@ -21,6 +21,7 @@ public class AccountUpdateBody implements Body {
      */
     @Override
     public String asText() {
-        return String.format("Hello, %s,\nyour account %s was updated.", user.getFullName(), user.getLogin());
+        return String.format("Hello, %s,\nyour account %s was updated.",
+                user.getFullName(), user.getLogin());
     }
 }

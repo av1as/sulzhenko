@@ -1,4 +1,4 @@
-package com.sulzhenko.model.services.validator;
+package com.sulzhenko.Util.validator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -42,7 +42,7 @@ public class InputValidator {
      * Compares input value with regular expression.
      * @param input - The input value to be validated
      * @param regex – The valid regular expression
-     * Return true if matches otherwise false.
+     * Return true if matches, otherwise false.
      */
 
     public static boolean isValid(String input, String regex) {

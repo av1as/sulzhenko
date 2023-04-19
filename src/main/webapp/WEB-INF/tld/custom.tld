@@ -6,16 +6,6 @@
     <tlib-version>1.0</tlib-version>
     <short-name>ctg</short-name>
     <uri>customtags</uri>
-<!--    <tag>-->
-<!--        <name>hello</name>-->
-<!--        <tag-class>com.sulzhenko.controller.tag.HelloTag</tag-class>-->
-<!--        <body-content>empty</body-content>-->
-<!--        <attribute>-->
-<!--         <name>role</name>-->
-<!--        <required>true</required>-->
-<!--        <rtexprvalue>true</rtexprvalue>-->
-<!--    </attribute>-->
-<!--    </tag>-->
     <tag>
         <name>now</name>
         <tag-class>com.sulzhenko.controller.tag.TodayTag</tag-class>

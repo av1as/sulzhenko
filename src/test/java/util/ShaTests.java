@@ -1,3 +1,5 @@
+package util;
+
 import com.sulzhenko.Util.hashingPasswords.Sha;
 import com.sulzhenko.model.entity.User;
 import org.junit.jupiter.api.*;

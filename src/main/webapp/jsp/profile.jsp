@@ -41,10 +41,12 @@
              </div>
              <div class="form-group">
                 <label><fmt:message key="first.name"/></label><br>
+                <div title="<fmt:message key="name.requirements"/>"><fmt:message key="hover.requirements"/></div>
                 <input name="newfirstname" type="text" value="${user.getFirstName()}" class="input-xlarge">
              </div>
              <div class="form-group">
                 <label><fmt:message key="last.name"/></label><br>
+                <div title="<fmt:message key="name.requirements"/>"><fmt:message key="hover.requirements"/></div>
                 <input name="newlastname" type="text" value="${user.getLastName()}" class="input-xlarge">
              </div>
              <div class="form-group">

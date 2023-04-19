@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import static com.sulzhenko.Util.notifications.Mailer.send;
-import static com.sulzhenko.model.services.validator.InputValidator.*;
+import static com.sulzhenko.Util.validator.InputValidator.*;
 
 /**
  * UserService class for interaction between controller and User DAO
@@ -127,8 +127,10 @@ public class UserServiceImpl implements UserService {
         String randomPassword = RandomStringUtils.randomAlphanumeric(10);
         if(user != null) {
             try {
-                String[] param = {login, user.getEmail(), sha.hashToHex(randomPassword, Optional.ofNullable(login)), user.getFirstName(),
-                        user.getLastName(), user.getRole().value, user.getStatus(), user.getNotification()};
+                String[] param = {login, user.getEmail(),
+                        sha.hashToHex(randomPassword, Optional.ofNullable(login)),
+                        user.getFirstName(), user.getLastName(), user.getRole().value,
+                        user.getStatus(), user.getNotification()};
                 userDAO.update(user, param);
                 sendTemporaryPassword(user, randomPassword);
             } catch (DAOException | UnsupportedEncodingException | NoSuchAlgorithmException e) {

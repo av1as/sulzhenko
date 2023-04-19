@@ -5,4 +5,4 @@
  * @author Artem Sulzhenko
  * @version 1.0
  */
-package com.sulzhenko.model.services.validator;
+package com.sulzhenko.Util.validator;

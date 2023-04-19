@@ -117,12 +117,12 @@ public interface SQLQueries {
                 "(SELECT activity_id FROM activity WHERE activity_name = ?) \n";
         public static final String USER_HAS_ACTIVITY_AND_NOTIFICATION = USER_HAS_ACTIVITY +
                 "AND user.notification = 'on'";
-        public static final String FIND_CONNECTED_USERS_WITH_NOTIFICATION = UserQueries.SELECT_ALL_USER_FIELDS + USER_HAS_ACTIVITY_AND_NOTIFICATION;
+        public static final String FIND_CONNECTED_USERS_WITH_NOTIFICATION =
+                UserQueries.SELECT_ALL_USER_FIELDS + USER_HAS_ACTIVITY_AND_NOTIFICATION;
     }
     class CategoryQueries{
         private CategoryQueries() {
         }
-
         public static final String ALL_CATEGORY_FIELDS = "SELECT * FROM category_of_activity\n";
         public static final String GET_ALL_CATEGORIES = ALL_CATEGORY_FIELDS +
                 "ORDER BY category_name COLLATE utf8_unicode_ci ASC;";
@@ -135,8 +135,10 @@ public interface SQLQueries {
                 SET +
                 "category_name = ?\n" +
                 "WHERE category_name = ?;";
-        public static final String ADD_CATEGORY = "INSERT INTO category_of_activity (category_name) VALUE (?);";
-        public static final String DELETE_CATEGORY = "DELETE FROM category_of_activity WHERE category_name = ?;";
+        public static final String ADD_CATEGORY = "INSERT INTO category_of_activity (category_name) " +
+                "VALUE (?);";
+        public static final String DELETE_CATEGORY = "DELETE FROM category_of_activity " +
+                "WHERE category_name = ?;";
     }
 
     class RequestQueries {
@@ -191,7 +193,8 @@ public interface SQLQueries {
     class UserActivityQueries{
         private UserActivityQueries() {
         }
-        public static final String IF_USER_HAS_ACTIVITY = "SELECT * from user_activity WHERE account = ? AND activity_id = ?";
+        public static final String IF_USER_HAS_ACTIVITY = "SELECT * from user_activity " +
+                "WHERE account = ? AND activity_id = ?";
         public static final String ADD_ACTIVITY_TO_USER = "INSERT INTO user_activity\n" +
                 "(account,\n" +
                 "activity_id)\n" +

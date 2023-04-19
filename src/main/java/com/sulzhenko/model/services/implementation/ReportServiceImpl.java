@@ -45,7 +45,10 @@ public class ReportServiceImpl implements ReportService {
             }
             activitiesWithTime.add(new UserActivityDTO(activityName, activityTime));
             if (isLastRecord(activities, i)) {
-                createAndAddElement(activities, list, activitiesWithTime, i, login);
+                int numberOfActivities = activities.get(i).getNumberOfActivities();
+                int totalAmount = activities.get(i).getTotalAmount();
+                ReportDTO element = new ReportDTO(login, activitiesWithTime, numberOfActivities, totalAmount);
+                list.add(element);
             }
         }
         return list;
@@ -66,23 +69,6 @@ public class ReportServiceImpl implements ReportService {
             throw new ServiceException(UNKNOWN_ERROR);
         }
         return number;
-    }
-
-    /**
-     * Construes and inserts record into report page
-     * @param activities - source list of records
-     * @param list - output list
-     * @param activitiesWithTime - inner list of activities carried out by some user
-     * @param i - sequence number of record
-     * @param login - user login
-     */
-    private static void createAndAddElement(List<UserActivityDTO> activities, List<ReportDTO> list,
-                                            List<UserActivityDTO> activitiesWithTime, int i,
-                                            String login) {
-        int numberOfActivities = activities.get(i).getNumberOfActivities();
-        int totalAmount = activities.get(i).getTotalAmount();
-        ReportDTO element = new ReportDTO(login, activitiesWithTime, numberOfActivities, totalAmount);
-        list.add(element);
     }
 
     /**

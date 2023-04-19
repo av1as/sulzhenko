@@ -46,17 +46,19 @@
                 <div class="form-group">
                     <label for="email"><span class="req">* </span> <fmt:message key="email"/>: </label>
                     <div title="<fmt:message key="email.requirements"/>"><fmt:message key="hover.requirements"/></div>
-                    <input type="text" name="email" id="email" class="form-control login"  placeholder=""/>
+                    <input type="email" name="email" id="email" class="form-control login"  placeholder=""/>
                 </div>
 
                 <div class="form-group">
                     <label for="firstname"><fmt:message key="first.name"/>: </label>
+                    <div title="<fmt:message key="name.requirements"/>"><fmt:message key="hover.requirements"/></div>
                     <input class="form-control" type="text" name="firstname" id = "txt" onkeyup = "Validate(this);"  />
                     <div id="errFirst"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="lastname"> <fmt:message key="last.name"/>: </label>
+                    <div title="<fmt:message key="name.requirements"/>"><fmt:message key="hover.requirements"/></div>
                     <input class="form-control" type="text" name="lastname" id = "txt" onkeyup = "Validate(this)" placeholder=""  />
                     <div id="errLast"></div>
                 </div>

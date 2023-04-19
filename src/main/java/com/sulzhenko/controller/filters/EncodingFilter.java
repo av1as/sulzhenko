@@ -35,7 +35,8 @@ public class EncodingFilter implements Filter {
      * @param chain passed by application
      */
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
         request.setCharacterEncoding(encoding);
         chain.doFilter(request, response);
     }

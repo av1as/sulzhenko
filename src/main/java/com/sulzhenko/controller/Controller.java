@@ -17,7 +17,8 @@ import static com.sulzhenko.controller.Path.PAGE_ERROR;
 
 
 /**
- * Controller  class. Implements Front-controller pattern. Chooses action to execute and redirect or forward result.
+ * Controller  class. Implements Front-controller pattern. Chooses action to execute and redirect
+ * or forward result.
  *
  * @author Artem Sulzhenko
  * @version 1.0
